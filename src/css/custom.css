@@ -1,0 +1,76 @@
+/**
+ * Any CSS included here will be global. The classic template
+ * bundles Infima by default. Infima is a CSS framework designed to
+ * work well for content-centric websites.
+ */
+
+/* You can override the default Infima variables here. */
+
+:root {
+  --ifm-color-primary: #3fbe4d;
+  --ifm-color-primary-dark: #39ab45;
+  --ifm-color-primary-darker: #36a241;
+  --ifm-color-primary-darkest: #2c8536;
+  --ifm-color-primary-light: #51c55e;
+  --ifm-color-primary-lighter: #5ac867;
+  --ifm-color-primary-lightest: #77d281;
+  --ifm-code-font-size: 95%;
+  --ifm-hr-border-width: 1px;
+  --ifm-pre-padding: none;
+
+  --custom-border-radius: 4px;
+}
+
+.docusaurus-highlight-code-line {
+  background-color: rgba(0, 0, 0, 0.1);
+  display: block;
+  margin: 0 calc(-1 * var(--ifm-pre-padding));
+  padding: 0 var(--ifm-pre-padding);
+}
+
+html[data-theme='dark'] .docusaurus-highlight-code-line {
+  --ifm-color-primary: var(--ifm-color-primary);
+  --ifm-color-primary-dark: var(--ifm-color-primary-dark);
+}
+
+.navbar {
+  height: 72px;
+  padding: 16px 32px;
+}
+
+.navbar__link--active {
+  color: #3FBE4E;
+  background-color: rgba(255, 255, 255, 0.03);
+  border-radius: var(--custom-border-radius);
+}
+
+.card {
+  border-width: 1px;
+  border-color: rgba(0, 0, 0, 0.1);
+  border-style: solid;
+  height: 100%;
+  border-radius: var(--custom-border-radius) !important;
+}
+
+.card__header {
+  border-radius: var(--custom-border-radius) !important;
+}
+
+hr {
+  border-color: var(--ifm-hr-border-width);
+  opacity: 0.1;
+}
+
+.hero {
+  background-image: url('/static/img/home-bg.jpeg');
+  background-position-y: bottom;
+}
+
+a.transparent, a.transparent:hover {
+  color: inherit;
+  text-decoration: none;
+}
+
+.text-primary {
+  color: var(--ifm-color-primary);
+}
