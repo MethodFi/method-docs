@@ -8,8 +8,8 @@ export default function Clickable(props) {
     whileHover: {
       x: -5,
       y: -5,
-      transition: { ease: 'easeOut', duration: 0.2 },
-      boxShadow: '3px 3px var(--ifm-color-primary)',
+      transition: { ease: 'easeOut', duration: 0.1 },
+      boxShadow: '2px 2px var(--ifm-color-primary)',
     },
   };
 

@@ -1,0 +1,37 @@
+import VerificationCreateMX from '../../../../../src/snippets/VerificationCreateMX';
+
+
+**About**: Verify an ACH account by providing the raw account and transaction data from MX.
+
+**API Method**: `POST /accounts/:accountId/verification`
+
+### Request
+
+#### Example
+<VerificationCreateMX />
+
+#### Parameters
+
+| Name              | Type       | Required | Description                                              |
+|-------------------|------------|----------|----------------------------------------------------------|
+| `type`            | `string`   | ✅        | The type of verification. Option for MX: `mx`.           |
+| `mx`              | `object`   | ✅        | Object containing account data from MX.                  |
+| `mx.account`     | `object`   | ✅        | The raw account data received from MX. See https://docs.mx.com/atrium#endpoints_accounts_read_account                   |
+| `mx.transactions` | `object[]` | ✅        | The a list of the raw transaction data received from MX. See https://docs.mx.com/atrium#endpoints_accounts_list_account_transactions |
+
+### Response
+
+#### Example
+```json
+{
+    "id": "vrf_73TAQ8njUFsLJ",
+    "status": "verified",
+    "type": "mx",
+    "initiated_at": "1970-01-01T00:00:00.000Z",
+    "pending_at": "1970-01-01T00:00:00.000Z",
+    "verified_at": "2021-10-12T21:23:48.447Z",
+    "disabled_at": "1970-01-01T00:00:00.000Z",
+    "created_at": "2021-10-12T21:23:48.449Z",
+    "updated_at": "2021-10-12T21:23:48.449Z"
+}
+```

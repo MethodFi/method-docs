@@ -1,0 +1,82 @@
+# The account object
+
+Accounts are a representation of an entity's financial accounts. An account can be a checking or savings account (`ach`) or a credit card, student loan, etc. (`liability`)
+
+* To create an `ach` account you will need the routing and account number of the depository account. We recommend using [Plaid](https://plaid.com/products/auth/) to retrieve your entity's `ach` information.
+
+* To create a `liability` account you will need the `merchant` id (`mch_id`) and the account number of the liability.
+
+> ℹ️ **Important**: The `holder_id` is the id of the `Entity` who owns this account. Associating the incorrect `Entity` will lead to failed/returned payments.
+
+### Account object
+
+#### Example - `ach` account (Checking & Savings)
+
+```json
+{
+  "id": "acc_b9q2XVAnNFbp3",
+  "holder_id": "ent_y1a9e1fbnJ1f3",
+  "type": "ach",
+  "ach": {
+    "routing": "367537407",
+    "number": "57838927",
+    "type": "checking"
+  },
+  "liability": null,
+  "metadata": null,
+  "capabilities": [
+    "payments:receive"
+  ],
+  "created_at": "2020-12-09T00:40:51.107Z",
+  "updated_at": "2020-12-09T00:40:51.107Z"
+}
+```
+
+#### Example - `liability` account (Student Loans, Credit Cards, etc.)
+```json
+{
+  "id": "acc_Zc4F2aTLt8CBt",
+  "holder_id": "ent_au22b1fbFJbp8",
+  "type": "liability",
+  "ach": null,
+  "liability": {
+    "mch_id": "mch_2",
+    "mask": "4455"
+  },
+  "metadata": null,
+  "capabilities": [
+    "payments:receive"
+  ],
+  "created_at": "2020-12-09T02:56:19.548Z",
+  "updated_at": "2020-12-09T02:56:19.548Z"
+}
+```
+
+#### Attributes
+
+| Name               | Type                 | Description                                                                                                                                                                                             |
+|--------------------|----------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `id`               | `string`             | Unique identifier for the account.                                                                                                                                                                      |
+| `holder_id`        | `string`             | The id of the `Entity` who is the legal holder of this account.                                                                                                                                         |
+| `type`             | `string`             | The type of account. Options: `ach` or `liability`                                                                                                                                                      |
+| `ach`              | `object` `nullable`  | ACH account information.                                                                                                                                                                                |
+| `ach.routing`      | `string`             | ABA routing number of the ACH account. (maximum of 9 characters).                                                                                                                                       |
+| `ach.number`       | `string`             | Account number of the ACH account. (maximum of 17 characters).                                                                                                                                          |
+| `ach.type`         | `string`             | Type of ACH account. Options: `checking` or `savings`                                                                                                                                                   |
+| `liability`        | `object` `nullable`  | Liability account information.                                                                                                                                                                          |
+| `liability.mch_id` | `string`             | Unique identifier of the merchant associated with this account.                                                                                                                                         |
+| `liability.mask`   | `string`, `nullable` | The last 4 digits of the associated account number.                                                                                                                                                     |
+| `metdata`          | `object`, `nullable` | Additional data provided during creation. See [metadata](../1.%20Method%20API/6-Metadata.md).                                                                                                           |
+| `capabilities`           | `string[]`             | Capabilities of the account. Possible capabilities: `payments:receive`, `payments:send`. See *Account Capabilities* for more info. |
+| `created_at`       | `string`             | Timestamp of when the account was created.                                                                                                                                                              |
+| `updated_at`       | `string`             | Timestamp of when the account was last updated.                                                                                                                                                         |
+
+#### Account Capabilities
+
+The following are possible capabilities an account can have. This indicates if an account is capable of receiving money (as a destination) or sending money (as a source).
+
+
+ℹ️ ACH accounts, require an [additional verification step](../19.%20Verification/1-VerificationObj.md) to start sending money.
+
+- `payments:receive` The account can be used as a payment destination.
+- `payments:send` The account can be used as a payment source.

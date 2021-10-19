@@ -1,0 +1,47 @@
+import BinsRetrieve from '../../../../src/snippets/BinsRetrieve';
+
+
+**About**: Retrieves details regarding a BIN.
+
+**API Method**: `GET /bins`
+
+### Request
+
+#### Example
+<BinsRetrieve />
+
+#### Parameters
+| Name | Type     | Required | Description                                                                                                             |
+|------|----------|----------|-------------------------------------------------------------------------------------------------------------------------|
+| bin  | `string` | ✅        | A 4-6 digit number to identify a bin. If only 4 or 5 digits is provided, the response would return partial identifiers.|
+### Response
+
+#### Example
+
+###### Complete BIN (6 digits)
+```json
+{
+  "id": "bin_fWXVJF8HWYSdQ",
+  "bin": "414720",
+  "brand": "visa",
+  "issuer": "CHASE BANK USA, N.A.",
+  "type": "credit",
+  "category": "SIGNATURE",
+  "bank_url": "www.chase.com",
+  "sample_pan": "4147206867378753"
+}
+```
+
+###### Partial BIN (4-5 digits)
+```json
+{
+  "id": null,
+  "bin": null,
+  "brand": "visa",
+  "issuer": null,
+  "type": null,
+  "category": null,
+  "bank_url": null,
+  "sample_pan": null
+}
+```

@@ -1,0 +1,36 @@
+import PaymentsList from '../../../../src/snippets/PaymentsList';
+
+
+**About**: Returns all the payments associated with your team, or an empty array if none have been created.
+
+**API Method**: `GET /payments`
+
+### Request
+
+#### Example
+<PaymentsList />
+
+### Response
+
+#### Example
+
+An array of payment objects will be returned.
+
+```json
+{
+  "data": [
+    {
+      "id": "pmt_rPrDPEwyCVUcm",
+      "source": "acc_JMJZT6r7iHi8e",
+      "destination": "acc_AXthnzpBnxxWP",
+      "amount": 5000,
+      "description": "Loan Pmt",
+      "status": "pending",
+      "error": null,
+      "metadata": null,
+      "created_at": "2020-12-09T00:42:31.209Z",
+      "updated_at": "2020-12-09T00:43:30.996Z"
+    }
+  ]
+}
+```

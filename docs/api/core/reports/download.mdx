@@ -1,0 +1,20 @@
+import ReportsDownload from '../../../../src/snippets/ReportsDownload';
+
+
+**About**: Returns the results of the report associated with the id.
+
+**API Method**: `GET /reports/:reportId/download`
+
+### Request
+
+#### Example
+<ReportsDownload />
+
+#### Parameters
+
+| Name | Type     | Required | Description                        |
+|------|----------|----------|------------------------------------|
+| `id` | `string` | ✅       | The Id of the report whose results to retrieve.  |
+
+### Response
+Returns the report's results in CSV format.

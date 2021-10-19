@@ -1,0 +1,66 @@
+# Overview of Method Elements
+Method Elements is a collection of embeddable UI components that enhance and simplify your app's payment features. This allows you to securely collect information from your users. Tokenization, account creation and connection, and payment checkouts are all handled on your behalf.
+
+
+![Method Link](https://static.methodfi.com/assets/elements-banner.png)
+
+### Elements Environments
+Method Elements share the same env environments as the Method API. Method Elements should be launched in the same environment in which the `element_token` was generated.
+
+➡️  See [Method Environments](../1.%20Method%20API/3-Environments.md) for more info.
+
+```text
+https://elements.dev.methodfi.com (Development)
+https://elements.sandbox.methodfi.com (Sandbox)
+https://elements.production.methodfi.com (Production)
+```
+
+### Element Flow Overview
+Each element flow begins with generating an `element_token` with specific initialization options through the Method API. This token will then be used to initialize the element within your app to complete a specific flow.
+
+#### 1. Create Element Token
+Depending on your user's journey within your app, your app's backend will request for an `element_token` corresponding to an `entity` from the `/elements/token` endpoint.
+
+**Note**: Each `element_token` is only valid for 30 minutes after it has been created, and can only be used once.
+
+#### 2. Initialize Element
+Using the `element_token`, Method Elements will be initialized with the intended Element for your user.
+
+
+#### 3. Handling Element Events
+While your user interacts with an Element, events will be triggered for your app to handle. Each element flow will be different, therefore the completion depends on which Element is being used.
+
+
+## Method Elements
+---
+
+### Link
+The Link Element allows you to securely collect account numbers or PANs ("Primary account number") from your users. This handles the tokenization, and creation of the accounts on your behalf.
+
+➡️ [Intro to Link](../11.%20LinkElement/1-IntroToLink.md)
+
+➡️ [Link Implementation Guide](../11.%20LinkElement/2-Guide/1-CreateElementToken.md)
+
+---
+### Connections
+The Connections Element allows your users to securely connect and manage their Method accounts through your app. This implements the same tokenization, and account creation used by the Link Element.
+
+➡️ [Intro to Connections](../12.%20ConnectionsElement/1-IntroToConnections.md)
+
+---
+### Pay
+The Pay Element allows your users to seamlessly make payments between their connected Method accounts.
+
+➡️ [Intro to Pay](../13.%20PayElement/1-IntroToPay.md)
+
+---
+### Money Transfer
+The Money Transfer Element allows your users to securely send money to verified recipients via links.
+
+➡️ [Intro to Money Transfer](../15.%20MoneyTransferElement/1-IntroToMoneyTransfer.md)
+
+---
+### Balance Transfer
+The Balance Transfer Element allows your users to securely transfer their credit card balance to another account.
+
+➡️ [Intro to Balance Transfer](../16.%20BalanceTransferElement/1-IntroToBalanceTransfer.md)

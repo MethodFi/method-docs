@@ -1,0 +1,22 @@
+import WebhooksDelete from '../../../../src/snippets/WebhooksDelete';
+
+
+**About**: Deletes the webhook associated with the id.
+
+**API Method**: `DELETE /webhooks/:webhookId`
+
+### Request
+
+#### Example
+<WebhooksDelete />
+
+#### Parameters
+
+| Name | Type     | Required | Description                        |
+|------|----------|----------|------------------------------------|
+| `id` | `string` | ✅       | The Id of the webhook to delete. |
+
+
+### Response
+
+Returns `200` with an empty object on success

@@ -1,0 +1,37 @@
+import VerificationCreatePlaid from '../../../../../src/snippets/VerificationCreatePlaid';
+
+
+**About**: Verify an ACH account by providing the raw balance and transaction data from Plaid.
+
+**API Method**: `POST /accounts/:accountId/verification`
+
+### Request
+
+#### Example
+<VerificationCreatePlaid />
+
+#### Parameters
+
+| Name                 | Type       | Required | Description                                                                                                   |
+|----------------------|------------|----------|---------------------------------------------------------------------------------------------------------------|
+| `type`               | `string`   | ✅        | The type of verification. Option for Plaid: `plaid`.                                                          |
+| `plaid`              | `object`   | ✅        | Object containing account data from Plaid.                                                                    |
+| `plaid.balances`     | `object`   | ✅        | The raw balance data received from Plaid. See https://plaid.com/docs/balance/#balance-data                    |
+| `plaid.transactions` | `object[]` | ✅        | The a list of the raw transaction data received from Plaid. See https://plaid.com/docs/transactions/#overview |
+
+### Response
+
+#### Example
+```json
+{
+    "id": "vrf_73TAQ8njUFsLJ",
+    "status": "verified",
+    "type": "plaid",
+    "initiated_at": "1970-01-01T00:00:00.000Z",
+    "pending_at": "1970-01-01T00:00:00.000Z",
+    "verified_at": "2021-10-12T21:23:48.447Z",
+    "disabled_at": "1970-01-01T00:00:00.000Z",
+    "created_at": "2021-10-12T21:23:48.449Z",
+    "updated_at": "2021-10-12T21:23:48.449Z"
+}
+```

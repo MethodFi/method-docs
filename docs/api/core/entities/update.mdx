@@ -1,0 +1,49 @@
+import EntitiesUpdate from '../../../../src/snippets/EntitiesUpdate';
+
+# Update an entity
+
+**About**: Updates an entity with the parameters sent. Entities can only be updated when they are in the `incomplete` state.
+
+**API Method**: `PUT /entities/:entityId`
+
+> 💡️ **Tip**: Updating an entity with more information will enable further capabilities on the Entity. See [Entity Capabilities](../2.%20Entities/1-EntityObj.md#entity-capabilities) for more info.
+
+
+### Request
+
+#### Example
+<EntitiesUpdate />
+
+### Response
+
+#### Example
+```json
+{
+  "id": "ent_au22b1fbFJbp8",
+  "type": "individual",
+  "individual": {
+    "first_name": "Kevin",
+    "last_name": "Doyle",
+    "phone": "+16505555555",
+    "email": "kevin.doyle@gmail.com",
+    "dob": "1997-03-18"
+  },
+  "corporation": null,
+  "receive_only": null,
+  "address": {
+    "line1": "3300 N Interstate 35",
+    "line2": null,
+    "city": "Austin",
+    "state": "TX",
+    "zip": "78705"
+  },
+  "capabilities": [
+    "payments:send",
+    "payments:receive"
+  ],
+  "status": "active",
+  "metadata": null,
+  "created_at": "2020-12-09T00:40:51.107Z",
+  "updated_at": "2020-12-09T00:40:51.107Z"
+}
+```

@@ -41,12 +41,12 @@ const config = {
   themeConfig:
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
-      algolia: {
-        appId: 'X1Z85QJPUV',
-        apiKey: 'bf7211c161e8205da2f933a02534105a',
-        indexName: 'docusaurus-2',
-        contextualSearch: true,
-      },
+      // algolia: {
+      //   appId: 'X1Z85QJPUV',
+      //   apiKey: 'bf7211c161e8205da2f933a02534105a',
+      //   indexName: 'docusaurus-2',
+      //   contextualSearch: true,
+      // },
       hideableSidebar: true,
       colorMode: {
         disableSwitch: true,
@@ -60,13 +60,12 @@ const config = {
           srcDark: 'https://static.methodfi.com/assets/method-logo-white.png',
         },
         items: [
-          { label: 'Home', position: 'left', href: '/', activeBaseRegex: `/` },
+          { label: 'Home', position: 'left', to: '/', activeBaseRegex: `^/$` },
           { label: 'Guides', position: 'left', to: 'docs/guides', activeBaseRegex: `/guides` },
           { label: 'API Reference', position: 'left', to: 'docs/api', activeBaseRegex: `/api` },
           { label: 'SDKs', position: 'left', to: 'docs/sdks', activeBaseRegex: `/sdks` },
           { label: 'Changelog', position: 'left', to: 'docs/changelog', activeBaseRegex: `/changelog` },
           { label: 'Blog', position: 'left', to: 'blog', activeBaseRegex: `/blog` },
-          // { label: 'GitHub', position: 'right', href: 'https://github.com/MethodFi' },
           { label: 'Sign In', position: 'right', href: 'https://dashboard.methodfi.com' },
         ],
       },
@@ -82,23 +81,23 @@ const config = {
               { label: 'Changelog', to: '/docs/changelog' },
             ],
           },
-          {
-            title: 'Community',
-            items: [
-              {
-                label: 'Stack Overflow',
-                href: 'https://stackoverflow.com/questions/tagged/docusaurus',
-              },
-              {
-                label: 'Discord',
-                href: 'https://discordapp.com/invite/docusaurus',
-              },
-              {
-                label: 'Twitter',
-                href: 'https://twitter.com/docusaurus',
-              },
-            ],
-          },
+          // {
+          //   title: 'Community',
+          //   items: [
+          //     {
+          //       label: 'Stack Overflow',
+          //       href: 'https://stackoverflow.com/questions/tagged/docusaurus',
+          //     },
+          //     {
+          //       label: 'Discord',
+          //       href: 'https://discordapp.com/invite/docusaurus',
+          //     },
+          //     {
+          //       label: 'Twitter',
+          //       href: 'https://twitter.com/docusaurus',
+          //     },
+          //   ],
+          // },
           {
             title: 'More',
             items: [
@@ -113,7 +112,7 @@ const config = {
             ],
           },
         ],
-        copyright: `Copyright © ${new Date().getFullYear()} My Project, Inc. Built with Docusaurus.`,
+        copyright: `Copyright © ${new Date().getFullYear()} Method Financial. Built with Docusaurus.`,
       },
       prism: {
         theme: lightCodeTheme,

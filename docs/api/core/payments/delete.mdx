@@ -1,0 +1,39 @@
+import PaymentsDelete from '../../../../src/snippets/PaymentsDelete';
+
+
+**About**: Deletes the payment associated with the id.
+
+**API Method**: `DELETE /payments/:paymentId`
+
+> ℹ️ **Important**: Payments can only be deleted when in a `pending` state as they have not been transmitted to our banking networks.
+
+### Request
+
+#### Example
+<PaymentsDelete />
+
+#### Parameters
+
+| Name | Type     | Required | Description                        |
+|------|----------|----------|------------------------------------|
+| `id` | `string` | ✅       | The Id of the payment to delete. |
+
+
+### Response
+
+Returns the canceled payment with the updated `status`
+
+```json
+{
+  "id": "pmt_rPrDPEwyCVUcm",
+  "source": "acc_JMJZT6r7iHi8e",
+  "destination": "acc_AXthnzpBnxxWP",
+  "amount": 5000,
+  "description": "Loan Pmt",
+  "status": "canceled",
+  "error": null,
+  "metadata": null,
+  "created_at": "2020-12-09T00:42:31.209Z",
+  "updated_at": "2020-12-09T00:43:30.996Z"
+}
+```

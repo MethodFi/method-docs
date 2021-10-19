@@ -1,0 +1,13 @@
+import MetadataSample from '../../src/snippets/Metadata';
+
+# Metadata
+
+Method allows you to provide arbitrary data upon creation of any Core API resource. This data is referred to as **metadata** and will be returned as the `metadata` attribute on any Core API resource.
+
+Adding metadata to Core API resources is useful if you want to provide additional identifiers that reference specific records or rows in your own database.
+
+The provided metadata should be a valid JSON object, and must be less than 1KB in size when serialized.
+
+#### Example - create an entity with metadata
+
+<MetadataSample />

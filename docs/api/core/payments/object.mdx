@@ -1,0 +1,84 @@
+# The payment object
+
+Payments allow you to easily move money between two accounts. Using payments you can move money between two `ach` accounts (e.g. Checking & Savings) or move money (_pay_) a `liability` (e.g. Student Loans, Credit Cards, etc.)
+
+All payments are processed electronically between the source and destination, and take 2-3 business days depending on the receiving institution.
+
+#### Cutoff Time
+Payments are processed on business days (Monday - Friday) at 2:30 PM CST excluding US Banking Holidays.
+
+### Payment object
+
+#### Example
+
+```json
+{
+  "id": "pmt_rPrDPEwyCVUcm",
+  "source": "acc_JMJZT6r7iHi8e",
+  "destination": "acc_AXthnzpBnxxWP",
+  "amount": 5000,
+  "description": "Loan Pmt",
+  "status": "pending",
+  "error": null,
+  "metadata": null,
+  "created_at": "2020-12-09T00:42:31.209Z",
+  "updated_at": "2020-12-09T00:43:30.996Z"
+}
+```
+
+#### Attributes
+
+| Name          | Type                | Description                                                                                                                                                                                                                    |
+|---------------|---------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `id`          | `string`            | Unique identifier for the payment.                                                                                                                                                                                             |
+| `source`      | `string`            | The `id` of an `ach` account from which the payment amount will be retrieved.                                                                                                                                                  |
+| `destination` | `string`            | The `id` of an `ach` or `liability` account to which the payment amount will be sent.                                                                                                                                          |
+| `amount`      | `string`            | The amount of the payment to be created in cents. (e.g. $1.00 = 100)                                                                                                                                                           |
+| `description` | `string` `nullable` | Optional description (maximum of 10 characters).                                                                                                                                                                               |
+| `status`      | `string`            | Status of the payment. Possible statuses: `pending`, `sent`, `canceled`, `returned`, `error`. See *Payment Statuses* for more info.                                                                                            |
+| `fund_status` | `string`            | Fund status of the payment. Possible statuses: `pending`, `requested`, `received`, `sent`, `unknown`. See *Payment Fund Statuses*.  This property is available only when [individual payments are retrieved](3-GetPayment.md). |
+| `error`       | `string` `nullable` | Parameter will be null unless `status` is `error`. A description of the error that occurred in processing the payment.                                                                                                         |
+| `metadata`    | `object` `nullable` | Additional data provided during creation. See [metadata](../1.%20Method%20API/6-Metadata.md).                                                                                                                                                                     |
+| `created_at`  | `string`            | Timestamp of when the payment was created.                                                                                                                                                                                     |
+| `updated_at`  | `string`            | Timestamp of when the payment was last updated.                                                                                                                                                                                |
+### Payment Statuses
+
+A payment will enter the following statuses as it is processed.
+
+* `pending`
+Initial status after the payment is created. Payment will stay in this state until it is processed (see: Cutoff Time). Payment can be deleted in this state.
+
+* `canceled`
+The payment was canceled and was never executed.
+
+* `sent`
+The payment has been executed and sent to the banking networks.
+
+* `returned`
+The payment was successfully sent, however, the network or receiving institution could not complete the transfer successfully.
+
+* `error`
+The payment was not sent. An unexpected error occurred when transmitting the payment.
+
+
+### Payment Fund Statuses
+
+A payment's funds will enter the following statuses as it is processed.
+
+* `pending`
+Initial fund status after the payment is created.
+
+* `requested`
+The payment funds have been requested from the source acccount.
+
+* `received`
+The payment funds from the source account have been received.
+
+* `sent`
+The payment funds have been sent to the destination account.
+
+* `unknown`
+The status of the payment's funds is unknown.
+
+
+

@@ -1,0 +1,29 @@
+import IdempotencySample from '../../src/snippets/Idempotency';
+
+# Idempotency
+
+Method's API supports idempotency for safely retrying requests without accidentally performing the same operation twice. This helps avoid unwanted duplication in case of failures and retries. For example, in the case of a timeout error, it is possible to safely retry sending the same API payment call multiple times with the guarantee that the payment will only be created once.
+
+Method's idempotency works by saving the resulting status code and body of the first request made for any given idempotency key, regardless of whether it succeeded or failed. Subsequent requests with the same key return the same result, including `500` errors.
+
+### Enable idempotency
+
+To submit a request for idempotent processing, send a request with the `Idempotency-Key: <key>` header. The `<key>` can be any unique string up to 255 characters long. (We recommend using V4 UUIDs). All `POST` requests accept idempotency keys.
+
+<IdempotencySample />
+
+
+### Idempotency error
+
+In the unlikely event that the idempotent data store is unavailable, the API returns a `503` error status with the a sub type of `IDEMPOTENCY_UNAVAILABLE` If idempotency is required, we recommend try your request later, otherwise, fall back to non-idempotent processing by not submitting the `Idempotency-Key` header.
+
+```json
+{
+  "error": {
+    "type": "API_ERROR",
+    "code": 503,
+    "sub_type": "IDEMPOTENCY_UNAVAILABLE",
+    "message": "Idempotent requests are temporarily unavailable. To ensure idempotency try your request later, or fall back to a non-idempotent request."
+  }
+}
+```

@@ -1,0 +1,152 @@
+# The entity object
+
+Entities are a representation of your application's end-users. Throughout Method's ecosystem, an `Entity` is the legal owner of any `Account`. When creating an `Entity` we will perform a KYC / AML verification on your behalf. In most cases, the verification takes seconds and only requires basic information from your end-user.
+
+Entities can be either an 1) individual/person, 2) company/corporation.
+
+### Entity object
+
+#### Example - Individual Entity
+```json
+{
+  "id": "ent_au22b1fbFJbp8",
+  "type": "individual",
+  "individual": {
+    "first_name": "Kevin",
+    "last_name": "Doyle",
+    "phone": "+16505555555",
+    "email": "kevin.doyle@gmail.com",
+    "dob": "1997-03-18"
+  },
+  "corporation": null,
+  "receive_only": null,
+  "address": {
+    "line1": "3300 N Interstate 35",
+    "line2": null,
+    "city": "Austin",
+    "state": "TX",
+    "zip": "78705"
+  },
+  "capabilities": [
+    "payments:send",
+    "payments:receive"
+  ],
+  "status": "active",
+  "metadata": null,
+  "created_at": "2020-12-09T00:40:51.107Z",
+  "updated_at": "2020-12-09T00:40:51.107Z"
+}
+```
+
+#### Example - Corporation Entity
+```json
+{
+  "id": "ent_y1a9e1fbnJ1f3",
+  "type": "c_corporation",
+  "individual": null,
+  "receive_only": null,
+  "corporation": {
+    "name": "Alphabet Inc.",
+    "dba": "Google",
+    "ein": "641234567",
+    "owners": [
+      {
+        "first_name": "Sergey",
+        "last_name": "Brin",
+        "phone": "+16505555555",
+        "email": "sergey@google.com",
+        "dob": "1973-08-21",
+        "address": {
+          "line1": "600 Amphitheatre Parkway",
+          "line2": null,
+          "city": "Mountain View",
+          "state": "CA",
+          "zip": "94043"
+        }
+      }
+    ]
+  },
+  "address": {
+    "line1": "1600 Amphitheatre Parkway",
+    "line2": null,
+    "city": "Mountain View",
+    "state": "CA",
+    "zip": "94043"
+  },
+  "capabilities": [
+    "payments:send",
+    "payments:receive"
+  ],
+  "status": "active",
+  "metadata": null,
+  "created_at": "2020-12-09T00:40:51.107Z",
+  "updated_at": "2020-12-09T00:40:51.107Z"
+}
+```
+
+### Entity Attributes
+
+| Name                    | Type                 | Description                                                                                                                                                                                                                     |
+|-------------------------|----------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `id`                    | `string`             | Unique identifier for the entity.                                                                                                                                                                                               |
+| `type`                  | `string`             | The type of the entity. Option for receive only entity: `receive_only` Option for individual entity: `individual` Options for corporation entity: `c_corporation`, `s_corporation`, `llc`, `partnership`, `sole_proprietorship` |
+| `individual`            | `object` `nullable`  | Information of the entity with a type of `individual`                                                                                                                                                                           |
+| `individual.first_name` | `string`             | The legal first name of the individual entity.                                                                                                                                                                                  |
+| `individual.last_name`  | `string`             | The legal last name of the individual entity.                                                                                                                                                                                   |
+| `individual.phone`      | `string`             | Mobile phone number of the individual entity in E.164 format. The number will only be used for KYC / AML verification.                                                                                                          |
+| `individual.email`      | `string`             | Email address of the individual entity. The email will only be used for KYC / AML verification.                                                                                                                                 |
+| `individual.dob`        | `string`             | The entity's date of birth in ISO 8601 format.                                                                                                                                                                                  |
+| `corporation`           | `object` `nullable`  | Information of the entity with a type of `c_corporation`, `s_corporation`, `limited_liability_company`, `partnership`, `sole_proprietorship`                                                                                    |
+| `corporation.name`      | `string`             | The legal name of the corporation entity.                                                                                                                                                                                       |
+| `corporation.dba`       | `string` `nullable`  | DBA (Doing Business As) name of the corporation entity                                                                                                                                                                          |
+| `corporation.ein`       | `string`             | The EIN of the corporation entity.                                                                                                                                                                                              |
+| `corporation.owners`    | `array`              | The details of the corporation's owners (only include individuals owning 25% or more of the corporation)                                                                                                                        |
+| `receive_only`          | `object` `nullable`  | 🚧 Deprecated: Information of the entity with a type of `receive_only`.                                                                                                                                                          |
+| `receive_only.name`     | `string`             | The legal name of the entity. This name should match the name on record in the `accounts` associated to this entity.                                                                                                            |
+| `receive_only.phone`    | `string`             | Phone number of the entity in E.164 format. The number will only be used for KYC / AML purposes.                                                                                                                                |
+| `receive_only.email`    | `string`             | Email address of the entity. The email will only be used for KYC / AML purposes.                                                                                                                                                |
+| `capabilities`          | `array`              | The capabilities of the entity. See *Entity Capabilities* for more info.                                                                                                                                                        |
+| `address`               | `object`             | The entity's address.                                                                                                                                                                                                           |
+| `address.line1`         | `string`             | The first line of the entity's address.                                                                                                                                                                                         |
+| `address.line2`         | `string` `nullable`  | The second line of the entity's address.                                                                                                                                                                                        |
+| `address.city`          | `string`             | The city of the entity's address.                                                                                                                                                                                               |
+| `address.state`         | `string`             | The two-letter abbreviation for the state of the entity's address.                                                                                                                                                              |
+| `address.zip`           | `string`             | The ZIP code of the entity's address.                                                                                                                                                                                           |
+| `status`                | `string`             | Status of the entity's KYC / AML verification. Possible statuses: `active`, `pending`, `blocked`, `error`. See *Entity Statuses* for more info.                                                                                 |
+| `metadata`              | `object`, `nullable` | Additional data provided during creation. See [metadata](../1.%20Method%20API/6-Metadata.md).                                                                                                                                                                                  |
+| `created_at`            | `string`             | Timestamp of when the entity was created.                                                                                                                                                                                       |
+| `updated_at`            | `string`             | Timestamp of when the entity was last updated.                                                                                                                                                                                  |
+
+### Entity Capabilities
+
+An entity will have specific capabilities based on the data provided. An entity with an `incomplete` status can be further updated with more infomation to expand the possible capabilities of an entity.
+
+#### Capabilities Types
+
+* `payments:receive`
+The entity can be a `destination` and receive payments from any other entity. *Minimum required information:* `first_name`, `last_name` and either `email` or `phone`.
+
+* `payments:limited-send`
+The entity can be a `source` and send payments from ACH `Account` created using Method Link + Plaid / MX. *Minimum required information:* `first_name`, `last_name` and either `email` or `phone`.
+
+* `payments:send`
+The entity can be a `source` and send payments from any ACH `Account` regardless of how they were created. *Minimum required information:* `first_name`, `last_name`, `dob` and either `email` or `phone`.
+
+### Entity Statuses
+
+An entity will enter the following statuses as it undergoes KYC / AML verification.
+
+* `active`
+The entity's KYC / AML validation is complete, and can no longer be updated. The entity has full capabilities.
+
+* `incomplete`
+The entity is missing required fields. You are able to create `Accounts` for this entity and can move money based on the entities capabilities. Usually `payments:receive` and `payments:limited-send`.
+
+* `pending`
+The entity's KYC / AML validation is in progress. You are able to create `Accounts` for this entity and can move money based on the entities capabilities. Usually `payments:receive` and `payments:limited-send`.
+
+* `blocked`
+The entity's KYC / AML validation is complete and has not been approved. Contact team@methodfi.com for more information.
+
+* `error`
+The entity's KYC / AML validation is failed. An unexpected error occurred while executing the KYC / AML validation. Contact team@methodfi.com for more information.
