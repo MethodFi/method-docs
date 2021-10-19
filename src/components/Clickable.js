@@ -14,8 +14,8 @@ export default function Clickable(props) {
   };
 
   return (
-    <a href={href} className="transparent clickable">
-      <motion.div {...motionOpts}>
+    <a href={href} className="transparent">
+      <motion.div {...motionOpts} style={{ height: '100%', borderRadius: 4 }}>
         {children}
       </motion.div>
     </a>

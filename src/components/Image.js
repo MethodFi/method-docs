@@ -6,14 +6,16 @@ export default function Image(props) {
     src,
     alt,
     size,
+    height,
+    width,
   } = props;
 
   return (
     <img
       src={src}
       alt={alt}
-      height={size}
-      width={size}
-      style={{ minHeight: size, minWidth: size }} />
+      height={height || size}
+      width={width || size}
+      style={{ minHeight: height || size, minWidth: height || size }} />
   );
 }

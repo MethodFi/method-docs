@@ -7,7 +7,7 @@ const darkCodeTheme = require('prism-react-renderer/themes/nightOwl');
 /** @type {import('@docusaurus/types').Config} */
 const config = {
   title: 'Method Docs',
-  tagline: 'Dinosaurs are cool',
+  tagline: 'Explore guides, examples, and libraries to integrate Method.',
   url: 'https://your-docusaurus-test-site.com',
   baseUrl: '/',
   onBrokenLinks: 'throw',
@@ -24,12 +24,12 @@ const config = {
         docs: {
           sidebarPath: require.resolve('./sidebars.js'),
           // Please change this to your repo.
-          editUrl: 'https://github.com/facebook/docusaurus/edit/main/website/',
+          editUrl: 'https://github.com/MethodFi',
         },
         blog: {
           showReadingTime: true,
           // Please change this to your repo.
-          editUrl: 'https://github.com/facebook/docusaurus/edit/main/website/blog/',
+          editUrl: 'https://github.com/MethodFi',
         },
         theme: {
           customCss: require.resolve('./src/css/custom.css'),
@@ -61,12 +61,13 @@ const config = {
         },
         items: [
           { label: 'Home', position: 'left', href: '/', activeBaseRegex: `/` },
-          { label: 'Guides', position: 'left', to: 'docs/guides/index', activeBaseRegex: `/guides/` },
-          { label: 'API Reference', position: 'left', to: 'docs/api/index', activeBaseRegex: `/api/` },
-          { label: 'SDKs', position: 'left', to: 'docs/api/index', activeBaseRegex: `/sdks/` },
-          { label: 'Blog', position: 'left', to: 'blog', activeBaseRegex: `/blog` },
+          { label: 'Guides', position: 'left', to: 'docs/guides', activeBaseRegex: `/guides` },
+          { label: 'API Reference', position: 'left', to: 'docs/api', activeBaseRegex: `/api` },
+          { label: 'SDKs', position: 'left', to: 'docs/sdks', activeBaseRegex: `/sdks` },
           { label: 'Changelog', position: 'left', to: 'docs/changelog', activeBaseRegex: `/changelog` },
-          { label: 'GitHub', position: 'right', href: 'https://github.com/facebook/docusaurus' },
+          { label: 'Blog', position: 'left', to: 'blog', activeBaseRegex: `/blog` },
+          // { label: 'GitHub', position: 'right', href: 'https://github.com/MethodFi' },
+          { label: 'Sign In', position: 'right', href: 'https://dashboard.methodfi.com' },
         ],
       },
       footer: {
@@ -74,10 +75,11 @@ const config = {
           {
             title: 'Docs',
             items: [
-              {
-                label: 'Tutorial',
-                to: '/docs/guides',
-              },
+              { label: 'Home', to: '/' },
+              { label: 'Guides', to: '/docs/guides' },
+              { label: 'API Reference', to: '/docs/api' },
+              { label: 'SDKs', to: '/docs/sdks' },
+              { label: 'Changelog', to: '/docs/changelog' },
             ],
           },
           {
@@ -106,7 +108,7 @@ const config = {
               },
               {
                 label: 'GitHub',
-                href: 'https://github.com/facebook/docusaurus',
+                href: 'https://github.com/MethodFi',
               },
             ],
           },

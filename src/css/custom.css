@@ -40,13 +40,13 @@ html[data-theme='dark'] .docusaurus-highlight-code-line {
 
 .navbar__link--active {
   color: #3FBE4E;
-  background-color: rgba(255, 255, 255, 0.03);
+  background-color: rgba(70, 90, 97, 0.3);
   border-radius: var(--custom-border-radius);
 }
 
 .card {
-  border-width: 1px;
-  border-color: rgba(0, 0, 0, 0.1);
+  border-width: 2px;
+  border-color: rgba(70, 90, 97, 0.3);
   border-style: solid;
   height: 100%;
   border-radius: var(--custom-border-radius) !important;
@@ -62,8 +62,8 @@ hr {
 }
 
 .hero {
-  background-image: url('/static/img/home-bg.jpeg');
-  background-position-y: bottom;
+  background-image: url('/static/img/bg-home.png');
+  background-size: cover;
 }
 
 a.transparent, a.transparent:hover {

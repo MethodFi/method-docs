@@ -11,17 +11,20 @@
 
 module.exports = {
   guides: [
-    'guides/index',
-    {
-      type: 'category',
-      label: 'sub categories',
-      items: [
-        'guides/concepts',
-        'guides/getting-started',
-      ],
-    },
+    'guides',
+    // {
+    //   type: 'category',
+    //   label: 'sub categories',
+    //   items: [
+    //     'guides/concepts',
+    //     'guides/getting-started',
+    //   ],
+    // },
   ],
   api: [
-    'api/index',
+    'api',
+  ],
+  sdks: [
+    'sdks',
   ],
 };
