@@ -1,3 +1,5 @@
+import ElementsExchangePublicAccountToken from '../../../../../src/snippets/ElementsExchangePublicAccountToken';
+
 # Exchange Public Account Token
 
 **About**: Exchanges the `public_account_token` for an `account`. This is the final step when linking an account using Link Element.
@@ -7,15 +9,8 @@
 ### Request
 
 #### Example
-```shell
-curl https://production.methodfi.com/elements/accounts/exchange \
-  -X POST \
-  -H "Authorization: Bearer sk_WyZEWVfTcH7GqmPzUPk65Vjc" \
-  -H "Content-Type: application/json" \
-  -d '{
-        "public_account_token": "pk_acc_iZKeBTmnmw3aSGePcfdweUEJTBXwsfR4"
-      }'
-```
+
+<ElementsExchangePublicAccountToken />
 
 #### Parameters
 

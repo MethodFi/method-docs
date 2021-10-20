@@ -1,3 +1,6 @@
+import ElementsCreateLinkToken from '../../../../../src/snippets/ElementsCreateLinkToken';
+import ElementsCreateLinkToken2 from '../../../../../src/snippets/ElementsCreateLinkToken2';
+
 # Create element token
 
 **About**: Creates an element token to launch a Link Element session for a specific entity. Element tokens are only valid for 30 minutes after they are created, and can only be used once.
@@ -14,37 +17,12 @@ For example, if your user connected their AMEX credit card ending in 4127 using 
 
 > **Tip**: Use the [merchants endpoint](../../4.%20Merchants/2-GetMerchants.md) to find the corresponding `mch_id` for the identifier used by your aggregator. (e.g Plaid's `ins_id`)
 
-```shell
-curl https://production.methodfi.com/elements/token \
-  -X POST \
-  -H "Authorization: Bearer sk_WyZEWVfTcH7GqmPzUPk65Vjc" \
-  -H "Content-Type: application/json" \
-  -d '{
-    "entity_id": "ent_au22b1fbFJbp8",
-    "team_name": "Demo Payment App",
-    "type": "link",
-    "link": {
-      "mask": "4127",
-      "mch_id": "mch_3"
-    }
-  }'
-```
+<ElementsCreateLinkToken />
 
 #### Example without merchant restriction
 If you have not integrated with a data aggregator (Plaid), you can securely collect your user's information by requesting an `element_token` without a merchant restriction. This will open the Link Element to a search screen for the user to choose which account to link.
 
-```shell
-curl https://production.methodfi.com/elements/token \
-  -X POST \
-  -H "Authorization: Bearer sk_WyZEWVfTcH7GqmPzUPk65Vjc" \
-  -H "Content-Type: application/json" \
-  -d '{
-    "entity_id": "ent_au22b1fbFJbp8",
-    "team_name": "Demo Payment App",
-    "type": "link",
-    "link": {}
-  }'
-```
+<ElementsCreateLinkToken2 />
 
 #### Parameters
 | Name          | Type     | Required | Description                                                                      |

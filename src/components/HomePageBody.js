@@ -21,9 +21,9 @@ export default function HomePageBody() {
           body="Learn the core concepts of Method so you can really hit the ground running."
         />
         <UseCaseCard
-          href="/docs/sdks"
+          href="/docs/libraries"
           illustration="/static/img/illustration-3.png"
-          header="SDKs"
+          header="Libraries"
           body="Learn the core concepts of Method so you can really hit the ground running."
         />
       </CardContainer>

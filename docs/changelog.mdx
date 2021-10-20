@@ -1,9 +1,50 @@
----
-sidebar_label: Changelog
----
-
 # Changelog
 
-Find details on using the Method Dashboard, get your API keys, or set up a webhook.
+See the latest changes and updates to Method's API.
 
----
+> 🚀 **About Method**: Method is the easiest way to embed debt repayment into your app. ([Learn More](https://methodfi.com/))
+
+### August 2021
+* **Payment fund statuses**: Add support for payment fund statuses. ([docs](../5.%20Payments/1-PaymentObj.md))
+* **Merchant improvements**: Extended coverage for merchant logo and types ([docs](../4.%20Merchants/1-MerchantObj.md))
+* **Core API Metadata**: Accept `metadata` on Core API resource creation. ([docs](6-Metadata.md))
+* **Element events scheme**: Updated elements event redirect scheme. ([docs](../10.%20Elements/2-Events.md))
+* **Money Transfer Element**: Added a demo for Money Transfer use case. ([docs](../15.%20MoneyTransferElement/1-IntroToMoneyTransfer.md))
+* **Balance Transfer Element**: Added a demo for Balance Transfer use case. ([docs](../16.%20BalanceTransferElement/1-IntroToBalanceTransfer.md))
+* **Link Element UI**: Improved Link Element layout and consent view. ([docs](../11.%20LinkElement/1-IntroToLink.md))
+* **Health Check**: Added health check API endpoint `/ping`. ([docs](7-HealthCheck.md))
+* **Webhook IP whitelists**: List possible webhook IP addresses for each Method environment. ([docs](../6.%20Webhooks/6-IPWhitelisting.md))
+* **Idempotency**: Added optional `Idempotency-Key` header for all `POST` Core API resources. ([docs](8-Idempotency.md))
+* **List accounts filters**: Added optional filter parameters for `GET /accounts`. ([docs](../3.%20Accounts/4-GetAccounts.md))
+* **Generate Reports**: Allow users to generate reports using the `/reports` endpoints. ([docs](../17.%20Reports/1-ReportObj.md))
+* **API Client for Node.js**: Created an API client library for node.js. ([docs](../18.%20Libraries/1-Client.md))
+* **Elements Javascript SDK**: Created a Javascript SDK for Elements. ([docs](../18.%20Libraries/2.%20Elements/1-Javascript.md))
+
+### July 2021
+
+* **Guides**: Added a new guides section on the docs. Check out the [first guide](../14.%20IntegrationGuides/1-IntegratingUsingPlaid.md).
+* **Elements**: Added a new elements section on the docs. Elements will encapsulate all embeddable UI components, including Link. ([docs](../10.%20Elements/1-IntroToElements.md))
+* **Link deprecation**: Deprecated Method Link. Link will now be a part of Method Elements. ([docs](../10.%20Elements/1-IntroToElements.md))
+
+### June 2021
+
+* **Entity capabilities**: An entity will have specific capabilities based on the data provided. ([docs](../2.%20Entities/1-EntityObj.md#entity-capabilities))
+* **Receive Only entites**: This entity type is being deprecated. See docs for more info. ([docs](../2.%20Entities/1-EntityObj.md#entity-capabilities))
+* **Mask in accounts**: A liabilities' mask (last 4) is now returned in the Account object. ([docs](../3.%20Accounts/1-AccountObj.md))
+
+### May 2021
+
+* **Merchant logos**: Extended coverage of logos of merchants ([docs](../4.%20Merchants/1-MerchantObj.md))
+* **Receive Only entites**: Allows you to push money to an entities' accounts without needing extensive KYC / AML ([docs](../2.%20Entities/CreateReceiveOnlyEntity.md))
+* **Payment simulator**: The dev environment now simulates a payment moving through it's various states. ([docs](../1.%20Method%20API/3-Environments.md))
+* **Improved Plaid & MX support**: Significantly improved coverage of merchants mapping to Plaid & MX aggregators ([docs](../4.%20Merchants/3-GetMerchant.md))
+
+### April 2021
+
+* **Hello World**: Method is live. Thanks for all the support. 🚀 ([Product Hunt](https://www.producthunt.com/posts/method-financial))
+* **Update Entity**: You can now update entities before initiating KYC / AML verification. ([docs](../2.%20Entities/6-UpdateEntity.md))
+* **BIN Lookup**: Use our BIN endpoint to get metadata for a BIN ("Bank Identification Number"). ([docs](../9.%20Utils/1-BINObject.md))
+
+### March 2021
+* **Method Link**: Method Link handles the tokenization, and creation of the account on your behalf. ([docs](../7.%20LinkIntro/1-Overview.md))
+

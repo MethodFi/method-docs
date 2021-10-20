@@ -1,5 +1,7 @@
-import AccountsCreate from '../../../../src/snippets/AccountsCreate';
+import AccountsCreateACH from '../../../../src/snippets/AccountsCreateACH';
+import AccountsCreateLiability from '../../../../src/snippets/AccountsCreateLiability';
 
+# Create an account
 
 **About**: Creates a new account for a unique entity, either `ach` or `liability`, based on the parameters provided. An account is a unique representation of an `ach` or `liability` account.
 
@@ -24,22 +26,10 @@ Due to the sensitive nature of a liability's account number, we recommend collec
 ### Request
 
 #### Example - `ach` account
-<AccountsCreate />
+<AccountsCreateACH />
 
 #### Example - `liability` account
-```shell
-curl https://production.methodfi.com/accounts \
-  -X POST \
-  -H "Authorization: Bearer sk_WyZEWVfTcH7GqmPzUPk65Vjc" \
-  -H "Content-Type: application/json" \
-  -d '{
-        "holder_id": "ent_au22b1fbFJbp8",
-        "liability": {
-          "mch_id": "mch_2",
-          "account_number": "1122334455"
-        }
-      }'
-```
+<AccountsCreateLiability />
 
 #### Parameters
 

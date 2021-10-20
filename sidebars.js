@@ -162,18 +162,18 @@ module.exports = {
             'api/utils/bins/retrieve',
           ],
         },
-        // {
-        //   type: 'category',
-        //   label: 'Routing Numbers',
-        //   items: [
-        //     'api/utils/routing-numbers/object',
-        //     'api/utils/routing-numbers/retrieve',
-        //   ],
-        // },
+        {
+          type: 'category',
+          label: 'Routing Numbers',
+          items: [
+            'api/utils/routing-numbers/object',
+            'api/utils/routing-numbers/retrieve',
+          ],
+        },
       ],
     },
   ],
-  sdks: [
-    'sdks',
+  libraries: [
+    'libraries',
   ],
 };

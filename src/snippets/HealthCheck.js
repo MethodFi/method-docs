@@ -7,7 +7,7 @@ curl https://production.methodfi.com/ping \\
 `.trim();
 
 const nodejs = `
-await method.ping();
+ await method.healthcheck.get();
 `.trim();
 
 export default function () {

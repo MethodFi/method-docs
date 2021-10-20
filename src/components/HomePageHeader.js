@@ -27,8 +27,8 @@ export default function HomePageHeader() {
           />
           <HeroCard
             colSize={3}
-            href="/docs/sdks"
-            header="SDKs"
+            href="/docs/libraries"
+            header="Libraries"
             body="Learn the core concepts of Method so you can really hit the ground running."
           />
         </CardContainer>
