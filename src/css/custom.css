@@ -16,6 +16,7 @@
   --ifm-color-primary-lightest: #77d281;
   --ifm-hr-border-width: 1px;
   --custom-border-radius: 4px;
+  --light-primary-background: rgba(70, 90, 97, 0.3);
 }
 
 .docusaurus-highlight-code-line {
@@ -37,13 +38,13 @@ html[data-theme='dark'] .docusaurus-highlight-code-line {
 
 .navbar__link--active {
   color: #3FBE4E;
-  background-color: rgba(70, 90, 97, 0.3);
+  background-color: var(--light-primary-background);
   border-radius: var(--custom-border-radius);
 }
 
 .card {
   border-width: 2px;
-  border-color: rgba(70, 90, 97, 0.3);
+  border-color: var(--light-primary-background);
   border-style: solid;
   height: 100%;
   border-radius: var(--custom-border-radius) !important;
@@ -78,4 +79,22 @@ a.transparent, a.transparent:hover {
 
 .menu__link--sublist:after {
   background: var(--ifm-menu-link-sublist-icon) 50% / 1.5rem 1.5rem;
+}
+
+.items-center {
+  align-items: center;
+}
+
+.content-center {
+  justify-content: center;
+}
+
+.content-between {
+  justify-content: space-between;
+}
+
+code.transparent {
+  background: none;
+  border: none;
+  color: white;
 }

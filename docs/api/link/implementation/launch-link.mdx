@@ -1,0 +1,89 @@
+# Initialize Link
+
+**About**: Using the `link_token`, retrieved by your backend server, launch Method Link using your desired implementation / library.
+
+## Webview
+
+### Link Environment URLs
+Link is optimized to work within Webviews, including on iOS and Android. The Link URL corresponds the environment you are building in:
+
+```text
+https://link.dev.methodfi.com (Development)
+https://link.sandbox.methodfi.com (Sandbox)
+https://link.production.methodfi.com (Production)
+```
+
+#### Communication between Link and your app
+Communication between your app is handled using HTTP redirects. Your webview / app should intercept the redirects in order to react accordingly to state changes.
+
+All redirect URLs will have the scheme ("prefix") `methodlink`. The event type will be the URL host and the payload will be query strings.
+
+```text
+methodlink://{event_type}
+```
+
+### Initialize Link
+Open a webview in your app to your desired environment using the `link_token` you obtained for an entity.
+
+```text
+https://link.production.methodfi.com?token={link_token}
+```
+
+#### Attributes
+
+| Name    | Type     | Description                                                       |
+|---------|----------|-------------------------------------------------------------------|
+| `token` | `string` | The unique one-time `link_token` generated for this link session. |
+
+
+### Link Events
+
+#### Open
+The open event is triggered when link has successfully launched. No data is passed at this time.
+
+```text
+methodlink://open
+```
+
+#### Success
+The success event is sent when the user has successfully linked their account to Method. This will return the `public_account_token` to be exchanged later.
+
+```text
+methodlink://success
+  ?public_account_token=pk_acc_iZKeBTmnmw3aSGePcfdweUEJTBXwsfR4
+```
+
+##### Attributes
+
+| Name                   | Type     | Description                                                                             |   |
+|------------------------|----------|-----------------------------------------------------------------------------------------|---|
+| `public_account_token` | `string` | The public account token returned by `link` after an account is successfully connected. |   |
+
+
+#### Error
+The error event is sent when the user encountered an error while linking their account. The webview should not be closed when an error is sent.
+
+```text
+methodlink://error
+  ?type=INVALID_REQUEST
+  &sub_type=INVALID_ACCOUNT_NUMBER
+  &message=The account number provided is invalid. Verify the account number and try again.
+  &code=400
+```
+
+##### Attributes
+
+Name | Type | Description
+---------|----------|---------
+`code` | `integer` | The status code of the request.
+`type` | `string` | A broad description of the error.
+`sub_type` | `string` | The specific error type.
+`message` | `string` | A human-readable message providing more details about the error.
+
+
+#### Exit
+The exit event is sent when the user has requested to exit, the link session has successfully ended or an error occurred. When exit is sent we recommend closing your webview and continuing with your app's flow.
+
+```text
+methodlink://exit
+```

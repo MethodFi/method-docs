@@ -4,7 +4,7 @@ import VerificationCreateMicroDeposits from '../../../../../src/snippets/Verific
 
 **About**: Verify an ACH account using micro-deposits. Two small amounts (between $0.01 and $0.30) will be deposited to the associated ACH account.
 
-Once the amounts have been deposited (within 1 - 3 business days), the status of the verification will transition from `initiated` to `pending`. This is when the account holder can [verify the two amounts](5-UpdateVerification.md).
+Once the amounts have been deposited (within 1 - 3 business days), the status of the verification will transition from `initiated` to `pending`. This is when the account holder can [verify the two amounts](/docs/api/core/accounts/ach-verification/update).
 
 **API Method**: `POST /accounts/:accountId/verification`
 

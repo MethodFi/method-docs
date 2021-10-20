@@ -1,0 +1,46 @@
+# Exchange Public Account Token
+
+**About**: Exchanges the `public_account_token` for an `account`. This is the final step when linking an account using Method Link.
+
+**API Method**: `POST /link/token`
+
+### Request
+
+#### Example
+```shell
+curl https://production.methodfi.com/link/exchange \
+  -X POST \
+  -H "Authorization: Bearer sk_WyZEWVfTcH7GqmPzUPk65Vjc" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "public_account_token": "pk_acc_iZKeBTmnmw3aSGePcfdweUEJTBXwsfR4"
+  }'
+```
+
+#### Parameters
+
+| Name                   | Type     | Required | Description                                                                             |
+|------------------------|----------|----------|-----------------------------------------------------------------------------------------|
+| `public_account_token` | `string` | ✅        | The public account token returned by `link` after an account is successfully connected. |                           |
+### Response
+
+#### Example
+
+```json
+{
+  "id": "acc_Zc4F2aTLt8CBt",
+  "holder_id": "ent_au22b1fbFJbp8",
+  "type": "liability",
+  "ach": null,
+  "liability": {
+    "mch_id": "mch_3",
+    "mask": "4127"
+  },
+  "status": "active",
+  "capabilities": [
+    "payments:receive"
+  ],
+  "created_at": "2020-12-09T02:56:19.548Z",
+  "updated_at": "2020-12-09T02:56:19.548Z"
+}
+```

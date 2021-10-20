@@ -172,8 +172,28 @@ module.exports = {
         },
       ],
     },
-  ],
-  libraries: [
-    'libraries',
+    {
+      type: 'category',
+      label: 'Link (Deprecated)',
+      items: [
+        'api/link/intro',
+        {
+          type: 'category',
+          label: 'Implementation Guide',
+          items: [
+            'api/link/implementation/create-token',
+            'api/link/implementation/launch-link',
+            'api/link/implementation/exchange-public-accounts',
+          ],
+        },
+        {
+          type: 'category',
+          label: 'Libraries',
+          items: [
+            { type: 'link', href: 'https://github.com/MethodFi/react-method-link', label: 'Web (React)' },
+          ],
+        },
+      ],
+    },
   ],
 };

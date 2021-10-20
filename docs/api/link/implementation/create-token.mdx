@@ -1,0 +1,41 @@
+# Create link token
+
+**About**: Creates a new link token to launch a link session for a specific entity. Link tokens are only valid for 30 minutes after they are created, and can only be used once.
+
+💡 We recommend creating a `link_token` for a specific merchant and mask pair. For example, if your user just connected their AMEX (ending in 4127) credit card using Plaid. You will create a `link_token` that will open directly in AMEX restricted to that specific mask (4127)
+
+> **Tip**: Use the `merchant` search endpoint to find the corresponding `mch_id` for the identifier used by your aggregator. (e.g Plaid's `ins_id`)
+
+**API Method**: `POST /link/token`
+
+### Request
+
+#### Example
+```shell
+curl https://production.methodfi.com/link/token \
+  -X POST \
+  -H "Authorization: Bearer sk_WyZEWVfTcH7GqmPzUPk65Vjc" \
+  -H "Content-Type: application/json" \
+  -d '{
+        "entity_id": "ent_au22b1fbFJbp8",
+        "mch_id": "mch_3",
+        "mask": "4127"
+    }'
+```
+
+#### Parameters
+
+| Name        | Type     | Required | Description                                                                                                                                                      |
+|-------------|----------|----------|------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `entity_id` | `string` | ✅        | The id of the end user (`entity`) who will be linking their account.                                                                                             |
+| `mch_id`    | `string` |          | The `id` of a merchant to open directly when link is launched. This is recommended when opening link after a user authenticates with an  aggregator (e.g. Plaid) |
+| `mask`      | `string` |          | The last 4 numbers of the account number the user will link. This is recommended when opening link after a user authenticates with an aggregator (e.g. Plaid)    |                                  |
+### Response
+
+#### Example
+
+```json
+{
+  "link_token": "pk_link_U4GzyMZ8gCY68kkKfHDJP5mmPbjGRRmY"
+}
+```

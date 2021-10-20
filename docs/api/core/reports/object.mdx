@@ -28,7 +28,7 @@ Once a report object is created, it will return a URL to a file where you can re
 | `type`       | `string`             | The report type generated. See *Report Types* for all available types.                        |
 | `url`        | `string`             | The HTTPS URL to a file containing the results of the report.                                 |
 | `status`     | `string`             | The processing status of the report. Either `processing` or `completed`.                      |
-| `metadata`   | `object`, `nullable` | Additional data provided during creation. See [metadata](../1.%20Method%20API/6-Metadata.md). |
+| `metadata`   | `object`, `nullable` | Additional data provided during creation. See [metadata](/docs/api/metadata). |
 | `created_at` | `string`             | Timestamp of when the report was created.                                                    |
 | `updated_at` | `string`             | Timestamp of when the report was last updated.                                               |
 
@@ -37,13 +37,13 @@ Once a report object is created, it will return a URL to a file where you can re
 The following are report types that can be generated:
 
 * `payments.created.current`
-Payments created in the current [cutoff cycle](../5.%20Payments/1-PaymentObj.md#cutoff-time).
+Payments created in the current [cutoff cycle](/docs/api/core/payments/object#cutoff-time).
 
 * `payments.created.previous`
-Payments created in the previous [cutoff cycle](../5.%20Payments/1-PaymentObj.md#cutoff-time).
+Payments created in the previous [cutoff cycle](/docs/api/core/payments/object#cutoff-time).
 
 * `payments.updated.current`
-Payments updated in the current [cutoff cycle](../5.%20Payments/1-PaymentObj.md#cutoff-time).
+Payments updated in the current [cutoff cycle](/docs/api/core/payments/object#cutoff-time).
 
 * `payments.updated.previous`
-Payments updated in the previous [cutoff cycle](../5.%20Payments/1-PaymentObj.md#cutoff-time).
+Payments updated in the previous [cutoff cycle](/docs/api/core/payments/object#cutoff-time).
