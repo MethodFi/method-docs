@@ -12,7 +12,9 @@ curl https://production.methodfi.com/elements/accounts/exchange \\
 `.trim();
 
 const nodejs = `
-const account = await method.elements.exchangePublicAccountToken('pk_acc_iZKeBTmnmw3aSGePcfdweUEJTBXwsfR4');
+const account = await method
+  .elements
+  .exchangePublicAccountToken('pk_acc_iZKeBTmnmw3aSGePcfdweUEJTBXwsfR4');
 `.trim();
 
 export default function () {

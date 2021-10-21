@@ -1,0 +1,286 @@
+import EntitiesCreateIndividual from '../../../src/snippets/EntitiesCreateIndividual';
+import AccountsCreateACH from '../../../src/snippets/AccountsCreateACH';
+import MerchantsListProviderPlaid from '../../../src/snippets/MerchantsListProviderPlaid';
+import AccountsCreateLiability from '../../../src/snippets/AccountsCreateLiability';
+import ElementsCreateLinkToken from '../../../src/snippets/ElementsCreateLinkToken';
+import ElementsExchangePublicAccountToken from '../../../src/snippets/ElementsExchangePublicAccountToken';
+import PaymentsCreate from '../../../src/snippets/PaymentsCreate';
+
+# Integrating using Plaid
+
+### Introduction
+This guide will walk you through integrating your existing Plaid flows with the Method API.
+
+
+### Prerequisites
+Before you get started, make sure you have the following:
+
+- An `API_KEY` from https://dashboard.methodfi.com. Depending on which [Method Environment](/docs/api/environments) you would like to follow this guide with, make sure your requests are made to the correct URL.
+
+- A Plaid integration with the [Plaid Auth API](https://plaid.com/docs/auth/) enabled, and [Plaid Liabilities API](https://plaid.com/docs/liabilities) optionally enabled.
+
+### 1. Creating an entity
+An entity is a representation of your application's end-users. Entities function as holders of Method accounts. In order to link a user's account with Method, you must first create an entity through the Method API.
+
+For the purpose of this guide, we'll be creating an `individual` entity, by making a request to the `/entities` endpoint.
+
+
+<EntitiesCreateIndividual />
+
+```json
+{
+  "id": "ent_au22b1fbFJbp8",
+  ...
+}
+```
+
+➡️  See [the entity object](/docs/api/core/entities/object) for more info.
+
+### 2. Create a source account
+Before your users can make payments to their accounts, you must first create a source `ach` account from which the funds will be pulled. Assuming they have authenticated with the Plaid Link process, retrieve the user's  `ach` information from the Plaid Auth endpoint.
+
+➡️  See https://plaid.com/docs/api/products/#authget for more info.
+
+Request to retrieve `ach.number`, `ach.routing`, and `ach.type` from Plaid Auth.
+```shell
+curl https://production.plaid.com/auth/get \
+  -X POST \
+  -H "Content-Type: application/json" \
+  -d '{
+    "client_id": String,
+    "secret": String,
+    "access_token": String,
+    "options": {
+      "account_ids": [String]
+    }
+  }'
+```
+
+```json
+{
+  "accounts": [
+    {
+      "subtype": "checking",
+      ...
+    }
+  ],
+  "numbers": {
+    "ach": [
+      {
+        "account": "57838927",
+        "routing": "367537407",
+        ...
+      }
+    ],
+  },
+  ...
+}
+```
+
+You can now create a source `ach` account for your user by making a request to the `/accounts` endpoint with the `id` of the entity from the previous step as the `holder_id`.
+
+| Request payload key | Corresponding Plaid Auth response key  |
+|------------------------|--------------------------|
+| `ach.type`             | `accounts[n].subtype`    |
+| `ach.routing`          | `numbers.ach[n].routing` |
+| `ach.number`           | `numbers.ach[n].account` |
+
+
+<AccountsCreateACH />
+
+```json
+{
+  "id": "acc_JMJZT6r7iHi8e",
+  ...
+}
+```
+
+➡️  See [the account object](/docs/api/core/accounts/object) for more info.
+
+### 3. Create a destination account
+
+| Account type     | Implementation description                                                                                                                                                                                                                             |
+|------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Checking/Savings | For checking or savings accounts, **Plaid Auth** provides both the routing number and account number for your authenticated users. Creating an `ach` account is straightforward and can be done solely through the Method API.                         |
+| Student Loan    | If your integration includes **Plaid Liabilities**, you can directly retrieve your user's account number. However, if your integration includes only **Plaid Auth**, you may need to launch Method's Link Element.                                               |
+| Mortgage         | Similar to the implementation for student loans, the account number for your user's mortgage account is directly retrievable from the **Plaid Liabilities** endpoint. But may required the use of Method's Link Element for integrations restricted to **Plaid Auth**. |
+| Credit Card     | Since neither **Plaid Auth** nor **Plaid Liabilities** provide the account number for your user's credit card, these types of accounts may require an integration with Method's Link Element, or an alternative solution to retrieve the credit card's complete account number. |
+
+---
+
+#### Checking/Savings
+To create a checking or savings destination account, simply redo the [previous step](#2-create-a-source-account) with another one of your user's accounts.
+
+---
+
+#### Student Loan or Mortgage (using Plaid Liabilities)
+
+**1.** Retrieve your user's account information through the Plaid Liabilities endpoint.
+```shell
+curl https://production.plaid.com/liabilities/get \
+  -X POST \
+  -H "Content-Type: application/json" \
+  -d '{
+    "client_id": String,
+    "secret": String,
+    "access_token": String
+  }'
+```
+
+```json
+{
+  "accounts": [...],
+  "item": {
+    "institution_id": "ins_3",
+    ...
+  },
+  "liabilities": {
+    "student": [
+      {
+        "payment_reference_number": "1122334455",
+        ...
+      }
+    ]
+  },
+  "mortgage": [
+    {
+      "account_number": "1122334455",
+      ...
+    }
+  ]
+  ...
+}
+```
+
+**2.** Make a request to `/merchants` to retrieve a `mch_id` for the corresponding Plaid `ins_id`.
+
+:::info
+A merchant is a representation of a financial institution that gets associated with `liability` accounts. This is similar to a Plaid institution.
+:::
+
+
+<MerchantsListProviderPlaid />
+
+```json
+{
+  "mch_id": "mch_2",
+  ...
+}
+```
+
+➡️  See the [GET /merchants endpoint](/docs/api/core/merchants/list) for more info.
+
+**3.** Finally, make a request to `/accounts` with the account information retrieved from the previous steps.
+
+| Account type  | Request payload key        | Corresponding Plaid Liabilities response key      |
+|---------------|----------------------------|---------------------------------------------------|
+| Student Loans | `liability.account_number` | `liabilities.student[n].payment_reference_number` |
+| Mortgage      | `liability.account_number` | `liabilities.mortgage[n].account_number`          |
+
+<AccountsCreateLiability />
+
+---
+
+#### Student Loan, Mortgage, or Credit Card (using Plaid Auth)
+
+**1.** Request to retrieve the account `mask` and `institution_id` from Plaid Auth.
+```shell
+curl https://production.plaid.com/auth/get \
+  -X POST \
+  -H "Content-Type: application/json" \
+  -d '{
+    "client_id": String,
+    "secret": String,
+    "access_token": String,
+    "options": {
+      "account_ids": [String]
+    }
+  }'
+```
+
+```json
+{
+  "accounts": [
+    {
+      "mask": "4127",
+      ...
+    }
+  ],
+  "item": {
+    "institution_id": "ins_3",
+    ...
+  },
+  ...
+}
+```
+
+**2.** Make a request to `/merchants` to retrieve a `mch_id` for the corresponding Plaid `ins_id`.
+
+:::info
+A merchant is a representation of a financial institution that gets associated with `liability` accounts. This is similar to a Plaid institution.
+:::
+
+<MerchantsListProviderPlaid />
+
+```json
+{
+  "mch_id": "mch_2",
+  ...
+}
+```
+
+**3.** Plaid Auth will only provided you with the `mask` or the last 4 digits of a person's liability account, you will need to collect the remaining initial numbers by launching the [Link Element](/docs/api/elements/link/intro). First create a link `element_token` from your app's backend. See [create an element token](/docs/api/elements/link/implementation/create-token) for more info.
+
+<ElementsCreateLinkToken />
+
+```json
+{
+  "element_token": "pk_elem_BtzySdrQGFmLdAPw5gXSQNCxQkhCkT3K"
+}
+```
+
+**4.** With the retrieved `element_token`, [launch the Link Element](/docs/api/elements/link/implementation/launch-link) in your app through a WebView.
+```
+https://elements.production.methodfi.com?token={element_token}
+```
+
+**5.** Then finally [exchange](/docs/api/elements/link/implementation/exchange-public-accounts) the `public_account_token` for an account after your user successfully completes the Link Element flow.
+
+
+<ElementsExchangePublicAccountToken />
+
+```json
+{
+  "id": "acc_AXthnzpBnxxWP",
+  ...
+}
+```
+
+### 4. Create a payment
+Now that you have the source account `id` and the destination account `id`, you can now make a payment.
+
+<PaymentsCreate />
+
+```json
+{
+  "id": "pmt_rPrDPEwyCVUcm",
+  "source": "acc_JMJZT6r7iHi8e",
+  "destination": "acc_AXthnzpBnxxWP",
+  "amount": 5000,
+  "description": "Loan Pmt",
+  "status": "pending",
+  "error": null,
+  "created_at": "2020-12-09T00:42:31.209Z",
+  "updated_at": "2020-12-09T00:43:30.996Z"
+}
+```
+
+➡️  See the [create a payment endpoint](/docs/api/core/payments/create) for more info.
+
+
+### Conclusion
+In this guide, you have completed the following:
+- Created an entity to represent your end-user.
+- Created an `ach` source account associated with that end-user from which payment funds will be pulled.
+- Created a `liability` destination account for the same end-user to which payments will be sent. This was achieved by collecting the end-user's account numbers using solely Plaid, or with the additional step of launching Method's Link Element.
+- And finally, you created a payment from the source `ach` account to the destination `liability` account.

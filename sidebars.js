@@ -12,8 +12,19 @@
 module.exports = {
   guides: [
     'guides',
+    'guides/core-concepts',
+    'guides/quick-start',
+    {
+      type: 'category',
+      label: 'Integrations',
+      items: [
+        'guides/integrations/using-plaid',
+        'guides/integrations/using-link',
+      ],
+    }
   ],
   api: [
+    { label: 'API Reference', className: 'sidebar-section-header Frame-1', type: 'link', href: '#' },
     'api',
     'api/authentication',
     'api/environments',
@@ -21,6 +32,7 @@ module.exports = {
     'api/healthcheck',
     'api/errors',
     'api/metadata',
+    { label: 'Core API', className: 'sidebar-section-header Frame-2', type: 'link', href: '#' },
     {
       type: 'category',
       label: 'Entities',
@@ -98,101 +110,86 @@ module.exports = {
         'api/core/reports/download',
       ],
     },
+    { label: 'Elements', className: 'sidebar-section-header Frame-3', type: 'link', href: '#' },
+    'api/elements/intro',
+    'api/elements/events',
     {
       type: 'category',
-      label: 'Elements',
+      label: 'Link',
       items: [
-        'api/elements/intro',
-        'api/elements/events',
+        'api/elements/link/intro',
         {
           type: 'category',
-          label: 'Link',
+          label: 'Implementation',
           items: [
-            'api/elements/link/intro',
-            {
-              type: 'category',
-              label: 'Implementation',
-              items: [
-                'api/elements/link/implementation/create-token',
-                'api/elements/link/implementation/launch-link',
-                'api/elements/link/implementation/exchange-public-accounts',
-              ],
-            },
-          ],
-        },
-        {
-          type: 'category',
-          label: 'Connections',
-          items: [
-            'api/elements/connections/intro',
-          ],
-        },
-        {
-          type: 'category',
-          label: 'Pay',
-          items: [
-            'api/elements/pay/intro',
-          ],
-        },
-        {
-          type: 'category',
-          label: 'Money Transfer',
-          items: [
-            'api/elements/money-transfer/intro',
-          ],
-        },
-        {
-          type: 'category',
-          label: 'Balance Transfer',
-          items: [
-            'api/elements/balance-transfer/intro',
+            'api/elements/link/implementation/create-token',
+            'api/elements/link/implementation/launch-link',
+            'api/elements/link/implementation/exchange-public-accounts',
           ],
         },
       ],
     },
     {
       type: 'category',
-      label: 'Utils',
+      label: 'Connections',
       items: [
-        {
-          type: 'category',
-          label: 'BINs',
-          items: [
-            'api/utils/bins/object',
-            'api/utils/bins/retrieve',
-          ],
-        },
-        {
-          type: 'category',
-          label: 'Routing Numbers',
-          items: [
-            'api/utils/routing-numbers/object',
-            'api/utils/routing-numbers/retrieve',
-          ],
-        },
+        'api/elements/connections/intro',
       ],
     },
     {
       type: 'category',
-      label: 'Link (Deprecated)',
+      label: 'Pay',
       items: [
-        'api/link/intro',
-        {
-          type: 'category',
-          label: 'Implementation Guide',
-          items: [
-            'api/link/implementation/create-token',
-            'api/link/implementation/launch-link',
-            'api/link/implementation/exchange-public-accounts',
-          ],
-        },
-        {
-          type: 'category',
-          label: 'Libraries',
-          items: [
-            { type: 'link', href: 'https://github.com/MethodFi/react-method-link', label: 'Web (React)' },
-          ],
-        },
+        'api/elements/pay/intro',
+      ],
+    },
+    {
+      type: 'category',
+      label: 'Money Transfer',
+      items: [
+        'api/elements/money-transfer/intro',
+      ],
+    },
+    {
+      type: 'category',
+      label: 'Balance Transfer',
+      items: [
+        'api/elements/balance-transfer/intro',
+      ],
+    },
+    { label: 'Utils', className: 'sidebar-section-header Frame-4', type: 'link', href: '#' },
+    {
+      type: 'category',
+      label: 'BINs',
+      items: [
+        'api/utils/bins/object',
+        'api/utils/bins/retrieve',
+      ],
+    },
+    {
+      type: 'category',
+      label: 'Routing Numbers',
+      items: [
+        'api/utils/routing-numbers/object',
+        'api/utils/routing-numbers/retrieve',
+      ],
+    },
+    { label: 'Method Link (Deprecated)', className: 'sidebar-section-header Frame-5', type: 'link', href: '#' },
+    'api/link/intro',
+    {
+      type: 'category',
+      label: 'Implementation Guide',
+      items: [
+        'api/link/implementation/create-token',
+        'api/link/implementation/launch-link',
+        'api/link/implementation/exchange-public-accounts',
+      ],
+    },
+    {
+      type: 'category',
+      label: 'Libraries',
+      items: [
+        { type: 'link', href: 'https://github.com/MethodFi/react-method-link', label: 'Web (React)' },
       ],
     },
   ],

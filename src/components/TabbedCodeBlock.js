@@ -12,7 +12,7 @@ export default function TabbedCodeBlock(props) {
   return (
     <Tabs groupId={groupId}>
       {items.map((item) => (
-        <TabItem key={`${name}-${item.language}`} value={item.title}>
+        <TabItem key={`${name}-${item.language}-${Math.random().toString()}`} value={item.title}>
           <CodeBlock className={`language-${item.language}`}>
             {item.content}
           </CodeBlock>

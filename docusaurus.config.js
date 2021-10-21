@@ -8,13 +8,13 @@ const darkCodeTheme = require('prism-react-renderer/themes/nightOwl');
 const config = {
   title: 'Method Docs',
   tagline: 'Explore guides, examples, and libraries to integrate Method.',
-  url: 'https://your-docusaurus-test-site.com',
+  url: '#',
   baseUrl: '/',
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
   favicon: 'img/favicon.ico',
-  organizationName: 'methodfi', // Usually your GitHub org/user name.
-  projectName: 'octo', // Usually your repo name.
+  organizationName: 'MethodFi', // Usually your GitHub org/user name.
+  projectName: 'method-docs', // Usually your repo name.
 
   presets: [
     [
@@ -112,7 +112,7 @@ const config = {
             ],
           },
         ],
-        copyright: `Copyright © ${new Date().getFullYear()} Method Financial. Built with Docusaurus.`,
+        copyright: `Copyright © ${new Date().getFullYear()} Method Financial.`,
       },
       prism: {
         theme: lightCodeTheme,

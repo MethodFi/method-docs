@@ -6,9 +6,13 @@ import EntitiesCreateReceiveOnly from '../../../../src/snippets/EntitiesCreateRe
 
 **API Method**: `POST /entities`
 
-> 💡️ **Tip**: To create a receive only entity, either the email or phone must be provided. Receive only entities cannot be updated.
+:::tip
+To create a receive only entity, either the email or phone must be provided. Receive only entities cannot be updated.
+:::
 
-> 🚧 **Deprecation**: As of 2021-06-27, receive only entities are being deprecated. We recommend using an `individual` entity with `payments:receive` capabilities. See [Entity Capabilities](/docs/api/core/entities/object#entity-capabilities) for more info.
+:::caution Deprecation
+As of 2021-06-27, receive only entities are being deprecated. We recommend using an `individual` entity with `payments:receive` capabilities. See [Entity Capabilities](/docs/api/core/entities/object#entity-capabilities) for more info.
+:::
 
 ### Request
 
