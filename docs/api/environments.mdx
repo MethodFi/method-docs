@@ -1,0 +1,30 @@
+# Environments
+
+Method has three primary API environments. Development, Sandbox and Production share similar functionality with minor differences. All testing should be done in the Development and Sandbox environments. All activity in the Production will be billed.
+
+Your team will have separate API keys for each Method environment. Keys are available under the Keys section in the [Method Dashboard](https://dashboard.methodfi.com).
+
+### API Hosts
+```text
+https://dev.methodfi.com (Development)
+https://sandbox.methodfi.com (Sandbox)
+https://production.methodfi.com (Production)
+```
+
+### Environment Breakdown
+Development, Sandbox and Production share similar functionality with minor differences listed below. All merchant data is the same across all environments.
+
+#### Development
+➡️ We recommend building your integration in the `Development` environment. This will prevent accidentally sending a payment while initially building / testing your integration.
+* Entities: KYC is disabled. All Entities will become `active` immediately, once all the required information is provided.
+* Accounts: `account_numbers` are not validated and any input will be accepted.
+* Link: Account numbers are not validated and any input will be accepted.
+* Payments: Simulated - Payments will not be sent to our banking networks. However, the payment will transition to `sent` at the standard cutoff time for simulation purposes.
+
+#### Sandbox
+➡️ We recommend switching to `Sandbox` once you are ready to test your integration with your own financial accounts.
+* Payments: Live - Payments will be sent to our banking networks at the standard cutoff times.
+* Live Payment Limit: 20 transactions per month ($1 limit / transaction)
+
+#### Production
+➡️ Go live with your Method integration with unlimited live payments; all requests are billed. 🚀

@@ -1,0 +1,47 @@
+import ElementsCreateLinkToken from '../../../../../src/snippets/ElementsCreateLinkToken';
+import ElementsCreateLinkToken2 from '../../../../../src/snippets/ElementsCreateLinkToken2';
+
+# Create element token
+
+**About**: Creates an element token to launch a Link Element session for a specific entity. Element tokens are only valid for 30 minutes after they are created, and can only be used once.
+
+
+**API Method**: `POST /elements/token`
+
+### Request
+
+#### Example with merchant restriction
+If you have already integrated with a data aggregator (Plaid) to collect your user's information. We recommend creating an `element_token` for a specific merchant and mask pair.
+
+For example, if your user connected their AMEX credit card ending in 4127 using your own Plaid integration, you will create an `element_token` that will open the Link Element directly to a secure AMEX form where the user will confirm their account ending in 4127.
+
+:::tip
+Use the [merchants endpoint](/api/core/merchants/list) to find the corresponding `mch_id` for the identifier used by your aggregator. (e.g Plaid's `ins_id`)
+:::
+
+<ElementsCreateLinkToken />
+
+#### Example without merchant restriction
+If you have not integrated with a data aggregator (Plaid), you can securely collect your user's information by requesting an `element_token` without a merchant restriction. This will open the Link Element to a search screen for the user to choose which account to link.
+
+<ElementsCreateLinkToken2 />
+
+#### Parameters
+| Name          | Type     | Required | Description                                                                      |
+|---------------|----------|----------|----------------------------------------------------------------------------------|
+| `entity_id`   | `string` | ✅        | The id of the end user (`entity`) for which the `element_token` will be created. |
+| `team_name`   | `string` | ✅        | The name used to refer to your company/app throughout the link flow.             |
+| `type`        | `string` | ✅        | The type of element you wish to launch. In this case `link`.                     |
+| `link`        | `object` | ✅        | Link element information                                                         |
+| `link.mch_id` | `string` |          | The `mch_id` of a merchant to open directly when Link Element is launched.       |
+| `link.mask`   | `string` |          | The last 4 digits of the account number the user will be required to link.       |
+
+### Response
+
+#### Example
+
+```json
+{
+  "element_token": "pk_elem_BtzySdrQGFmLdAPw5gXSQNCxQkhCkT3K"
+}
+```

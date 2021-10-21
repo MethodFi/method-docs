@@ -1,0 +1,91 @@
+import AccountsCreateACH from '../../../../src/snippets/AccountsCreateACH';
+import AccountsCreateLiability from '../../../../src/snippets/AccountsCreateLiability';
+
+# Create an account
+
+**About**: Creates a new account for a unique entity, either `ach` or `liability`, based on the parameters provided. An account is a unique representation of an `ach` or `liability` account.
+
+**API Method**: `POST /accounts`
+
+#### Collecting a liability's account number
+
+Due to the sensitive nature of a liability's account number, we recommend collecting the account number from your end-user using a third-party aggregator (e.g. Plaid) or using Method Link.
+
+1. _Using a third-party aggregator_ - Student loans linked to your app using [Plaid Liabilities](https://plaid.com/products/liabilities)
+2. _Using Method Link_ - Recommended for liabilities that you do not have the account number for, and need to collect it from your end-user. (Example: PAN for credit card liabilities). ➡️ Method Link securely transmits it directly to Method without it passing through your servers.
+
+:::note
+Creating a `liability` account will automatically validate the account number with the merchant in order to lower the risk of failed/returned payments.
+:::
+
+:::note
+Creating an `ach` account will require an additional step for verification to confirm the validity of the account. ➡️ See [ACH account verification.](/api/core/accounts/ach-verification/object)
+:::
+
+
+<!-- > 👷 **Coming Soon**: Method.js is in limited beta! If you'd like to get an early preview for your team, contact us via our shared slack or send us an email (team@methodfi.com) -->
+
+<!-- > ℹ️ **Important**: The `holder_id` is the `Entity` id for the legal holder of the `Account`. Associating the incorrect `Entity` will lead to failed / returned payments. -->
+
+### Request
+
+#### Example - `ach` account
+<AccountsCreateACH />
+
+#### Example - `liability` account
+<AccountsCreateLiability />
+
+#### Parameters
+
+| Name                       | Type     | Required | Description                                                                                     |
+|----------------------------|----------|----------|-------------------------------------------------------------------------------------------------|
+| `holder_id`                | `string` | ✅        | The id of the `Entity` who is the legal holder of this account.                                 |
+| `ach`                      | `object` |          | ACH account information.                                                                        |
+| `ach.routing`              | `string` | ✅        | ABA routing number of the ACH account. (maximum of 9 characters).                               |
+| `ach.number`               | `string` | ✅        | Account number of the ACH account. (maximum of 17 characters).                                  |
+| `ach.type`                 | `string` | ✅        | Type of ACH account. Options: `checking` or `savings`                                           |
+| `liability`                | `object` |          | Liability account information.                                                                  |
+| `liability.mch_id`         | `string` | ✅        | Unique identifier of the merchant.                                                              |
+| `liability.account_number` | `string` | ✅        | The account number of the liability. (e.g. PAN for credit cards, Payment ref for student loans) |
+### Response
+
+#### Example - `ach` account
+```json
+{
+  "id": "acc_b9q2XVAnNFbp3",
+  "holder_id": "ent_y1a9e1fbnJ1f3",
+  "type": "ach",
+  "ach": {
+    "routing": "367537407",
+    "number": "57838927",
+    "type": "checking"
+  },
+  "liability": null,
+  "metadata": null,
+  "capabilities": [
+    "payments:receive"
+  ],
+  "created_at": "2020-12-09T00:40:51.107Z",
+  "updated_at": "2020-12-09T00:40:51.107Z"
+}
+```
+
+#### Example - `liability` account
+```json
+{
+  "id": "acc_Zc4F2aTLt8CBt",
+  "holder_id": "ent_au22b1fbFJbp8",
+  "type": "liability",
+  "ach": null,
+  "liability": {
+    "mch_id": "mch_2",
+    "mask": "4455"
+  },
+  "metadata": null,
+  "capabilities": [
+    "payments:receive"
+  ],
+  "created_at": "2020-12-09T02:56:19.548Z",
+  "updated_at": "2020-12-09T02:56:19.548Z"
+}
+```

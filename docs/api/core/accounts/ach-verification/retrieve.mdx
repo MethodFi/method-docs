@@ -1,0 +1,29 @@
+import VerificationRetrieve from '../../../../../src/snippets/VerificationRetrieve';
+
+# Retrieve a verification
+
+**About**: Returns the verification associated with an ACH account.
+
+**API Method**: `GET /accounts/:accountId/verification`
+
+### Request
+
+#### Example
+<VerificationRetrieve />
+
+### Response
+
+#### Example
+```json
+{
+    "id": "vrf_73TAQ8njUFsLJ",
+    "status": "initiated",
+    "type": "micro_deposits",
+    "initiated_at": "2021-10-12T20:42:46.433Z",
+    "pending_at": "1970-01-01T00:00:00.000Z",
+    "verified_at": "1970-01-01T00:00:00.000Z",
+    "disabled_at": "1970-01-01T00:00:00.000Z",
+    "created_at": "2021-10-12T20:42:46.433Z",
+    "updated_at": "2021-10-12T20:42:46.433Z"
+}
+```

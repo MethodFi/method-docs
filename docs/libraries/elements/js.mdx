@@ -1,0 +1,86 @@
+import ElementsCreateLinkToken2 from '../../../src/snippets/ElementsCreateLinkToken2';
+
+# Elements Javascript SDK
+
+Method provides a script to seamlessly integrate [Elements](/api/elements/intro) into your web application.
+
+### Installation
+
+Include the initialization script into your application's main `html` file.
+
+
+```html
+<script src="https://static.methodfi.com/elements/v1/stable/init.js"></script>
+```
+
+### Configuration
+
+Once the initialization script has been included into your application, create an instance of the `Method` class.
+
+```js
+const config = {
+  env: 'production', // dev | sandbox | production
+  onEvent: (event) => {
+    // Invoked for every event triggerd by the element.
+    // Event is a native MessageEvent instance.
+  },
+  onSuccess: (payload) => {
+    // Invoked when an account has successfully been linked.
+    // After accounts are linked, `payload.accounts` will contain a list
+    // of public account tokens which you will be exchanged for an
+    // account through the Method API.
+  },
+  onError: (error) => {
+    // Invoked when an error is raised during.
+  },
+  onExit: (payload) => {
+    // Invoked when a user exits any element flow, or
+    // immediately after an error is raised.
+  },
+  onOpen : (payload) => {
+    // Invoked when an element has successfully launched.
+  },
+};
+
+const method = new Method(config);
+```
+
+**Configuration Parameters**
+
+| Name        | Type       | Description                                                                                                          |
+|-------------|------------|----------------------------------------------------------------------------------------------------------------------|
+| `env`       | `string`   | The Method environment with which the element with interact with. Options: `dev`, `sandbox`, or `production`. See [Elements Environments](/api/elements/intro#elements-environments)       |
+| `onEvent`   | `Function` | A callback invoked with `event`, a native `MessageEvent`, when any event is triggered by the element.                |
+| `onSuccess` | `Function` | A callback invoked with `payload` when an element's flow has successfully been completed. See the [success](/api/elements/events#success) event. |
+| `onError`   | `Function` | A callback invoked with `error` when an error is raised by the element. See the [error](/api/elements/events#error) event.                   |
+| `onExit`    | `Function` | A callback invoked with `payload` when an element exits. See the [exit](/api/elements/events#exit) event.                                     |
+| `onOpen`    | `Function` | A callback invoked with `payload` when an element is successfully launched. See the [open](/api/elements/events#open) event.                  |
+
+
+➡️ See [Method Elements events](/api/elements/events) for more info.
+
+### Launch
+
+#### Retrieve an element token
+
+Before you can launch an element, you must first create an `element_token` for the element through the Method API.
+
+In this example, we're creating an `element_token` for the [Link Element](/api/elements/intro).
+
+<ElementsCreateLinkToken2 />
+
+```json
+{
+  "element_token": "pk_elem_BtzySdrQGFmLdAPw5gXSQNCxQkhCkT3K"
+}
+```
+
+➡️ See [create an element token](/api/elements/link/implementation/create-token) for more info.
+
+#### Launch the element
+
+Now that a `Method` instance and an `element_token` have been created, you can now launch the element.
+
+```js
+method.open('pk_elem_BtzySdrQGFmLdAPw5gXSQNCxQkhCkT3K');
+```

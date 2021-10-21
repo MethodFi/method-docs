@@ -1,0 +1,132 @@
+# Element Events
+The main way Method Elements communicates with your application is through HTTP redirects. Your application should intercept the redirects in order to react accordingly to state changes. Your app should listen to both `general` events and element specific events.
+
+ℹ️ HTTP redirects from Method Elements are in the following format:
+```
+methodelements://{event_source}?{event_data}
+```
+
+---
+### General Element Events
+
+#### Open
+The open event is triggered when an element has successfully launched. No data is passed at this time.
+
+```text
+methodelements://general
+  ?op=open
+  &element_type=link
+```
+
+##### Attributes
+
+| Name       | Type                  | Description                                                      |
+|------------|-----------------------|------------------------------------------------------------------|
+| `op`       | `string`              | The operation type returned by the element.                      |
+| `element_type`       | `string`              | The element type that returned this event. When the element is not known the type will be `unknown`                     |
+
+
+#### Error
+The error event is sent for any element that encounters any error while it's active.
+
+```text
+methodelements://general
+  ?op=error
+  &element_type=unknown
+  &type=INVALID_REQUEST
+  &sub_type=EXPIRED_TOKEN
+  &message=The public element token is no longer valid. Element tokens are short lived and can only be used once. Request a new element token and try your request again.
+  &code=400
+```
+
+<!-- ##### Aggregator Errors
+For error events where `type` is `AGGREGATOR_ERROR`, the Link Element will bubble up the error received from the aggregator in the following format.
+
+```
+method://elements:link:error
+  ?type=AGGREGATOR_ERROR
+  &sub_type={AGGREGATOR}:{AGGREGATOR_ERROR_TYPE}:{AGGREGATOR_ERROR_CODE}
+  &message={AGGREGATOR_ERROR_MESSAGE}
+  &code=null
+```
+
+Example: error events triggered with `Plaid` as the aggregator.
+
+```
+method://elements:link:error
+  ?type=AGGREGATOR_ERROR
+  &sub_type=PLAID:ITEM_ERROR:INVALID_CREDENTIALS
+  &message=the provided credentials were not correct
+  &code=null
+```
+
+➡️ See the [Plaid error docs](https://plaid.com/errors) for details on the Plaid aggregator. -->
+
+##### Attributes
+
+| Name       | Type                  | Description                                                      |
+|------------|-----------------------|------------------------------------------------------------------|
+| `op`       | `string`              | The operation type returned by the element.                      |
+| `element_type`       | `string`              | The element type that returned this event. When the element is not known the type will be `unknown`                     |
+| `code`     | `integer`, `nullable` | The status code of the request.                                  |
+| `type`     | `string`              | A broad description of the error.                                |
+| `sub_type` | `string`              | The specific error type.                                         |
+| `message`  | `string`              | A human-readable message providing more details about the error. |
+
+
+
+#### Exit
+The exit event is the last event in the element flow, at this point your app should no longer present the Method Element. Exit is triggered after an error, a user requested exit or a successful element event.
+
+```text
+methodelements://general
+  ?op=exit
+  &element_type=link
+```
+
+##### Attributes
+
+| Name       | Type                  | Description                                                      |
+|------------|-----------------------|------------------------------------------------------------------|
+| `op`       | `string`              | The operation type returned by the element.                      |
+| `element_type`       | `string`              | The element type that returned this event. When the element is not known the type will be `unknown`                     |
+
+
+
+### Link Specific Element Events
+
+
+#### Success
+The success event is sent when the user has successfully linked their account to Method. This will return an array of `acccounts` linked to be exchanged later.
+
+```text
+methodelements://link
+  ?op=success
+  &element_type=link
+  &accounts=%5B%7B%22public_account_token%22%3A%22
+  pk_acc_iZKeBTmnmw3aSGePcfdweUEJTBXwsfR4%22%2C%22
+  mask%22%3A%224127%22%7D%5D
+```
+
+when parsed, will would result in the following JSON
+
+```json
+{
+  "accounts": [
+    {
+      "public_account_token": "pk_acc_iZKeBTmnmw3aSGePcfdweUEJTBXwsfR4",
+      "mask": "4127"
+    }
+  ]
+}
+```
+
+##### Attributes
+
+| Name                                          | Type                 | Description                                                                                                                                                                         |
+|-----------------------------------------------|----------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `op`       | `string`              | The operation type returned by the element.                      |
+| `element_type`       | `string`              | The element type that returned this event. When the element is not known the type will be `unknown`                     |
+| `accounts`                         | `string`             | A URL-encoded JSON array with the list of connected public account tokens and their respective mask.                                                                                |
+| `accounts[n].public_account_token` | `string`             | One of the public account tokens returned by the Link Element after successfully connecting. |
+| `accounts[n].mask`                 | `string`             | The last 4 digits of the account number of the connected account.                                                                                                                   |

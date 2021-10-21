@@ -1,0 +1,36 @@
+import WebhooksCreate from '../../../../src/snippets/WebhooksCreate';
+
+# Create a webhook
+
+**About**: Creates a new webhook for a specific `type` and `url`. Your application will be notified of updates to the chosen event type.
+
+**API Method**: `POST /webhooks`
+
+### Request
+
+#### Example
+<WebhooksCreate />
+
+#### Parameters
+
+| Name        | Type     | Required | Description                                                                                          |
+|-------------|----------|----------|------------------------------------------------------------------------------------------------------|
+| `type`      | `string` | ✅        | The event type to be sent to this url. See `Webhook Events` for all available events.                |
+| `url`       | `string` | ✅        | The HTTPS URL receiving the webhook event.                                                           |
+| `auth_token` | `string` |          | Secret token for request validation. Will be sent as a `base64` encoded string in the `Authorization` header of the webhook. |
+
+### Response
+
+#### Example
+
+```json
+{
+  "id": "whk_cSGjA6d9N8y8R",
+  "type": "payment.update",
+  "url": "https://api.example.app/webhook",
+  "auth_token": "md7UqcTSmvXCBzPORDwOkE",
+  "metadata": null,
+  "created_at": "2020-12-09T00:41:05.647Z",
+  "updated_at": "2020-12-09T00:41:05.647Z"
+}
+```

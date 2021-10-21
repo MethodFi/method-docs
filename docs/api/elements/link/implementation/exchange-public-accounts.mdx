@@ -1,0 +1,40 @@
+import ElementsExchangePublicAccountToken from '../../../../../src/snippets/ElementsExchangePublicAccountToken';
+
+# Exchange Public Account Token
+
+**About**: Exchanges the `public_account_token` for an `account`. This is the final step when linking an account using Link Element.
+
+**API Method**: `POST /elements/accounts/exchange`
+
+### Request
+
+#### Example
+
+<ElementsExchangePublicAccountToken />
+
+#### Parameters
+
+| Name                   | Type     | Required | Description                                                                             |
+|------------------------|----------|----------|-----------------------------------------------------------------------------------------|
+| `public_account_token` | `string` | ✅        | The public account token returned by the Link Element after an account has successfully been connected. |                           |
+### Response
+
+#### Example
+
+```json
+{
+  "id": "acc_Zc4F2aTLt8CBt",
+  "holder_id": "ent_au22b1fbFJbp8",
+  "type": "liability",
+  "ach": null,
+  "liability": {
+    "mch_id": "mch_3",
+    "mask": "4127"
+  },
+  "capabilities": [
+    "payments:receive"
+  ],
+  "created_at": "2020-12-09T02:56:19.548Z",
+  "updated_at": "2020-12-09T02:56:19.548Z"
+}
+```

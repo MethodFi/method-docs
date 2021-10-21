@@ -1,0 +1,52 @@
+# Changelog
+
+See the latest changes and updates to Method's API.
+
+:::tip **About Method**
+🚀 Method is the easiest way to embed debt repayment into your app. ([Learn More](https://methodfi.com))
+:::
+
+### August 2021
+* **Payment fund statuses**: Add support for payment fund statuses. ([docs](/api/core/payments/object))
+* **Merchant improvements**: Extended coverage for merchant logo and types ([docs](/api/core/merchants/object))
+* **Core API Metadata**: Accept `metadata` on Core API resource creation. ([docs](/api/metadata))
+* **Element events scheme**: Updated elements event redirect scheme. ([docs](/api/elements/events))
+* **Money Transfer Element**: Added a demo for Money Transfer use case. ([docs](/api/elements/money-transfer/intro))
+* **Balance Transfer Element**: Added a demo for Balance Transfer use case. ([docs](/api/elements/balance-transfer/intro))
+* **Link Element UI**: Improved Link Element layout and consent view. ([docs](/api/elements/link/intro))
+* **Health Check**: Added health check API endpoint `/ping`. ([docs](/api/healthcheck))
+* **Webhook IP whitelists**: List possible webhook IP addresses for each Method environment. ([docs](/api/core/webhooks/ip-whitelisting))
+* **Idempotency**: Added optional `Idempotency-Key` header for all `POST` Core API resources. ([docs](/api/idempotency))
+* **List accounts filters**: Added optional filter parameters for `GET /accounts`. ([docs](/api/core/accounts/list))
+* **Generate Reports**: Allow users to generate reports using the `/reports` endpoints. ([docs](/api/core/reports/object))
+* **API Client for Node.js**: Created an API client library for node.js. ([docs](/libraries#api-client-libraries))
+* **Elements Javascript SDK**: Created a Javascript SDK for Elements. ([docs](/libraries#elements-client-libraries))
+
+### July 2021
+
+* **Guides**: Added a new guides section on the docs. Check out the [first guide](/guides/integrations/using-plaid).
+* **Elements**: Added a new elements section on the docs. Elements will encapsulate all embeddable UI components, including Link. ([docs](/api/elements/intro))
+* **Link deprecation**: Deprecated Method Link. Link will now be a part of Method Elements. ([docs](/api/elements/intro))
+
+### June 2021
+
+* **Entity capabilities**: An entity will have specific capabilities based on the data provided. ([docs](/api/core/entities/object#entity-capabilities))
+* **Receive Only entites**: This entity type is being deprecated. See docs for more info. ([docs](/api/core/entities/object#entity-capabilities))
+* **Mask in accounts**: A liabilities' mask (last 4) is now returned in the Account object. ([docs](/api/core/accounts/object))
+
+### May 2021
+
+* **Merchant logos**: Extended coverage of logos of merchants ([docs](/api/core/merchants/object))
+* **Receive Only entities**: Allows you to push money to an entities' accounts without needing extensive KYC / AML ([docs](/api/core/entities/create-receive-only))
+* **Payment simulator**: The dev environment now simulates a payment moving through its various states. ([docs](/api/environments))
+* **Improved Plaid & MX support**: Significantly improved coverage of merchants mapping to Plaid & MX aggregators ([docs](/api/core/merchants/list))
+
+### April 2021
+
+* **Hello World**: Method is live. Thanks for all the support. 🚀 ([Product Hunt](https://www.producthunt.com/posts/method-financial))
+* **Update Entity**: You can now update entities before initiating KYC / AML verification. ([docs](/api/core/entities/update))
+* **BIN Lookup**: Use our BIN endpoint to get metadata for a BIN ("Bank Identification Number"). ([docs](/api/utils/bins/object))
+
+### March 2021
+* **Method Link**: Method Link handles the tokenization, and creation of the account on your behalf. ([docs](/api/link/intro))
+

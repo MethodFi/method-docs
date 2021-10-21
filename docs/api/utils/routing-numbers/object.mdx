@@ -1,0 +1,44 @@
+# The Routing Number object
+
+A routing number is a nine-digit code that is used to identify a bank or financial institution.
+
+### Routing Number object
+
+#### Example
+
+```json
+{
+  "id": "rtn_9xs4xQn4ZAmMK",
+  "institution_name": "CAPITAL ONE N.A.",
+  "routing_number": "031176110",
+  "logo": "https://s3.us-west-2.amazonaws.com/static.methodfi.com/ins-logos/1623725401472-capital-one-na.png",
+  "office_type": "main",
+  "change_date": "2016-05-25T05:00:00.000Z",
+  "address": {
+    "line1": "PO BOX 85139",
+    "line2": null,
+    "state": "VA",
+    "city": "RICHMOND",
+    "zip": "23238"
+  },
+  "phone": "844-309-0809"
+}
+```
+
+#### Attributes
+
+| Name               | Type                 | Description                                                                                               |
+|--------------------|----------------------|-----------------------------------------------------------------------------------------------------------|
+| `id`               | `string`, `nullable` | A unique identifier for a routing number.                                                                 |
+| `institution_name` | `string`             | The name of the bank or financial institution.                                                            |
+| `routing_number`   | `string`             | The nine-digit routing number.                                                                            |
+| `logo`             | `string`, `nullable` | A logo of the bank or financial institution.                                                              |
+| `office_type`      | `string`             | Whether the routing number belongs to a `main` or `branch` location of the bank or financial institution. |
+| `change_date`      | `string`, `nullable` | When the routing number was last changed.                                                                 |
+| `address`          | `object`             | Address information of the bank or financial institution.                                                 |
+| `address.line1`    | `string`, `nullable` | The first line of the bank's or financial institution's address.                                          |
+| `address.line2`    | `string`, `nullable` | The second line of the bank's or financial institution's address.                                         |
+| `address.city`     | `string`, `nullable` | The city of the bank's or financial institution's address.                                                |
+| `address.state`    | `string`, `nullable` | The state of the bank's or financial institution's address.                                               |
+| `address.zip`      | `string`, `nullable` | The zip code of the bank's or financial institution's address.                                            |
+| `phone`            | `string`, `nullable` | The phone number of the bank or financial institution.                                                    |

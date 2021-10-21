@@ -1,0 +1,20 @@
+import HealthCheckSample from '../../src/snippets/HealthCheck';
+
+# Health Check
+
+A health check may be performed by hitting the `/ping` endpoint.
+
+### Example request
+
+<HealthCheckSample />
+
+### Example response
+Returns and HTTP status of **200** with the following payload indicating that the API is healthy.
+
+```json
+{
+    "success": true,
+    "data": null,
+    "message": "pong"
+}
+```

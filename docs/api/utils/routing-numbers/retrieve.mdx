@@ -1,0 +1,39 @@
+import RoutingNumbersRetrieve from '../../../../src/snippets/RoutingNumbersRetrieve';
+
+# Retrieve a Routing Number
+
+**About**: Retrieves details regarding a Routing Number.
+
+**API Method**: `GET /routing_numbers`
+
+### Request
+
+#### Example
+<RoutingNumbersRetrieve />
+
+#### Parameters
+| Name | Type     | Required | Description                                                                                                             |
+|------|----------|----------|-------------------------------------------------------------------------------------------------------------------------|
+| `routing_number`  | `string` | ✅        |  The routing number of the bank or financial institution. |
+
+### Response
+
+#### Example
+```json
+{
+  "id": "rtn_9xs4xQn4ZAmMK",
+  "institution_name": "CAPITAL ONE N.A.",
+  "routing_number": "031176110",
+  "logo": "https://s3.us-west-2.amazonaws.com/static.methodfi.com/ins-logos/1623725401472-capital-one-na.png",
+  "office_type": "main",
+  "change_date": "2016-05-25T05:00:00.000Z",
+  "address": {
+    "line1": "PO BOX 85139",
+    "line2": null,
+    "state": "VA",
+    "city": "RICHMOND",
+    "zip": "23238"
+  },
+  "phone": "844-309-0809"
+}
+```

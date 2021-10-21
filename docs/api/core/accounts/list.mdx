@@ -1,0 +1,81 @@
+import AccountsList from "../../../../src/snippets/AccountsList";
+
+# List all accounts
+
+**About**: Returns all the accounts associated with your team, or an empty array if none have been created.
+
+**API Method**: `GET /accounts`
+
+### Request
+
+#### Example
+<AccountsList />
+
+#### Parameters
+
+| Name        | Required | Description                                                     |
+|-------------|----------|-----------------------------------------------------------------|
+| `holder_id` |          | The id of the `Entity` whose accounts to retrieve.              |
+| `type`      |          | The type of accounts to retrieve. Options: `ach` or `liability` |
+
+### Response
+
+#### Example
+
+An array of account objects will be returned.
+
+```json
+{
+  "data": [
+    {
+      "id": "acc_b9q2XVAnNFbp3",
+      "holder_id": "ent_y1a9e1fbnJ1f3",
+      "type": "ach",
+      "ach": {
+        "routing": "367537407",
+        "number": "57838927",
+        "type": "checking"
+      },
+      "liability": null,
+      "metadata": null,
+      "capabilities": [
+        "payments:receive"
+      ],
+      "created_at": "2020-12-09T00:40:51.107Z",
+      "updated_at": "2020-12-09T00:40:51.107Z"
+    },
+    {
+      "id": "acc_HDKwAziGeD5cX",
+      "holder_id": "ent_mxp3B3yyKLHTH",
+      "type": "liability",
+      "ach": null,
+      "liability": {
+        "mch_id": "mch_21",
+        "mask": "3092"
+      },
+      "metadata": null,
+      "capabilities": [
+        "payments:receive"
+      ],
+      "created_at": "2020-12-09T00:47:32.508Z",
+      "updated_at": "2020-12-09T00:47:32.508Z"
+    },
+    {
+      "id": "acc_Zc4F2aTLt8CBt",
+      "holder_id": "ent_au22b1fbFJbp8",
+      "type": "liability",
+      "ach": null,
+      "liability": {
+        "mch_id": "mch_1",
+        "mask": "6382"
+      },
+      "metadata": null,
+      "capabilities": [
+        "payments:receive"
+      ],
+      "created_at": "2020-12-09T02:56:19.548Z",
+      "updated_at": "2020-12-09T02:56:19.548Z"
+    }
+  ]
+}
+```

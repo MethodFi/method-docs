@@ -1,0 +1,49 @@
+# The report object
+
+The report object represents an instance of a generated report based on specific a type.
+
+Once a report object is created, it will return a URL to a file where you can retrieve its results.
+
+### Report object
+
+#### Example
+
+```json
+{
+  "id": "rpt_cj2mkA3hFyHT5",
+  "type": "payments.created.current",
+  "url": "https://production.methodfi.com/reports/rpt_cj2mkA3hFyHT5/download",
+  "status": "completed",
+  "metadata": null,
+  "created_at": "2021-08-25T23:18:05.261Z",
+  "updated_at": "2021-08-25T23:18:05.261Z"
+}
+```
+
+#### Attributes
+
+| Name         | Type                 | Description                                                                                   |
+|--------------|----------------------|-----------------------------------------------------------------------------------------------|
+| `id`         | `string`             | Unique identifier for the report.                                                             |
+| `type`       | `string`             | The report type generated. See *Report Types* for all available types.                        |
+| `url`        | `string`             | The HTTPS URL to a file containing the results of the report.                                 |
+| `status`     | `string`             | The processing status of the report. Either `processing` or `completed`.                      |
+| `metadata`   | `object`, `nullable` | Additional data provided during creation. See [metadata](/api/metadata). |
+| `created_at` | `string`             | Timestamp of when the report was created.                                                    |
+| `updated_at` | `string`             | Timestamp of when the report was last updated.                                               |
+
+### Report Types
+
+The following are report types that can be generated:
+
+* `payments.created.current`
+Payments created in the current [cutoff cycle](/api/core/payments/object#cutoff-time).
+
+* `payments.created.previous`
+Payments created in the previous [cutoff cycle](/api/core/payments/object#cutoff-time).
+
+* `payments.updated.current`
+Payments updated in the current [cutoff cycle](/api/core/payments/object#cutoff-time).
+
+* `payments.updated.previous`
+Payments updated in the previous [cutoff cycle](/api/core/payments/object#cutoff-time).

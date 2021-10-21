@@ -1,0 +1,57 @@
+# The verification object
+In order to lower the risk of failed/returned payments, ACH accounts must first be verified to ensure ownership and validity of the account before it can be used to send payments.
+
+Account verification only applies to ACH accounts. __Liability accounts don't require this verification step__  since account numbers are validated automatically with the merchant.
+
+:::caution
+In the `dev`, and `sandbox` environments, ACH accounts are automatically verified by default. If you would like to disable this feature to fully simluate the verification process for the `production` environment, please contact support at team@methodfi.com
+:::
+
+### Verification object
+
+#### Example
+
+```json
+{
+  "id": "vrf_73TAQ8njUFsLJ",
+  "status": "initiated",
+  "type": "micro_deposits",
+  "initiated_at": "2021-10-12T20:42:46.433Z",
+  "pending_at": "1970-01-01T00:00:00.000Z",
+  "verified_at": "1970-01-01T00:00:00.000Z",
+  "disabled_at": "1970-01-01T00:00:00.000Z",
+  "created_at": "2021-10-12T20:42:46.433Z",
+  "updated_at": "2021-10-12T20:42:46.433Z"
+}
+```
+
+#### Attributes
+
+| Name           | Type     | Description                                                                                                                               |
+|----------------|----------|-------------------------------------------------------------------------------------------------------------------------------------------|
+| `id`           | `string` | Unique identifier for the verification.                                                                                                   |
+| `status`       | `string` | Status of the verification. Possible statuses: `initiated`, `pending`, `verified`, `disabled`. See *Verification Statuses* for more info. |
+| `type`         | `string` | Type of the verification. Possible types: `micro_deposits`, `plaid`, `mx`, `auto_verify`. See *Verification Types* for more info.         |
+| `initiated_at` | `string` | Timestamp of when the verification transitioned into `initiated` status.                                                                  |
+| `pending_at`   | `string` | Timestamp of when the verification transitioned into `pending` status.                                                                    |
+| `verified_at`  | `string` | Timestamp of when the verification transitioned into `verified` status.                                                                   |
+| `disabled_at`  | `string` | Timestamp of when the verification transitioned into `disabled` status.                                                                   |
+| `created_at`   | `string` | Timestamp of when the verification was created.                                                                                           |
+| `updated_at`   | `string` | Timestamp of when the verification was last updated.                                                                                      |
+
+#### Verification Statuses
+The following are possible statuses a verification can be in.
+
+- `initiated` The initial status of a verification.
+- `pending` For verifications of type `micro_deposits`, this is when the micro-deposits have been sent to the associated bank account. You can only verify the deposited amounts once the verification is in this status.
+- `verified` The verification was successful, and the associated ACH account will have an additional `payments:send` capability. See [account capabilities](/api/core/accounts/object#account-capabilities) for more info.
+- `disabled` Multiple unsuccessful attempts have been made to complete the verification.
+
+
+#### Verification Types
+The following are possible types by which an ACH account can be verified.
+
+- `micro_deposits` Two small amounts of money will be deposited into the ACH account, once received (within 1 - 3 business days) the account holder will then [verify the amounts (in cents) that were deposited](/api/core/accounts/ach-verification/update).
+- `plaid` The Account is verified by providing balance and transaction data from Plaid.
+- `mx` The account is verified by providing account and transaction data from MX.
+- `auto_verify` The account was verified with Plaid through the [Method Link Element](/api/elements/link/intro) or the account was verified automatically in the `dev` or `sandbox` environment where verification is disabled by default.

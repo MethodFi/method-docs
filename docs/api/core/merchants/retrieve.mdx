@@ -1,0 +1,46 @@
+import MerchantsRetrieve from '../../../../src/snippets/MerchantsRetrieve';
+
+# Retrieve a merchant
+
+**About**: Returns the merchant associated with the id.
+
+**API Method**: `GET /merchants/:mchId`
+
+### Request
+
+#### Example
+<MerchantsRetrieve />
+
+#### Parameters
+
+| Name | Type     | Required | Description                        |
+|------|----------|----------|------------------------------------|
+| `id` | `string` | ✅       | The Id of the merchant to retrieve. |
+
+
+
+### Response
+
+#### Example
+```json
+{
+  "mch_id": "mch_1",
+  "parent_name": "Chase",
+  "name": "Chase - Credit Cards",
+  "logo": "https://static.methodfi.com/mch-logos/1616215578688-chase.png",
+  "description": "Chase Mastercard & Visa",
+  "note": "For Credit Card Accounts Only",
+  "types": [
+    "credit_card"
+  ],
+  "account_prefixes": [
+    "403116",
+    "438857"
+  ],
+  "provider_ids": {
+    "plaid": ["ins_3"],
+    "mx": ["chase"],
+    "finicity": ["5"]
+  }
+}
+```
