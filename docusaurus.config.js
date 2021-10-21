@@ -8,7 +8,7 @@ const darkCodeTheme = require('prism-react-renderer/themes/nightOwl');
 const config = {
   title: 'Method Docs',
   tagline: 'Explore guides, examples, and libraries to integrate Method.',
-  url: 'https://docs.methodfi.com/',
+  url: 'https://docs.methodfi.com',
   baseUrl: '/',
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
