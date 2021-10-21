@@ -44,14 +44,14 @@ The following are possible statuses a verification can be in.
 
 - `initiated` The initial status of a verification.
 - `pending` For verifications of type `micro_deposits`, this is when the micro-deposits have been sent to the associated bank account. You can only verify the deposited amounts once the verification is in this status.
-- `verified` The verification was successful, and the associated ACH account will have an additional `payments:send` capability. See [account capabilities](/docs/api/core/accounts/object#account-capabilities) for more info.
+- `verified` The verification was successful, and the associated ACH account will have an additional `payments:send` capability. See [account capabilities](/api/core/accounts/object#account-capabilities) for more info.
 - `disabled` Multiple unsuccessful attempts have been made to complete the verification.
 
 
 #### Verification Types
 The following are possible types by which an ACH account can be verified.
 
-- `micro_deposits` Two small amounts of money will be deposited into the ACH account, once received (within 1 - 3 business days) the account holder will then [verify the amounts (in cents) that were deposited](/docs/api/core/accounts/ach-verification/update).
+- `micro_deposits` Two small amounts of money will be deposited into the ACH account, once received (within 1 - 3 business days) the account holder will then [verify the amounts (in cents) that were deposited](/api/core/accounts/ach-verification/update).
 - `plaid` The Account is verified by providing balance and transaction data from Plaid.
 - `mx` The account is verified by providing account and transaction data from MX.
-- `auto_verify` The account was verified with Plaid through the [Method Link Element](/docs/api/elements/link/intro) or the account was verified automatically in the `dev` or `sandbox` environment where verification is disabled by default.
+- `auto_verify` The account was verified with Plaid through the [Method Link Element](/api/elements/link/intro) or the account was verified automatically in the `dev` or `sandbox` environment where verification is disabled by default.

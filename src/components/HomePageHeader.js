@@ -15,19 +15,19 @@ export default function HomePageHeader() {
         <CardContainer>
           <HeroCard
             colSize={5}
-            href="/docs/guides"
+            href="/guides"
             header="Guides"
             body="Learn the core concepts of Method so you can really hit the ground running."
           />
           <HeroCard
             colSize={4}
-            href="/docs/api"
+            href="/api"
             header="API Reference"
             body="Learn the core concepts of Method so you can really hit the ground running."
           />
           <HeroCard
             colSize={3}
-            href="/docs/libraries"
+            href="/libraries"
             header="Libraries"
             body="Learn the core concepts of Method so you can really hit the ground running."
           />

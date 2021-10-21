@@ -2,8 +2,7 @@ import ElementsCreateLinkToken2 from '../../../src/snippets/ElementsCreateLinkTo
 
 # Elements Javascript SDK
 
-Method provides a script to seamlessly integrate [Elements](/docs/api/elements/intro) into your web application.
-
+Method provides a script to seamlessly integrate [Elements](/api/elements/intro) into your web application.
 
 ### Installation
 
@@ -50,15 +49,15 @@ const method = new Method(config);
 
 | Name        | Type       | Description                                                                                                          |
 |-------------|------------|----------------------------------------------------------------------------------------------------------------------|
-| `env`       | `string`   | The Method environment with which the element with interact with. Options: `dev`, `sandbox`, or `production`. See [Elements Environments](/docs/api/elements/intro#elements-environments)       |
+| `env`       | `string`   | The Method environment with which the element with interact with. Options: `dev`, `sandbox`, or `production`. See [Elements Environments](/api/elements/intro#elements-environments)       |
 | `onEvent`   | `Function` | A callback invoked with `event`, a native `MessageEvent`, when any event is triggered by the element.                |
-| `onSuccess` | `Function` | A callback invoked with `payload` when an element's flow has successfully been completed. See the [success](/docs/api/elements/events#success) event. |
-| `onError`   | `Function` | A callback invoked with `error` when an error is raised by the element. See the [error](/docs/api/elements/events#error) event.                   |
-| `onExit`    | `Function` | A callback invoked with `payload` when an element exits. See the [exit](/docs/api/elements/events#exit) event.                                     |
-| `onOpen`    | `Function` | A callback invoked with `payload` when an element is successfully launched. See the [open](/docs/api/elements/events#open) event.                  |
+| `onSuccess` | `Function` | A callback invoked with `payload` when an element's flow has successfully been completed. See the [success](/api/elements/events#success) event. |
+| `onError`   | `Function` | A callback invoked with `error` when an error is raised by the element. See the [error](/api/elements/events#error) event.                   |
+| `onExit`    | `Function` | A callback invoked with `payload` when an element exits. See the [exit](/api/elements/events#exit) event.                                     |
+| `onOpen`    | `Function` | A callback invoked with `payload` when an element is successfully launched. See the [open](/api/elements/events#open) event.                  |
 
 
-➡️ See [Method Elements events](/docs/api/elements/events) for more info.
+➡️ See [Method Elements events](/api/elements/events) for more info.
 
 ### Launch
 
@@ -66,7 +65,7 @@ const method = new Method(config);
 
 Before you can launch an element, you must first create an `element_token` for the element through the Method API.
 
-In this example, we're creating an `element_token` for the [Link Element](/docs/api/elements/intro).
+In this example, we're creating an `element_token` for the [Link Element](/api/elements/intro).
 
 <ElementsCreateLinkToken2 />
 
@@ -76,7 +75,7 @@ In this example, we're creating an `element_token` for the [Link Element](/docs/
 }
 ```
 
-➡️ See [create an element token](/docs/api/elements/link/implementation/create-token) for more info.
+➡️ See [create an element token](/api/elements/link/implementation/create-token) for more info.
 
 #### Launch the element
 

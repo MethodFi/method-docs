@@ -63,7 +63,7 @@ hr {
 }
 
 .hero {
-  background-image: url('/static/img/bg-home.png');
+  background-image: url('/static/img/background/home-banner.png');
   background-size: cover;
 }
 
@@ -135,24 +135,44 @@ a.transparent, a.transparent:hover {
   width: 1rem;
 }
 
-.sidebar-section-header.Frame-1:before {
-  background: url("/static/img/Frame-1.png") 100% / 1rem 1rem;
+.sidebar-section-header.sidebar-icon-api-reference:before {
+  background: url("/static/img/sidebar-icon/api/reference.svg") 100% / 1rem 1rem;
 }
 
-.sidebar-section-header.Frame-2:before {
-  background: url("/static/img/Frame-2.png") 100% / 1rem 1rem;
+.sidebar-section-header.sidebar-icon-api-core:before {
+  background: url("/static/img/sidebar-icon/api/core.svg") 100% / 1rem 1rem;
 }
 
-.sidebar-section-header.Frame-3:before {
-  background: url("/static/img/Frame-3.png") 100% / 1rem 1rem;
+.sidebar-section-header.sidebar-icon-api-elements:before {
+  background: url("/static/img/sidebar-icon/api/elements.svg") 100% / 1rem 1rem;
 }
 
-.sidebar-section-header.Frame-4:before {
-  background: url("/static/img/Frame-4.png") 100% / 1rem 1rem;
+.sidebar-section-header.sidebar-icon-api-utils:before {
+  background: url("/static/img/sidebar-icon/api/utils.svg") 100% / 1rem 1rem;
 }
 
-.sidebar-section-header.Frame-5:before {
-  background: url("/static/img/Frame-5.png") 100% / 1rem 1rem;
+.sidebar-section-header.sidebar-icon-api-link:before {
+  background: url("/static/img/sidebar-icon/api/link.svg") 100% / 1rem 1rem;
+}
+
+.sidebar-section-header.sidebar-icon-guides-introduction:before {
+  background: url("/static/img/sidebar-icon/guides/introduction.svg") 100% / 1rem 1rem;
+}
+
+.sidebar-section-header.sidebar-icon-guides-concepts:before {
+  background: url("/static/img/sidebar-icon/guides/concepts.svg") 100% / 1rem 1rem;
+}
+
+.sidebar-section-header.sidebar-icon-guides-quick-start:before {
+  background: url("/static/img/sidebar-icon/guides/quick-start.svg") 100% / 1rem 1rem;
+}
+
+.sidebar-section-header.sidebar-icon-guides-use-cases:before {
+  background: url("/static/img/sidebar-icon/guides/use-cases.svg") 100% / 1rem 1rem;
+}
+
+.sidebar-section-header.sidebar-icon-guides-integrations:before {
+  background: url("/static/img/sidebar-icon/guides/integrations.svg") 100% / 1rem 1rem;
 }
 
 .items-center {

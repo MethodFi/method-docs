@@ -4,7 +4,7 @@ import EntitiesCreateIndividual from '../../../../src/snippets/EntitiesCreateInd
 
 **About**: Creates a new individual entity, and initiates the KYC / AML verification. The identity verification will almost always be fulfilled synchronously. If a verification takes longer than 5 seconds, the request will be handled asynchronously and a webhook will be fired when there is an update.
 
-An Entity can be created with an empty object and progressively updated with more information from your end user. See [Entity Capabilities](/docs/api/core/entities/object#entity-capabilities) for more info.
+An Entity can be created with an empty object and progressively updated with more information from your end user. See [Entity Capabilities](/api/core/entities/object#entity-capabilities) for more info.
 
 **API Method**: `POST /entities`
 

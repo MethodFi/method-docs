@@ -15,9 +15,9 @@ This guide will walk you through integrating your existing Plaid flows with the 
 ### Prerequisites
 Before you get started, make sure you have the following:
 
-- An `API_KEY` from https://dashboard.methodfi.com. Depending on which [Method Environment](/docs/api/environments) you would like to follow this guide with, make sure your requests are made to the correct URL.
+- An `API_KEY` from https://dashboard.methodfi.com. Depending on which [Method Environment](/api/environments) you would like to follow this guide with, make sure your requests are made to the correct URL.
 
-- A Plaid integration with the [Plaid Auth API](https://plaid.com/docs/auth/) enabled, and [Plaid Liabilities API](https://plaid.com/docs/liabilities) optionally enabled.
+- A Plaid integration with the [Plaid Auth API](https://plaid.com/auth/) enabled, and [Plaid Liabilities API](https://plaid.com/liabilities) optionally enabled.
 
 ### 1. Creating an entity
 An entity is a representation of your application's end-users. Entities function as holders of Method accounts. In order to link a user's account with Method, you must first create an entity through the Method API.
@@ -34,12 +34,12 @@ For the purpose of this guide, we'll be creating an `individual` entity, by maki
 }
 ```
 
-➡️  See [the entity object](/docs/api/core/entities/object) for more info.
+➡️  See [the entity object](/api/core/entities/object) for more info.
 
 ### 2. Create a source account
 Before your users can make payments to their accounts, you must first create a source `ach` account from which the funds will be pulled. Assuming they have authenticated with the Plaid Link process, retrieve the user's  `ach` information from the Plaid Auth endpoint.
 
-➡️  See https://plaid.com/docs/api/products/#authget for more info.
+➡️  See https://plaid.com/api/products/#authget for more info.
 
 Request to retrieve `ach.number`, `ach.routing`, and `ach.type` from Plaid Auth.
 ```shell
@@ -95,7 +95,7 @@ You can now create a source `ach` account for your user by making a request to t
 }
 ```
 
-➡️  See [the account object](/docs/api/core/accounts/object) for more info.
+➡️  See [the account object](/api/core/accounts/object) for more info.
 
 ### 3. Create a destination account
 
@@ -168,7 +168,7 @@ A merchant is a representation of a financial institution that gets associated w
 }
 ```
 
-➡️  See the [GET /merchants endpoint](/docs/api/core/merchants/list) for more info.
+➡️  See the [GET /merchants endpoint](/api/core/merchants/list) for more info.
 
 **3.** Finally, make a request to `/accounts` with the account information retrieved from the previous steps.
 
@@ -229,7 +229,7 @@ A merchant is a representation of a financial institution that gets associated w
 }
 ```
 
-**3.** Plaid Auth will only provided you with the `mask` or the last 4 digits of a person's liability account, you will need to collect the remaining initial numbers by launching the [Link Element](/docs/api/elements/link/intro). First create a link `element_token` from your app's backend. See [create an element token](/docs/api/elements/link/implementation/create-token) for more info.
+**3.** Plaid Auth will only provided you with the `mask` or the last 4 digits of a person's liability account, you will need to collect the remaining initial numbers by launching the [Link Element](/api/elements/link/intro). First create a link `element_token` from your app's backend. See [create an element token](/api/elements/link/implementation/create-token) for more info.
 
 <ElementsCreateLinkToken />
 
@@ -239,12 +239,12 @@ A merchant is a representation of a financial institution that gets associated w
 }
 ```
 
-**4.** With the retrieved `element_token`, [launch the Link Element](/docs/api/elements/link/implementation/launch-link) in your app through a WebView.
+**4.** With the retrieved `element_token`, [launch the Link Element](/api/elements/link/implementation/launch-link) in your app through a WebView.
 ```
 https://elements.production.methodfi.com?token={element_token}
 ```
 
-**5.** Then finally [exchange](/docs/api/elements/link/implementation/exchange-public-accounts) the `public_account_token` for an account after your user successfully completes the Link Element flow.
+**5.** Then finally [exchange](/api/elements/link/implementation/exchange-public-accounts) the `public_account_token` for an account after your user successfully completes the Link Element flow.
 
 
 <ElementsExchangePublicAccountToken />
@@ -275,7 +275,7 @@ Now that you have the source account `id` and the destination account `id`, you 
 }
 ```
 
-➡️  See the [create a payment endpoint](/docs/api/core/payments/create) for more info.
+➡️  See the [create a payment endpoint](/api/core/payments/create) for more info.
 
 
 ### Conclusion

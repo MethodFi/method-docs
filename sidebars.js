@@ -11,20 +11,26 @@
 
 module.exports = {
   guides: [
-    'guides',
-    'guides/core-concepts',
-    'guides/quick-start',
-    {
-      type: 'category',
-      label: 'Integrations',
-      items: [
-        'guides/integrations/using-plaid',
-        'guides/integrations/using-link',
-      ],
-    }
+    // { label: 'Guides', className: 'sidebar-section-header sidebar-icon-guides-introduction', type: 'link', href: '/guides' },
+    // 'guides',
+    // { label: 'Quick start', className: 'sidebar-section-header sidebar-icon-guides-quick-start', type: 'link', href: '/guides/quick-start/dashboard' },
+    // 'guides/quick-start/dashboard',
+    // { label: 'Concepts', className: 'sidebar-section-header sidebar-icon-guides-concepts', type: 'link', href: '/guides/concepts/entities' },
+    // 'guides/concepts/entities',
+    // 'guides/concepts/accounts',
+    // 'guides/concepts/ach-accounts',
+    // 'guides/concepts/ach-verification',
+    // 'guides/concepts/liability-accounts',
+    // 'guides/concepts/merchants',
+    // 'guides/concepts/payments',
+    // { label: 'Use cases', className: 'sidebar-section-header sidebar-icon-guides-use-cases', type: 'link', href: '/guides/use-cases/debt-repayment' },
+    // 'guides/use-cases/debt-repayment',
+    { label: 'Integrations', className: 'sidebar-section-header sidebar-icon-guides-integrations', type: 'link', href: '/guides/integrations/using-plaid' },
+    'guides/integrations/using-plaid',
+    'guides/integrations/using-link',
   ],
   api: [
-    { label: 'API Reference', className: 'sidebar-section-header Frame-1', type: 'link', href: '#' },
+    { label: 'API Reference', className: 'sidebar-section-header sidebar-icon-api-reference', type: 'link', href: '/api' },
     'api',
     'api/authentication',
     'api/environments',
@@ -32,7 +38,7 @@ module.exports = {
     'api/healthcheck',
     'api/errors',
     'api/metadata',
-    { label: 'Core API', className: 'sidebar-section-header Frame-2', type: 'link', href: '#' },
+    { label: 'Core API', className: 'sidebar-section-header sidebar-icon-api-core', type: 'link', href: '/api/core/entities/object' },
     {
       type: 'category',
       label: 'Entities',
@@ -110,7 +116,7 @@ module.exports = {
         'api/core/reports/download',
       ],
     },
-    { label: 'Elements', className: 'sidebar-section-header Frame-3', type: 'link', href: '#' },
+    { label: 'Elements', className: 'sidebar-section-header sidebar-icon-api-elements', type: 'link', href: '/api/elements/intro' },
     'api/elements/intro',
     'api/elements/events',
     {
@@ -157,7 +163,7 @@ module.exports = {
         'api/elements/balance-transfer/intro',
       ],
     },
-    { label: 'Utils', className: 'sidebar-section-header Frame-4', type: 'link', href: '#' },
+    { label: 'Utils', className: 'sidebar-section-header sidebar-icon-api-utils', type: 'link', href: '/api/utils/bins/object' },
     {
       type: 'category',
       label: 'BINs',
@@ -174,7 +180,7 @@ module.exports = {
         'api/utils/routing-numbers/retrieve',
       ],
     },
-    { label: 'Method Link (Deprecated)', className: 'sidebar-section-header Frame-5', type: 'link', href: '#' },
+    { label: 'Method Link (Deprecated)', className: 'sidebar-section-header sidebar-icon-api-link', type: 'link', href: '/api/link/intro' },
     'api/link/intro',
     {
       type: 'category',

@@ -7,19 +7,19 @@ import PaymentsCreate from '../../../src/snippets/PaymentsCreate';
 # Integrating using the Link Element
 
 ### Introduction
-This guide will walk you through integrating the [Link Element](/docs/api/elements/link/intro) into your application to simplify the `liability` account creation process.
+This guide will walk you through integrating the [Link Element](/api/elements/link/intro) into your application to simplify the `liability` account creation process.
 
 :::info
-This integration assumes that you are not using Plaid as a data aggregator for your user's financial accounts. If you are using Plaid, see [**Integrating using Plaid**](/docs/guides/integrations/using-plaid) instead.
+This integration assumes that you are not using Plaid as a data aggregator for your user's financial accounts. If you are using Plaid, see [**Integrating using Plaid**](/guides/integrations/using-plaid) instead.
 :::
 
 ### Prerequisites
 Before you get started, make sure you have the following:
 
-- An `API_KEY` from https://dashboard.methodfi.com. Depending on which [Method Environment](/docs/api/environments) you would like to follow this guide with, make sure your requests are made to the correct URL.
+- An `API_KEY` from https://dashboard.methodfi.com. Depending on which [Method Environment](/api/environments) you would like to follow this guide with, make sure your requests are made to the correct URL.
 
 ### 1. Retrieve an entity
-First, retrieve an entity through the Method API. If you don't have any entities, [create an entity](/docs/api/core/entities/create-individual). This entity represents a user of your application.
+First, retrieve an entity through the Method API. If you don't have any entities, [create an entity](/api/core/entities/create-individual). This entity represents a user of your application.
 
 
 <EntitiesList />
@@ -36,10 +36,10 @@ First, retrieve an entity through the Method API. If you don't have any entities
 }
 ```
 
-➡️ See [the entity object](/docs/api/core/entities/object) for more info.
+➡️ See [the entity object](/api/core/entities/object) for more info.
 
 ### 2. Retrieve a source account
-Next, retrieve an `ach` account associated with the previously selected entity. If there are no `ach` accounts associated with this entity, [create an ach account](/docs/api/core/accounts/create) for them.
+Next, retrieve an `ach` account associated with the previously selected entity. If there are no `ach` accounts associated with this entity, [create an ach account](/api/core/accounts/create) for them.
 
 <AccountsList />
 
@@ -57,10 +57,10 @@ Next, retrieve an `ach` account associated with the previously selected entity. 
 }
 ```
 
-➡️ See [the account object](/docs/api/core/accounts/object) for more info.
+➡️ See [the account object](/api/core/accounts/object) for more info.
 
 ### 3. Create a liability destination account
-In this step, you will launch the [Link Element](/docs/api/elements/link/intro) within your application to create a `liability` account for your user.
+In this step, you will launch the [Link Element](/api/elements/link/intro) within your application to create a `liability` account for your user.
 
 **1.** First create a link `element_token` associated with your entity.
 
@@ -72,14 +72,14 @@ In this step, you will launch the [Link Element](/docs/api/elements/link/intro) 
 }
 ```
 
-➡️ See [create a Link Element token](/docs/api/elements/link/implementation/create-token) for more info.
+➡️ See [create a Link Element token](/api/elements/link/implementation/create-token) for more info.
 
-**2.** With the retrieved `element_token`, [launch the Link Element](/docs/api/elements/link/implementation/launch-link) in your app through a WebView.
+**2.** With the retrieved `element_token`, [launch the Link Element](/api/elements/link/implementation/launch-link) in your app through a WebView.
 ```
 https://elements.production.methodfi.com?token={element_token}
 ```
 
-**3.** Then finally [exchange](/docs/api/elements/link/implementation/exchange-public-accounts) the `public_account_token` for an account after your user successfully completes the Link Element flow.
+**3.** Then finally [exchange](/api/elements/link/implementation/exchange-public-accounts) the `public_account_token` for an account after your user successfully completes the Link Element flow.
 
 <ElementsExchangePublicAccountToken />
 
@@ -111,7 +111,7 @@ Now that you have the source account `id` and the destination account `id`, you 
 }
 ```
 
-➡️  See the [create a payment endpoint](/docs/api/core/payments/create) for more info.
+➡️  See the [create a payment endpoint](/api/core/payments/create) for more info.
 
 
 ### Conclusion

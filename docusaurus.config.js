@@ -12,24 +12,18 @@ const config = {
   baseUrl: '/',
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
-  favicon: 'img/favicon.ico',
-  organizationName: 'MethodFi', // Usually your GitHub org/user name.
-  projectName: 'method-docs', // Usually your repo name.
-
+  favicon: '/static/img/favicon.ico',
+  organizationName: 'MethodFi',
+  projectName: 'method-docs',
   presets: [
     [
       '@docusaurus/preset-classic',
       /** @type {import('@docusaurus/preset-classic').Options} */
       ({
         docs: {
+          routeBasePath: '/',
           sidebarPath: require.resolve('./sidebars.js'),
-          // Please change this to your repo.
-          editUrl: 'https://github.com/MethodFi',
-        },
-        blog: {
-          showReadingTime: true,
-          // Please change this to your repo.
-          editUrl: 'https://github.com/MethodFi',
+          editUrl: 'https://github.com/MethodFi/method-docs',
         },
         theme: {
           customCss: require.resolve('./src/css/custom.css'),
@@ -41,12 +35,6 @@ const config = {
   themeConfig:
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
-      // algolia: {
-      //   appId: 'X1Z85QJPUV',
-      //   apiKey: 'bf7211c161e8205da2f933a02534105a',
-      //   indexName: 'docusaurus-2',
-      //   contextualSearch: true,
-      // },
       hideableSidebar: true,
       colorMode: {
         disableSwitch: true,
@@ -55,17 +43,18 @@ const config = {
       navbar: {
         hideOnScroll: true,
         logo: {
+          href: '/api',
           alt: 'Method Logo',
           src: 'https://static.methodfi.com/assets/method-logo.png',
           srcDark: 'https://static.methodfi.com/assets/method-logo-white.png',
         },
         items: [
-          { label: 'Home', position: 'left', to: '/', activeBaseRegex: `^/$` },
-          { label: 'Guides', position: 'left', to: 'docs/guides', activeBaseRegex: `/guides` },
-          { label: 'API Reference', position: 'left', to: 'docs/api', activeBaseRegex: `/api` },
-          { label: 'Libraries', position: 'left', to: 'docs/libraries', activeBaseRegex: `/libraries` },
-          { label: 'Changelog', position: 'left', to: 'docs/changelog', activeBaseRegex: `/changelog` },
-          { label: 'Blog', position: 'left', to: 'blog', activeBaseRegex: `/blog` },
+          // { label: 'Home', position: 'left', to: '/', activeBaseRegex: `^/$` },
+          // { label: 'Guides', position: 'left', to: '/guides', activeBaseRegex: `/guides` },
+          { label: 'API Reference', position: 'left', to: '/api', activeBaseRegex: `/api` },
+          { label: 'Libraries', position: 'left', to: '/libraries', activeBaseRegex: `/libraries` },
+          { label: 'Changelog', position: 'left', to: '/changelog', activeBaseRegex: `/changelog` },
+          // { label: 'Blog', position: 'left', to: 'blog', activeBaseRegex: `/blog` },
           { label: 'Sign In', position: 'right', href: 'https://dashboard.methodfi.com' },
         ],
       },
@@ -74,41 +63,11 @@ const config = {
           {
             title: 'Docs',
             items: [
-              { label: 'Home', to: '/' },
-              { label: 'Guides', to: '/docs/guides' },
-              { label: 'API Reference', to: '/docs/api' },
-              { label: 'Libraries', to: '/docs/libraries' },
-              { label: 'Changelog', to: '/docs/changelog' },
-            ],
-          },
-          // {
-          //   title: 'Community',
-          //   items: [
-          //     {
-          //       label: 'Stack Overflow',
-          //       href: 'https://stackoverflow.com/questions/tagged/docusaurus',
-          //     },
-          //     {
-          //       label: 'Discord',
-          //       href: 'https://discordapp.com/invite/docusaurus',
-          //     },
-          //     {
-          //       label: 'Twitter',
-          //       href: 'https://twitter.com/docusaurus',
-          //     },
-          //   ],
-          // },
-          {
-            title: 'More',
-            items: [
-              {
-                label: 'Blog',
-                to: '/blog',
-              },
-              {
-                label: 'GitHub',
-                href: 'https://github.com/MethodFi',
-              },
+              // { label: 'Home', to: '/' },
+              // { label: 'Guides', to: '/guides' },
+              { label: 'API Reference', to: '/api' },
+              { label: 'Libraries', to: '/libraries' },
+              { label: 'Changelog', to: '/changelog' },
             ],
           },
         ],

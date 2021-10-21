@@ -23,17 +23,17 @@ The Link Element flow begins once your user is required to connect their `ach` o
 #### 1. Create Element Token
 Your backend server will make a request to `/elements/token` to generate a `element_token` for an `entity`. This `element_token` will be used to initalize the Link Element in your app.
 
-➡️ [Implementation Guide - Create Element Token](/docs/api/elements/link/implementation/create-token)
+➡️ [Implementation Guide - Create Element Token](/api/elements/link/implementation/create-token)
 
 #### 2. Launch Link Element
 Using the `element_token` to launch the Link Element for your user. Once the user successfully connects their financial account, the Link Element will return a temporary `public_account_token` to exchange and create a `account`.
 
-➡️ [Implementation Guide - Launch Link Element](/docs/api/elements/link/implementation/launch-link)
+➡️ [Implementation Guide - Launch Link Element](/api/elements/link/implementation/launch-link)
 
 #### 3. Exchange Public Account
 Your app will send the `public_account_token` to your backend server. Your backend server will then make a request to `/elements/accounts/exchange` to create the new account your user just linked.
 
-➡️ [Implementation Guide - Exchange Public Account](/docs/api/elements/link/implementation/exchange-public-accounts)
+➡️ [Implementation Guide - Exchange Public Account](/api/elements/link/implementation/exchange-public-accounts)
 
 
 #### 4. Store your new account_id
