@@ -16,7 +16,7 @@ const config = {
   organizationName: 'MethodFi',
   projectName: 'method-docs',
   scripts: [
-    '/static/js/index.js',
+    '/js/index.js',
   ],
   presets: [
     [
