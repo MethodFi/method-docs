@@ -58,21 +58,21 @@ const config = {
           { label: 'Sign In', position: 'right', href: 'https://dashboard.methodfi.com' },
         ],
       },
-      footer: {
-        links: [
-          {
-            title: 'Docs',
-            items: [
-              // { label: 'Home', to: '/' },
-              // { label: 'Guides', to: '/guides' },
-              { label: 'API Reference', to: '/api' },
-              { label: 'Libraries', to: '/libraries' },
-              { label: 'Changelog', to: '/changelog' },
-            ],
-          },
-        ],
-        copyright: `Copyright © ${new Date().getFullYear()} Method Financial.`,
-      },
+      // footer: {
+      //   links: [
+      //     {
+      //       title: 'Docs',
+      //       items: [
+      //         // { label: 'Home', to: '/' },
+      //         // { label: 'Guides', to: '/guides' },
+      //         { label: 'API Reference', to: '/api' },
+      //         { label: 'Libraries', to: '/libraries' },
+      //         { label: 'Changelog', to: '/changelog' },
+      //       ],
+      //     },
+      //   ],
+      //   copyright: `Copyright © ${new Date().getFullYear()} Method Financial.`,
+      // },
       prism: {
         theme: lightCodeTheme,
         darkTheme: darkCodeTheme,
