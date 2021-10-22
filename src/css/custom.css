@@ -44,6 +44,10 @@ html[data-theme='dark'] .docusaurus-highlight-code-line {
   height: 72px;
 }
 
+.navbar-sidebar__back {
+  padding: 1rem;
+}
+
 .navbar__link--active {
   background-color: var(--light-primary-background);
   border-radius: var(--ifm-card-border-radius);

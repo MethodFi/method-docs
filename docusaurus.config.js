@@ -15,6 +15,9 @@ const config = {
   favicon: '/img/favicon.ico',
   organizationName: 'MethodFi',
   projectName: 'method-docs',
+  scripts: [
+    '/static/js/index.js',
+  ],
   presets: [
     [
       '@docusaurus/preset-classic',
