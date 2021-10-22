@@ -42,7 +42,6 @@ html[data-theme='dark'] .docusaurus-highlight-code-line {
 
 .navbar {
   height: 72px;
-  padding: 16px 32px;
 }
 
 .navbar__link--active {
