@@ -11,6 +11,10 @@ const nodejs = `
 const payment = await method.payments.delete('pmt_rPrDPEwyCVUcm');
 `.trim();
 
+const python = `
+payment = method.payments.delete('pmt_rPrDPEwyCVUcm')
+`.trim();
+
 export default function () {
   return (
     <TabbedCodeBlock
@@ -19,6 +23,7 @@ export default function () {
       items={[
         { title: 'cURL', language: 'shell', content: curl },
         { title: 'Node.js', language: 'javascript', content: nodejs },
+        { title: 'Python', language: 'python', content: python },
       ]} />
   );
 }

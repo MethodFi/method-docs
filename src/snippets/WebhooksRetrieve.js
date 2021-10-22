@@ -10,6 +10,10 @@ const nodejs = `
 const webhook = await method.webhooks.get('whk_cSGjA6d9N8y8R');
 `.trim();
 
+const python = `
+webhook = method.webhooks.get('whk_cSGjA6d9N8y8R')
+`.trim();
+
 export default function () {
   return (
     <TabbedCodeBlock
@@ -18,6 +22,7 @@ export default function () {
       items={[
         { title: 'cURL', language: 'shell', content: curl },
         { title: 'Node.js', language: 'javascript', content: nodejs },
+        { title: 'Python', language: 'python', content: python },
       ]} />
   );
 }

@@ -24,6 +24,17 @@ const verification = await method
   });
 `.trim();
 
+const python = `
+verification = method
+  .accounts('acc_b9q2XVAnNFbp3')
+  .verification
+  .update({
+    'micro_deposits': {
+      'amounts': [10, 4]
+    }
+  })
+`.trim();
+
 export default function () {
   return (
     <TabbedCodeBlock
@@ -32,6 +43,7 @@ export default function () {
       items={[
         { title: 'cURL', language: 'shell', content: curl },
         { title: 'Node.js', language: 'javascript', content: nodejs },
+        { title: 'Python', language: 'python', content: python },
       ]} />
   );
 }

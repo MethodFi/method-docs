@@ -17,6 +17,12 @@ const account = await method
   .exchangePublicAccountToken('pk_acc_iZKeBTmnmw3aSGePcfdweUEJTBXwsfR4');
 `.trim();
 
+const python = `
+account = method
+  .elements
+  .exchange_public_account_token('pk_acc_iZKeBTmnmw3aSGePcfdweUEJTBXwsfR4')
+`.trim();
+
 export default function () {
   return (
     <TabbedCodeBlock
@@ -25,6 +31,7 @@ export default function () {
       items={[
         { title: 'cURL', language: 'shell', content: curl },
         { title: 'Node.js', language: 'javascript', content: nodejs },
+        { title: 'Python', language: 'python', content: python },
       ]} />
   );
 }

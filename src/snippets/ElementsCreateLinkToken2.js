@@ -23,6 +23,15 @@ const token = await method.elements.createToken({
 });
 `.trim();
 
+const python = `
+token = method.elements.create_token({
+  'entity_id': 'ent_au22b1fbFJbp8',
+  'team_name': 'Demo Payment App',
+  'type': 'link',
+  'link': {}
+})
+`.trim();
+
 export default function () {
   return (
     <TabbedCodeBlock
@@ -31,6 +40,7 @@ export default function () {
       items={[
         { title: 'cURL', language: 'shell', content: curl },
         { title: 'Node.js', language: 'javascript', content: nodejs },
+        { title: 'Python', language: 'python', content: python },
       ]} />
   );
 }

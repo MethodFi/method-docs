@@ -25,6 +25,16 @@ const account = await method.accounts.create({
 });
 `.trim();
 
+const python = `
+account = method.accounts.create({
+  'holder_id': 'ent_au22b1fbFJbp8',
+  'liability': {
+    'mch_id': 'mch_2',
+    'account_number': '1122334455'
+  }
+})
+`.trim();
+
 export default function () {
   return (
     <TabbedCodeBlock
@@ -33,6 +43,7 @@ export default function () {
       items={[
         { title: 'cURL', language: 'shell', content: curl },
         { title: 'Node.js', language: 'javascript', content: nodejs },
+        { title: 'Python', language: 'python', content: python },
       ]} />
   );
 }

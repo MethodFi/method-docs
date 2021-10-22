@@ -27,6 +27,17 @@ const entity = await method.entities.create({
 });
 `.trim();
 
+const python = `
+entity = method.entities.create({
+  'type': 'receive_only',
+  'receive_only': {
+    'name': 'Kevin Doyle',
+    'phone': '+16505555555',
+    'email': 'kevin.doyle@gmail.com',
+  }
+})
+`.trim();
+
 export default function () {
   return (
     <TabbedCodeBlock
@@ -35,6 +46,7 @@ export default function () {
       items={[
         { title: 'cURL', language: 'shell', content: curl },
         { title: 'Node.js', language: 'javascript', content: nodejs },
+        { title: 'Python', language: 'python', content: python },
       ]} />
   );
 }

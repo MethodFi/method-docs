@@ -61,6 +61,27 @@ const verification = await method
   });
 `.trim();
 
+const python = `
+verification = method
+  .accounts('acc_b9q2XVAnNFbp3')
+  .verification
+  .create({
+    'type': 'plaid',
+    'plaid': {
+      'balances': {
+        'available': 100,
+        'current': 110,
+        'iso_currency_code': 'USD',
+        'limit': None,
+        'unofficial_currency_code': None
+      },
+      'transactions': [
+        ...
+      ]
+    }
+  })
+`.trim();
+
 export default function () {
   return (
     <TabbedCodeBlock
@@ -69,6 +90,7 @@ export default function () {
       items={[
         { title: 'cURL', language: 'shell', content: curl },
         { title: 'Node.js', language: 'javascript', content: nodejs },
+        { title: 'Python', language: 'python', content: python },
       ]} />
   );
 }

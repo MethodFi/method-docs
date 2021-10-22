@@ -10,6 +10,10 @@ const nodejs = `
 const report = await method.reports.get('rpt_cj2mkA3hFyHT5');
 `.trim();
 
+const python = `
+report = method.reports.get('rpt_cj2mkA3hFyHT5')
+`.trim();
+
 export default function () {
   return (
     <TabbedCodeBlock
@@ -18,6 +22,7 @@ export default function () {
       items={[
         { title: 'cURL', language: 'shell', content: curl },
         { title: 'Node.js', language: 'javascript', content: nodejs },
+        { title: 'Python', language: 'python', content: python },
       ]} />
   );
 }

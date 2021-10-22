@@ -26,6 +26,17 @@ const payment = await method.payments.create({
 });
 `.trim();
 
+const python = `
+payment = method.payments.create({
+  'amount': 5000,
+  'source': 'acc_JMJZT6r7iHi8e',
+  'destination': 'acc_AXthnzpBnxxWP',
+  'description': 'Loan Pmt',
+}, {
+  'idempotency_key': '24c47283-0cc8-43a0-8b4a-ce16d002de97'
+})
+`.trim();
+
 export default function () {
   return (
     <TabbedCodeBlock
@@ -34,6 +45,7 @@ export default function () {
       items={[
         { title: 'cURL', language: 'shell', content: curl },
         { title: 'Node.js', language: 'javascript', content: nodejs },
+        { title: 'Python', language: 'python', content: python },
       ]} />
   );
 }

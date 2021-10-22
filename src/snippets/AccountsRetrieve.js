@@ -10,6 +10,10 @@ const nodejs = `
 const account = await method.accounts.get('acc_Zc4F2aTLt8CBt');
 `.trim();
 
+const python = `
+account = method.accounts.get('acc_Zc4F2aTLt8CBt')
+`.trim();
+
 export default function () {
   return (
     <TabbedCodeBlock
@@ -18,6 +22,7 @@ export default function () {
       items={[
         { title: 'cURL', language: 'shell', content: curl },
         { title: 'Node.js', language: 'javascript', content: nodejs },
+        { title: 'Python', language: 'python', content: python },
       ]} />
   );
 }

@@ -21,6 +21,14 @@ const webhook = await method.webhooks.create({
 });
 `.trim();
 
+const python = `
+webhook = method.webhooks.create({
+  'type': 'payment.update',
+  'url': 'https://api.example.app/webhook',
+  'auth_token': 'md7UqcTSmvXCBzPORDwOkE'
+})
+`.trim();
+
 export default function () {
   return (
     <TabbedCodeBlock
@@ -29,6 +37,7 @@ export default function () {
       items={[
         { title: 'cURL', language: 'shell', content: curl },
         { title: 'Node.js', language: 'javascript', content: nodejs },
+        { title: 'Python', language: 'python', content: python },
       ]} />
   );
 }

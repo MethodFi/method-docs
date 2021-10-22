@@ -17,6 +17,14 @@ const method = new Method({
 const accounts = await method.accounts.list();
 `.trim();
 
+const python = `
+from method import Method
+
+method = Method(env='production', api_key='sk_WyZEWVfTcH7GqmPzUPk65Vjc')
+
+accounts = method.accounts.list()
+`.trim();
+
 export default function () {
   return (
     <TabbedCodeBlock
@@ -25,6 +33,7 @@ export default function () {
       items={[
         { title: 'cURL', language: 'shell', content: curl },
         { title: 'Node.js', language: 'javascript', content: nodejs },
+        { title: 'Python', language: 'python', content: python },
       ]} />
   );
 }

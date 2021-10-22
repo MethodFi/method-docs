@@ -18,6 +18,13 @@ const verification = await method
   .create({ type: 'micro_deposits' });
 `.trim();
 
+const python = `
+verification = method
+  .accounts('acc_b9q2XVAnNFbp3')
+  .verification
+  .create({ 'type': 'micro_deposits' })
+`.trim();
+
 export default function () {
   return (
     <TabbedCodeBlock
@@ -26,6 +33,7 @@ export default function () {
       items={[
         { title: 'cURL', language: 'shell', content: curl },
         { title: 'Node.js', language: 'javascript', content: nodejs },
+        { title: 'Python', language: 'python', content: python },
       ]} />
   );
 }

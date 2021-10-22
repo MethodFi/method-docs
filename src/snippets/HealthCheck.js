@@ -7,7 +7,11 @@ curl https://production.methodfi.com/ping \\
 `.trim();
 
 const nodejs = `
- await method.healthcheck.get();
+await method.ping();
+`.trim();
+
+const python = `
+method.ping()
 `.trim();
 
 export default function () {
@@ -18,6 +22,7 @@ export default function () {
       items={[
         { title: 'cURL', language: 'shell', content: curl },
         { title: 'Node.js', language: 'javascript', content: nodejs },
+        { title: 'Python', language: 'python', content: python },
       ]} />
   );
 }

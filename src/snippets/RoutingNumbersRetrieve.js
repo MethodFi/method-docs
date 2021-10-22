@@ -10,6 +10,10 @@ const nodejs = `
 const routingNumber = await method.routingNumbers.get('031176110');
 `.trim();
 
+const python = `
+routing_number = method.routing_numbers.get('031176110')
+`.trim();
+
 export default function () {
   return (
     <TabbedCodeBlock
@@ -18,6 +22,7 @@ export default function () {
       items={[
         { title: 'cURL', language: 'shell', content: curl },
         { title: 'Node.js', language: 'javascript', content: nodejs },
+        { title: 'Python', language: 'python', content: python },
       ]} />
   );
 }

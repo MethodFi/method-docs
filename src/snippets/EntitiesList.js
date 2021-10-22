@@ -10,6 +10,10 @@ const nodejs = `
 const entities = await method.entities.list();
 `.trim();
 
+const python = `
+entities = method.entities.list()
+`.trim();
+
 export default function () {
   return (
     <TabbedCodeBlock
@@ -18,6 +22,7 @@ export default function () {
       items={[
         { title: 'cURL', language: 'shell', content: curl },
         { title: 'Node.js', language: 'javascript', content: nodejs },
+        { title: 'Python', language: 'python', content: python },
       ]} />
   );
 }
