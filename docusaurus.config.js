@@ -53,7 +53,7 @@ const config = {
         },
         items: [
           // { label: 'Home', position: 'left', to: '/', activeBaseRegex: `^/$` },
-          // { label: 'Guides', position: 'left', to: '/guides', activeBaseRegex: `/guides` },
+          { label: 'Guides', position: 'left', to: '/guides', activeBaseRegex: `/guides` },
           { label: 'API Reference', position: 'left', to: '/api', activeBaseRegex: `/api` },
           { label: 'Libraries', position: 'left', to: '/libraries', activeBaseRegex: `/libraries` },
           { label: 'Changelog', position: 'left', to: '/changelog', activeBaseRegex: `/changelog` },

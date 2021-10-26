@@ -178,6 +178,22 @@ a.transparent, a.transparent:hover {
   background: url("/img/sidebar-icon/guides/integrations.svg") 100% / 1rem 1rem;
 }
 
+.sidebar-section-header.sidebar-icon-guides-products:before {
+  background: url("/img/sidebar-icon/guides/products-1.svg") 100% / 1rem 1rem;
+}
+
+.sidebar-section-header.sidebar-icon-guides-security:before {
+  background: url("/img/sidebar-icon/guides/security.svg") 100% / 1rem 1rem;
+}
+
+.sidebar-section-header.sidebar-icon-guides-launch-checklist:before {
+  background: url("/img/sidebar-icon/guides/launch-checklist.svg") 100% / 1rem 1rem;
+}
+
+.sidebar-section-header.sidebar-icon-guides-support:before {
+  background: url("/img/sidebar-icon/guides/support.svg") 100% / 1rem 1rem;
+}
+
 .items-center {
   align-items: center;
 }
