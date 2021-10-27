@@ -6,7 +6,7 @@ import UseCaseCard from './UseCaseCard';
 export default function HomePageBody() {
   return (
     <div className="container padding-vert--lg">
-      <h1>Use cases</h1>
+      <h1>Use Cases</h1>
       <CardContainer>
         <UseCaseCard
           href="/guides"

@@ -11,74 +11,54 @@
 
 module.exports = {
   guides: [
-    { label: 'Guides', className: 'sidebar-section-header sidebar-icon-guides-introduction', type: 'link', href: '/guides' },
-    'guides',
-    { label: 'Quick start', className: 'sidebar-section-header sidebar-icon-guides-quick-start', type: 'link', href: '/guides/quick-start/dashboard' },
-    'guides/quick-start/dashboard',
+    // Guides
+    { label: 'Guides', className: 'sidebar-section-header sidebar-icon-guides-introduction', type: 'doc', id: 'guides' },
+
+    // Quick start
+    { label: 'Quick start', className: 'sidebar-section-header sidebar-icon-guides-quick-start', type: 'doc', id: 'guides/quick-start' },
     'guides/quick-start/environment-setup',
     'guides/quick-start/create-your-first-payment',
-    'guides/quick-start/how-it-works',
-    'guides/quick-start/next-steps',
-    { label: 'Concepts', className: 'sidebar-section-header sidebar-icon-guides-concepts', type: 'link', href: '/guides/concepts/entities/individual' },
-    {
-      type: 'category',
-      label: 'Entities',
-      items: [
-        'guides/concepts/entities/individual',
-        'guides/concepts/entities/corporation',
-      ],
-    },
-    {
-      type: 'category',
-      label: 'Accounts',
-      items: [
-        'guides/concepts/accounts/ach',
-        'guides/concepts/accounts/liability',
-      ],
-    },
-    {
-      type: 'category',
-      label: 'Account verification',
-      items: [
-        'guides/concepts/account-verification/micro-deposits',
-      ],
-    },
-    {
-      type: 'category',
-      label: 'Payments',
-      items: [
-        'guides/concepts/payments/payment-cycle',
-        'guides/concepts/payments/returned-payment',
-      ],
-    },
-    'guides/concepts/merchants',
-    'guides/concepts/risk-and-compliance',
-    { label: 'Use cases', className: 'sidebar-section-header sidebar-icon-guides-use-cases', type: 'link', href: '/guides/use-cases/payoff-debts' },
+    'guides/quick-start/going-live',
+
+    // Entities
+    { label: 'Entities', className: 'sidebar-section-header sidebar-icon-guides-entities', type: 'doc', id: 'guides/entities' },
+    'guides/entities/create-an-entity',
+    'guides/entities/kyc-and-capabilities',
+
+    // Source accounts
+    { label: 'Source accounts', className: 'sidebar-section-header sidebar-icon-guides-source-accounts', type: 'doc', id: 'guides/source-accounts' },
+    'guides/source-accounts/create-a-source-account',
+    'guides/source-accounts/verification-and-capabilities',
+
+    // Destination accounts
+    { label: 'Destination accounts', className: 'sidebar-section-header sidebar-icon-guides-destination-accounts', type: 'doc', id: 'guides/destination-accounts' },
+    'guides/destination-accounts/create-a-destination-account',
+    'guides/destination-accounts/bank-accounts',
+    'guides/destination-accounts/liabilities',
+
+    // Payments
+    { label: 'Payments', className: 'sidebar-section-header sidebar-icon-guides-payments', type: 'doc', id: 'guides/payments' },
+    'guides/payments/create-a-payment',
+    'guides/payments/lifecycle-and-errors',
+
+    // Use cases
+    { label: 'Use Cases', className: 'sidebar-section-header sidebar-icon-guides-use-cases', type: 'doc', id: 'guides/use-cases' },
     'guides/use-cases/payoff-debts',
-    'guides/use-cases/transfer-credit-card-balance',
+    'guides/use-cases/ach-transfer',
+    'guides/use-cases/balance-transfers',
     'guides/use-cases/swap-payment-method',
-    { label: 'Products', className: 'sidebar-section-header sidebar-icon-guides-products', type: 'link', href: '/guides/products/core-api' },
-    'guides/products/core-api',
-    'guides/products/link',
-    'guides/products/connections',
-    'guides/products/balance-transfer',
-    'guides/products/money-transfer',
-    { label: 'Integrations', className: 'sidebar-section-header sidebar-icon-guides-integrations', type: 'link', href: '/guides/integrations/using-plaid' },
-    'guides/integrations/using-plaid',
-    'guides/integrations/using-link',
-    { label: 'Launch Checklist', className: 'sidebar-section-header sidebar-icon-guides-launch-checklist', type: 'link', href: '/guides/launch-checklist/production-setup' },
-    'guides/launch-checklist/production-setup',
-    'guides/launch-checklist/capabilities-and-verification',
-    'guides/launch-checklist/logging-and-troubleshooting',
-    'guides/launch-checklist/webhooks-configurations',
-    'guides/launch-checklist/returned-payments',
-    'guides/launch-checklist/product-requirements',
-    { label: 'Security and Privacy', className: 'sidebar-section-header sidebar-icon-guides-security', type: 'link', href: '/guides/privacy-and-security/api-keys' },
-    'guides/privacy-and-security/api-keys',
-    'guides/privacy-and-security/ip-address-whitelisting',
-    'guides/privacy-and-security/manage-team-access',
-    'guides/privacy-and-security/your-users-data',
-    { label: 'Support', className: 'sidebar-section-header sidebar-icon-guides-support', type: 'link', href: '#' },
+
+    // Launch checklist
+    // { label: 'Launch Checklist', className: 'sidebar-section-header sidebar-icon-guides-launch-checklist', type: 'link', href: '/guides/launch-checklist/production-setup' },
+    // 'guides/launch-checklist/production-setup',
+    // 'guides/launch-checklist/capabilities-and-verification',
+    // 'guides/launch-checklist/logging-and-troubleshooting',
+    // 'guides/launch-checklist/webhooks-configurations',
+    // 'guides/launch-checklist/returned-payments',
+    // 'guides/launch-checklist/product-requirements',
+
+    // Support
+    { label: 'Support', className: 'sidebar-section-header sidebar-icon-guides-support', type: 'doc', id: 'guides/support' },
     'guides/support/faqs',
     { label: 'Schedule a call', type: 'link', href: 'https://methodfi.com/contact-us' },
     { label: 'Send us a message', type: 'link', href: 'mailto:team@methodfi.com' },

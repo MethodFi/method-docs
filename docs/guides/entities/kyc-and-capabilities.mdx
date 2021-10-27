@@ -1,0 +1,53 @@
+---
+sidebar_label: KYC and capabilities
+---
+
+# KYC and capabilities
+
+To prevent fraud and reduce the collection unnecessary user information,
+Method performs KYC / AML verification on your behalf. This verification
+is automatically done and only requires basic information about an entity.
+
+---
+
+### Know Your Customer
+
+Method performs a KYC process to verify the entity's identity upon creation.
+Payments are only allowed between this entity's accounts once the verification
+is completed. This is crucial in detecting fraud and remaining compliant with
+banking regulations.
+
+---
+
+### Capabilities
+
+Capabilities determine whether an entity can send or receive payments.
+Providing basic entity information as this information is collected or
+upon creation enables these capabilities.
+
+ℹ️ See [entity capabilities](/api/core/entities/object#entity-capabilities)
+for details on the API.
+
+:::tip
+Method allows you to create entities with minimal information, and update
+that entity as you collect more information.
+:::
+
+Entities will transition from the `incomplete` status to `active` as more information
+is provided. The `active` status indicates that the entity has been verified and can
+then send and receive payments.
+
+:::note
+Once an entity is `active` no additional information
+is required, and further updating of the entity is not allowed.
+:::
+
+#### Individual
+Below are minimal possible combinations of information to activate an individual entity:
+- First name, Last name, Date of birth, Address
+- First name, Last name, Email
+- First name, Last name, Phone
+
+#### Corporation
+Below are minimal possible combinations of information to activate a corporation entity:
+- Corporation type, Legal name, Employer Identification Number, Address

@@ -1,0 +1,117 @@
+---
+sidebar_label: Create an entity
+---
+
+import EntitiesCreateIndividual from '../../../src/snippets/EntitiesCreateIndividual';
+import EntitiesCreateCorporation from '../../../src/snippets/EntitiesCreateCorporation';
+
+# Create an entity
+
+There are two types of entities, individuals and corporations. In the Method ecosystem,
+an [individual entity](/guides/entities/create-an-entity#individual-entity) represents
+a single person, while a [corporation entity](/guides/entities/create-an-entity#corporation-entity)
+represents a company. Specific information is required to identify each type of entity, as well
+as enable [capabilities](/guides/entities/kyc-and-capabilities), which define what actions they
+can take.
+
+:::tip
+Creating an entity should be your first priority when integrating with Method. Entities
+function as legal owners / holders for Method accounts.
+:::
+
+ℹ️ See [the entity object](/api/core/entities/object) for details on the API.
+
+---
+
+### Individual entity
+<EntitiesCreateIndividual />
+
+#### Response
+```json
+{
+  "id": "ent_au22b1fbFJbp8",
+  "type": "individual",
+  "individual": {
+    "first_name": "Kevin",
+    "last_name": "Doyle",
+    "phone": "+16505555555",
+    "email": "kevin.doyle@gmail.com",
+    "dob": "1997-03-18"
+  },
+  "corporation": null,
+  "receive_only": null,
+  "address": {
+    "line1": "3300 N Interstate 35",
+    "line2": null,
+    "city": "Austin",
+    "state": "TX",
+    "zip": "78705"
+  },
+  "capabilities": [
+    "payments:send",
+    "payments:receive"
+  ],
+  "status": "active",
+  "metadata": null,
+  "created_at": "2020-12-09T00:40:51.107Z",
+  "updated_at": "2020-12-09T00:40:51.107Z"
+}
+```
+
+---
+
+### Corporation entity
+<EntitiesCreateCorporation />
+
+#### Response
+```json
+{
+  "id": "ent_y1a9e1fbnJ1f3",
+  "type": "c_corporation",
+  "individual": null,
+  "receive_only": null,
+  "corporation": {
+    "name": "Alphabet Inc.",
+    "dba": "Google",
+    "ein": "641234567",
+    "owners": [
+      {
+        "first_name": "Sergey",
+        "last_name": "Brin",
+        "phone": "+16505555555",
+        "email": "sergey@google.com",
+        "dob": "1973-08-21",
+        "address": {
+          "line1": "600 Amphitheatre Parkway",
+          "line2": null,
+          "city": "Mountain View",
+          "state": "CA",
+          "zip": "94043"
+        }
+      }
+    ]
+  },
+  "address": {
+    "line1": "1600 Amphitheatre Parkway",
+    "line2": null,
+    "city": "Mountain View",
+    "state": "CA",
+    "zip": "94043"
+  },
+  "capabilities": [
+    "payments:send",
+    "payments:receive"
+  ],
+  "status": "active",
+  "metadata": null,
+  "created_at": "2020-12-09T00:40:51.107Z",
+  "updated_at": "2020-12-09T00:40:51.107Z"
+}
+```
+
+---
+
+### Next steps
+In the next topic you will learn how Method verifies an entity's identity
+for fraud prevention, and which pieces of information to collect from your
+end-users.

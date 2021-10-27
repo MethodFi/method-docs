@@ -2,6 +2,158 @@
 sidebar_label: Create your first payment
 ---
 
+import QuickStartCreateIndividualEntity from '../../../src/snippets/QuickStartCreateIndividualEntity';
+import QuickStartCreateSource from '../../../src/snippets/QuickStartCreateSource';
+import QuickStartCreateDestination from '../../../src/snippets/QuickStartCreateDestination';
+import QuickStartCreatePayment from '../../../src/snippets/QuickStartCreatePayment';
+
 # Create your first payment
 
+A payment is a transfer of money from a [source account](/guides/source-accounts)
+to a [destination account](/guides/destination-accounts).
 
+### Steps
+  - [__Create an entity__](/api/core/entities/create-individual) that will become the holder/owner of both the
+source and destination accounts.
+  - [__Create a source account__](/api/core/accounts/create) from which the payment's funds will be retrieved.
+  - [__Create a destination account__](/api/core/accounts/create) where the payment's funds will be sent to.
+  - [__Create a payment__](/api/core/payments/create) with the source and destination accounts created.
+
+---
+
+### 1. Creating an entity
+For this step, we'll create an `individual` entity that will become the holder/owner
+of both source and destination accounts.
+
+ℹ️ See [__entities__](/guides/entities) to learn more.
+
+#### Request
+<QuickStartCreateIndividualEntity />
+
+#### Response
+```json
+{
+  "id": "ent_au22b1fbFJbp8",
+  "type": "individual",
+  "individual": {
+    "first_name": "Kevin",
+    "last_name": "Doyle",
+    "phone": "+16505555555",
+    "email": "kevin.doyle@gmail.com",
+    "dob": "1997-03-18"
+  },
+  "corporation": null,
+  "receive_only": null,
+  "address": {
+    "line1": "3300 N Interstate 35",
+    "line2": null,
+    "city": "Austin",
+    "state": "TX",
+    "zip": "78705"
+  },
+  "capabilities": [
+    "payments:send",
+    "payments:receive"
+  ],
+  "status": "active",
+  "metadata": null,
+  "created_at": "2020-12-09T00:40:51.107Z",
+  "updated_at": "2020-12-09T00:40:51.107Z"
+}
+```
+
+---
+
+### 2. Create a source account
+
+Now that we have an entity to hold accounts, we can create a source account for the entity we just created.
+This account will become our payment source later on. Source accounts can only be of type `ach` which includes
+checking/savings accounts.
+
+ℹ️ See [__source accounts__](/guides/source-accounts) to learn more
+
+#### Request
+<QuickStartCreateSource />
+
+#### Response
+```json
+{
+  "id": "acc_b9q2XVAnNFbp3",
+  "holder_id": "ent_au22b1fbFJbp8",
+  "type": "ach",
+  "ach": {
+    "routing": "367537407",
+    "number": "57838927",
+    "type": "checking"
+  },
+  "liability": null,
+  "metadata": null,
+  "capabilities": [
+    "payments:receive",
+    "payments:send"
+  ],
+  "created_at": "2020-12-09T00:40:51.107Z",
+  "updated_at": "2020-12-09T00:40:51.107Z"
+}
+```
+
+---
+
+### 3. Create a destination account
+
+Similar to the previous step, we need to create a destination account where the payment funds
+will be sent to. Destination accounts can either be of type `ach` which includes checking/savings
+accounts, or `liability` which includes any type of liability (personal loans, credit cards, student loans, etc.)
+
+ℹ️ See [__destination accounts__](/guides/destination-accounts) to learn more
+
+#### Request
+<QuickStartCreateDestination />
+
+#### Response
+```json
+{
+  "id": "acc_Zc4F2aTLt8CBt",
+  "holder_id": "ent_au22b1fbFJbp8",
+  "type": "liability",
+  "ach": null,
+  "liability": {
+    "mch_id": "mch_2",
+    "mask": "4455"
+  },
+  "metadata": null,
+  "capabilities": [
+    "payments:receive"
+  ],
+  "created_at": "2020-12-09T02:56:19.548Z",
+  "updated_at": "2020-12-09T02:56:19.548Z"
+}
+```
+
+---
+
+### 4. Create your first payment
+
+You now have all the information you need to create your first payment. Using the source account's id (`acc_b9q2XVAnNFbp3`)
+and the destination accounts id (`acc_Zc4F2aTLt8CBt`), we'll create a $50 payment with the description `Loan Pmt`.
+
+ℹ️ See [__payments__](/guides/payments) to learn more
+
+#### Request
+<QuickStartCreatePayment />
+
+#### Response
+```json
+{
+  "id": "pmt_rPrDPEwyCVUcm",
+  "source": "acc_b9q2XVAnNFbp3",
+  "destination": "acc_Zc4F2aTLt8CBt",
+  "amount": 5000,
+  "description": "Loan Pmt",
+  "status": "pending",
+  "error": null,
+  "metadata": null,
+  "created_at": "2020-12-09T00:42:31.209Z",
+  "updated_at": "2020-12-09T00:43:30.996Z"
+}
+```

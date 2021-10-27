@@ -81,6 +81,8 @@ a.transparent, a.transparent:hover {
 
 .menu {
   font-weight: 400;
+  padding-top: 1.5rem !important;
+  padding-bottom: 5rem !important;
 }
 
 .menu__link {
@@ -99,9 +101,9 @@ a.transparent, a.transparent:hover {
 
 .sidebar-section-header a {
   font-weight: 500;
-  color: #999;
+  /*color: #999;*/
   font-size: 15px;
-  cursor: inherit;
+  /*cursor: inherit;*/
   /*text-transform: uppercase;*/
 }
 
@@ -125,10 +127,6 @@ a.transparent, a.transparent:hover {
 
 .sidebar-section-header:not(:first-child) {
   margin-top: 1.5rem;
-}
-
-.sidebar-section-header a:hover {
-  color: #999;
 }
 
 .sidebar-section-header:before {
@@ -162,28 +160,28 @@ a.transparent, a.transparent:hover {
   background: url("/img/sidebar-icon/guides/introduction.svg") 100% / 1rem 1rem;
 }
 
-.sidebar-section-header.sidebar-icon-guides-concepts:before {
-  background: url("/img/sidebar-icon/guides/concepts.svg") 100% / 1rem 1rem;
-}
-
 .sidebar-section-header.sidebar-icon-guides-quick-start:before {
   background: url("/img/sidebar-icon/guides/quick-start.svg") 100% / 1rem 1rem;
 }
 
+.sidebar-section-header.sidebar-icon-guides-entities:before {
+  background: url("/img/sidebar-icon/guides/entities.svg") 100% / 1rem 1rem;
+}
+
+.sidebar-section-header.sidebar-icon-guides-source-accounts:before {
+  background: url("/img/sidebar-icon/guides/source-accounts.svg") 100% / 1rem 1rem;
+}
+
+.sidebar-section-header.sidebar-icon-guides-destination-accounts:before {
+  background: url("/img/sidebar-icon/guides/destination-accounts.svg") 100% / 1rem 1rem;
+}
+
+.sidebar-section-header.sidebar-icon-guides-payments:before {
+  background: url("/img/sidebar-icon/guides/payments.svg") 100% / 1rem 1rem;
+}
+
 .sidebar-section-header.sidebar-icon-guides-use-cases:before {
   background: url("/img/sidebar-icon/guides/use-cases.svg") 100% / 1rem 1rem;
-}
-
-.sidebar-section-header.sidebar-icon-guides-integrations:before {
-  background: url("/img/sidebar-icon/guides/integrations.svg") 100% / 1rem 1rem;
-}
-
-.sidebar-section-header.sidebar-icon-guides-products:before {
-  background: url("/img/sidebar-icon/guides/products-1.svg") 100% / 1rem 1rem;
-}
-
-.sidebar-section-header.sidebar-icon-guides-security:before {
-  background: url("/img/sidebar-icon/guides/security.svg") 100% / 1rem 1rem;
 }
 
 .sidebar-section-header.sidebar-icon-guides-launch-checklist:before {
