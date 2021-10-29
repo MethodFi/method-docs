@@ -33,8 +33,8 @@ module.exports = {
     // Destination accounts
     { label: 'Destination accounts', className: 'sidebar-section-header sidebar-icon-guides-destination-accounts', type: 'doc', id: 'guides/destination-accounts' },
     'guides/destination-accounts/create-a-destination-account',
-    'guides/destination-accounts/bank-accounts',
     'guides/destination-accounts/liabilities',
+    'guides/destination-accounts/bank-accounts',
 
     // Payments
     { label: 'Payments', className: 'sidebar-section-header sidebar-icon-guides-payments', type: 'doc', id: 'guides/payments' },
