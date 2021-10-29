@@ -1,0 +1,65 @@
+---
+sidebar_label: Verification and capabilities
+---
+
+# Verification and capabilities
+
+Source accounts require verification before they can be used to
+create payments. Moreover, when source accounts are created,
+they are given the `payments:receive` capability which enables the account
+to receive payments. Verification gives source accounts the `payments:send`
+capability which enables the account to send payments.
+
+:::info
+In the `development` environment, accounts are automatically verified
+and already have the capability to both send and receive payments.
+:::
+
+:::tip
+If you are a __Neobank__ that offers checking accounts or savings accounts, verification
+can be bypassed for provisioned accounts. Please email us at team@methodfi.com for
+more information.
+:::
+
+#### Verification Methods
+
+- [__Micro-deposits__](#micro-deposits-verification) - two small amounts of money will be deposited into the source account,
+and owner of the account must confirm the exact values of the amounts.
+- [__Plaid__](#plaid-verification) - provide raw balance and transaction data from Plaid.
+- [__MX__](#mx-verification) - provide raw account and transaction data from MX.
+
+ℹ️ See [the verification object](/api/core/accounts/ach-verification/object) for details on the API.
+
+---
+
+### Micro-deposits verification
+After a source account has been created, you can start the verification process by
+[initiating micro-deposits verification](/api/core/accounts/ach-verification/create-micro-deposits).
+Next, Method will deposit two small amounts (between $0.01 and $0.30) into the account
+and should be received within 1 - 3 business days.
+
+Once the amounts have been received, the owner of the account
+must [confirm the amounts](/api/core/accounts/ach-verification/update)
+that were deposited.
+
+---
+
+### Plaid verification
+Source accounts that have been created by retrieving routing
+and account number information from Plaid can be verified
+by [creating a Plaid verification](/api/core/accounts/ach-verification/create-plaid) with
+raw [balance](https://plaid.com/docs/balance/#balance-data) and
+[transaction](https://plaid.com/docs/transactions/#overview) data.
+
+The Plaid verification process only takes a few seconds.
+
+---
+
+### MX verification
+Source accounts that have been created by retrieving routing
+and account number information from MX can be verified
+by [creating an MX verification](/api/core/accounts/ach-verification/create-mx) with
+raw [account](https://docs.mx.com/atrium#endpoints_accounts_read_account) and
+[transaction](https://docs.mx.com/atrium#endpoints_accounts_list_account_transactions) data.
+
+The MX verification process only takes a few seconds.

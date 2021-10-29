@@ -1,0 +1,108 @@
+---
+sidebar_label: Liabilities
+---
+
+import MerchantSearchByName from '../../../src/snippets/MerchantSearchByName';
+import MerchantSearchPlaidIns from '../../../src/snippets/MerchantSearchPlaidIns';
+import AccountsCreateLiability from '../../../src/snippets/AccountsCreateLiability';
+
+# Liabilities
+Each liability account belongs to a financial institution, which is also referred to as
+a merchant. These types of accounts are only able to receive payment funds, and
+require minimal verification.
+
+ℹ️ See [liability account](/api/core/accounts/object#example---liability-account-student-loans-credit-cards-etc)
+for details on the API.
+
+---
+
+### Merchants
+Merchants are financial institutions that accept payments for liability accounts. A merchant's
+`mch_id` is required to create a liability account. Below are a couple of examples on how to search
+for a merchant.
+
+#### Search merchant by name
+<MerchantSearchByName />
+
+#### Search merchant by Plaid institution Id
+<MerchantSearchPlaidIns />
+
+##### Response
+```json
+[
+  {
+    "mch_id": "mch_2",
+    "parent_name": "FedLoan",
+    "name": "FedLoan Servicing - Student Loans",
+    "logo": "https://static.methodfi.com/mch-logos/1616215578688-fedloan.png",
+    "description": null,
+    "note": null,
+    "types": [
+      "student_loan"
+    ],
+    "account_prefixes": [],
+    "provider_ids": {
+      "plaid": [
+        "ins_116527"
+      ],
+      "mx": [
+        "fedloanservicing"
+      ],
+      "finicity": [
+        "100302"
+      ]
+    }
+  }
+]
+```
+
+ℹ️ See [list merchants](/api/core/merchants/list) for details on the API.
+
+---
+
+### Creating a liability account through the API
+Before making a request, ensure that you have gathered the following liability account information:
+- The `mch_id` of the merchant that corresponds to the account's financial institution.
+- The `account_number` for the liability account.
+- The `id` of the entity that owns the account.
+
+<AccountsCreateLiability />
+
+##### Response
+```json
+{
+  "id": "acc_Zc4F2aTLt8CBt",
+  "holder_id": "ent_au22b1fbFJbp8",
+  "type": "liability",
+  "ach": null,
+  "liability": {
+    "mch_id": "mch_2",
+    "mask": "4455"
+  },
+  "metadata": null,
+  "capabilities": [
+    "payments:receive"
+  ],
+  "created_at": "2020-12-09T02:56:19.548Z",
+  "updated_at": "2020-12-09T02:56:19.548Z"
+}
+```
+
+##### Verification and Errors
+Verification for liability accounts happens in real-time upon creation. If verification fails and returns
+an error of type `INVALID_ACCOUNT_NUMBER` this indicates either of the following:
+- No account was found corresponding to the provided account number.
+- The account is closed or no longer exists.
+
+ℹ️ See [create liability account](/api/core/accounts/create#example---liability-account) for details on the API.
+
+---
+
+### Creating a liability account using the Method Link Element
+To simplify the creation of liability accounts, Method offers an embeddable UI
+element that handles:
+1. Searching a merchant
+2. Collecting account number information
+3. Creation of the liability account.
+
+➡️ See [Overview of the Link Element](/api/elements/link/intro) for details on how to get setup.

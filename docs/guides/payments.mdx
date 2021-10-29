@@ -1,0 +1,31 @@
+---
+sidebar_label: Payments
+---
+
+import CardContainer from '../../src/components/CardContainer';
+import SectionItemCard from '../../src/components/SectionItemCard';
+
+# Payments
+A payment represents the transfer of money from one account ([the source](/guides/source-accounts))
+to another account ([the destination](/guides/destination-accounts)). Payments are created
+to either transfer money between bank accounts, or to payoff debt.
+
+In this section you'll learn about the requirements for creating a payment, as well as
+the different lifecycle statuses a payment will transition into before it is completed.
+
+---
+
+#### Topics in this section
+
+<CardContainer>
+  <SectionItemCard
+    colSize={6}
+    header="Create a payment"
+    href="/guides/payments/create-a-payment"
+  />
+  <SectionItemCard
+    colSize={6}
+    header="Lifecycle and errors"
+    href="/guides/payments/lifecycle-and-errors"
+  />
+</CardContainer>

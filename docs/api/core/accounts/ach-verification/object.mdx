@@ -31,7 +31,7 @@ In the `dev`, and `sandbox` environments, ACH accounts are automatically verifie
 |----------------|----------|-------------------------------------------------------------------------------------------------------------------------------------------|
 | `id`           | `string` | Unique identifier for the verification.                                                                                                   |
 | `status`       | `string` | Status of the verification. Possible statuses: `initiated`, `pending`, `verified`, `disabled`. See *Verification Statuses* for more info. |
-| `type`         | `string` | Type of the verification. Possible types: `micro_deposits`, `plaid`, `mx`, `auto_verify`. See *Verification Types* for more info.         |
+| `type`         | `string` | Type of the verification. Possible types: `micro_deposits`, `plaid`, `mx`, `auto_verify`, `trusted_provisioner`. See *Verification Types* for more info.         |
 | `initiated_at` | `string` | Timestamp of when the verification transitioned into `initiated` status.                                                                  |
 | `pending_at`   | `string` | Timestamp of when the verification transitioned into `pending` status.                                                                    |
 | `verified_at`  | `string` | Timestamp of when the verification transitioned into `verified` status.                                                                   |

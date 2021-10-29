@@ -2,7 +2,7 @@ import React from 'react';
 import TabbedCodeBlock from '../components/TabbedCodeBlock';
 
 const curl = `
-curl https://production.methodfi.com/entities \\
+curl https://dev.methodfi.com/entities \\
   -X POST \\
   -H "Authorization: Bearer sk_WyZEWVfTcH7GqmPzUPk65Vjc" \\
   -H "Content-Type: application/json" \\
@@ -69,7 +69,7 @@ export default function () {
   return (
     <TabbedCodeBlock
       groupId="all"
-      name="create-individual"
+      name="quick-start-create-individual"
       items={[
         { title: 'cURL', language: 'shell', content: curl },
         { title: 'Node.js', language: 'javascript', content: nodejs },

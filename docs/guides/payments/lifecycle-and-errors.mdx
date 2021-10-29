@@ -1,0 +1,62 @@
+---
+sidebar_label: Lifecycle and errors
+---
+
+# Lifecycle and errors
+Here we'll learn about the different statuses a payment can transition
+into after it has been created, as well as learn of possible errors
+that may result in a payment's failure and how Method handles them.
+
+---
+### Lifecycle
+Once a payment has been created, it will initially have the `pending` status. This indicates that the payment
+has not yet been processed, and is still allowed to be `canceled`.
+
+:::caution
+Only payments in the `pending` status can be `canceled`.
+:::
+
+If the payment is created __before__ the current business day's [cutoff time](/api/core/payments/object#cutoff-time)
+(Monday - Friday 2:30 PM CST), it will be processed and transition into the `sent` status. If it is
+created __after__ the current business day's cutoff time, the payment will be sent on the next business day.
+
+If the payment was successful, the transferred funds should be reflected on the destination account
+in the next morning. However, for the purpose of security, most financial institutions have varying holding
+periods which may cause the funds to reflect at a later date.
+
+ℹ️ See [the payment statuses](/api/core/payments/object#payment-statuses) for details on payment statuses.
+
+---
+
+### Errors
+When a payment fails, its status transitions from `sent` to
+either `returned`, `reversed`, or `reversal_required`.
+
+#### Returned payments
+When a payment's status transitions from `sent` to `returned`, this indicates that the
+retrieval of funds from the source account failed __before__ the funds reached the destination account.
+This can occur as a result of the following:
+- The source account does not have sufficient funds for the amount of the payment.
+- The holder of the source account revoked authorization with their bank to prevent Method from pulling
+the funds.
+- The source account had invalid account information.
+- The source account has been closed.
+
+#### Payment reversals
+For payments that transition into the `reversal_required` status, this indicates that
+the retrieval of funds from the source account failed __after__ the funds reached the
+destination account. In this case, Method will do either of the following:
+
+- Automatically reverse the incorrectly transferred funds from the destination account.
+- Manually reverse the incorrectly transferred funds from the destination account within
+60 days of the occurrence.
+
+Once the payment reversal has been resolved, the payment's status will transition into `reversed`.
+
+---
+
+### Setting up webhooks for lifecycle transitions
+To automatically get notified once a payment transitions into a specific status,
+you can set up a webhook that sends information regarding each transition.
+
+ℹ️ See [the webhook object](/api/core/webhooks/object) for details on the API.

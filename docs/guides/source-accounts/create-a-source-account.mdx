@@ -1,0 +1,73 @@
+---
+sidebar_label: Create a source account
+---
+
+import AccountsCreateACH from '../../../src/snippets/AccountsCreateACH';
+
+# Create a source account
+
+A source account is an account from which payment funds will be pulled.
+In the Method ecosystem, this type of account is referred to as an ACH account.
+
+ℹ️ See [the account object](/api/core/accounts/object#example---ach-account-checking--savings) for details on the API.
+
+---
+
+### ACH accounts
+
+:::note
+Only ACH accounts are allowed to be used as a payment source. Therefore, Liability
+accounts cannot become source accounts.
+:::
+
+You only need basic ACH information to start creating a source account:
+
+- A __routing number__ which is used to identify a bank account or financial institution.
+- An __account number__ that uniquely identifies the account.
+- The __type__ of source account (checking or savings).
+
+
+This information can be collected from your users through the following methods:
+
+- __Plaid Auth__ - Plaid provides this information within their [Plaid Auth product](https://plaid.com/docs/auth/).
+- __MX__ - MX provides this information within their [Verification product](https://docs.mx.com/atrium#premium_features_verification)
+- __User provided__ - you can alternatively collect this information from your users using
+your own implementation.
+
+:::note
+The `holder_id` field in the request below refers to the `id` of an entity that owns this account.
+If you have not created an entity, see [create an entity](/guides/entities/create-an-entity).
+:::
+
+#### Request
+<AccountsCreateACH />
+
+#### Response
+```json
+{
+  "id": "acc_b9q2XVAnNFbp3",
+  "holder_id": "ent_y1a9e1fbnJ1f3",
+  "type": "ach",
+  "ach": {
+    "routing": "367537407",
+    "number": "57838927",
+    "type": "checking"
+  },
+  "liability": null,
+  "metadata": null,
+  "capabilities": [
+    "payments:receive"
+  ],
+  "created_at": "2020-12-09T00:40:51.107Z",
+  "updated_at": "2020-12-09T00:40:51.107Z"
+}
+```
+
+
+---
+
+### Next steps
+Before we can start pulling funds from a source account, verification must first be
+done to verify ownership of the created account. In the next topic we'll go through the
+various verification methods available, so you can select the best one for your
+use case.

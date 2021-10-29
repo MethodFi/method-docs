@@ -18,9 +18,9 @@ export default function Card(props) {
         <div className="card">
           <div className="row row--no-gutters">
             {icon && (
-              <div className="col col--2">
+              <div className="col col--1 margin-right--sm">
                 <div className="card__header padding--none margin-top--lg margin-left--md">
-                  <Image src={icon} alt={`${header} Illustration`} size={30} />
+                  <Image src={icon} alt={`${header} Illustration`} size={20} />
                 </div>
               </div>
             )}
