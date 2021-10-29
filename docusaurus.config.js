@@ -44,9 +44,9 @@ const config = {
         defaultMode: 'dark',
       },
       navbar: {
-        hideOnScroll: true,
+        hideOnScroll: false,
         logo: {
-          href: '/api',
+          href: '/guides',
           alt: 'Method Logo',
           src: 'https://static.methodfi.com/assets/method-logo.png',
           srcDark: 'https://static.methodfi.com/assets/method-logo-white.png',

@@ -42,11 +42,11 @@ module.exports = {
     'guides/payments/lifecycle-and-errors',
 
     // Use cases
-    { label: 'Use Cases', className: 'sidebar-section-header sidebar-icon-guides-use-cases', type: 'doc', id: 'guides/use-cases' },
-    'guides/use-cases/payoff-debts',
-    'guides/use-cases/ach-transfer',
-    'guides/use-cases/balance-transfers',
-    'guides/use-cases/swap-payment-method',
+    // { label: 'Use Cases', className: 'sidebar-section-header sidebar-icon-guides-use-cases', type: 'doc', id: 'guides/use-cases' },
+    // 'guides/use-cases/payoff-debts',
+    // 'guides/use-cases/ach-transfer',
+    // 'guides/use-cases/balance-transfers',
+    // 'guides/use-cases/swap-payment-method',
 
     // Launch checklist
     // { label: 'Launch Checklist', className: 'sidebar-section-header sidebar-icon-guides-launch-checklist', type: 'link', href: '/guides/launch-checklist/production-setup' },
@@ -59,7 +59,7 @@ module.exports = {
 
     // Support
     { label: 'Support', className: 'sidebar-section-header sidebar-icon-guides-support', type: 'doc', id: 'guides/support' },
-    'guides/support/faqs',
+    // 'guides/support/faqs',
     { label: 'Schedule a call', type: 'link', href: 'https://methodfi.com/contact-us' },
     { label: 'Send us a message', type: 'link', href: 'mailto:team@methodfi.com' },
   ],

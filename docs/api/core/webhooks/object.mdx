@@ -35,10 +35,9 @@ To receive webhook notifications, you must first register the URL where the webh
 ### Events
 
 The following event types can be registered to a webhook:
-* `user.create`
-* `user.update`
-* `payment.create`
-* `payment.update`
+* `payment.create` - A new payment was successfully created.
+* `payment.update` - A payment's status changed.
+* `account_verification.sent` - Micro-deposits have been sent to verify a source account.
 
 ### Webhook event object
 

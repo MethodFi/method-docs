@@ -22,7 +22,7 @@ accounts cannot become source accounts.
 
 You only need basic ACH information to start creating a source account:
 
-- A __routing number__ which is used to identify the bank account or financial institution.
+- A __routing number__ which is used to identify a bank account or financial institution.
 - An __account number__ that uniquely identifies the account.
 - The __type__ of source account (checking or savings).
 
@@ -33,6 +33,11 @@ This information can be collected from your users through the following methods:
 - __MX__ - MX provides this information within their [Verification product](https://docs.mx.com/atrium#premium_features_verification)
 - __User provided__ - you can alternatively collect this information from your users using
 your own implementation.
+
+:::note
+The `holder_id` field in the request below refers to the `id` of an entity that owns this account.
+If you have not created an entity, see [create an entity](/guides/entities/create-an-entity).
+:::
 
 #### Request
 <AccountsCreateACH />
@@ -64,5 +69,5 @@ your own implementation.
 ### Next steps
 Before we can start pulling funds from a source account, verification must first be
 done to verify ownership of the created account. In the next topic we'll go through the
-various verification methods available to enable you to select the best one for your
+various verification methods available, so you can select the best one for your
 use case.

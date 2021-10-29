@@ -9,15 +9,15 @@ import QuickStartCreatePayment from '../../../src/snippets/QuickStartCreatePayme
 
 # Create your first payment
 
-A payment is a transfer of money from a [source account](/guides/source-accounts)
+A payment is a transfer of funds from a [source account](/guides/source-accounts)
 to a [destination account](/guides/destination-accounts).
 
 ### Steps
-  - [__Create an entity__](/api/core/entities/create-individual) that will become the holder/owner of both the
+  - [Create an entity](#1-creating-an-entity) that will become the holder/owner of both the
 source and destination accounts.
-  - [__Create a source account__](/api/core/accounts/create) from which the payment's funds will be retrieved.
-  - [__Create a destination account__](/api/core/accounts/create) where the payment's funds will be sent to.
-  - [__Create a payment__](/api/core/payments/create) with the source and destination accounts created.
+  - [Create a source account](#2-create-a-source-account) from which the payment's funds will be retrieved.
+  - [Create a destination account](#3-create-a-destination-account) where the payment's funds will be sent to.
+  - [Create a payment](#4-create-your-first-payment) with the source and destination accounts created.
 
 ---
 
@@ -25,7 +25,7 @@ source and destination accounts.
 For this step, we'll create an `individual` entity that will become the holder/owner
 of both source and destination accounts.
 
-ℹ️ See [__entities__](/guides/entities) to learn more.
+ℹ️ See [entities](/guides/entities) to learn more.
 
 #### Request
 <QuickStartCreateIndividualEntity />
@@ -70,7 +70,7 @@ Now that we have an entity to hold accounts, we can create a source account for 
 This account will become our payment source later on. Source accounts can only be of type `ach` which includes
 checking/savings accounts.
 
-ℹ️ See [__source accounts__](/guides/source-accounts) to learn more
+ℹ️ See [source accounts](/guides/source-accounts) to learn more
 
 #### Request
 <QuickStartCreateSource />
@@ -105,7 +105,7 @@ Similar to the previous step, we need to create a destination account where the 
 will be sent to. Destination accounts can either be of type `ach` which includes checking/savings
 accounts, or `liability` which includes any type of liability (personal loans, credit cards, student loans, etc.)
 
-ℹ️ See [__destination accounts__](/guides/destination-accounts) to learn more
+ℹ️ See [destination accounts](/guides/destination-accounts) to learn more
 
 #### Request
 <QuickStartCreateDestination />
@@ -137,7 +137,7 @@ accounts, or `liability` which includes any type of liability (personal loans, c
 You now have all the information you need to create your first payment. Using the source account's id (`acc_b9q2XVAnNFbp3`)
 and the destination accounts id (`acc_Zc4F2aTLt8CBt`), we'll create a $50 payment with the description `Loan Pmt`.
 
-ℹ️ See [__payments__](/guides/payments) to learn more
+ℹ️ See [payments](/guides/payments) to learn more
 
 #### Request
 <QuickStartCreatePayment />

@@ -5,7 +5,7 @@ import HomePageBody from "../components/HomePageBody";
 import Redirect from '../components/Redirect';
 
 export default function Home() {
-  return <Redirect to="/api" />
+  return <Redirect to="/guides" />
 }
 
 // <Layout>
