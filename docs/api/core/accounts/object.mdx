@@ -26,6 +26,7 @@ The `holder_id` is the id of the `Entity` who owns this account. Associating the
   },
   "liability": null,
   "metadata": null,
+  "status": "active",
   "capabilities": [
     "payments:receive"
   ],
@@ -46,6 +47,7 @@ The `holder_id` is the id of the `Entity` who owns this account. Associating the
     "mask": "4455"
   },
   "metadata": null,
+  "status": "active",
   "capabilities": [
     "payments:receive"
   ],
@@ -56,22 +58,23 @@ The `holder_id` is the id of the `Entity` who owns this account. Associating the
 
 #### Attributes
 
-| Name               | Type                 | Description                                                                                                                                                                                             |
-|--------------------|----------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `id`               | `string`             | Unique identifier for the account.                                                                                                                                                                      |
-| `holder_id`        | `string`             | The id of the `Entity` who is the legal holder of this account.                                                                                                                                         |
-| `type`             | `string`             | The type of account. Options: `ach` or `liability`                                                                                                                                                      |
-| `ach`              | `object` `nullable`  | ACH account information.                                                                                                                                                                                |
-| `ach.routing`      | `string`             | ABA routing number of the ACH account. (maximum of 9 characters).                                                                                                                                       |
-| `ach.number`       | `string`             | Account number of the ACH account. (maximum of 17 characters).                                                                                                                                          |
-| `ach.type`         | `string`             | Type of ACH account. Options: `checking` or `savings`                                                                                                                                                   |
-| `liability`        | `object` `nullable`  | Liability account information.                                                                                                                                                                          |
-| `liability.mch_id` | `string`             | Unique identifier of the merchant associated with this account.                                                                                                                                         |
-| `liability.mask`   | `string`, `nullable` | The last 4 digits of the associated account number.                                                                                                                                                     |
-| `metdata`          | `object`, `nullable` | Additional data provided during creation. See [metadata](/api/metadata).                                                                                                           |
-| `capabilities`           | `string[]`             | Capabilities of the account. Possible capabilities: `payments:receive`, `payments:send`. See *Account Capabilities* for more info. |
-| `created_at`       | `string`             | Timestamp of when the account was created.                                                                                                                                                              |
-| `updated_at`       | `string`             | Timestamp of when the account was last updated.                                                                                                                                                         |
+| Name               | Type                 | Description                                                                                                                        |
+|--------------------|----------------------|------------------------------------------------------------------------------------------------------------------------------------|
+| `id`               | `string`             | Unique identifier for the account.                                                                                                 |
+| `holder_id`        | `string`             | The id of the `Entity` who is the legal holder of this account.                                                                    |
+| `type`             | `string`             | The type of account. Options: `ach` or `liability`                                                                                 |
+| `ach`              | `object` `nullable`  | ACH account information.                                                                                                           |
+| `ach.routing`      | `string`             | ABA routing number of the ACH account. (maximum of 9 characters).                                                                  |
+| `ach.number`       | `string`             | Account number of the ACH account. (maximum of 17 characters).                                                                     |
+| `ach.type`         | `string`             | Type of ACH account. Options: `checking` or `savings`                                                                              |
+| `liability`        | `object` `nullable`  | Liability account information.                                                                                                     |
+| `liability.mch_id` | `string`             | Unique identifier of the merchant associated with this account.                                                                    |
+| `liability.mask`   | `string`, `nullable` | The last 4 digits of the associated account number.                                                                                |
+| `metdata`          | `object`, `nullable` | Additional data provided during creation. See [metadata](/api/metadata).                                                           |
+| `status`           | `string`             | Status of an account. Possible statuses: `active`, `disabled`. See *Account Statuses* for more info.                               |
+| `capabilities`     | `string[]`           | Capabilities of the account. Possible capabilities: `payments:receive`, `payments:send`. See *Account Capabilities* for more info. |
+| `created_at`       | `string`             | Timestamp of when the account was created.                                                                                         |
+| `updated_at`       | `string`             | Timestamp of when the account was last updated.                                                                                    |
 
 #### Account Capabilities
 
@@ -82,3 +85,15 @@ The following are possible capabilities an account can have. This indicates if a
 
 - `payments:receive` The account can be used as a payment destination.
 - `payments:send` The account can be used as a payment source.
+
+#### Account Statuses
+
+The following are possible statuses and account can be in.
+
+* `active`
+The account has at least the `payments:receive` capability.
+
+* `disabled`
+The account has been disabled and no longer has capabilities. Accounts
+can transition into the `disabled` status if a related payment
+fails due to invalid account information.

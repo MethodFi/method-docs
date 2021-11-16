@@ -37,7 +37,12 @@ To receive webhook notifications, you must first register the URL where the webh
 The following event types can be registered to a webhook:
 * `payment.create` - A new payment was successfully created.
 * `payment.update` - A payment's status changed.
-* `account_verification.sent` - Micro-deposits have been sent to verify a source account.
+* `account.create` - A new account was successfully created.
+* `account.update` - An account's status changed.
+* `entity.create` - A new entity was successfully created.
+* `entity.update` - An entity's status changed.
+* `account_verification.create` - A new account verification was successfully created.
+* `account_verification.update` - An account's verification status changed.
 
 ### Webhook event object
 

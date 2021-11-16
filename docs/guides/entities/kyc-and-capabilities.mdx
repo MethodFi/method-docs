@@ -32,21 +32,22 @@ Method allows you to create entities with minimal information, then update
 that entity as you collect more information.
 :::
 
-Entities will transition from the `incomplete` status to `active` as more information
-is provided. The `active` status indicates that the entity has been verified and can
-then send and receive payments.
+As an entity is updated with more information, its capabilities are enabled. Once
+the `payments:receive` capability on an entity has been enabled, the entity is
+then transitioned from the `incomplete` status to the `active` status.
 
 :::note
-Once an entity is `active` no additional information
-is required, and further updating of the entity is not allowed.
+Once an entity's property has been set, that specific property can no longer be updated.
 :::
 
 #### Individual
-Below are minimal possible combinations of information to activate an individual entity:
+Below are minimal possible combinations of information to enable the `payments:send`
+capability for an individual entity:
 - First name, Last name, Date of birth, Address
 - First name, Last name, Email
 - First name, Last name, Phone
 
 #### Corporation
-Below are minimal possible combinations of information to activate a corporation entity:
+Below are minimal possible combinations of information to enable the `payments:send`
+capability for a corporation entity:
 - Corporation type, Legal name, Employer Identification Number, Address
