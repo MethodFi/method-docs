@@ -4,11 +4,13 @@ sidebar_label: Verification and capabilities
 
 # Verification and capabilities
 
-Source accounts require verification before they can be used to
-create payments. Moreover, when source accounts are created,
-they are given the `payments:receive` capability which enables the account
-to receive payments. Verification gives source accounts the `payments:send`
-capability which enables the account to send payments.
+Capabilities determine whether an account can be used as a
+source account or destination account. Upon creation,
+an account's `payments:receive` capability is enabled,
+allowing the account to receive payments (as a destination).
+
+Verification enables an account's `payments:send` capability,
+allowing it to then be used to send payments (as a source).
 
 :::info
 In the `development` environment, accounts are automatically verified

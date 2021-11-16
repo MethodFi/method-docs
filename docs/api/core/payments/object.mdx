@@ -35,7 +35,7 @@ Payments are processed on business days (Monday - Friday) at 2:30 PM CST excludi
 | `destination` | `string`            | The `id` of an `ach` or `liability` account to which the payment amount will be sent.                                                                                                                                          |
 | `amount`      | `string`            | The amount of the payment to be created in cents. (e.g. $1.00 = 100)                                                                                                                                                           |
 | `description` | `string` `nullable` | Optional description (maximum of 10 characters).                                                                                                                                                                               |
-| `status`      | `string`            | Status of the payment. Possible statuses: `pending`, `sent`, `canceled`, `returned`, `error`. See *Payment Statuses* for more info.                                                                                            |
+| `status`      | `string`            | Status of the payment. Possible statuses: `pending`, `processing`, `sent`, `failed`, `canceled`, `reversed`. See *Payment Statuses* for more info.                                                                                            |
 | `fund_status` | `string`            | Fund status of the payment. Possible statuses: `pending`, `requested`, `received`, `sent`, `unknown`. See *Payment Fund Statuses*.  This property is available only when [individual payments are retrieved](/api/core/payments/retrieve). |
 | `error`       | `string` `nullable` | Parameter will be null unless `status` is `error`. A description of the error that occurred in processing the payment.                                                                                                         |
 | `metadata`    | `object` `nullable` | Additional data provided during creation. See [metadata](/api/metadata).                                                                                                                                                                     |
@@ -49,18 +49,23 @@ A payment will enter the following statuses as it is processed.
 Initial status after the payment is created. Payment will stay in this state until it is
 processed (see: [Cutoff Time](#cutoff-time)). Payment can be deleted in this state.
 
-* `canceled`
-The payment was canceled and was never executed.
+* `processing`
+The payment is being processed. At this point, the payment can no longer be deleted.
 
 * `sent`
 The payment has been executed and sent to the banking networks.
 
-* `returned`
-The payment was successfully sent, however, the network or receiving institution could not complete the transfer successfully.
+* `failed`
+An error occurred while either pulling funds from the source account or
+pushing funds to the destination account.
 
-* `error`
-The payment was not sent. An unexpected error occurred when transmitting the payment.
+* `canceled`
+The payment was canceled and was never processed.
 
+* `reversed`
+A payment was reversed due to a failure in pulling
+funds from the source account, while incorrectly pushing
+funds to the destination account.
 
 ### Payment Fund Statuses
 
@@ -70,7 +75,7 @@ A payment's funds will enter the following statuses as it is processed.
 Initial fund status after the payment is created.
 
 * `requested`
-The payment funds have been requested from the source acccount.
+The payment funds have been requested from the source account.
 
 * `received`
 The payment funds from the source account have been received.

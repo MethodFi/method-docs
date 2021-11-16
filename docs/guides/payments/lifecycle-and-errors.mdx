@@ -29,11 +29,10 @@ periods which may cause the funds to reflect at a later date.
 ---
 
 ### Errors
-When a payment fails, its status transitions from `sent` to
-either `returned`, `reversed`, or `reversal_required`.
+Unsuccessful payments result in either the `failed` or `reversed` status.
 
-#### Returned payments
-When a payment's status transitions from `sent` to `returned`, this indicates that the
+#### Failed payments
+When a payment's status transitions from `processing` to `failed`, this indicates that the
 retrieval of funds from the source account failed __before__ the funds reached the destination account.
 This can occur as a result of the following:
 - The source account does not have sufficient funds for the amount of the payment.
@@ -42,16 +41,16 @@ the funds.
 - The source account had invalid account information.
 - The source account has been closed.
 
-#### Payment reversals
-For payments that transition into the `reversal_required` status, this indicates that
+#### Reversed payments
+When a payment's status transitions from `sent` to `reversed`, this indicates that
 the retrieval of funds from the source account failed __after__ the funds reached the
-destination account. In this case, Method will do either of the following:
+destination account. To resolve this, Method will initiate a reversal payment to retrieve
+the incorrectly transferred funds from the destination account.
 
-- Automatically reverse the incorrectly transferred funds from the destination account.
-- Manually reverse the incorrectly transferred funds from the destination account within
-60 days of the occurrence.
-
-Once the payment reversal has been resolved, the payment's status will transition into `reversed`.
+:::note
+The transition from `sent` to `reversed` can occur within 60 days
+of the failure's occurrence.
+:::
 
 ---
 

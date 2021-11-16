@@ -112,14 +112,14 @@ Entities can be either an 1) individual/person, 2) company/corporation.
 | `address.city`          | `string`             | The city of the entity's address.                                                                                                                                                                                               |
 | `address.state`         | `string`             | The two-letter abbreviation for the state of the entity's address.                                                                                                                                                              |
 | `address.zip`           | `string`             | The ZIP code of the entity's address.                                                                                                                                                                                           |
-| `status`                | `string`             | Status of the entity's KYC / AML verification. Possible statuses: `active`, `pending`, `blocked`, `error`. See *Entity Statuses* for more info.                                                                                 |
+| `status`                | `string`             | Status of the entity's KYC / AML verification. Possible statuses: `active`, `incomplete`, `disabled`. See *Entity Statuses* for more info. |
 | `metadata`              | `object`, `nullable` | Additional data provided during creation. See [metadata](/api/metadata).                                                                                                                                                                                  |
 | `created_at`            | `string`             | Timestamp of when the entity was created.                                                                                                                                                                                       |
 | `updated_at`            | `string`             | Timestamp of when the entity was last updated.                                                                                                                                                                                  |
 
 ### Entity Capabilities
 
-An entity will have specific capabilities based on the data provided. An entity with an `incomplete` status can be further updated with more infomation to expand the possible capabilities of an entity.
+An entity will have specific capabilities based on the data provided. An entity can be further updated with more information to expand the possible capabilities of an entity.
 
 #### Capabilities Types
 
@@ -140,13 +140,10 @@ An entity will enter the following statuses as it undergoes KYC / AML verificati
 The entity's KYC / AML validation is complete, and can no longer be updated. The entity has full capabilities.
 
 * `incomplete`
-The entity is missing required fields. You are able to create `Accounts` for this entity and can move money based on the entities capabilities. Usually `payments:receive` and `payments:limited-send`.
+The entity does not have any capabilities yet. Update the entity by providing
+more information to enable capabilities.
 
-* `pending`
-The entity's KYC / AML validation is in progress. You are able to create `Accounts` for this entity and can move money based on the entities capabilities. Usually `payments:receive` and `payments:limited-send`.
-
-* `blocked`
-The entity's KYC / AML validation is complete and has not been approved. Contact team@methodfi.com for more information.
-
-* `error`
-The entity's KYC / AML validation is failed. An unexpected error occurred while executing the KYC / AML validation. Contact team@methodfi.com for more information.
+* `disabled`
+The entity has been disabled and no longer has capabilities. Entities
+can transition into the `disabled` status if an entity revokes authorization
+for a payment that has already been sent.
