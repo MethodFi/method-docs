@@ -17,12 +17,14 @@ Only payments in the `pending` status can be `canceled`.
 :::
 
 If the payment is created __before__ the current business day's [cutoff time](/api/core/payments/object#cutoff-time)
-(Monday - Friday 2:30 PM CST), it will be processed and transition into the `sent` status. If it is
-created __after__ the current business day's cutoff time, the payment will be sent on the next business day.
+(Monday - Friday 2:30 PM CST), it will be processed and transition into the `processing` status. If it is
+created __after__ the current business day's cutoff time, the payment will be processed on the next business day.
 
 If the payment was successful, the transferred funds should be reflected on the destination account
 in the next morning. However, for the purpose of security, most financial institutions have varying holding
 periods which may cause the funds to reflect at a later date.
+
+Once a payment has been sent to the destination account, its status will transition from `processing` to `sent`.
 
 ℹ️ See [the payment statuses](/api/core/payments/object#payment-statuses) for details on payment statuses.
 
@@ -50,6 +52,44 @@ the incorrectly transferred funds from the destination account.
 :::note
 The transition from `sent` to `reversed` can occur within 60 days
 of the failure's occurrence.
+:::
+
+---
+
+### Errors and Capabilities
+
+To protect our customers same from risky transactions, Method automatically revokes
+capabilities from either the accounts or account holders (entities) that are associated
+with a failed payment.
+
+Method revokes capabilities for an account or account holder based on the following
+categories of payment failures (__Authorization__, __Administrative__, __Insufficient funds__).
+
+#### Authorization
+
+The account holder reported to their account's financial institution that a transaction
+processed through Method was unauthorized. As a result, both the account and the account
+holder (entity) will then be `disabled` and revoked of all capabilities.
+
+#### Administrative
+
+Payment failures due to administrative errors are caused by any of the following:
+- Incorrect account information: the account number or routing number is incorrect.
+- The account could not be located.
+- The account has been closed.
+
+The account will then be `disabled` and revoked of all capabilities.
+
+#### Insufficient funds
+
+If repeated payment failures occur due to a lack of funds from a source account,
+the account will be `disabled` and revoked of all capabilities.
+
+
+:::note
+If you believe that an account or account holder was incorrectly `disabled`
+and would like to re-enable capabilities, contact team@methodfi.com to resolve
+this issue.
 :::
 
 ---
