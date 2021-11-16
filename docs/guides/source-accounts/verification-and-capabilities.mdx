@@ -4,10 +4,23 @@ sidebar_label: Verification and capabilities
 
 # Verification and capabilities
 
+---
+
+#### Capabilities
+
 Capabilities determine whether an account can be used as a
 source account or destination account. Upon creation,
 an account's `payments:receive` capability is enabled,
 allowing the account to receive payments (as a destination).
+
+:::note
+An account's capabilities can be revoked due to payment failures. See
+[payment errors and capabilities](/guides/payments/lifecycle-and-errors#errors-and-capabilities).
+:::
+
+---
+
+#### Verification
 
 Verification enables an account's `payments:send` capability,
 allowing it to then be used to send payments (as a source).

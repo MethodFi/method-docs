@@ -137,7 +137,8 @@ The entity can be a `source` and send payments from any ACH `Account` regardless
 An entity will enter the following statuses as it undergoes KYC / AML verification.
 
 * `active`
-The entity's KYC / AML validation is complete, and can no longer be updated. The entity has full capabilities.
+The entity has passed basic KYC / AML verification. Once active, the entity will
+have at least the `payments:receive` capability.
 
 * `incomplete`
 The entity does not have any capabilities yet. Update the entity by providing
