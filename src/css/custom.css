@@ -6,14 +6,82 @@
 
 /* You can override the default Infima variables here. */
 
+@font-face {
+  font-family: "Roobert-Bold";
+  src: url(/fonts/Roobert-Bold.otf);
+}
+@font-face {
+  font-family: "Roobert-BoldItalic";
+  src: url(/fonts/Roobert-BoldItalic.otf);
+}
+@font-face {
+  font-family: "Roobert-Heavy";
+  src: url(/fonts/Roobert-Heavy.otf);
+}
+@font-face {
+  font-family: "Roobert-HeavyItalic";
+  src: url(/fonts/Roobert-HeavyItalic.otf);
+}
+@font-face {
+  font-family: "Roobert-Light";
+  src: url(/fonts/Roobert-Light.otf);
+}
+@font-face {
+  font-family: "Roobert-LightItalic";
+  src: url(/fonts/Roobert-LightItalic.otf);
+}
+@font-face {
+  font-family: "Roobert-Medium";
+  src: url(/fonts/Roobert-Medium.otf);
+}
+@font-face {
+  font-family: "Roobert-MediumItalic";
+  src: url(/fonts/Roobert-MediumItalic.otf);
+}
+@font-face {
+  font-family: "Roobert-Regular";
+  src: url(/fonts/Roobert-Regular.otf);
+}
+@font-face {
+  font-family: "Roobert-RegularItalic";
+  src: url(/fonts/Roobert-RegularItalic.otf);
+}
+@font-face {
+  font-family: "Roobert-SemiBold";
+  src: url(/fonts/Roobert-SemiBold.otf);
+}
+@font-face {
+  font-family: "Roobert-SemiBoldItalic";
+  src: url(/fonts/Roobert-SemiBoldItalic.otf);
+}
+@font-face {
+  font-family: "DMSans-Bold";
+  src: url(/fonts/DMSans-Bold.ttf);
+}
+@font-face {
+  font-family: "DMSans-BoldItalic";
+  src: url(/fonts/DMSans-BoldItalic.ttf);
+}
+@font-face {
+  font-family: "DMSans-Italic";
+  src: url(/fonts/DMSans-Italic.ttf);
+}
+@font-face {
+  font-family: "DMSans-Medium";
+  src: url(/fonts/DMSans-Medium.ttf);
+}
+@font-face {
+  font-family: "DMSans-MediumItalic";
+  src: url(/fonts/DMSans-MediumItalic.ttf);
+}
+@font-face {
+  font-family: "DMSans-Regular";
+  src: url(/fonts/DMSans-Regular.ttf);
+}
+
+
 :root {
-  --ifm-color-primary: #3fbe4d;
-  --ifm-color-primary-dark: #39ab45;
-  --ifm-color-primary-darker: #36a241;
-  --ifm-color-primary-darkest: #2c8536;
-  --ifm-color-primary-light: #51c55e;
-  --ifm-color-primary-lighter: #5ac867;
-  --ifm-color-primary-lightest: #77d281;
+  --ifm-color-primary: #00ECAC;
   --ifm-hr-border-width: 1px;
   --ifm-menu-link-padding-vertical: 4px;
   --ifm-menu-link-padding-horizontal: 8px;
@@ -24,8 +92,14 @@
   --ifm-menu-color-background-active: transparent;
   --ifm-pre-padding: 1rem;
   --ifm-card-border-radius: 4px;
-
+  --ifm-navbar-background-color: #002626;
   --light-primary-background: rgba(70, 90, 97, 0.3);
+  --ifm-heading-font-family: 'Roobert-Light';
+  --ifm-font-family-base: 'DMSans-Regular';
+}
+
+h1, h2, h3, h4, h5, h6 {
+  letter-spacing: 1px;
 }
 
 .docusaurus-highlight-code-line {
@@ -37,7 +111,10 @@
 
 html[data-theme='dark'] .docusaurus-highlight-code-line {
   --ifm-color-primary: var(--ifm-color-primary);
-  --ifm-color-primary-dark: var(--ifm-color-primary-dark);
+}
+
+code, pre {
+  background-color: var(--ifm-navbar-background-color) !important;
 }
 
 .navbar {
@@ -46,6 +123,10 @@ html[data-theme='dark'] .docusaurus-highlight-code-line {
 
 .navbar-sidebar__back {
   padding: 1rem;
+}
+
+.navbar__link {
+  font-family: DMSans-Medium;
 }
 
 .navbar__link--active {
@@ -205,7 +286,7 @@ a.transparent, a.transparent:hover {
 }
 
 code.transparent {
-  background: none;
+  background: none !important;
   border: none;
   color: white;
 }
