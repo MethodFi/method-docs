@@ -12,7 +12,7 @@ const config = {
   baseUrl: '/',
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
-  favicon: '/img/favicon.ico',
+  favicon: 'https://static.methodfi.com/brand/favicon.png',
   organizationName: 'MethodFi',
   projectName: 'method-docs',
   scripts: [
@@ -49,7 +49,7 @@ const config = {
           href: '/guides',
           alt: 'Method Logo',
           src: 'https://static.methodfi.com/assets/method-logo.png',
-          srcDark: 'https://static.methodfi.com/assets/method-logo-white.png',
+          srcDark: 'https://static.methodfi.com/brand/logo-horizontal-vibrantgreen-white.png',
         },
         items: [
           // { label: 'Home', position: 'left', to: '/', activeBaseRegex: `^/$` },
