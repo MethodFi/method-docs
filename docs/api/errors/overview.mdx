@@ -1,21 +1,30 @@
 # Overview
 
-An overview of all possible errors in Method's API.
+This is an overview of all possible errors in the Method API.
+
+Errors may occur either when a request is made ([HTTP errors](/api/errors/http)), or when a process fails after a specific resource
+(`entity`, `account`, `payment`, etc.) is has been created – ([Resource errors](/api/errors/resource)).
+
+### Error object
+All errors are represented as a JSON object with the following properties:
+
+Name | Type | Description
+---------|----------|---------
+`code` | `integer` | A numerical code of the error.
+`type` | `string` | A broad description of the error.
+`sub_type` | `string` | The specific error type.
+`message` | `string` | A human-readable message providing more details about the error.
+
+---
+
+### HTTP error codes
+For HTTP errors, `code` refers to an [HTTP response status code](https://en.wikipedia.org/wiki/List_of_HTTP_status_codes).
 
 * `2XX`: indicates success
 * `4XX`: indicates an invalid request, or developer-related issues. (e.g. a required parameter is missing from the request body.)
 * `5XX`: indicates Method-related issues
 
-### Error response
-
-Name | Type | Description
----------|----------|---------
-`code` | `integer` | The status code of the request.
-`type` | `string` | A broad description of the error.
-`sub_type` | `string` | The specific error type.
-`message` | `string` | A human-readable message providing more details about the error.
-
-#### Example
+#### Example HTTP error
 ```json
 {
   "error": {
@@ -24,5 +33,32 @@ Name | Type | Description
     "sub_type": "INVALID_AMOUNT",
     "message": "Invalid amount received. The minimum amount for a payment is 100 cents ($1.00)."
   }
+}
+```
+
+---
+
+### Resource error codes
+* `10XXX`: indicates that an error is related to a payment resource.
+
+#### Example resource error (payment resource)
+```json
+{
+  "id": "pmt_rPrDPEwyCVUcm",
+  "source": "acc_JMJZT6r7iHi8e",
+  "destination": "acc_AXthnzpBnxxWP",
+  "amount": 5000,
+  "description": "Loan Pmt",
+  "status": "failed",
+  "error": {
+    "type": "PAYMENT_FAILED",
+    "code": 10001,
+    "sub_type": "PAYMENT_INSUFFICIENT_FUNDS",
+    "message": "Source account has insufficient funds."
+  },
+  "metadata": null,
+  "estimated_completion_date": "2020-12-11",
+  "created_at": "2020-12-09T00:42:31.209Z",
+  "updated_at": "2020-12-09T00:43:30.996Z"
 }
 ```

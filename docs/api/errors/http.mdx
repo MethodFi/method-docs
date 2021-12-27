@@ -1,35 +1,15 @@
 # HTTP Errors
+Method uses HTTP status codes to indicate the success or failure of API requests.
 
-Method uses HTTP status codes to indicate the success or failure of API requests. This includes -
-
-* `2XX`: indicates success
-* `4XX`: indicates an invalid request, or developer-related issues. (e.g. a required parameter is missing from the request body.)
-* `5XX`: indicates Method-related issues
-
-### Error response
-
-Name | Type | Description
----------|----------|---------
-`code` | `integer` | The status code of the request.
-`type` | `string` | A broad description of the error.
-`sub_type` | `string` | The specific error type.
-`message` | `string` | A human-readable message providing more details about the error.
-
-#### Example
-```json
-{
-  "error": {
-    "type": "INVALID_REQUEST",
-    "code": 400,
-    "sub_type": "INVALID_AMOUNT",
-    "message": "Invalid amount received. The minimum amount for a payment is 100 cents ($1.00)."
-  }
-}
-```
+### 5XX - Internal error
+HTTP errors that return a code of `5XX` indicate that an error with Method's servers has
+occurred. Once an error of this type is returned, the Method team is immediately notified
+and begins triaging its root cause to push out a fix.
 
 ### 4XX - Invalid request
-Lorem Ipsum is simply dummy text of the printing and typesetting industry. Something about 4XX errors here.
-
+Most errors that occur while interacting with the Method API are of this type.
+Below is an enumeration of the possible values for an error's `sub_type` and a short
+description.
 
 Subtype | Description
 ----------|---------
@@ -74,18 +54,16 @@ Subtype | Description
 `INVALID_SOURCE_CAPABILITIES` | The provided `source` on payment creation does not have the `payments:send` capability.
 `INVALID_DESTINATION_CAPABILITIES` | The provided `destination` on payment creation does not have the `payments:receive` capability.
 `INVALID_STATUS` | The payment is no longer in the `pending` status, and cannot be canceled.
-
-
-`INVALID_TOKEN` | Lorem Ipsum is simply dummy text of the printing and typesetting industry. Something about 4XX errors here.
-`EXPIRED_TOKEN` | Lorem Ipsum is simply dummy text of the printing and typesetting industry. Something about 4XX errors here.
-`INVALID_ENTITY` | Lorem Ipsum is simply dummy text of the printing and typesetting industry. Something about 4XX errors here.
-`INVALID_ACCOUNT_MASK` | Lorem Ipsum is simply dummy text of the printing and typesetting industry. Something about 4XX errors here.
-`MISSING_MERCHANT_ID` | Lorem Ipsum is simply dummy text of the printing and typesetting industry. Something about 4XX errors here.
-`UNSUPPORTED_AGGREGATOR` | Lorem Ipsum is simply dummy text of the printing and typesetting industry. Something about 4XX errors here.
-`INVALID_AGGREGATOR_ENV` | Lorem Ipsum is simply dummy text of the printing and typesetting industry. Something about 4XX errors here.
-`MISSING_BIN` | Lorem Ipsum is simply dummy text of the printing and typesetting industry. Something about 4XX errors here.
-`INVALID_BIN_SIZE` | Lorem Ipsum is simply dummy text of the printing and typesetting industry. Something about 4XX errors here.
-`MISSING_ROUTING_NUMBER` | Lorem Ipsum is simply dummy text of the printing and typesetting industry. Something about 4XX errors here.
-`INVALID_ROUTING_NUMBER_SIZE` | Lorem Ipsum is simply dummy text of the printing and typesetting industry. Something about 4XX errors here.
-`INVALID_ROUTING_NUMBER` | Lorem Ipsum is simply dummy text of the printing and typesetting industry. Something about 4XX errors here.
+`INVALID_TOKEN` | The element/link token provided in the `Authorization` header is invalid.
+`EXPIRED_TOKEN` | The element/link token provided in the `Authorization` header is expired.
+`INVALID_ENTITY` | The provided `entity_id` on element/link token creation could not be found.
+`INVALID_ACCOUNT_MASK` | The provided `mask` on element/link token creation is invalid.
+`MISSING_MERCHANT_ID` | The provided `mch_id` on element/link token creation was not provided.
+`UNSUPPORTED_AGGREGATOR` | The provided `aggregator` on element/link token creation is invalid.
+`INVALID_AGGREGATOR_ENV` | The provided `aggregator_options.env` on element/link token creation is invalid in the specific [Method Environment](/api/environments).
+`MISSING_BIN` | No `bin` parameter was provided in `GET /bins`
+`INVALID_BIN_SIZE` | The length of the provided `bin` in `GET /bins` is invalid.
+`MISSING_ROUTING_NUMBER` | No `routing_number` parameter was provided in `GET /routing_numbers`
+`INVALID_ROUTING_NUMBER_SIZE` | The length of the provided `routing_number` in `GET /routing_numbers` is invalid.
+`INVALID_ROUTING_NUMBER` | The provided routing number is not valid.
 `MAX_REPORT_METADATA_SIZE_EXCEEDED` | The `metadata` provided on report creation exceeded 1KB.

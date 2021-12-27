@@ -74,6 +74,7 @@ module.exports = {
     { label: 'Errors', className: 'sidebar-section-header sidebar-icon-api-errors', type: 'link', href: '/api/errors/overview' },
     'api/errors/overview',
     'api/errors/http',
+    'api/errors/resource',
     {
       type: 'category',
       label: 'Payment Errors',

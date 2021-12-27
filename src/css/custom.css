@@ -293,5 +293,5 @@ a.transparent, a.transparent:hover {
 code.transparent {
   background: none !important;
   border: none;
-  color: white;
+  color: inherit;
 }

@@ -1,28 +1,16 @@
 # 10004 - Insufficient Funds (Payment Canceled)
 
-Method uses HTTP status codes to indicate the success or failure of API requests. This includes -
-
-* `2XX`: indicates success
-* `4XX`: indicates an invalid request, or developer-related issues. (e.g. a required parameter is missing from the request body.)
-* `5XX`: indicates Method-related issues
-
-### Error response
-
-Name | Type | Description
----------|----------|---------
-`code` | `integer` | The status code of the request.
-`type` | `string` | A broad description of the error.
-`sub_type` | `string` | The specific error type.
-`message` | `string` | A human-readable message providing more details about the error.
-
-#### Example
 ```json
 {
-  "error": {
-    "type": "INVALID_REQUEST",
-    "code": 400,
-    "sub_type": "INVALID_AMOUNT",
-    "message": "Invalid amount received. The minimum amount for a payment is 100 cents ($1.00)."
-  }
+  "type": "PAYMENT_CANCELED",
+  "code": 10004,
+  "sub_type": "PAYMENT_INSUFFICIENT_FUNDS",
+  "message": "Source account has insufficient funds."
 }
 ```
+
+### Causes
+- Based on the source account's Plaid balance data, a payment was canceled due to insufficient funds.
+
+### Resolution
+- Re-create the payment when the source account is confirmed to have sufficient funds.
