@@ -1,0 +1,16 @@
+# 10004 - Insufficient Funds (Payment Canceled)
+
+```json
+{
+  "type": "PAYMENT_CANCELED",
+  "code": 10004,
+  "sub_type": "PAYMENT_INSUFFICIENT_FUNDS",
+  "message": "Source account has insufficient funds."
+}
+```
+
+### Causes
+- Based on the source account's Plaid balance data, a payment was canceled due to insufficient funds.
+
+### Resolution
+- Re-create the payment when the source account is confirmed to have sufficient funds.

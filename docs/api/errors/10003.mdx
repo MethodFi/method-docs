@@ -1,0 +1,18 @@
+# 10003 - Invalid Account
+
+```json
+{
+  "type": "PAYMENT_FAILED",
+  "code": 10003,
+  "sub_type": "PAYMENT_INVALID_ACCOUNT",
+  "message": "Invalid source or destination account."
+}
+```
+
+### Causes
+- Incorrect account information: the account number or routing number is incorrect.
+- The account could not be located.
+- The account has been closed.
+
+### Resolution
+- A failed payment due to this reason results in the disabling of the account.

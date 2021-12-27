@@ -70,8 +70,21 @@ module.exports = {
     'api/environments',
     'api/idempotency',
     'api/healthcheck',
-    'api/errors',
     'api/metadata',
+    { label: 'Errors', className: 'sidebar-section-header sidebar-icon-api-errors', type: 'link', href: '/api/errors/overview' },
+    'api/errors/overview',
+    'api/errors/http',
+    'api/errors/resource',
+    {
+      type: 'category',
+      label: 'Payment Errors',
+      items: [
+        'api/errors/10001',
+        'api/errors/10002',
+        'api/errors/10003',
+        'api/errors/10004',
+      ],
+    },
     { label: 'Core API', className: 'sidebar-section-header sidebar-icon-api-core', type: 'link', href: '/api/core/entities/object' },
     {
       type: 'category',

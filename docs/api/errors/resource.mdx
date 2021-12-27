@@ -1,0 +1,17 @@
+import ResourceErrorsSection from '../../../src/components/ResourceErrorsSection';
+
+# Resource Errors
+These types of errors occur after a resource has been created. The information regarding
+these errors are provided in the resource object's `error` property.
+
+<br />
+
+### Payment errors
+<ResourceErrorsSection
+  description={`Occur when a payment cannot be successfully processed.`}
+  errors={[
+    { name: '10001 - Insufficient Funds (Payment Failed)', href: '/api/errors/10001' },
+    { name: '10002 - Unauthorized', href: '/api/errors/10002' },
+    { name: '10003 - Invalid Account', href: '/api/errors/10003' },
+    { name: '10004 - Insufficient Funds (Payment Canceled)', href: '/api/errors/10004' },
+  ]} />

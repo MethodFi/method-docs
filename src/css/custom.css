@@ -222,6 +222,10 @@ a.transparent, a.transparent:hover {
   background: url("/img/sidebar-icon/api/reference.svg") 100% / 1rem 1rem;
 }
 
+.sidebar-section-header.sidebar-icon-api-errors:before {
+  background: url("/img/sidebar-icon/api/errors.svg") 100% / 1rem 1rem;
+}
+
 .sidebar-section-header.sidebar-icon-api-core:before {
   background: url("/img/sidebar-icon/api/core.svg") 100% / 1rem 1rem;
 }
@@ -289,5 +293,5 @@ a.transparent, a.transparent:hover {
 code.transparent {
   background: none !important;
   border: none;
-  color: white;
+  color: inherit;
 }
