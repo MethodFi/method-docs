@@ -1,0 +1,69 @@
+# HTTP Errors
+Method uses HTTP status codes to indicate the success or failure of API requests.
+
+### 5XX - Internal error
+HTTP errors that return a code of `5XX` indicate that an error with Method's servers has
+occurred. Once an error of this type is returned, the Method team is immediately notified
+and begins triaging its root cause to push out a fix.
+
+### 4XX - Invalid request
+Most errors that occur while interacting with the Method API are of this type.
+Below is an enumeration of the possible values for an error's `sub_type` and a short
+description.
+
+Subtype | Description
+----------|---------
+`INVALID_REQUEST` | The request body failed basic validation for the specific API endpoint.
+`NOT_FOUND` | The requested resource does not exist.
+`FORBIDDEN` | A valid API token was not provided in the request header as `Authorization: Bearer {YOUR_API_TOKEN}`
+`INVALID_HOLDER_ID` | The provided `holder_id` does not match an existing entity.
+`INVALID_MERCHANT_ID` | The provided `mch_id` does not match an existing merchant.
+`MAX_ACCOUNT_METADATA_SIZE_EXCEEDED` | The `metadata` provided on account creation exceeded 1KB.
+`EXISTING_ACCOUNT_DISABLED` | The ACH information provided on account creation matches an existing account which has been disabled.
+`INVALID_ACCOUNT_TYPE` | On account verification creation, the provided account is not of type `ach`.
+`EXISTING_VERIFICATION` | An account verification already exists for a specific account.
+`INVALID_VERIFICATION_TYPE` | The provided account verification type does not support updates.
+`INVALID_VERIFICATION_STATUS` | The account verification is not currently in the `pending` status.
+`VERIFICATION_DISABLED` | The account verification has been disabled, and can not longer be updated.
+`INVALID_VERIFICATION_AMOUNTS` | The provided `micro_deposits` verification amounts were incorrect.
+`MAX_ENTITY_METADATA_SIZE_EXCEEDED` | The `metadata` provided on entity creation exceeded 1KB.
+`MAX_WEBHOOK_METADATA_SIZE_EXCEEDED` | The `metadata` provided on webhook creation exceeded 1KB.
+`INVALID_ACH_ACCOUNT_NUMBER` | The ACH account number provided on account creation is invalid.
+`INVALID_ACH_ACCOUNT_ROUTING` | The ACH routing number provided on account creation is invalid.
+`INVALID_ACH_ACCOUNT_TYPE` | The ACH account type provided on account creation is invalid. Only `checking` or `savings` are valid ACH account types.
+`INVALID_ACCOUNT_DETAILS` | The ACH/liability account details provided on account creation is invalid.
+`ENTITY_UPDATE_DISABLED` | The requested entity to update has a `disabled` status.
+`ENTITY_UPDATE_INVALID` | The requested properties to update on an entity are not `null`.
+`ENTITY_UPDATE_UNSUPPORTED` | The specific entity does not support updates.
+`INVALID_ACCOUNT_NUMBER` | The provided account number during liability account creation is invalid.
+`INVALID_SEARCH_PARAMETERS` | The request contains conflicting search parameters.
+`INVALID_AMOUNT_TYPE` | The provided `amount` on payment creation is not an integer.
+`INVALID_AMOUNT` | The provided `amount` on payment creation is less than $1.
+`INVALID_ACH_DESCRIPTION` | The provided `description` on payment creation should be less than 10 characters.
+`INVALID_SOURCE` | The provided `source` on payment creation does not exist.
+`INVALID_SOURCE_HOLDER_CAPABILITIES` | The holder of a payment's source account does not have the `payments:send` capability.
+`INVALID_SOURCE_HOLDER_LIMITED` | The holder of a payment's source account does not have the `payments:limited-send` capability.
+`INVALID_SOURCE_LIABILITY` | The provided `source` on payment creation is not an ACH account.
+`INVALID_DESTINATION` | The provided `destination` on payment creation should does not exist.
+`INVALID_DESTINATION_HOLDER` | The holder of a payment's destination account does not have the `payments:receive` capability.
+`INVALID_TRANSFER` | The provided `source` and `destination` on account creation are the same account.
+`MAX_AMOUNT_EXCEEDED` | The provided `amount` on account creation is greater than the maximum limit of a single payment for an organization. This error type usually happens in the sandbox environment.
+`MAX_REQUEST_LIMIT` | The monthly payment request limit for an organization has been reached. This error type usually happens in the sandbox environment.
+`MAX_PAYMENT_METADATA_SIZE_EXCEEDED` | The `metadata` provided on payment creation exceeded 1KB.
+`INSUFFICIENT_FUNDS` | On payment creation, the source account has insufficient funds for the payment amount.
+`INVALID_SOURCE_CAPABILITIES` | The provided `source` on payment creation does not have the `payments:send` capability.
+`INVALID_DESTINATION_CAPABILITIES` | The provided `destination` on payment creation does not have the `payments:receive` capability.
+`INVALID_STATUS` | The payment is no longer in the `pending` status, and cannot be canceled.
+`INVALID_TOKEN` | The element/link token provided in the `Authorization` header is invalid.
+`EXPIRED_TOKEN` | The element/link token provided in the `Authorization` header is expired.
+`INVALID_ENTITY` | The provided `entity_id` on element/link token creation could not be found.
+`INVALID_ACCOUNT_MASK` | The provided `mask` on element/link token creation is invalid.
+`MISSING_MERCHANT_ID` | The provided `mch_id` on element/link token creation was not provided.
+`UNSUPPORTED_AGGREGATOR` | The provided `aggregator` on element/link token creation is invalid.
+`INVALID_AGGREGATOR_ENV` | The provided `aggregator_options.env` on element/link token creation is invalid in the specific [Method Environment](/api/environments).
+`MISSING_BIN` | No `bin` parameter was provided in `GET /bins`
+`INVALID_BIN_SIZE` | The length of the provided `bin` in `GET /bins` is invalid.
+`MISSING_ROUTING_NUMBER` | No `routing_number` parameter was provided in `GET /routing_numbers`
+`INVALID_ROUTING_NUMBER_SIZE` | The length of the provided `routing_number` in `GET /routing_numbers` is invalid.
+`INVALID_ROUTING_NUMBER` | The provided routing number is not valid.
+`MAX_REPORT_METADATA_SIZE_EXCEEDED` | The `metadata` provided on report creation exceeded 1KB.

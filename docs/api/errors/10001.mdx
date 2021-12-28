@@ -1,0 +1,17 @@
+# 10001 - Insufficient Funds (Payment Failed)
+
+```json
+{
+  "type": "PAYMENT_FAILED",
+  "code": 10001,
+  "sub_type": "PAYMENT_INSUFFICIENT_FUNDS",
+  "message": "Source account has insufficient funds."
+}
+```
+
+### Causes
+- Funds corresponding to the payment's amount were not successfully retrieved from
+the source bank account.
+
+### Resolution
+- Re-create the payment when the source account is confirmed to have sufficient funds.

@@ -1,0 +1,18 @@
+# 10002 - Unauthorized
+
+```json
+{
+  "type": "PAYMENT_FAILED",
+  "code": 10002,
+  "sub_type": "PAYMENT_UNAUTHORIZED",
+  "message": "Unauthorized by the source or destination account holder."
+}
+```
+
+### Causes
+- The source/destination account holder reported to their account's
+financial institution that a transaction processed through Method was unauthorized.
+
+### Resolution
+- A failed payment due to this reason results in the disabling of both the account
+and the account holder. See [payment errors and capabilities](/guides/payments/lifecycle-and-errors#errors-and-capabilities).
