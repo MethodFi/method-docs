@@ -1,0 +1,16 @@
+# 13002 - Deposits Failed
+
+```json
+{
+  "type": "ACCOUNT_VERIFICATION_DISABLED",
+  "code": 13002,
+  "sub_type": "ACCOUNT_VERIFICATION_DEPOSITS_FAILED",
+  "message": "Account verification was disabled due to the failure of micro-deposits to an invalid account."
+}
+```
+
+### Causes
+- Both micro-deposits made to verify an account failed due to invalid account information.
+
+### Resolution
+- Both the account verification and the account will be disabled.

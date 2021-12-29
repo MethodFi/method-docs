@@ -25,11 +25,13 @@ The `holder_id` is the id of the `Entity` who owns this account. Associating the
     "type": "checking"
   },
   "liability": null,
+  "clearing": null,
   "metadata": null,
   "status": "active",
   "capabilities": [
     "payments:receive"
   ],
+  "error": null,
   "created_at": "2020-12-09T00:40:51.107Z",
   "updated_at": "2020-12-09T00:40:51.107Z"
 }
@@ -46,11 +48,13 @@ The `holder_id` is the id of the `Entity` who owns this account. Associating the
     "mch_id": "mch_2",
     "mask": "4455"
   },
+  "clearing": null,
   "metadata": null,
   "status": "active",
   "capabilities": [
     "payments:receive"
   ],
+  "error": null,
   "created_at": "2020-12-09T02:56:19.548Z",
   "updated_at": "2020-12-09T02:56:19.548Z"
 }
@@ -73,6 +77,7 @@ The `holder_id` is the id of the `Entity` who owns this account. Associating the
 | `metdata`          | `object`, `nullable` | Additional data provided during creation. See [metadata](/api/metadata).                                                           |
 | `status`           | `string`             | Status of an account. Possible statuses: `active`, `disabled`. See *Account Statuses* for more info.                               |
 | `capabilities`     | `string[]`           | Capabilities of the account. Possible capabilities: `payments:receive`, `payments:send`. See *Account Capabilities* for more info. |
+| `error`            | `object` `nullable`  | An object representing an error that occurred for this account. See [account errors](/api/errors/resource#account-errors).         |
 | `created_at`       | `string`             | Timestamp of when the account was created.                                                                                         |
 | `updated_at`       | `string`             | Timestamp of when the account was last updated.                                                                                    |
 
