@@ -6,12 +6,35 @@ these errors are provided in the resource object's `error` property.
 
 <br />
 
-### Payment errors
+### Payment Errors
 <ResourceErrorsSection
-  description={`Occur when a payment cannot be successfully processed.`}
+  description="Occur when a payment cannot be successfully processed."
   errors={[
     { name: '10001 - Insufficient Funds (Payment Failed)', href: '/api/errors/10001' },
     { name: '10002 - Unauthorized', href: '/api/errors/10002' },
     { name: '10003 - Invalid Account', href: '/api/errors/10003' },
     { name: '10004 - Insufficient Funds (Payment Canceled)', href: '/api/errors/10004' },
+  ]} />
+
+### Account Errors
+<ResourceErrorsSection
+  description="Occur for processes relating to an account is unsuccessful."
+  errors={[
+    { name: '11001 - Invalid Details', href: '/api/errors/11001' },
+    { name: '11002 - Unauthorized Payment', href: '/api/errors/11002' },
+  ]} />
+
+### Entity Errors
+<ResourceErrorsSection
+  description="Occur for processes relating to an entity is unsuccessful."
+  errors={[
+    { name: '12001 - Unauthorized Payment', href: '/api/errors/12001' },
+  ]} />
+
+### Account Verification Errors
+<ResourceErrorsSection
+  description="Occur when an account verification is unsuccessful."
+  errors={[
+    { name: '13001 - Attempt Limit Reached', href: '/api/errors/13001' },
+    { name: '13002 - Deposits Failed', href: '/api/errors/13002' },
   ]} />

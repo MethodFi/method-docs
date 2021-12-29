@@ -16,6 +16,7 @@ In the `dev`, and `sandbox` environments, ACH accounts are automatically verifie
   "id": "vrf_73TAQ8njUFsLJ",
   "status": "initiated",
   "type": "micro_deposits",
+  "error": null,
   "initiated_at": "2021-10-12T20:42:46.433Z",
   "pending_at": "1970-01-01T00:00:00.000Z",
   "verified_at": "1970-01-01T00:00:00.000Z",
@@ -32,6 +33,7 @@ In the `dev`, and `sandbox` environments, ACH accounts are automatically verifie
 | `id`           | `string` | Unique identifier for the verification.                                                                                                   |
 | `status`       | `string` | Status of the verification. Possible statuses: `initiated`, `pending`, `verified`, `disabled`. See *Verification Statuses* for more info. |
 | `type`         | `string` | Type of the verification. Possible types: `micro_deposits`, `plaid`, `mx`, `auto_verify`, `trusted_provisioner`. See *Verification Types* for more info.         |
+| `error`        | `object` `nullable`  | An object representing an error that occurred for this verification. See [account verification errors](/api/errors/resource#account-verification-errors).
 | `initiated_at` | `string` | Timestamp of when the verification transitioned into `initiated` status.                                                                  |
 | `pending_at`   | `string` | Timestamp of when the verification transitioned into `pending` status.                                                                    |
 | `verified_at`  | `string` | Timestamp of when the verification transitioned into `verified` status.                                                                   |

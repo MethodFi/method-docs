@@ -1,0 +1,17 @@
+# 11002 - Unauthorized Payment
+
+```json
+{
+  "type": "ACCOUNT_DISABLED",
+  "code": 11002,
+  "sub_type": "ACCOUNT_UNAUTHORIZED_PAYMENT",
+  "message": "Account was disabled due to a payment reported as unauthorized by the financial institution."
+}
+```
+
+### Causes
+- The account holder reported to this account's financial institution that a payment
+made through Method was unauthorized.
+
+### Resolution
+- The account will be disabled and all its capabilities will be removed.

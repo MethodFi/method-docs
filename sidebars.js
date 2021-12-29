@@ -85,6 +85,29 @@ module.exports = {
         'api/errors/10004',
       ],
     },
+    {
+      type: 'category',
+      label: 'Account Errors',
+      items: [
+        'api/errors/11001',
+        'api/errors/11002',
+      ],
+    },
+    {
+      type: 'category',
+      label: 'Entity Errors',
+      items: [
+        'api/errors/12001',
+      ],
+    },
+    {
+      type: 'category',
+      label: 'Account Verification Errors',
+      items: [
+        'api/errors/13001',
+        'api/errors/13002',
+      ],
+    },
     { label: 'Core API', className: 'sidebar-section-header sidebar-icon-api-core', type: 'link', href: '/api/core/entities/object' },
     {
       type: 'category',
