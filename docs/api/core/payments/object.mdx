@@ -37,7 +37,7 @@ Payments are processed on business days (Monday - Friday) at 2:30 PM CST excludi
 | `amount`                    | `string`             | The amount of the payment to be created in cents. (e.g. $1.00 = 100)                                                                                                                                                                       |
 | `description`               | `string` `nullable`  | Optional description (maximum of 10 characters).                                                                                                                                                                                           |
 | `status`                    | `string`             | Status of the payment. Possible statuses: `pending`, `processing`, `sent`, `failed`, `canceled`, `reversed`. See *Payment Statuses* for more info.                                                                                         |
-| `fund_status`               | `string`             | Fund status of the payment. Possible statuses: `pending`, `requested`, `received`, `sent`, `unknown`. See *Payment Fund Statuses*.  This property is available only when [individual payments are retrieved](/api/core/payments/retrieve). |
+| `fund_status`               | `string`             | Fund status of the payment. Possible statuses: `pending`, `requested`, `clearing`, `failed`, `sent`, `unknown`. See *Payment Fund Statuses*.  This property is available only when [individual payments are retrieved](/api/core/payments/retrieve). |
 | `error`                     | `object` `nullable`  | An object representing an error that occurred while processing this payment. See [payment errors](/api/errors/resource#payment-errors).                                                                                                    |
 | `metadata`                  | `object` `nullable`  | Additional data provided during creation. See [metadata](/api/metadata).                                                                                                                                                                   |
 | `estimated_completion_date` | `string`, `nullable` | An estimated date, in ISO 8601 format (YYYY-MM-DD), on which the payment should be completed.                                                                                                                                              |
@@ -79,8 +79,11 @@ Initial fund status after the payment is created.
 * `requested`
 The payment funds have been requested from the source account.
 
-* `received`
+* `clearing`
 The payment funds from the source account have been received.
+
+* `failed`
+The clearing of funds for a payment have failed.
 
 * `sent`
 The payment funds have been sent to the destination account.
