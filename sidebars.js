@@ -137,6 +137,7 @@ module.exports = {
             'api/core/accounts/ach-verification/object',
             'api/core/accounts/ach-verification/create-micro-deposits',
             'api/core/accounts/ach-verification/create-plaid',
+            'api/core/accounts/ach-verification/create-teller',
             'api/core/accounts/ach-verification/create-mx',
             'api/core/accounts/ach-verification/update',
             'api/core/accounts/ach-verification/retrieve',
