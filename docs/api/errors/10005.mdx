@@ -1,0 +1,18 @@
+# 10005 - Unauthorized Source
+
+```json
+{
+  "type": "PAYMENT_FAILED",
+  "code": 10005,
+  "sub_type": "PAYMENT_UNAUTHORIZED_SOURCE",
+  "message": "Payment failed due to a report by the source account holder as unauthorized."
+}
+```
+
+### Causes
+- The source account holder reported to their account's
+financial institution that a transaction processed through Method was unauthorized.
+
+### Resolution
+- A failed payment due to this reason results in the disabling of both the account
+and the account holder. See [payment errors and capabilities](/guides/payments/lifecycle-and-errors#errors-and-capabilities).

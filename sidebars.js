@@ -83,6 +83,10 @@ module.exports = {
         'api/errors/10002',
         'api/errors/10003',
         'api/errors/10004',
+        'api/errors/10005',
+        'api/errors/10006',
+        'api/errors/10007',
+        'api/errors/10008',
       ],
     },
     {
