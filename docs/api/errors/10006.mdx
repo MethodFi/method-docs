@@ -1,0 +1,18 @@
+# 10006 - Unauthorized Destination
+
+```json
+{
+  "type": "PAYMENT_FAILED",
+  "code": 10006,
+  "sub_type": "PAYMENT_UNAUTHORIZED_DESTINATION",
+  "message": "Payment failed due to a report by the destination account holder as unauthorized."
+}
+```
+
+### Causes
+- The destination account holder reported to their account's
+financial institution that a transaction processed through Method was unauthorized.
+
+### Resolution
+- A failed payment due to this reason results in the disabling of both the account
+and the account holder. See [payment errors and capabilities](/guides/payments/lifecycle-and-errors#errors-and-capabilities).

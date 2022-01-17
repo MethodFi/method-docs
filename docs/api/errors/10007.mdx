@@ -1,0 +1,18 @@
+# 10007 - Invalid Source Account
+
+```json
+{
+  "type": "PAYMENT_FAILED",
+  "code": 10007,
+  "sub_type": "PAYMENT_INVALID_SOURCE_ACCOUNT",
+  "message": "Payment failed due to an invalid source account."
+}
+```
+
+### Causes
+- Incorrect account information: the account number or routing number is incorrect.
+- The account could not be located.
+- The account has been closed.
+
+### Resolution
+- A failed payment due to this reason results in the disabling of the account.
