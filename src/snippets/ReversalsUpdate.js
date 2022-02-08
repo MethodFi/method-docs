@@ -14,15 +14,15 @@ curl https://production.methodfi.com/payments/pmt_rPrDPEwyCVUcm/reversals/rvs_ea
 const nodejs = `
 const reversal = await method
   .payments('pmt_rPrDPEwyCVUcm')
-  .reversals('rvs_eaBAUJtetgMdR')
-  .update({ status: 'pending' });
+  .reversals
+  .update('rvs_eaBAUJtetgMdR', { status: 'pending' });
 `.trim();
 
 const python = `
 reversal = method
   .payments('pmt_rPrDPEwyCVUcm')
-  .reversals('rvs_eaBAUJtetgMdR')
-  .update({ 'status': 'pending' })
+  .reversals
+  .update('rvs_eaBAUJtetgMdR', { 'status': 'pending' })
 `.trim();
 
 export default function () {
