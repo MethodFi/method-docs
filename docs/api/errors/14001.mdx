@@ -1,0 +1,17 @@
+# 14001 - Insufficient Funds
+
+```json
+{
+  "type": "PAYMENT_REVERSAL_FAILED",
+  "code": 14001,
+  "sub_type": "PAYMENT_REVERSAL_INSUFFICIENT_FUNDS",
+  "message": "Payment reversal failed due to insufficient funds from the account."
+}
+```
+
+### Causes
+- Funds corresponding to the payment reversal's amount were not successfully retrieved from
+the bank account.
+
+### Resolution
+- The failed reversal will be manually resolved by the Method team.
