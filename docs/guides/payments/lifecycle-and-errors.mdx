@@ -44,9 +44,9 @@ the funds.
 - The source account has been closed.
 
 #### Reversed payments
-When a payment's status transitions from `sent` to `reversed`, this indicates that
+When a payment's status transitions from `sent` to `reversal_required`, this indicates that
 the retrieval of funds from the source account failed __after__ the funds reached the
-destination account. To resolve this, Method will initiate a reversal payment to retrieve
+destination account. To resolve this, Method will create [reversal](/api/core/payments/reversals/object) to retrieve
 the incorrectly transferred funds from the destination account.
 
 :::note

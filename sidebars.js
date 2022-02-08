@@ -112,6 +112,15 @@ module.exports = {
         'api/errors/13002',
       ],
     },
+    {
+      type: 'category',
+      label: 'Payment Reversal Errors',
+      items: [
+        'api/errors/14001',
+        'api/errors/14002',
+        'api/errors/14003',
+      ],
+    },
     { label: 'Core API', className: 'sidebar-section-header sidebar-icon-api-core', type: 'link', href: '/api/core/entities/object' },
     {
       type: 'category',
@@ -167,6 +176,16 @@ module.exports = {
         'api/core/payments/retrieve',
         'api/core/payments/delete',
         'api/core/payments/list',
+        {
+          type: 'category',
+          label: 'Reversals',
+          items: [
+            'api/core/payments/reversals/object',
+            'api/core/payments/reversals/retrieve',
+            'api/core/payments/reversals/update',
+            'api/core/payments/reversals/list',
+          ],
+        }
       ],
     },
     {
