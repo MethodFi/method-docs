@@ -1,0 +1,57 @@
+# The reversal object
+A reversal is automatically created to balance out funds that were incompletely processed for an unsuccessful payment.
+
+### Reversal object
+
+#### Example
+
+```json
+{
+  "id": "rvs_eaBAUJtetgMdR",
+  "pmt_id": "pmt_rPrDPEwyCVUcm",
+  "target_account": "acc_JMJZT6r7iHi8e",
+  "trace_id": null,
+  "direction": "debit",
+  "description": "PmtRvrsl",
+  "amount": 5000,
+  "status": "pending_approval",
+  "error": null,
+  "created_at": "2020-12-09T00:42:31.209Z",
+  "updated_at": "2020-12-09T00:43:30.996Z"
+}
+```
+
+#### Attributes
+
+| Name             | Type                 | Description                                                                                                                                           |
+|------------------|----------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `id`             | `string`             | Unique identifier for the reversal.                                                                                                                   |
+| `pmt_id`         | `string`             | The `id` of the payment to be reversed.                                                                                                               |
+| `target_account` | `string`             | The `id` of the `ach` account to process the reversal.                                                                                                |
+| `trace_id`       | `string`, `nullable` | The underlying `id` for the bank transaction relating to this reversal.                                                                               |
+| `direction`      | `string`             | The direction of the reversal. Possible values: `debit`, `credit`.                                                                                    |
+| `description`    | `string`             | The description of the reversal (maximum of 10 characters).                                                                                           |
+| `status`         | `string`             | Status of the reversal. Possible statuses: `pending_approval`, `pending`, `processing`, `sent`, `failed`. See [reversal statuses](#reversal-statuses) |
+| `amount`         | `integer`            | The reversal amount in cents.                                                                                                                         |
+| `error`          | `object` `nullable`  | An object representing an error that occurred while processing this reversal. See [reversal errors](/api/errors/resource#payment-reversal-errors).    |
+| `created_at`     | `string`             | Timestamp of when the reversal was created.                                                                                                           |
+| `updated_at`     | `string`             | Timestamp of when the reversal was last updated.                                                                                                      |
+
+### Reversal Statuses
+
+A reversal will enter the following statuses as it is processed.
+
+* `pending_approval`
+The reversal is pending approval and will not be processed unless approved. See [update reversal](/api/core/payments/reversals/update).
+
+* `pending`
+The reversal has been approved and is waiting to be processed.
+
+* `processing`
+The reversal is being processed.
+
+* `sent`
+The reversal has been successfully processed and is now completed.
+
+* `failed`
+An error occurred while either processing the reversal.

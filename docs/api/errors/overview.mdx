@@ -43,11 +43,15 @@ For HTTP errors, `code` refers to an [HTTP response status code](https://en.wiki
 * `11XXX`: indicates that an error is related to an account resource.
 * `12XXX`: indicates that an error is related to an entity resource.
 * `13XXX`: indicates that an error is related to an account verification resource.
+* `14XXX`: indicates that an error is related to a payment reversal resource.
 
 #### Example resource error (payment resource)
 ```json
 {
   "id": "pmt_rPrDPEwyCVUcm",
+  "reversal_id": null,
+  "source_trace_id": null,
+  "destination_trace_id": null,
   "source": "acc_JMJZT6r7iHi8e",
   "destination": "acc_AXthnzpBnxxWP",
   "amount": 5000,

@@ -1,0 +1,18 @@
+# 14003 - Invalid Account
+
+```json
+{
+  "type": "PAYMENT_REVERSAL_FAILED",
+  "code": 14003,
+  "sub_type": "PAYMENT_REVERSAL_INVALID_ACCOUNT",
+  "message": "Payment reversal failed due to an invalid account."
+}
+```
+
+### Causes
+- Incorrect account information: the account number or routing number is incorrect.
+- The account could not be located.
+- The account has been closed.
+
+### Resolution
+- The failed reversal will be manually resolved by the Method team.

@@ -1,0 +1,38 @@
+import ReversalsList from '../../../../../src/snippets/ReversalsList';
+
+# List all reversals for a payment
+
+**About**: Returns all the reversals associated with a payment, or an empty array if none have been created.
+
+**API Method**: `GET /payments/:paymentId/reversals`
+
+### Request
+
+#### Example
+<ReversalsList />
+
+### Response
+
+#### Example
+
+An array of reversal objects will be returned.
+
+```json
+{
+  "data": [
+    {
+      "id": "rvs_eaBAUJtetgMdR",
+      "pmt_id": "pmt_rPrDPEwyCVUcm",
+      "target_account": "acc_JMJZT6r7iHi8e",
+      "trace_id": null,
+      "direction": "debit",
+      "description": "PmtRvrsl",
+      "amount": 5000,
+      "status": "pending_approval",
+      "error": null,
+      "created_at": "2020-12-09T00:42:31.209Z",
+      "updated_at": "2020-12-09T00:43:30.996Z"
+    }
+  ]
+}
+```

@@ -14,6 +14,9 @@ Payments are processed on business days (Monday - Friday) at 2:30 PM CST excludi
 ```json
 {
   "id": "pmt_rPrDPEwyCVUcm",
+  "reversal_id": null,
+  "source_trace_id": null,
+  "destination_trace_id": null,
   "source": "acc_JMJZT6r7iHi8e",
   "destination": "acc_AXthnzpBnxxWP",
   "amount": 5000,
@@ -29,20 +32,23 @@ Payments are processed on business days (Monday - Friday) at 2:30 PM CST excludi
 
 #### Attributes
 
-| Name                        | Type                 | Description                                                                                                                                                                                                                                |
-|-----------------------------|----------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `id`                        | `string`             | Unique identifier for the payment.                                                                                                                                                                                                         |
-| `source`                    | `string`             | The `id` of an `ach` account from which the payment amount will be retrieved.                                                                                                                                                              |
-| `destination`               | `string`             | The `id` of an `ach` or `liability` account to which the payment amount will be sent.                                                                                                                                                      |
-| `amount`                    | `string`             | The amount of the payment to be created in cents. (e.g. $1.00 = 100)                                                                                                                                                                       |
-| `description`               | `string` `nullable`  | Optional description (maximum of 10 characters).                                                                                                                                                                                           |
-| `status`                    | `string`             | Status of the payment. Possible statuses: `pending`, `processing`, `sent`, `failed`, `canceled`, `reversed`. See *Payment Statuses* for more info.                                                                                         |
+| Name                        | Type                 | Description                                                                                                                                                                                                                                          |
+|-----------------------------|----------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `id`                        | `string`             | Unique identifier for the payment.                                                                                                                                                                                                                   |
+| `reversal_id`               | `string`, `nullable` | The `id` of an active `reversal`.                                                                                                                                                                                                                    |
+| `source_trace_id`           | `string`, `nullable` | The underlying `id` for the bank transaction on the source account relating to this payment.                                                                                                                                                         |
+| `destination_trace_id`      | `string`, `nullable` | The underlying `id` for the bank transaction on the destination account relating to this payment.                                                                                                                                                    |
+| `source`                    | `string`             | The `id` of an `ach` account from which the payment amount will be retrieved.                                                                                                                                                                        |
+| `destination`               | `string`             | The `id` of an `ach` or `liability` account to which the payment amount will be sent.                                                                                                                                                                |
+| `amount`                    | `integer`            | The amount of the payment to be created in cents. (e.g. $1.00 = 100)                                                                                                                                                                                 |
+| `description`               | `string` `nullable`  | Optional description (maximum of 10 characters).                                                                                                                                                                                                     |
+| `status`                    | `string`             | Status of the payment. Possible statuses: `pending`, `processing`, `sent`, `failed`, `canceled`, `reversal_required`, `reversal_processing`, `reversed`. See *Payment Statuses* for more info.                                                                                                   |
 | `fund_status`               | `string`             | Fund status of the payment. Possible statuses: `pending`, `requested`, `clearing`, `failed`, `sent`, `unknown`. See *Payment Fund Statuses*.  This property is available only when [individual payments are retrieved](/api/core/payments/retrieve). |
-| `error`                     | `object` `nullable`  | An object representing an error that occurred while processing this payment. See [payment errors](/api/errors/resource#payment-errors).                                                                                                    |
-| `metadata`                  | `object` `nullable`  | Additional data provided during creation. See [metadata](/api/metadata).                                                                                                                                                                   |
-| `estimated_completion_date` | `string`, `nullable` | An estimated date, in ISO 8601 format (YYYY-MM-DD), on which the payment should be completed.                                                                                                                                              |
-| `created_at`                | `string`             | Timestamp of when the payment was created.                                                                                                                                                                                                 |
-| `updated_at`                | `string`             | Timestamp of when the payment was last updated.                                                                                                                                                                                            |
+| `error`                     | `object` `nullable`  | An object representing an error that occurred while processing this payment. See [payment errors](/api/errors/resource#payment-errors).                                                                                                              |
+| `metadata`                  | `object` `nullable`  | Additional data provided during creation. See [metadata](/api/metadata).                                                                                                                                                                             |
+| `estimated_completion_date` | `string`, `nullable` | An estimated date, in ISO 8601 format (YYYY-MM-DD), on which the payment should be completed.                                                                                                                                                        |
+| `created_at`                | `string`             | Timestamp of when the payment was created.                                                                                                                                                                                                           |
+| `updated_at`                | `string`             | Timestamp of when the payment was last updated.                                                                                                                                                                                                      |
 ### Payment Statuses
 
 A payment will enter the following statuses as it is processed.
@@ -64,10 +70,15 @@ pushing funds to the destination account.
 * `canceled`
 The payment was canceled and was never processed.
 
+* `reversal_required`
+The payment failed and requires a reversal. The payment's `reversal_id` is set with the `id` of the
+newly created reversal. The reversal should then be approved.
+
+* `reversal_processing`
+The active reversal corresponding to this payment has been approved and is being processed.
+
 * `reversed`
-A payment was reversed due to a failure in pulling
-funds from the source account, while incorrectly pushing
-funds to the destination account.
+The active reversal has successfully been completed.
 
 ### Payment Fund Statuses
 
