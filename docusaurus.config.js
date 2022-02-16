@@ -17,6 +17,7 @@ const config = {
   projectName: 'method-docs',
   scripts: [
     '/js/index.js',
+    'https://tag.clearbitscripts.com/v1/pk_98f804caad882c280e5682dae1e0c92f/tags.js',
   ],
   presets: [
     [

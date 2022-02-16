@@ -274,23 +274,23 @@ module.exports = {
         'api/utils/routing-numbers/retrieve',
       ],
     },
-    { label: 'Method Link (Deprecated)', className: 'sidebar-section-header sidebar-icon-api-link', type: 'link', href: '/api/link/intro' },
-    'api/link/intro',
-    {
-      type: 'category',
-      label: 'Implementation Guide',
-      items: [
-        'api/link/implementation/create-token',
-        'api/link/implementation/launch-link',
-        'api/link/implementation/exchange-public-accounts',
-      ],
-    },
-    {
-      type: 'category',
-      label: 'Libraries',
-      items: [
-        { type: 'link', href: 'https://github.com/MethodFi/react-method-link', label: 'Web (React)' },
-      ],
-    },
+    // { label: 'Method Link (Deprecated)', className: 'sidebar-section-header sidebar-icon-api-link', type: 'link', href: '/api/link/intro' },
+    // 'api/link/intro',
+    // {
+    //   type: 'category',
+    //   label: 'Implementation Guide',
+    //   items: [
+    //     'api/link/implementation/create-token',
+    //     'api/link/implementation/launch-link',
+    //     'api/link/implementation/exchange-public-accounts',
+    //   ],
+    // },
+    // {
+    //   type: 'category',
+    //   label: 'Libraries',
+    //   items: [
+    //     { type: 'link', href: 'https://github.com/MethodFi/react-method-link', label: 'Web (React)' },
+    //   ],
+    // },
   ],
 };
