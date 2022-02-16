@@ -1,0 +1,40 @@
+import ConnectionsRetrieve from '../../../../src/snippets/ConnectionsRetrieve';
+
+# Retrieve a connection
+
+**About**: Returns the connection associated with the id.
+
+**API Method**: `GET /connections/:connectionId`
+
+### Request
+
+#### Example
+<ConnectionsRetrieve />
+
+#### Parameters
+
+| Name | Type     | Required | Description                        |
+|------|----------|----------|------------------------------------|
+| `id` | `string` | ✅       | The Id of the connection to retrieve. |
+
+
+### Response
+
+#### Example
+
+```json
+{
+  "id": "cxn_FhjM8hchRGGwU",
+  "entity_id": "ent_QHEtqZMYkww66",
+  "accounts": [
+    "acc_yMwVwMpHm3TQg",
+    "acc_a7GtVrK7kPPq9"
+  ],
+  "source": "mch_5500",
+  "status": "success",
+  "error": null,
+  "created_at": "2022-02-15T17:50:05.325Z",
+  "updated_at": "2022-02-15T17:52:46.378Z",
+  "last_synced_at": "2022-02-15T17:52:05.918Z"
+}
+```

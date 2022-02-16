@@ -123,10 +123,11 @@ when parsed, will would result in the following JSON
 
 ##### Attributes
 
-| Name                                          | Type                 | Description                                                                                                                                                                         |
-|-----------------------------------------------|----------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `op`       | `string`              | The operation type returned by the element.                      |
-| `element_type`       | `string`              | The element type that returned this event. When the element is not known the type will be `unknown`                     |
-| `accounts`                         | `string`             | A URL-encoded JSON array with the list of connected public account tokens and their respective mask.                                                                                |
-| `accounts[n].public_account_token` | `string`             | One of the public account tokens returned by the Link Element after successfully connecting. |
-| `accounts[n].mask`                 | `string`             | The last 4 digits of the account number of the connected account.                                                                                                                   |
+| Name                               | Type                 | Description                                                                                          |
+|------------------------------------|----------------------|------------------------------------------------------------------------------------------------------|
+| `op`                               | `string`             | The operation type returned by the element.                                                          |
+| `element_type`                     | `string`             | The element type that returned this event. When the element is not known the type will be `unknown`  |
+| `accounts`                         | `string`             | A URL-encoded JSON array with the list of connected public account tokens and their respective mask. |
+| `accounts[n].public_account_token` | `string`             | One of the public account tokens returned by the Link Element after successfully connecting.         |
+| `accounts[n].mask`                 | `string`             | The last 4 digits of the account number of the connected account.                                    |
+| `cxn_id`                           | `string`, `nullable` | Unique identifier for a `Connection` that was created. `null` if no `Connection` was created.        |

@@ -210,6 +210,18 @@ module.exports = {
         'api/core/reports/download',
       ],
     },
+    {
+      type: 'category',
+      label: 'Connections',
+      items: [
+        'api/core/connections/object',
+        'api/core/connections/list',
+        'api/core/connections/update',
+        'api/core/connections/retrieve',
+        'api/core/connections/retrieve-accounts',
+        'api/core/connections/retrieve-public-account-tokens',
+      ],
+    },
     { label: 'Elements', className: 'sidebar-section-header sidebar-icon-api-elements', type: 'link', href: '/api/elements/intro' },
     'api/elements/intro',
     'api/elements/events',

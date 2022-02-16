@@ -1,0 +1,70 @@
+# The connection object
+
+A connection resource is automatically created for specific types of element tokens
+generated for the [Method Link Element](#).
+
+Below are instances in which a connection will be created when linking with the [Method Link Element](#).
+- Plaid: when
+
+### Connection object
+
+#### Example
+
+```json
+{
+  "id": "cxn_FhjM8hchRGGwU",
+  "entity_id": "ent_QHEtqZMYkww66",
+  "accounts": [
+    "acc_yMwVwMpHm3TQg",
+    "acc_a7GtVrK7kPPq9"
+  ],
+  "source": "mch_5500",
+  "status": "success",
+  "error": null,
+  "created_at": "2022-02-15T17:50:05.325Z",
+  "updated_at": "2022-02-15T17:52:46.378Z",
+  "last_synced_at": "2022-02-15T17:52:05.918Z"
+}
+```
+
+#### Attributes
+
+| Name             | Type                 | Description                                                                                                                         |
+|------------------|----------------------|-------------------------------------------------------------------------------------------------------------------------------------|
+| `id`             | `string`             | Unique identifier for the connection.                                                                                               |
+| `entity_id`      | `string`             | The id of the `Entity` for whom the connection was created.                                                                         |
+| `accounts`       | `string[]`           | A list of ids relating to an `Account` connected through this connection.                                                           |
+| `source`         | `string`             | The `source` for this connection. See [connection sources](#connection-sources).                                                    |
+| `status`         | `string`             | Status for this connection. See [connection statuses](#connection-statuses).                                                        |
+| `error`          | `object`, `nullable` | An object representing an error that occurred for this connection. See [connection errors](/api/errors/resource#connection-errors). |
+| `created_at`     | `string`             | Timestamp of when the connection was created.                                                                                       |
+| `updated_at`     | `string`             | Timestamp of when the connection was last updated.                                                                                  |
+| `last_synced_at` | `string`             | Timestamp of when the connection was last synced.                                                                                   |
+
+#### Connection Sources
+
+// TODO[mdelcarmen]: this
+The following are possible values for a connection's source.
+
+* `plaid`
+The connection was created through Plaid.
+
+* `mch_5500` (Affirm)
+The connection was created through Affirm.
+
+#### Connection Statuses
+
+// TODO[mdelcarmen]: this
+The following are possible statuses a connection can be in.
+
+* `success`
+The connection was successful.
+
+* `reauth_required`
+The connection's requires re-authentication.
+
+* `syncing`
+The connection is currently syncing.
+
+* `failed`
+The connection has failed.

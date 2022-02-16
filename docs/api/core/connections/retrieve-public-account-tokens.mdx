@@ -1,0 +1,26 @@
+import ConnectionsRetrievePublicAccountTokens from '../../../../src/snippets/ConnectionsRetrievePublicAccountTokens';
+
+# List connection public account tokens
+
+**About**: Returns all the public account tokens associated with a connection or an empty array.
+
+**API Method**: `GET /connections/:connectionId/public_account_tokens`
+
+### Request
+
+#### Example
+<ConnectionsRetrievePublicAccountTokens />
+
+### Response
+
+#### Example
+
+An array of public account tokens will be returned.
+
+```json
+{
+  "data": [
+    "pk_acc_gweapamcJrK8CwytPKXsMBDttnXcWm2t"
+  ]
+}
+```

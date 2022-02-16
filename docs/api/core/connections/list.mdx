@@ -1,0 +1,69 @@
+import ConnectionsList from '../../../../src/snippets/ConnectionsList';
+
+# List all connections
+
+**About**: Returns all the connections associated with your team, or an empty array is none have been created.
+
+**API Method**: `GET /connections`
+
+### Request
+
+#### Example
+<ConnectionsList />
+
+### Response
+
+#### Example
+
+An array of connection objects will be returned.
+
+```json
+{
+  "data": [
+    {
+      "id": "cxn_8MDWz73sdNbjD",
+      "entity_id": "ent_QHEtqZMYkww66",
+      "accounts": [
+        "acc_jKcY7GbpzpwGm"
+      ],
+      "source": "plaid",
+      "status": "success",
+      "error": null,
+      "created_at": "2022-02-15T18:48:35.033Z",
+      "updated_at": "2022-02-15T18:49:16.266Z",
+      "last_synced_at": "2022-02-15T18:48:58.300Z"
+    },
+    {
+      "id": "cxn_FhjM8hchRGGwU",
+      "entity_id": "ent_QHEtqZMYkww66",
+      "accounts": [
+        "acc_yMwVwMpHm3TQg",
+        "acc_a7GtVrK7kPPq9"
+      ],
+      "source": "mch_5500",
+      "status": "success",
+      "error": null,
+      "created_at": "2022-02-15T17:50:05.325Z",
+      "updated_at": "2022-02-15T17:52:46.378Z",
+      "last_synced_at": "2022-02-15T17:52:05.918Z"
+    },
+    {
+      "id": "cxn_rQCgsQzwhd7Bz",
+      "entity_id": "ent_QHEtqZMYkww66",
+      "accounts": [
+        "acc_dekAixTQezYbe",
+        "acc_GRHgtescMCFYj",
+        "acc_4e26W5fPa2j6t",
+        "acc_dyJHynJTd27Ys",
+        "acc_pwqNFx7Vcpdcr"
+      ],
+      "source": "mch_5500",
+      "status": "success",
+      "error": null,
+      "created_at": "2022-02-15T18:31:07.184Z",
+      "updated_at": "2022-02-15T18:31:56.164Z",
+      "last_synced_at": "2022-02-15T18:31:56.164Z"
+    }
+  ]
+}
+```
