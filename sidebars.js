@@ -70,6 +70,8 @@ module.exports = {
     'api/environments',
     'api/idempotency',
     'api/healthcheck',
+    'api/filtering',
+    'api/pagination',
     'api/metadata',
     { label: 'Errors', className: 'sidebar-section-header sidebar-icon-api-errors', type: 'link', href: '/api/errors/overview' },
     'api/errors/overview',
@@ -255,6 +257,15 @@ module.exports = {
       label: 'Balance Transfer',
       items: [
         'api/elements/balance-transfer/intro',
+      ],
+    },
+    { label: 'Simulations', className: 'sidebar-section-header sidebar-icon-api-simulate', type: 'link', href: '/api/simulate/overview' },
+    'api/simulate/overview',
+    {
+      type: 'category',
+      label: 'Payments',
+      items: [
+        'api/simulate/payments/update',
       ],
     },
     { label: 'Utils', className: 'sidebar-section-header sidebar-icon-api-utils', type: 'link', href: '/api/utils/bins/object' },
