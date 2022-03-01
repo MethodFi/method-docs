@@ -1,0 +1,55 @@
+import SimulatePaymentsUpdate from '../../../../src/snippets/SimulatePaymentsUpdate';
+
+# Update payment status
+
+**About**: Updates a payment's status with the parameters sent.
+
+**API Method**: `POST /simulate/payments/:paymentId`
+
+
+### Request
+
+#### Example
+<SimulatePaymentsUpdate />
+
+#### Parameters
+| Name         | Type                 | Required | Description                                                                                                                                 |
+|--------------|----------------------|----------|---------------------------------------------------------------------------------------------------------------------------------------------|
+| `status`     | `string`             | ✅        | The next status to which the payment should transition. See [valid status transitions](#valid-status-transitions).                                                       |
+| `error_code` | `number`, `nullable` |          | The desired payment error code to simulate. Required when status is `reversal_required` or `reversal_processing`. Possible values: `10001`. |
+
+### Response
+
+#### Example
+```json
+{
+  "id": "pmt_rPrDPEwyCVUcm",
+  "reversal_id": null,
+  "source_trace_id": null,
+  "destination_trace_id": null,
+  "source": "acc_JMJZT6r7iHi8e",
+  "destination": "acc_AXthnzpBnxxWP",
+  "amount": 5000,
+  "description": "Loan Pmt",
+  "status": "processing",
+  "error": null,
+  "metadata": null,
+  "estimated_completion_date": "2020-12-11",
+  "created_at": "2020-12-09T00:42:31.209Z",
+  "updated_at": "2020-12-09T00:43:30.996Z"
+}
+```
+
+
+### Valid status transitions
+
+The following are valid status transitions supported by this simulation.
+
+| Current Status        | Next Status           | Description                                                                                                                                                                                                                                                                                                                        |
+|-----------------------|-----------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `pending`             | `processing`          | The payment has started processing and can no longer be canceled.                                                                                                                                                                                                                                                                  |
+| `processing`          | `sent`                | The payment has been executed and sent to the banking networks.                                                                                                                                                                                                                                                                    |
+| `sent`                | `reversal_required`   | The retrieval of funds from the source account failed __after__ the funds reached the destination account. A `Reversal` will automatically be created for this payment, and [must be approved](/api/core/payments/reversals/update).                                                                                               |
+| `sent`                | `reversal_processing` | For some organizations, a `Reversal` is automatically approved. As a result, instead of transitioning from `sent` to `reversal_required` and being required to [approve the created reversal](/api/core/payments/reversals/update), these organizations can immediately transition a payment from `sent` to `reversal_processing`. |
+| `reversal_processing` | `reversed`            | If a payment's associated destination account is of type `ach`, a reversal will be retrieving the funds back from the destination account.                                                                                                                                                                                         |
+| `reversal_processing` | `settled`             | If a payment's associated destination account is of type `liability`, a reversal would re-initiate the pulling of funds from the source account.                                                                                                                                                                                   |

@@ -1,0 +1,25 @@
+# Pagination
+
+Core API endpoints that list records are returned in reverse chronological order, with the mostly recently created
+resource showing up first. You may optionally provide the following pagination parameters to limit the
+returned records.
+
+### Parameters
+
+| Name         | Type     | Required | Description                                                                                         |
+|--------------|----------|----------|-----------------------------------------------------------------------------------------------------|
+| `from_date`  | `string` |          | ISO 8601 formatted date (YYYY-MM-DD) to filter for records created on and after the date provided.  |
+| `to_date`    | `string` |          | ISO 8601 formatted date (YYYY-MM-DD) to filter for records created on and before the date provided. |
+| `page`       | `string` |          | The number of the page to return.                                                                   |
+| `page_limit` | `string` |          | The number of records to return per page.                                                           |
+
+### Response pagination headers
+The following headers are returned with the response:
+
+| Header                   | Description                                         |
+|--------------------------|-----------------------------------------------------|
+| `Pagination-Page`        | The current page.                                   |
+| `Pagination-Page-Count`  | The total number of pages available.                |
+| `Pagination-Page-Limit`  | The number of records to return per page.         |
+| `Pagination-Total-Count` | The total number of records matching the request. |
+
