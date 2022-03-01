@@ -278,6 +278,10 @@ a.transparent, a.transparent:hover {
   background: url("/img/sidebar-icon/guides/support.svg") 100% / 1rem 1rem;
 }
 
+.sidebar-section-header.sidebar-icon-api-simulate:before {
+  background: url("/img/sidebar-icon/api/simulate.svg") 100% / 1rem 1rem;
+}
+
 .items-center {
   align-items: center;
 }
