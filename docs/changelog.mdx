@@ -6,6 +6,23 @@ See the latest changes and updates to Method's API.
 🚀 Method is the easiest way to embed debt repayment into your app. ([Learn More](https://methodfi.com))
 :::
 
+### February 2022
+* **🎛 List endpoint filters**: Enable filtering for (payments,accounts, and entities) resources. ([docs](/api/filtering))
+* **📄 List endpoint pagination**: Enable pagination for (payments,accounts, and entities) resources ([docs](/api/pagination))
+* **💅 Dashboard UI updates**: Added an admin-friendly view for payments in all environments at [dashboard.methodfi.com](https://dashboard.methodfi.com/)
+* **🤖 Add simulation endpoints**: Added resource simulation endpoints (`/simulate/<RESOURCE_NAME>`) to
+improve overall developer experience in [development](/api/environments#development). ([docs](/api/simulate/overview))
+* **◀️ Payment reversals**: Added a new resource (`/payments/:paymentId/reversals`) to manage unsuccessful payments
+that require the balancing of funds. ([docs](/api/core/payments/reversals/object))
+* **🏬 Merchant improvements**: Improved overall merchant coverage and categorization ([docs](/api/core/merchants/object))
+* **🛍 Support BNPL payments (coming soon)**: Enable payments to BNPL (Buy Now, Pay Later) loans
+from Affirm, Afterpay, and Klarna.
+
+### January 2022
+* **✅  Source verification with Teller**: Support source account verification with Teller. ([docs](/api/core/accounts/ach-verification/create-teller))
+* **🔍 Trace IDs**: Provide source and destination trace IDs for payments. ([docs](/api/core/payments/object#attributes))
+* **🚀 Add 3000+ new Merchants**: Expand overall merchant support. ([docs](/api/core/merchants/object))
+
 ### December 2021
 * **API errors section**: Improved documentation for all API errors ([HTTP errors](/api/errors/http) and [Resource errors](/api/errors/resource)).
 * **Resource errors**: Added `error` property to entities, accounts, verifications, and payments corresponding
