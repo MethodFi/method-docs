@@ -9,8 +9,8 @@ import QuickStartCreatePayment from '../../../src/snippets/QuickStartCreatePayme
 
 # Create your first payment
 
-A payment is a transfer of funds from a [source account](/guides/source-accounts)
-to a [destination account](/guides/destination-accounts).
+A payment is a transfer of funds from a [source account](/guides/accounts/overview#source-accounts)
+to a [destination account](/guides/accounts/overview#destination-accounts).
 
 ### Steps
   - [Create an entity](#1-creating-an-entity) that will become the holder/owner of both the
@@ -71,7 +71,7 @@ Now that we have an entity to hold accounts, we can create a source account for 
 This account will become our payment source later on. Source accounts can only be of type `ach` which includes
 checking/savings accounts.
 
-ℹ️ See [source accounts](/guides/source-accounts) to learn more
+ℹ️ See [source accounts](/guides/accounts/overview#source-accounts) to learn more
 
 #### Request
 <QuickStartCreateSource />
@@ -109,7 +109,7 @@ Similar to the previous step, we need to create a destination account where the 
 will be sent to. Destination accounts can either be of type `ach` which includes checking/savings
 accounts, or `liability` which includes any type of liability (personal loans, credit cards, student loans, etc.)
 
-ℹ️ See [destination accounts](/guides/destination-accounts) to learn more
+ℹ️ See [destination accounts](/guides/accounts/overview#destination-accounts) to learn more
 
 #### Request
 <QuickStartCreateDestination />

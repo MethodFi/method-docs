@@ -1,0 +1,64 @@
+import EntitiesUpdateIndividualAuthSession from '../../../../src/snippets/EntitiesUpdateIndividualAuthSession';
+
+# Update an individual auth session
+
+**About**: Update an auth session for an entity to automatically retrieve their
+debt accounts.
+
+**API Method**: `PUT /entities/:entityId/auth_session`
+
+:::caution
+This endpoint is only accessible to entities that have the `data:retrieve` capability
+in `available_capabilities`.
+:::
+
+### Request
+
+#### Example
+<EntitiesUpdateIndividualAuthSession />
+
+### Response
+
+#### Example (Additional Authentication Required)
+```json
+{
+  "questions": [
+    {
+      "id" : "qtn_7smgfLrU6M5tt",
+      "text" : "Which of the following is a current or previous employer?",
+      "answers" : [
+        {
+          "id" : "ans_ZExAcSeGjgEwS",
+          "text" : "Men's Wearhouse"
+        },
+        {
+          "id" : "ans_8MRLxgtQxEmYV",
+          "text" : "Target"
+        },
+        {
+          "id" : "ans_C5mDrRBmaP9Bs",
+          "text" : "Walmart"
+        },
+        {
+          "id" : "ans_wZkNPi9G7Xnge",
+          "text" : "Wells Fargo"
+        },
+        {
+          "id" : "ans_CUbfCtZ4sNBwQ",
+          "text" : "None of the Above"
+        }
+      ]
+    },
+    ...
+  ],
+  "cxn_id": null
+}
+```
+
+#### Example (Successfully Authenticated)
+```json
+{
+  "questions": [],
+  "cxn_id": "cxn_iENwAPKnNqA5j"
+}
+```

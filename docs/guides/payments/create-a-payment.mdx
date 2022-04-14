@@ -9,12 +9,12 @@ import PaymentsCreate from '../../../src/snippets/PaymentsCreate';
 Payments are created to transfer funds from one account to another. This could
 either be between two ACH accounts, or from an ACH account to a Liability account.
 Below are requirements to successfully create a payment:
-- A [source account](/guides/source-accounts) with
-the `payments:send` [capability](/guides/source-accounts/verification-and-capabilities) owned
-by an [entity](/guides/entities) with the same `payments:send` [capability](/guides/entities/kyc-and-capabilities).
-- A [destination account](/guides/destination-accounts) with
-the `payments:receive` [capability](/guides/source-accounts/verification-and-capabilities) owned
-by an [entity](/guides/entities) with the same `payments:receive` [capability](/guides/entities/kyc-and-capabilities).
+- A [source account](/guides/accounts/overview#source-accounts) with
+the `payments:send` [capability](/guides/accounts/capabilities) owned
+by an [entity](/guides/entities) with the same `payments:send` [capability](/guides/entities/capabilities).
+- A [destination account](/guides/accounts/overview#destination-accounts) with
+the `payments:receive` [capability](/guides/accounts/capabilities) owned
+by an [entity](/guides/entities) with the same `payments:receive` [capability](/guides/entities/capabilities).
 - A description that is 10 characters or less.
 - An amount that is at least $1.00
 
@@ -23,7 +23,7 @@ If the following requirements above are met, a payment can be created with __any
 account within your organization to __any__ destination account within your organization
 regardless of the holder/entity.
 
-__Ex.__ Peter owns a Chase Checking. Sandy owns a FedLoan account. A payment can be sent from
+__Example__: Peter owns a Chase Checking. Sandy owns a FedLoan account. A payment can be sent from
 Peter's Chase to Sandy's FedLoan.
 :::
 

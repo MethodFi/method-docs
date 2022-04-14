@@ -254,12 +254,8 @@ a.transparent, a.transparent:hover {
   background: url("/img/sidebar-icon/guides/entities.svg") 100% / 1rem 1rem;
 }
 
-.sidebar-section-header.sidebar-icon-guides-source-accounts:before {
-  background: url("/img/sidebar-icon/guides/source-accounts.svg") 100% / 1rem 1rem;
-}
-
-.sidebar-section-header.sidebar-icon-guides-destination-accounts:before {
-  background: url("/img/sidebar-icon/guides/destination-accounts.svg") 100% / 1rem 1rem;
+.sidebar-section-header.sidebar-icon-guides-accounts:before {
+  background: url("/img/sidebar-icon/guides/accounts.svg") 100% / 1rem 1rem;
 }
 
 .sidebar-section-header.sidebar-icon-guides-payments:before {

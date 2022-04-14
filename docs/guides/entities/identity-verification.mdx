@@ -1,0 +1,136 @@
+---
+sidebar_label: Identity verification
+---
+
+import EntitiesUpdateIndividualAuthSession from '../../../src/snippets/EntitiesUpdateIndividualAuthSession';
+import EntitiesCreateIndividualAuthSession from '../../../src/snippets/EntitiesCreateIndividualAuthSession';
+import ConnectionsRetrieve from '../../../src/snippets/ConnectionsRetrieve';
+
+# Identity verification
+
+With additional identity verification, you will be able to automatically retrieve
+and link all of an individual entity's debts to Method. This additional verification
+will require the entity to answer a set of security questions that will verify
+their identity and ownership over those debts.
+
+:::caution
+Only entities with the `data:retrieve` capability available can continue
+with this guide. Refer back to the [retrieve data capability](/guides/entities/capabilities#retrieve-data)
+section if you wish to follow this guide.
+:::
+
+---
+
+### Create an auth session
+The first step in verifying an entity's identity is creating an auth session.
+This request returns a list of security questions that the entity must
+correctly answer.
+
+<EntitiesCreateIndividualAuthSession />
+
+#### Response
+```json
+{
+  "questions": [
+    {
+      "id" : "qtn_ywWqCnXDGGmmg",
+      "text" : "What is the monthly payment of your most recent auto loan or lease?",
+      "answers" : [
+        {
+          "id" : "ans_qHLLEUBVpSpTK",
+          "text" : "$601 - $700"
+        },
+        {
+          "id" : "ans_74H68MJjqNhk8",
+          "text" : "None of the Above"
+        },
+        ...
+      ]
+    },
+    ...
+  ]
+}
+```
+
+---
+
+### Update an auth session
+Next we'll provide the answers to the security questions. This request
+may either return a list of additional security questions, or a
+`cxn_id` which indicates that the verification was successful.
+
+<EntitiesUpdateIndividualAuthSession />
+
+#### Response (Verification Successful)
+Once we receive a non-null `cxn_id`, we have successfully verified this entity's
+identity and retrieved their debt accounts.
+
+```json
+{
+  "questions": [],
+  "cxn_id": "cxn_iENwAPKnNqA5j"
+}
+```
+
+#### Response (Additional Verification Required)
+In some cases, you may need to go through an additional set of security questions to fully verify.
+Simply repeat the request with answers for the new set of security questions.
+
+```json
+{
+  "questions": [
+    {
+      "id" : "qtn_7smgfLrU6M5tt",
+      "text" : "Which of the following is a current or previous employer?",
+      "answers" : [
+        {
+          "id" : "ans_ZExAcSeGjgEwS",
+          "text" : "Men's Wearhouse"
+        },
+        {
+          "id" : "ans_8MRLxgtQxEmYV",
+          "text" : "Target"
+        },
+        ...
+      ]
+    },
+    ...
+  ],
+  "cxn_id": null
+}
+```
+
+---
+
+### Retrieving the verified connection
+The resulting resource created from verifying an entity's identity is
+a connection object which contains the list of debt accounts retrieved
+for this entity.
+
+<ConnectionsRetrieve />
+
+#### Response
+```json
+{
+  "id": "cxn_iENwAPKnNqA5j",
+  "entity_id": "ent_au22b1fbFJbp8",
+  "accounts": [
+    "acc_XaDZc8tE4YVeJ",
+    "acc_k5NzziUDg7hTg",
+    "acc_p3xR5ne3iAX6g",
+    "acc_mDDi64jzWUgSx",
+    "acc_EpcLnJSkSCnRM"
+  ],
+  "source": "method_data",
+  "status": "success",
+  "error": null,
+  "created_at": "2022-02-16T18:02:21.866Z",
+  "updated_at": "2022-02-20T22:50:45.391Z",
+  "last_synced_at": "2022-02-20T22:50:45.391Z"
+}
+```
+
+➡️ See [the connection object](/api/core/connections/object) for details on the API.
+
+---
+
