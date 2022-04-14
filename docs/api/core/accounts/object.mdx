@@ -46,7 +46,15 @@ The `holder_id` is the id of the `Entity` who owns this account. Associating the
   "ach": null,
   "liability": {
     "mch_id": "mch_2",
-    "mask": "4455"
+    "mask": "4455",
+    "type": "student_loan",
+    "student_loan": {
+      "name": "FedLoan Student Loan",
+      "sub_type": "federal",
+      "sequence": 6,
+      "balance": 132600,
+      "disbursed_at": "2015-06-29"
+    }
   },
   "clearing": null,
   "metadata": null,
@@ -62,24 +70,51 @@ The `holder_id` is the id of the `Entity` who owns this account. Associating the
 
 #### Attributes
 
-| Name               | Type                 | Description                                                                                                                        |
-|--------------------|----------------------|------------------------------------------------------------------------------------------------------------------------------------|
-| `id`               | `string`             | Unique identifier for the account.                                                                                                 |
-| `holder_id`        | `string`             | The id of the `Entity` who is the legal holder of this account.                                                                    |
-| `type`             | `string`             | The type of account. Options: `ach` or `liability`                                                                                 |
-| `ach`              | `object` `nullable`  | ACH account information.                                                                                                           |
-| `ach.routing`      | `string`             | ABA routing number of the ACH account. (maximum of 9 characters).                                                                  |
-| `ach.number`       | `string`             | Account number of the ACH account. (maximum of 17 characters).                                                                     |
-| `ach.type`         | `string`             | Type of ACH account. Options: `checking` or `savings`                                                                              |
-| `liability`        | `object` `nullable`  | Liability account information.                                                                                                     |
-| `liability.mch_id` | `string`             | Unique identifier of the merchant associated with this account.                                                                    |
-| `liability.mask`   | `string`, `nullable` | The last 4 digits of the associated account number.                                                                                |
-| `metdata`          | `object`, `nullable` | Additional data provided during creation. See [metadata](/api/metadata).                                                           |
-| `status`           | `string`             | Status of an account. Possible statuses: `active`, `disabled`. See *Account Statuses* for more info.                               |
-| `capabilities`     | `string[]`           | Capabilities of the account. Possible capabilities: `payments:receive`, `payments:send`. See *Account Capabilities* for more info. |
-| `error`            | `object` `nullable`  | An object representing an error that occurred for this account. See [account errors](/api/errors/resource#account-errors).         |
-| `created_at`       | `string`             | Timestamp of when the account was created.                                                                                         |
-| `updated_at`       | `string`             | Timestamp of when the account was last updated.                                                                                    |
+| Name                                                | Type                 | Description                                                                                                                        |
+|-----------------------------------------------------|----------------------|------------------------------------------------------------------------------------------------------------------------------------|
+| `id`                                                | `string`             | Unique identifier for the account.                                                                                                 |
+| `holder_id`                                         | `string`             | The id of the `Entity` who is the legal holder of this account.                                                                    |
+| `type`                                              | `string`             | The type of account. Options: `ach` or `liability`                                                                                 |
+| `ach`                                               | `object` `nullable`  | ACH account information.                                                                                                           |
+| `ach.routing`                                       | `string`             | ABA routing number of the ACH account. (maximum of 9 characters).                                                                  |
+| `ach.number`                                        | `string`             | Account number of the ACH account. (maximum of 17 characters).                                                                     |
+| `ach.type`                                          | `string`             | Type of ACH account. Options: `checking` or `savings`                                                                              |
+| `liability`                                         | `object` `nullable`  | Liability account information.                                                                                                     |
+| `liability.mch_id`                                  | `string`             | Unique identifier of the merchant associated with this account.                                                                    |
+| `liability.mask`                                    | `string`, `nullable` | The last 4 digits of the associated account number.                                                                                |
+| `liability.type`                                    | `string`             | The type of liability account. See [liability account types](#liability-account-types)                                             |
+| `liability.student_loan`                            | `object`, `nullable` | Student loan liability information.                                                                                                |
+| `liability.student_loan.name`                       | `string`             | A name given to the student loan.                                                                                                  |
+| `liability.student_loan.sub_type`                   | `string`             | The type of student loan. Options: `federal` or `private`                                                                          |
+| `liability.student_loan.sequence`                   | `number`, `nullable` | The student loan's sequence number.                                                                                                |
+| `liability.student_loan.balance`                    | `number`             | The student loan's remaining balance.                                                                                              |
+| `liability.student_loan.disbursed_at`               | `string`, `nullable` | The date, in ISO 8601 format (YYYY-MM-DD), in which the student loan was disbursed.                                                |
+| `liability.credit_card`                             | `object`, `nullable` | Credit card liability information.                                                                                                 |
+| `liability.credit_card.name`                        | `string`             | A name given to the credit card.                                                                                                   |
+| `liability.credit_card.balance`                     | `number`             | The credit card's current balance.                                                                                                 |
+| `liability.credit_card.last_payment_amount`         | `number`             | The amount of the last payment made to the credit card.                                                                            |
+| `liability.credit_card.last_payment_date`           | `string`, `nullable` | The date, in ISO 8601 format (YYYY-MM-DD), when the last payment amount was made.                                                  |
+| `liability.credit_card.next_payment_due_date`       | `string`, `nullable` | The date, in ISO 8601 format (YYYY-MM-DD), when the next payment amount is due.                                                    |
+| `liability.credit_card.next_payment_minimum_amount` | `number`             | The minimum amount to be paid on the next due date.                                                                                |
+| `liability.credit_card.opened_at`                   | `string`, `nullable` | The date, in ISO 8601 format (YYYY-MM-DD), when the credit card account was opened.                                                |
+| `liability.loan`                                    | `object`, `nullable` | Loan liability information.                                                                                                        |
+| `liability.loan.name`                               | `string`             | A name given to the loan.                                                                                                          |
+| `liability.loan.balance`                            | `number`             | The loan's remaining balance.                                                                                                      |
+| `liability.loan.opened_at`                          | `string`, `nullable` | The date, in ISO 8601 format (YYYY-MM-DD), when the loan account was opened.                                                       |
+| `liability.auto_loan`                               | `string`, `nullable` | Auto loan liability information.                                                                                                   |
+| `liability.auto_loan.name`                          | `string`             | A name given to the auto loan.                                                                                                     |
+| `liability.auto_loan.balance`                       | `number`             | The auto loan's remaining balance.                                                                                                 |
+| `liability.auto_loan.opened_at`                     | `string`, `nullable` | The date, in ISO 8601 format (YYYY-MM-DD), when the auto loan account was opened.                                                  |
+| `liability.mortgage`                                | `string`, `nullable` | Mortgage liability information.                                                                                                    |
+| `liability.mortgage.name`                           | `string`             | A name given to the mortgage.                                                                                                      |
+| `liability.mortgage.balance`                        | `number`             | The mortgage's remaining balance.                                                                                                  |
+| `liability.mortgage.opened_at`                      | `string`, `nullable` | The date, in ISO 8601 format (YYYY-MM-DD), when the mortgage account was opened.                                                   |
+| `metadata`                                          | `object`, `nullable` | Additional data provided during creation. See [metadata](/api/metadata).                                                           |
+| `status`                                            | `string`             | Status of an account. Possible statuses: `active`, `disabled`. See *Account Statuses* for more info.                               |
+| `capabilities`                                      | `string[]`           | Capabilities of the account. Possible capabilities: `payments:receive`, `payments:send`. See *Account Capabilities* for more info. |
+| `error`                                             | `object` `nullable`  | An object representing an error that occurred for this account. See [account errors](/api/errors/resource#account-errors).         |
+| `created_at`                                        | `string`             | Timestamp of when the account was created.                                                                                         |
+| `updated_at`                                        | `string`             | Timestamp of when the account was last updated.                                                                                    |
 
 #### Account Capabilities
 
@@ -90,6 +125,7 @@ The following are possible capabilities an account can have. This indicates if a
 
 - `payments:receive` The account can be used as a payment destination.
 - `payments:send` The account can be used as a payment source.
+- `data:retrieve` The account has additional liability information from [Method Data](/guides/quick-start/retrieve-an-entitys-debts).
 
 #### Account Statuses
 
@@ -102,3 +138,23 @@ The account has at least the `payments:receive` capability.
 The account has been disabled and no longer has capabilities. Accounts
 can transition into the `disabled` status if a related payment
 fails due to invalid account information.
+
+* `closed`
+The account was created using [Method Data](/guides/quick-start/retrieve-an-entitys-debts) and is
+either fully paid-off or no longer exists. Accounts in `closed` will not have capabilities.
+
+* `processing`
+The account was created using [Method Data](/guides/quick-start/retrieve-an-entitys-debts) and is
+currently being processed. Once that account has successfully been processed, its status
+will transition to active and will be available to receive payments. Accounts in `processing` will
+not have capabilities.
+
+#### Liability Account Types
+
+The following are possible values for `liability.type`. For any of these values except `unknown`,
+a corresponding key with the same name will be populated with data for that specific type.
+
+__Example__: If an account has `liability.type` equal to `credit_card`, then `liability.credit_card` will
+be populated with credit card information.
+
+- `student_loan`, `credit_card`, `loan`, `auto_loan`, `mortgage`, `unknown`.

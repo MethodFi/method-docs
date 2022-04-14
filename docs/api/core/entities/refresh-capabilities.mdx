@@ -1,24 +1,16 @@
-import EntitiesUpdate from '../../../../src/snippets/EntitiesUpdate';
+import EntitiesRefreshCapabilities from '../../../../src/snippets/EntitiesRefreshCapabilities';
 
-# Update an entity
+# Refresh an entity's capabilities
 
-**About**: Updates an entity with the parameters sent.
+**About**: Refresh an entity's capabilities to ensures that an entity's capabilities
+up-to-date with new releases.
 
-**API Method**: `PUT /entities/:entityId`
-
-:::tip
-Updating an entity with more information will enable further capabilities on the Entity. See [Entity Capabilities](/api/core/entities/object#entity-capabilities) for more info.
-:::
-
-:::caution
-Once an entity's property has been set, that property can no longer be updated.
-:::
-
+**API Method**: `POST /entities/:entityId/refresh_capabilities`
 
 ### Request
 
 #### Example
-<EntitiesUpdate />
+<EntitiesRefreshCapabilities />
 
 ### Response
 
@@ -47,7 +39,9 @@ Once an entity's property has been set, that property can no longer be updated.
     "payments:send",
     "payments:receive"
   ],
-  "available_capabilities": [],
+  "available_capabilities": [
+    "data:retrieve"
+  ],
   "pending_capabilities": [],
   "error": null,
   "status": "active",

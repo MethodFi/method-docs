@@ -1,0 +1,106 @@
+---
+sidebar_label: Retrieve liability account data
+---
+
+import AccountsRetrieve from '../../../src/snippets/AccountsRetrieve';
+
+# Retrieve liability account data
+
+Accounts connected through the [Method Data](/guides/quick-start/retrieve-an-entitys-debts) flow
+automatically have enhanced and comprehensive liability data, and are ready to receive payments.
+
+:::caution
+Only accounts with the `data:retrieve` capability activated can continue
+with this guide. See the [Method Data](/guides/quick-start/retrieve-an-entitys-debts) flow
+section if you wish to follow this guide.
+:::
+
+---
+
+### Retrieve liability account
+This request retrieves a liability account created from the Method Data flow.
+
+➡️ See [liability account types](/api/core/accounts/object#liability-account-types) to learn more.
+
+<AccountsRetrieve />
+
+#### Example Response (Student loan)
+```json
+{
+  ...
+  "liability": {
+    "mch_id": "mch_2",
+    "mask": "4455",
+    "type": "student_loan",
+    "student_loan": {
+      "name": "FedLoan Student Loan",
+      "sub_type": "federal",
+      "sequence": 6,
+      "balance": 132600,
+      "disbursed_at": "2015-06-29"
+    }
+  },
+  ...
+}
+```
+
+#### Example Response (Credit card)
+
+```json
+{
+  ...
+  "liability": {
+    "mch_id": "mch_3",
+    "mask": "4127",
+    "type": "credit_card",
+    "credit_card": {
+      "name": "American Express Platinum Card",
+      "balance": 236200,
+      "last_payment_amount": 130925,
+      "last_payment_date": "2022-03-05",
+      "next_payment_due_date": "2022-04-05",
+      "next_payment_minimum_amount": 86000,
+      "opened_at": "2018-09-03"
+    }
+  },
+  ...
+}
+```
+
+#### Example Response (Personal loan)
+
+```json
+{
+  ...
+  "liability": {
+    "mch_id": "mch_183",
+    "mask": "2901",
+    "type": "loan",
+    "loan": {
+      "name": "Chase Personal Loan",
+      "balance": 306750,
+      "opened_at": "2020-06-22"
+    },
+  },
+  ...
+}
+```
+
+#### Example Response (Auto loan)
+
+```json
+{
+  ...
+  "liability": {
+    "mch_id": "mch_2157",
+    "mask": "0966",
+    "type": "auto_loan",
+    "auto_loan": {
+      "name": "Honda Auto Loan",
+      "balance": 2207950,
+      "opened_at": "2018-08-19"
+    },
+  },
+  ...
+}
+```

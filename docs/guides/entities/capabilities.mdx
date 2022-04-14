@@ -1,0 +1,101 @@
+---
+sidebar_label: Capabilities
+---
+
+# Capabilities
+
+Capabilities determine the possible actions an entity is allowed to take. Entities are
+granted capabilities based on the information provided.
+
+Method performs a KYC (Know Your Customer) process to verify the entity's identity with
+the information provided. This is crucial in detecting fraud and remaining compliant
+with banking regulations.
+
+An entity's capabilities can be revoked due to payment failures. See
+[payment errors and capabilities](/guides/payments/lifecycle-and-errors#errors-and-capabilities).
+
+:::tip
+_Available capabilities_ are located in the entity's `available_capabilities` property, while
+_activated capabilities_ are located in the entity's `capabilities` property.
+:::
+
+#### Capability prefixes
+
+| Prefix     | Example         | Description                                                                                                                                                                                      |
+|------------|-----------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `payments` | `payments:send` | This prefix indicates that a capability is part of Method's core payments product.                                                                                                               |
+| `data`     | `data:retrieve` | This prefix indicates that a capability is part of Method's separate data product. This product requires additional setup for your organization. Contact team@methodfi.com for more information. |
+
+ℹ️ See [entity capabilities](/api/core/entities/object#entity-capabilities)
+for details on the API.
+
+---
+
+### Entity information
+
+Method allows you to create entities with minimal information, then update
+that entity as you collect more information. Below is a list of information
+that defines an entity's uniqueness for each type of entity.
+
+#### Individuals
+- Name
+- Email
+- Phone
+- DOB (Date of birth)
+- Address
+
+#### Corporations
+- Legal business name
+- EIN (Employer identification number)
+- Address
+
+:::note
+Once an entity's property has been set, that property can no longer be updated.
+:::
+
+---
+
+### Receive payments
+An entity is allowed to receive funds if it has the `payments:receive` capability
+activated. Below is a list of the minimum requirements for an entity to activate
+this capability.
+
+#### Individual
+- Name + Phone
+- Name + Email
+
+#### Corporation
+- Legal business name + EIN + Address
+
+---
+
+### Send payments
+An entity is allowed to send funds if it has the `payments:send` capability
+activated. Below is a list of the minimum requirements for an entity to activate
+this capability.
+
+#### Individual
+- Name + DOB + Phone
+- Name + DOB + Email
+- Name + DOB + Address
+
+#### Corporation
+- Legal business name + EIN + Address
+
+---
+
+### Retrieve data
+
+Retrieve all of an entity's debts with the `data:retrieve` capability.
+Before we can activate this capability, we must first make it available.
+In most cases, it is sufficient to provide and individual's name and phone
+to make this capability available. For some entities, however, more information
+is required.
+
+#### Individual
+- Name + Phone
+- Name + Phone + DOB
+- Name + Phone + Address
+- Name + Phone + DOB + Address
+
+➡️ Learn more about this capability in the [identity verification section](/guides/entities/identity-verification).

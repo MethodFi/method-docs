@@ -1,0 +1,55 @@
+import EntitiesCreateIndividualAuthSession from '../../../../src/snippets/EntitiesCreateIndividualAuthSession';
+
+# Create an individual auth session
+
+**About**: Creates a new auth session for an entity to automatically retrieve their
+debt accounts.
+
+**API Method**: `POST /entities/:entityId/auth_session`
+
+:::caution
+This endpoint is only accessible to entities that have the `data:retrieve` capability
+in `available_capabilities`.
+:::
+
+### Request
+
+#### Example
+<EntitiesCreateIndividualAuthSession />
+
+### Response
+
+#### Example
+```json
+{
+  "questions": [
+    {
+      "id" : "qtn_ywWqCnXDGGmmg",
+      "text" : "What is the monthly payment of your most recent auto loan or lease?",
+      "answers" : [
+        {
+          "id" : "ans_qHLLEUBVpSpTK",
+          "text" : "$601 - $700"
+        },
+        {
+          "id" : "ans_b3xLiwTS8ygMy",
+          "text" : "$701 - $800"
+        },
+        {
+          "id" : "ans_Z5mMMLFy6waMK",
+          "text" : "$801 - $900"
+        },
+        {
+          "id" : "ans_BeSaN5Vj6tRjh",
+          "text" : "$901 - $1000"
+        },
+        {
+          "id" : "ans_74H68MJjqNhk8",
+          "text" : "None of the Above"
+        }
+      ]
+    },
+    ...
+  ]
+}
+```

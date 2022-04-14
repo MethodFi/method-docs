@@ -1,0 +1,54 @@
+---
+sidebar_label: Capabilities
+---
+
+# Capabilities
+Capabilities determine the possible actions an account is allowed to take. Accounts are
+granted capabilities based on the type of account and verification completed.
+
+An account's capabilities can be revoked due to payment failures. See
+[payment errors and capabilities](/guides/payments/lifecycle-and-errors#errors-and-capabilities).
+
+Accounts with the `closed`, `processing`, or `disabled` status will not have any
+capabilities. See [account statuses](/api/core/accounts/object#account-statuses) to learn more.
+
+:::caution
+Since an account is owned by an entity, capabilities of that entity take precedence over
+an account's capabilities.
+
+__Example__: Accounts, with the `payments:send` capability owned by an entity __without__ the `payments:send`
+capability are not allowed to send payments.
+:::
+
+#### Capability prefixes
+
+| Prefix     | Example         | Description                                                                                                                                                                                      |
+|------------|-----------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `payments` | `payments:send` | This prefix indicates that a capability is part of Method's core payments product.                                                                                                               |
+| `data`     | `data:retrieve` | This prefix indicates that a capability is part of Method's separate data product. This product requires additional setup for your organization. Contact team@methodfi.com for more information. |
+
+ℹ️ See [account capabilities](/api/core/accounts/object#account-capabilities)
+for details on the API.
+
+---
+
+### Receive payments
+An account is allowed to receive funds if it has the `payments:receive` capability
+activated. Both ACH and liability accounts can activate this capability.
+
+---
+
+### Send payments
+An account is allowed to send funds if it has the `payments:send` capability
+activated. Only ACH accounts can activate this capability. For some teams, ACH accounts
+are required to be verified in order to activate this capability.
+
+➡️ See the [ach verification](/guides/accounts/ach-verification) section to learn more.
+
+---
+
+### Retrieve data
+An account is allowed to [retrieve comprehensive liability data](/guides/accounts/retrieve-liability-account-data) if
+it has the `data:retrieve` capability activated. Only accounts created through
+the [identity verification](/guides/entities/identity-verification) flow can activate this capability.
+

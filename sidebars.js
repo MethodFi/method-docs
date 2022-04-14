@@ -18,23 +18,21 @@ module.exports = {
     { label: 'Quick start', className: 'sidebar-section-header sidebar-icon-guides-quick-start', type: 'doc', id: 'guides/quick-start' },
     'guides/quick-start/environment-setup',
     'guides/quick-start/create-your-first-payment',
+    'guides/quick-start/retrieve-an-entitys-debts',
     'guides/quick-start/going-live',
 
     // Entities
     { label: 'Entities', className: 'sidebar-section-header sidebar-icon-guides-entities', type: 'doc', id: 'guides/entities' },
     'guides/entities/create-an-entity',
-    'guides/entities/kyc-and-capabilities',
+    'guides/entities/capabilities',
+    'guides/entities/identity-verification',
 
-    // Source accounts
-    { label: 'Source accounts', className: 'sidebar-section-header sidebar-icon-guides-source-accounts', type: 'doc', id: 'guides/source-accounts' },
-    'guides/source-accounts/create-a-source-account',
-    'guides/source-accounts/verification-and-capabilities',
-
-    // Destination accounts
-    { label: 'Destination accounts', className: 'sidebar-section-header sidebar-icon-guides-destination-accounts', type: 'doc', id: 'guides/destination-accounts' },
-    'guides/destination-accounts/create-a-destination-account',
-    'guides/destination-accounts/liabilities',
-    'guides/destination-accounts/bank-accounts',
+    { label: 'Accounts', className: 'sidebar-section-header sidebar-icon-guides-accounts', type: 'doc', id: 'guides/accounts' },
+    'guides/accounts/overview',
+    'guides/accounts/create-an-account',
+    'guides/accounts/capabilities',
+    'guides/accounts/ach-verification',
+    'guides/accounts/retrieve-liability-account-data',
 
     // Payments
     { label: 'Payments', className: 'sidebar-section-header sidebar-icon-guides-payments', type: 'doc', id: 'guides/payments' },
@@ -135,6 +133,15 @@ module.exports = {
         'api/core/entities/retrieve',
         'api/core/entities/update',
         'api/core/entities/list',
+        'api/core/entities/refresh-capabilities',
+        {
+          type: 'category',
+          label: 'Auth Session',
+          items: [
+            'api/core/entities/create-individual-auth-session',
+            'api/core/entities/update-individual-auth-session',
+          ],
+        },
       ],
     },
     {
@@ -210,6 +217,16 @@ module.exports = {
         'api/core/reports/create',
         'api/core/reports/retrieve',
         'api/core/reports/download',
+      ],
+    },
+    {
+      type: 'category',
+      label: 'Connections',
+      items: [
+        'api/core/connections/object',
+        'api/core/connections/list',
+        'api/core/connections/retrieve',
+        'api/core/connections/update',
       ],
     },
     { label: 'Elements', className: 'sidebar-section-header sidebar-icon-api-elements', type: 'link', href: '/api/elements/intro' },
