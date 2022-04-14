@@ -1,0 +1,150 @@
+---
+sidebar_label: Create an account
+---
+
+# Create an account
+
+import AccountsCreateACH from '../../../src/snippets/AccountsCreateACH';
+import MerchantSearchByName from '../../../src/snippets/MerchantSearchByName';
+import AccountsCreateLiability from '../../../src/snippets/AccountsCreateLiability';
+
+
+There are two types of accounts. ACH accounts (checking or savings), and
+liability accounts (student loans, credit cards, mortgages, and other types of debt accounts).
+Each account is owned by an entity, and an entity can own multiple accounts.
+
+ℹ️ See [the account object](/api/core/accounts/object#account-object) for details on the API.
+
+---
+
+### ACH account
+
+You only need basic ACH information to start creating an ACH account:
+
+- A __routing number__ which is used to identify a bank account or financial institution.
+- An __account number__ that uniquely identifies the account.
+- The __type__ of ACH account (checking or savings).
+
+This information can be collected from your users through the following methods:
+
+- __Plaid Auth__ - Plaid provides this information within their [Plaid Auth product](https://plaid.com/docs/auth/).
+- __MX__ - MX provides this information within their [Verification product](https://docs.mx.com/atrium#premium_features_verification)
+- __User provided__ - you can alternatively collect this information from your users using
+your own implementation.
+
+:::note
+The `holder_id` field in the request below refers to the `id` of an entity that owns this account.
+If you have not created an entity, see [create an entity](/guides/entities/create-an-entity).
+:::
+
+:::tip
+If the newly created ACH account does not contain the `payments:send` capability,
+you must next verify this account in order to start sending funds from it. See
+the [ach verification](/guides/accounts/ach-verification) for more details.
+:::
+
+#### Request
+<AccountsCreateACH />
+
+#### Response
+```json
+{
+  "id": "acc_b9q2XVAnNFbp3",
+  "holder_id": "ent_y1a9e1fbnJ1f3",
+  "type": "ach",
+  "ach": {
+    "routing": "367537407",
+    "number": "57838927",
+    "type": "checking"
+  },
+  "liability": null,
+  "clearing": null,
+  "metadata": null,
+  "status": "active",
+  "capabilities": [
+    "payments:receive"
+  ],
+  "error": null,
+  "created_at": "2020-12-09T00:40:51.107Z",
+  "updated_at": "2020-12-09T00:40:51.107Z"
+}
+```
+
+---
+
+### Liability account
+Liability accounts are accounts that hold a type of debt or balance owed to a financial institution, and can
+only be used to receive payments. Each liability account belongs to a financial institution, which is also referred to as
+a [merchant](/api/core/merchants/object) in the Method ecosystem.
+
+The verification process for liability accounts happen immediately upon creation. This process
+determines if the provided account number exists within a specific financial institution.
+
+:::tip
+You can automatically retrieve and create liability accounts for an entity using
+__Method Data__. See the [retrieve an entity's debts](/guides/quick-start/retrieve-an-entitys-debts) guide
+to learn more.
+:::
+
+Before creating a liability account, ensure that you have gathered the following liability account information:
+- The `mch_id` of the merchant that corresponds to the account's financial institution.
+- The `account_number` for the liability account.
+- The `id` of the entity that owns the account.
+
+#### Search for a merchant
+Merchants are financial institutions that accept payments for liability accounts. A merchant's
+`mch_id` is required to create a liability account. Below is an example on how to search
+for a merchant.
+
+ℹ️ See [list merchants](/api/core/merchants/list) for details on the API.
+
+<MerchantSearchByName />
+
+##### Response
+```json
+[
+  {
+    "mch_id": "mch_2",
+    "parent_name": "FedLoan",
+    "name": "FedLoan Servicing - Student Loans",
+    "logo": "https://static.methodfi.com/mch-logos/1616215578688-fedloan.png",
+    ...
+  }
+]
+```
+
+#### Create liability account
+After searching for the corresponding merchant, you can now create the liability account.
+
+<AccountsCreateLiability />
+
+##### Response
+```json
+{
+  "id": "acc_Zc4F2aTLt8CBt",
+  "holder_id": "ent_au22b1fbFJbp8",
+  "type": "liability",
+  "ach": null,
+  "liability": {
+    "mch_id": "mch_2",
+    "mask": "4455",
+    "type": "student_loan",
+    "student_loan": {
+      "name": "FedLoan Student Loan",
+      "sub_type": "federal",
+      "sequence": 6,
+      "balance": 132600,
+      "disbursed_at": "2015-06-29"
+    }
+  },
+  "clearing": null,
+  "metadata": null,
+  "status": "active",
+  "capabilities": [
+    "payments:receive"
+  ],
+  "error": null,
+  "created_at": "2020-12-09T02:56:19.548Z",
+  "updated_at": "2020-12-09T02:56:19.548Z"
+}
+```

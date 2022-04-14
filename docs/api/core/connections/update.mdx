@@ -1,0 +1,36 @@
+import ConnectionsUpdate from '../../../../src/snippets/ConnectionsUpdate';
+
+# Update a connection
+
+**About**: Re-sync the connection associated with the id.
+
+**API Method**: `PUT /connections/:connectionId`
+
+### Request
+
+#### Example
+<ConnectionsUpdate />
+
+### Response
+
+#### Example
+
+```json
+{
+  "id": "cxn_iENwAPKnNqA5j",
+  "entity_id": "ent_dSN2Lk3ifnWZA",
+  "accounts": [
+    "acc_XaDZc8tE4YVeJ",
+    "acc_k5NzziUDg7hTg",
+    "acc_p3xR5ne3iAX6g",
+    "acc_mDDi64jzWUgSx",
+    "acc_EpcLnJSkSCnRM"
+  ],
+  "source": "method_data",
+  "status": "syncing",
+  "error": null,
+  "created_at": "2022-02-16T18:02:21.866Z",
+  "updated_at": "2022-02-20T22:50:45.391Z",
+  "last_synced_at": "2022-02-20T22:50:45.391Z"
+}
+```

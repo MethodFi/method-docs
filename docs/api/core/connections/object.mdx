@@ -1,0 +1,60 @@
+# The connection object
+
+Connections are a representation of a group of accounts created (connected) for an
+entity through a custom source.
+
+### Connection object
+
+#### Example
+
+```json
+{
+  "id": "cxn_iENwAPKnNqA5j",
+  "entity_id": "ent_dSN2Lk3ifnWZA",
+  "accounts": [
+    "acc_XaDZc8tE4YVeJ",
+    "acc_k5NzziUDg7hTg",
+    "acc_p3xR5ne3iAX6g",
+    "acc_mDDi64jzWUgSx",
+    "acc_EpcLnJSkSCnRM"
+  ],
+  "source": "method_data",
+  "status": "success",
+  "error": null,
+  "created_at": "2022-02-16T18:02:21.866Z",
+  "updated_at": "2022-02-20T22:50:45.391Z",
+  "last_synced_at": "2022-02-20T22:50:45.391Z"
+}
+```
+
+#### Attributes
+
+| Name             | Type                 | Description                                                                                                                                      |
+|------------------|----------------------|--------------------------------------------------------------------------------------------------------------------------------------------------|
+| `id`             | `string`             | Unique identifier for the connection.                                                                                                            |
+| `entity_id`      | `string`             | The id of the `Entity` to whom the connection is associated.                                                                                     |
+| `accounts`       | `array`              | An array of account IDs created through this connection.                                                                                         |
+| `source`         | `string`             | Source of the connection. Possible sources: `method_data`.                                                                                                   |
+| `status`         | `string`             | Status of the connection. Possible statuses: `success`, `syncing`, `failed`, `reauth_required`. See [connection statuses](#connection-statuses). |
+| `error`          | `object`, `nullable` | An object representing an error that occurred for this connection. |
+| `created_at`     | `string`             | Timestamp of when the connection was created.                                                                                                    |
+| `updated_at`     | `string`             | Timestamp of when the connection was last updated.                                                                                               |
+| `last_synced_at` | `string`             | Timestamp of when the connection was last synced.                                                                                                |
+
+#### Connection statuses
+
+The following are possible statuses a connection can be in.
+
+* `success`
+The connection was successful, and the created accounts are up-to-date.
+
+* `syncing`
+The connection is currently syncing and keeping the connected
+accounts up-to-date.
+
+* `failed`
+The connection failed to sync. Refer to the connection's `error` object
+for information regarding the failure.
+
+* `reauth_required`
+The connection is out of date, and requires re-authentication.

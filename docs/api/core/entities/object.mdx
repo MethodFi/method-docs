@@ -31,6 +31,8 @@ Entities can be either an 1) individual/person, 2) company/corporation.
     "payments:send",
     "payments:receive"
   ],
+  "available_capabilities": [],
+  "pending_capabilities": [],
   "error": null,
   "status": "active",
   "metadata": null,
@@ -78,6 +80,8 @@ Entities can be either an 1) individual/person, 2) company/corporation.
     "payments:send",
     "payments:receive"
   ],
+  "available_capabilities": [],
+  "pending_capabilities": [],
   "error": null,
   "status": "active",
   "metadata": null,
@@ -88,37 +92,39 @@ Entities can be either an 1) individual/person, 2) company/corporation.
 
 ### Entity Attributes
 
-| Name                    | Type                 | Description                                                                                                                                                                                                                     |
-|-------------------------|----------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `id`                    | `string`             | Unique identifier for the entity.                                                                                                                                                                                               |
-| `type`                  | `string`             | The type of the entity. Option for receive only entity: `receive_only` Option for individual entity: `individual` Options for corporation entity: `c_corporation`, `s_corporation`, `llc`, `partnership`, `sole_proprietorship` |
-| `individual`            | `object` `nullable`  | Information of the entity with a type of `individual`                                                                                                                                                                           |
-| `individual.first_name` | `string`             | The legal first name of the individual entity.                                                                                                                                                                                  |
-| `individual.last_name`  | `string`             | The legal last name of the individual entity.                                                                                                                                                                                   |
-| `individual.phone`      | `string`             | Mobile phone number of the individual entity in E.164 format. The number will only be used for KYC / AML verification.                                                                                                          |
-| `individual.email`      | `string`             | Email address of the individual entity. The email will only be used for KYC / AML verification.                                                                                                                                 |
-| `individual.dob`        | `string`             | The entity's date of birth in ISO 8601 format.                                                                                                                                                                                  |
-| `corporation`           | `object` `nullable`  | Information of the entity with a type of `c_corporation`, `s_corporation`, `limited_liability_company`, `partnership`, `sole_proprietorship`                                                                                    |
-| `corporation.name`      | `string`             | The legal name of the corporation entity.                                                                                                                                                                                       |
-| `corporation.dba`       | `string` `nullable`  | DBA (Doing Business As) name of the corporation entity                                                                                                                                                                          |
-| `corporation.ein`       | `string`             | The EIN of the corporation entity.                                                                                                                                                                                              |
-| `corporation.owners`    | `array`              | The details of the corporation's owners (only include individuals owning 25% or more of the corporation)                                                                                                                        |
-| `receive_only`          | `object` `nullable`  | 🚧 Deprecated: Information of the entity with a type of `receive_only`.                                                                                                                                                         |
-| `receive_only.name`     | `string`             | The legal name of the entity. This name should match the name on record in the `accounts` associated to this entity.                                                                                                            |
-| `receive_only.phone`    | `string`             | Phone number of the entity in E.164 format. The number will only be used for KYC / AML purposes.                                                                                                                                |
-| `receive_only.email`    | `string`             | Email address of the entity. The email will only be used for KYC / AML purposes.                                                                                                                                                |
-| `capabilities`          | `array`              | The capabilities of the entity. See *Entity Capabilities* for more info.                                                                                                                                                        |
-| `error`                 | `object` `nullable`  | An object representing an error that occurred for this entity. See [entity errors](/api/errors/resource#entity-errors).                                                                                                        |
-| `address`               | `object`             | The entity's address.                                                                                                                                                                                                           |
-| `address.line1`         | `string`             | The first line of the entity's address.                                                                                                                                                                                         |
-| `address.line2`         | `string` `nullable`  | The second line of the entity's address.                                                                                                                                                                                        |
-| `address.city`          | `string`             | The city of the entity's address.                                                                                                                                                                                               |
-| `address.state`         | `string`             | The two-letter abbreviation for the state of the entity's address.                                                                                                                                                              |
-| `address.zip`           | `string`             | The ZIP code of the entity's address.                                                                                                                                                                                           |
-| `status`                | `string`             | Status of the entity's KYC / AML verification. Possible statuses: `active`, `incomplete`, `disabled`. See *Entity Statuses* for more info.                                                                                      |
-| `metadata`              | `object`, `nullable` | Additional data provided during creation. See [metadata](/api/metadata).                                                                                                                                                        |
-| `created_at`            | `string`             | Timestamp of when the entity was created.                                                                                                                                                                                       |
-| `updated_at`            | `string`             | Timestamp of when the entity was last updated.                                                                                                                                                                                  |
+| Name                     | Type                 | Description                                                                                                                                                                                                                     |
+|--------------------------|----------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `id`                     | `string`             | Unique identifier for the entity.                                                                                                                                                                                               |
+| `type`                   | `string`             | The type of the entity. Option for receive only entity: `receive_only` Option for individual entity: `individual` Options for corporation entity: `c_corporation`, `s_corporation`, `llc`, `partnership`, `sole_proprietorship` |
+| `individual`             | `object` `nullable`  | Information of the entity with a type of `individual`                                                                                                                                                                           |
+| `individual.first_name`  | `string`             | The legal first name of the individual entity.                                                                                                                                                                                  |
+| `individual.last_name`   | `string`             | The legal last name of the individual entity.                                                                                                                                                                                   |
+| `individual.phone`       | `string`             | Mobile phone number of the individual entity in E.164 format. The number will only be used for KYC / AML verification.                                                                                                          |
+| `individual.email`       | `string`             | Email address of the individual entity. The email will only be used for KYC / AML verification.                                                                                                                                 |
+| `individual.dob`         | `string`             | The entity's date of birth in ISO 8601 format.                                                                                                                                                                                  |
+| `corporation`            | `object` `nullable`  | Information of the entity with a type of `c_corporation`, `s_corporation`, `limited_liability_company`, `partnership`, `sole_proprietorship`                                                                                    |
+| `corporation.name`       | `string`             | The legal name of the corporation entity.                                                                                                                                                                                       |
+| `corporation.dba`        | `string` `nullable`  | DBA (Doing Business As) name of the corporation entity                                                                                                                                                                          |
+| `corporation.ein`        | `string`             | The EIN of the corporation entity.                                                                                                                                                                                              |
+| `corporation.owners`     | `array`              | The details of the corporation's owners (only include individuals owning 25% or more of the corporation)                                                                                                                        |
+| `receive_only`           | `object` `nullable`  | 🚧 Deprecated: Information of the entity with a type of `receive_only`.                                                                                                                                                          |
+| `receive_only.name`      | `string`             | The legal name of the entity. This name should match the name on record in the `accounts` associated to this entity.                                                                                                            |
+| `receive_only.phone`     | `string`             | Phone number of the entity in E.164 format. The number will only be used for KYC / AML purposes.                                                                                                                                |
+| `receive_only.email`     | `string`             | Email address of the entity. The email will only be used for KYC / AML purposes.                                                                                                                                                |
+| `capabilities`           | `array`              | The active capabilities of the entity. See *Entity Capabilities* for more info.                                                                                                                                                 |
+| `available_capabilities` | `array`              | The capabilities of an entity that require additional verification to fully activate. See *Entity Capabilities* for more info.                                                                                                  |
+| `pending_capabilities`   | `array`              | A list of possible capabilities for an entity that an entity can activate. See *Entity Capabilities* for more info.                                                                                                             |
+| `error`                  | `object` `nullable`  | An object representing an error that occurred for this entity. See [entity errors](/api/errors/resource#entity-errors).                                                                                                         |
+| `address`                | `object`             | The entity's address.                                                                                                                                                                                                           |
+| `address.line1`          | `string`             | The first line of the entity's address.                                                                                                                                                                                         |
+| `address.line2`          | `string` `nullable`  | The second line of the entity's address.                                                                                                                                                                                        |
+| `address.city`           | `string`             | The city of the entity's address.                                                                                                                                                                                               |
+| `address.state`          | `string`             | The two-letter abbreviation for the state of the entity's address.                                                                                                                                                              |
+| `address.zip`            | `string`             | The ZIP code of the entity's address.                                                                                                                                                                                           |
+| `status`                 | `string`             | Status of the entity's KYC / AML verification. Possible statuses: `active`, `incomplete`, `disabled`. See *Entity Statuses* for more info.                                                                                      |
+| `metadata`               | `object`, `nullable` | Additional data provided during creation. See [metadata](/api/metadata).                                                                                                                                                        |
+| `created_at`             | `string`             | Timestamp of when the entity was created.                                                                                                                                                                                       |
+| `updated_at`             | `string`             | Timestamp of when the entity was last updated.                                                                                                                                                                                  |
 
 ### Entity Capabilities
 
@@ -134,6 +140,10 @@ The entity can be a `source` and send payments from ACH `Account` created using 
 
 * `payments:send`
 The entity can be a `source` and send payments from any ACH `Account` regardless of how they were created. *Minimum required information:* `first_name`, `last_name`, `dob` and either `email` or `phone`.
+
+* `data:retrieve`
+The entity can automatically retrieve and link their debts
+through [Method Data](/guides/quick-start/retrieve-an-entitys-debts).
 
 ### Entity Statuses
 

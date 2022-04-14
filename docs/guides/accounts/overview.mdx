@@ -1,0 +1,51 @@
+---
+sidebar_label: Overview
+---
+
+# Overview
+An account represents an entity's financial account. This includes
+ACH accounts (checking or savings) and liability
+accounts (student loans, credit cards, mortgages, and other types of debt accounts).
+
+---
+
+### Accounts created with Method Data
+If an entity has successfully completed the [identify verification flow](/guides/entities/identity-verification),
+all of their debt accounts have already been retrieved, and a corresponding
+Method liability account for each has been created. Liability accounts created
+through this flow ([Method Data](https://methodfi.com/products/data)) are
+enhanced with [more comprehensive data](/guides/accounts/retrieve-liability-account-data) and
+automatically ready to receive payments with the `payments:receive` capability.
+
+As a result, you can skip the creation of liability accounts altogether, and
+move forward by creating a source ACH account which will be used to
+send fund from.
+
+---
+
+### Source accounts
+All source accounts are ACH accounts (checking or savings). Payment funds
+are pulled from these accounts and sent to a destination account. A source
+account is determined by whether an ACH account has the `payments:send` capability.
+
+#### ACH verification
+For some teams, ACH accounts are required to be verified in order to
+activate the `payments:send` capability and start sending payments.
+
+➡️ See the [ach verification](/guides/accounts/ach-verification) section to learn more.
+
+---
+
+### Destination accounts
+Destination accounts are accounts where payment funds are sent to.
+In most cases, destination accounts are liability accounts, although ACH
+accounts may also be considered destination accounts. A destination
+account is determined by whether an account has the `payments:receive` capability.
+
+---
+
+### Capabilities
+Capabilities determine the possible actions an account is allowed to take. Accounts are
+granted capabilities based on the type of account and verification completed.
+
+➡️ See the [capabilities](/guides/accounts/capabilities) section to learn more.

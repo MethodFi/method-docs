@@ -6,20 +6,22 @@ returned records.
 
 ### Parameters
 
-| Name         | Type     | Required | Description                                                                                         |
-|--------------|----------|----------|-----------------------------------------------------------------------------------------------------|
-| `from_date`  | `string` |          | ISO 8601 formatted date (YYYY-MM-DD) to filter for records created on and after the date provided.  |
-| `to_date`    | `string` |          | ISO 8601 formatted date (YYYY-MM-DD) to filter for records created on and before the date provided. |
-| `page`       | `string` |          | The number of the page to return.                                                                   |
-| `page_limit` | `string` |          | The number of records to return per page.                                                           |
+| Name          | Type     | Required | Description                                                                                         |
+|---------------|----------|----------|-----------------------------------------------------------------------------------------------------|
+| `from_date`   | `string` |          | ISO 8601 formatted date (YYYY-MM-DD) to filter for records created on and after the date provided.  |
+| `to_date`     | `string` |          | ISO 8601 formatted date (YYYY-MM-DD) to filter for records created on and before the date provided. |
+| `page`        | `string` |          | The number of the page to return.                                                                   |
+| `page_cursor` | `string` |          | The ID of a resource from which a page should start or end. Mutually exclusive with `page`.         |
+| `page_limit`  | `string` |          | The number of records to return per page.                                                           |
 
 ### Response pagination headers
 The following headers are returned with the response:
 
-| Header                   | Description                                         |
-|--------------------------|-----------------------------------------------------|
-| `Pagination-Page`        | The current page.                                   |
-| `Pagination-Page-Count`  | The total number of pages available.                |
-| `Pagination-Page-Limit`  | The number of records to return per page.         |
-| `Pagination-Total-Count` | The total number of records matching the request. |
-
+| Header                        | Description                                       |
+|-------------------------------|---------------------------------------------------|
+| `Pagination-Page`             | The current page.                                 |
+| `Pagination-Page-Count`       | The total number of pages available.              |
+| `Pagination-Page-Limit`       | The number of records to return per page.         |
+| `Pagination-Total-Count`      | The total number of records matching the request. |
+| `Pagination-Page-Cursor-Prev` | The previous page cursor.                         |
+| `Pagination-Page-Cursor-Next` | The next page cursor.                             |

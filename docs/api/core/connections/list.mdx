@@ -1,0 +1,54 @@
+import ConnectionsList from "../../../../src/snippets/ConnectionsList";
+
+# List all connections
+
+**About**: Returns all the connections associated with your team, or an empty array if none have been created.
+
+**API Method**: `GET /connections`
+
+### Request
+
+#### Example
+<ConnectionsList />
+
+### Response
+
+#### Example
+
+An array of connections objects will be returned.
+
+```json
+[
+  {
+    "id": "cxn_iENwAPKnNqA5j",
+    "entity_id": "ent_dSN2Lk3ifnWZA",
+    "accounts": [
+      "acc_XaDZc8tE4YVeJ",
+      "acc_k5NzziUDg7hTg",
+      "acc_p3xR5ne3iAX6g",
+      "acc_mDDi64jzWUgSx",
+      "acc_EpcLnJSkSCnRM"
+    ],
+    "source": "method_data",
+    "status": "success",
+    "error": null,
+    "created_at": "2022-02-16T18:02:21.866Z",
+    "updated_at": "2022-02-20T22:50:45.391Z",
+    "last_synced_at": "2022-02-20T22:50:45.391Z"
+  },
+  {
+    "id": "cxn_rpBX5f5QdhBpC",
+    "entity_id": "ent_bLFSrJ2wCjZgX",
+    "accounts": [
+      "acc_VipSFG3KJW9bP",
+      "acc_DqbBZFry225Zj"
+    ],
+    "source": "method_data",
+    "status": "success",
+    "error": null,
+    "created_at": "2022-02-16T18:09:11.755Z",
+    "updated_at": "2022-02-20T22:49:26.896Z",
+    "last_synced_at": "2022-02-20T22:49:26.896Z"
+  }
+]
+```
