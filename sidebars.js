@@ -71,56 +71,6 @@ module.exports = {
     'api/filtering',
     'api/pagination',
     'api/metadata',
-    { label: 'Errors', className: 'sidebar-section-header sidebar-icon-api-errors', type: 'link', href: '/api/errors/overview' },
-    'api/errors/overview',
-    'api/errors/http',
-    'api/errors/resource',
-    {
-      type: 'category',
-      label: 'Payment Errors',
-      items: [
-        'api/errors/10001',
-        'api/errors/10002',
-        'api/errors/10003',
-        'api/errors/10004',
-        'api/errors/10005',
-        'api/errors/10006',
-        'api/errors/10007',
-        'api/errors/10008',
-      ],
-    },
-    {
-      type: 'category',
-      label: 'Account Errors',
-      items: [
-        'api/errors/11001',
-        'api/errors/11002',
-      ],
-    },
-    {
-      type: 'category',
-      label: 'Entity Errors',
-      items: [
-        'api/errors/12001',
-      ],
-    },
-    {
-      type: 'category',
-      label: 'Account Verification Errors',
-      items: [
-        'api/errors/13001',
-        'api/errors/13002',
-      ],
-    },
-    {
-      type: 'category',
-      label: 'Payment Reversal Errors',
-      items: [
-        'api/errors/14001',
-        'api/errors/14002',
-        'api/errors/14003',
-      ],
-    },
     { label: 'Core API', className: 'sidebar-section-header sidebar-icon-api-core', type: 'link', href: '/api/core/entities/object' },
     {
       type: 'category',
@@ -129,14 +79,13 @@ module.exports = {
         'api/core/entities/object',
         'api/core/entities/create-individual',
         'api/core/entities/create-corporation',
-        'api/core/entities/create-receive-only',
         'api/core/entities/retrieve',
         'api/core/entities/update',
         'api/core/entities/list',
         'api/core/entities/refresh-capabilities',
         {
           type: 'category',
-          label: 'Auth Session',
+          label: 'Auth Session (Method Data)',
           items: [
             'api/core/entities/create-individual-auth-session',
             'api/core/entities/update-individual-auth-session',
@@ -250,13 +199,6 @@ module.exports = {
     },
     {
       type: 'category',
-      label: 'Connections',
-      items: [
-        'api/elements/connections/intro',
-      ],
-    },
-    {
-      type: 'category',
       label: 'Pay',
       items: [
         'api/elements/pay/intro',
@@ -264,16 +206,59 @@ module.exports = {
     },
     {
       type: 'category',
-      label: 'Money Transfer',
+      label: 'Balance Transfer',
       items: [
-        'api/elements/money-transfer/intro',
+        'api/elements/balance-transfer/intro',
+      ],
+    },
+    { label: 'Errors', className: 'sidebar-section-header sidebar-icon-api-errors', type: 'link', href: '/api/errors/overview' },
+    'api/errors/overview',
+    'api/errors/http',
+    'api/errors/resource',
+    {
+      type: 'category',
+      label: 'Payment Errors',
+      items: [
+        'api/errors/10001',
+        'api/errors/10002',
+        'api/errors/10003',
+        'api/errors/10004',
+        'api/errors/10005',
+        'api/errors/10006',
+        'api/errors/10007',
+        'api/errors/10008',
       ],
     },
     {
       type: 'category',
-      label: 'Balance Transfer',
+      label: 'Account Errors',
       items: [
-        'api/elements/balance-transfer/intro',
+        'api/errors/11001',
+        'api/errors/11002',
+      ],
+    },
+    {
+      type: 'category',
+      label: 'Entity Errors',
+      items: [
+        'api/errors/12001',
+      ],
+    },
+    {
+      type: 'category',
+      label: 'Account Verification Errors',
+      items: [
+        'api/errors/13001',
+        'api/errors/13002',
+      ],
+    },
+    {
+      type: 'category',
+      label: 'Payment Reversal Errors',
+      items: [
+        'api/errors/14001',
+        'api/errors/14002',
+        'api/errors/14003',
       ],
     },
     { label: 'Simulations', className: 'sidebar-section-header sidebar-icon-api-simulate', type: 'link', href: '/api/simulate/overview' },
