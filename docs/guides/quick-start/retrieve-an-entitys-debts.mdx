@@ -178,9 +178,11 @@ with the `cxn_id` from the previous step.
 ---
 
 ### 5. Retrieve the created liability accounts
-New we'll retrieve the accounts created from the entity's completed auth session.
-Notice that the resulting accounts created from this flow have
-the `data:retrieve` capability indicating that it's enhanced and comprehensive liability data.
+Now we'll retrieve the accounts created from the entity's completed auth session.
+The resulting accounts created from this flow have the following capabilities:
+
+* `data:retrieve` capability indicating that it's enhanced and comprehensive liability data.
+* `payments:receive` capability indicating that the account is fully setup to be used for payments.
 
 <AccountsHolderMethodDataList />
 
