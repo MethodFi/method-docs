@@ -1,0 +1,61 @@
+# Overview of the Auth Element
+The Auth Element allows your users to automatically connect all their debt accounts
+into Method by verifying their identity.
+
+:::note
+This feature is part of Method's data product, which is separate from Method's core
+payments product. Contact team@methodfi.com for more information.
+:::
+
+### Auth Element
+The demo below exhibits the multiple use cases in which the Auth Element may be used in your application.
+
+#### Simulate Requirements
+To simulate the amount of information required from the user in the `dev` and `sandbox` environments,
+provide a phone number from the table below to dictate the minimum requirements.
+
+For the `dev` and `sandbox` environments, you may provide any value for name, dob, and address.
+
+:::caution
+Providing a phone number in the `dev` and `sandbox` environments that is not listed
+in the table below will not verify a user's identity.
+:::
+
+| Phone          | Minimum Requirements                      |
+|----------------|-------------------------------------------|
+| `+15121231111` | Name, Phone                               |
+| `+15121231112` | Name, Phone, DOB (Date of birth)          |
+| `+15121231113` | Name, Phone, DOB (Date of birth), Address |
+
+#### Security questions
+After the user's identity has been verified, the user will then be presented with a list of security questions
+which they must correctly answer. In the `dev` and `sandbox` environments, you may choose `Correct` to
+select the correct option or `Incorrect` to select the incorrect option.
+
+<iframe
+  width="100%"
+  height="850"
+  style={{ marginTop: 30 }}
+  src="https://elements.dev.methodfi.com/?demo=auth" />
+
+### Auth Element Flow Overview
+The Auth Element flow begins once your user is required to connect their debt accounts to Method.
+
+#### 1. Create Element Token
+Your backend server will make a request to `/elements/token` to generate a `element_token` for
+an `entity`. This `element_token` will be used to initialize the Auth Element in your app.
+
+➡️ [Implementation Guide - Create Element Token](/api/elements/auth/implementation/create-token)
+
+#### 2. Launch Auth Element
+Using the `element_token` to launch the Auth Element for your user. Once the user successfully
+verifies their identity, the Auth Element will return a `cxn_id` the ID of
+the [created connection object](/api/core/connections/object).
+
+➡️ [Implementation Guide - Launch Auth Element](/api/elements/auth/implementation/launch-auth)
+
+#### 3. Retrieve Liability Data
+After completing the Auth Element flow and receiving the `cxn_id`, you can now
+inspect the connection and liability accounts that were automatically created.
+
+➡️ [Implementation Guide - Retrieve Liability Data](/api/elements/auth/implementation/retrieve-liability-data)

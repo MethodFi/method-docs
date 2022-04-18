@@ -199,6 +199,22 @@ module.exports = {
     },
     {
       type: 'category',
+      label: 'Auth',
+      items: [
+        'api/elements/auth/intro',
+        {
+          type: 'category',
+          label: 'Implementation',
+          items: [
+            'api/elements/auth/implementation/create-token',
+            'api/elements/auth/implementation/launch-auth',
+            'api/elements/auth/implementation/retrieve-liability-data',
+          ],
+        },
+      ],
+    },
+    {
+      type: 'category',
       label: 'Pay',
       items: [
         'api/elements/pay/intro',
