@@ -1,0 +1,77 @@
+import ConnectionsRetrieve from '../../../../../src/snippets/ConnectionsRetrieve';
+import AccountsHolderMethodDataList from '../../../../../src/snippets/AccountsHolderMethodDataList';
+
+# Retrieve Liability Data
+After completing the Auth Element flow and receiving the `cxn_id`, you can now retrieve
+the connection and liability accounts created for the entity.
+
+### Retrieve the connection
+This request retrieves the successful connection created from completing the
+Auth Element flow.
+
+<ConnectionsRetrieve />
+
+#### Response
+```json
+{
+  "id": "cxn_iENwAPKnNqA5j",
+  "entity_id": "ent_au22b1fbFJbp8",
+  "accounts": [
+    "acc_XaDZc8tE4YVeJ",
+    "acc_k5NzziUDg7hTg",
+    "acc_p3xR5ne3iAX6g",
+    "acc_mDDi64jzWUgSx",
+    "acc_EpcLnJSkSCnRM"
+  ],
+  "source": "method_data",
+  "status": "success",
+  "error": null,
+  "created_at": "2022-02-16T18:02:21.866Z",
+  "updated_at": "2022-02-20T22:50:45.391Z",
+  "last_synced_at": "2022-02-20T22:50:45.391Z"
+}
+```
+
+### Retrieve the accounts
+This request retrieves the list of liability accounts created from completing the
+Auth Element Flow by filtering for the accounts that corresponding to the
+entity (`holder_id`).
+
+<AccountsHolderMethodDataList />
+
+#### Response
+```json
+[
+  {
+    "id": "acc_XaDZc8tE4YVeJ",
+    "holder_id": "ent_au22b1fbFJbp8",
+    "type": "liability",
+    "ach": null,
+    "liability": {
+      "mch_id": "mch_21",
+      "mask": "3092",
+      "type": "credit_card",
+      "credit_card": {
+        "name": "Wells Fargo Credit Card",
+        "balance": 57300,
+        "last_payment_amount": 13900,
+        "last_payment_date": "2022-03-21",
+        "next_payment_due_date": "2022-04-21",
+        "next_payment_minimum_amount": 4500,
+        "opened_at": "2021-06-15"
+      }
+    },
+    "clearing": null,
+    "metadata": null,
+    "status": "active",
+    "capabilities": [
+      "payments:receive",
+      "data:retrieve"
+    ],
+    "error": null,
+    "created_at": "2022-02-16T00:47:32.508Z",
+    "updated_at": "2022-02-16T00:47:32.508Z"
+  },
+  ...
+]
+```
