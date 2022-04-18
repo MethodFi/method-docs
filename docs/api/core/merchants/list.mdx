@@ -17,12 +17,13 @@ Only the most popular merchants are returned at once in the call to `GET /mercha
 
 #### Parameters
 
-| Name                   | Type     | Required | Description                           |
-|------------------------|----------|----------|---------------------------------------|
-| `name`                 | `string` |          | Name of the merchant to find.         |
-| `provider_id.plaid`    | `string` |          | Plaid id for the merchant to find.    |
-| `provider_id.mx`       | `string` |          | MX id for the merchant to find.       |
-| `provider_id.finicity` | `string` |          | Finicity id for the merchant to find. |
+| Name                   | Type     | Required | Description                                                                                                       |
+|------------------------|----------|----------|-------------------------------------------------------------------------------------------------------------------|
+| `name`                 | `string` |          | Name of the merchant to find.                                                                                     |
+| `creditor_name`        | `string` |          | The name of the creditor as seen in a credit report. Ex. `JPMCB CARD` pertains to a Chase Credit Card. |
+| `provider_id.plaid`    | `string` |          | Plaid id for the merchant to find.                                                                                |
+| `provider_id.mx`       | `string` |          | MX id for the merchant to find.                                                                                   |
+| `provider_id.finicity` | `string` |          | Finicity id for the merchant to find.                                                                             |
 
 ### Response
 
