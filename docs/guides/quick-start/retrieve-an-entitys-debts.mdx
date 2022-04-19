@@ -22,7 +22,7 @@ payments product. Contact team@methodfi.com for more information.
 :::
 
 ### Steps
-- [Create an individual entity](#1-create-an-individual-entity) with no information.
+- [Create an individual entity](#1-create-an-individual-entity) to represent your end-user.
 - [Create an Auth element token](#2-create-an-auth-element-token) for the entity to start the identity verification process.
 - [Launch the Auth Element](#3-launch-the-auth-element) with the created element token and
   complete the identity verification flow.
@@ -32,9 +32,19 @@ payments product. Contact team@methodfi.com for more information.
 ---
 
 ### 1. Create an individual entity
-First we'll create an individual entity with no information. The goal of this request is to
+First we'll create an individual entity. The goal of this request is to
 obtain the `data:retrieve` [capability](/guides/entities/capabilities#retrieve-data) in either the
 entity's `pending_capabilities` or `available_capabilities` property.
+
+You can also use an existing entity moving forward. The Auth Element will dynamically prompt
+for more information, if required, to verify the entity.
+
+:::caution
+For non-production testing, see [Auth Element simulate requirements](/api/elements/auth/intro#simulate-requirements)
+to determine what information should be required from the entity.
+:::
+
+In this example, we're creating an entity with no information.
 
 <EntitiesMethodDataCreateIndividualEmpty />
 
