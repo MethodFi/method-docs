@@ -10,11 +10,11 @@ curl https://production.methodfi.com/entities/ent_au22b1fbFJbp8/refresh_capabili
 `.trim();
 
 const nodejs = `
-const entity = await method.entities('ent_au22b1fbFJbp8').refresh_capabilities();
+const entity = await method.entities.refreshCapabilities('ent_au22b1fbFJbp8');
 `.trim();
 
 const python = `
-entity = method.entities('ent_au22b1fbFJbp8').refresh_capabilities()
+entity = method.entities.refresh_capabilities('ent_au22b1fbFJbp8')
 `.trim();
 
 export default function () {
