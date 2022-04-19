@@ -10,11 +10,11 @@ curl https://production.methodfi.com/entities/ent_au22b1fbFJbp8/auth_session \\
 `.trim();
 
 const nodejs = `
-const response = await method.entities('ent_au22b1fbFJbp8').create_auth_session();
+const response = await method.entities.createAuthSession('ent_au22b1fbFJbp8');
 `.trim();
 
 const python = `
-response = method.entities('ent_au22b1fbFJbp8').create_auth_session()
+response = method.entities.create_auth_session('ent_au22b1fbFJbp8')
 `.trim();
 
 export default function () {

@@ -18,7 +18,7 @@ curl https://production.methodfi.com/entities/ent_au22b1fbFJbp8/auth_session \\
 `.trim();
 
 const nodejs = `
-const response = await method.entities('ent_au22b1fbFJbp8').update_auth_session({
+const response = await method.entities.updateAuthSession('ent_au22b1fbFJbp8', {
   answers: [
     {
       "question_id": "qtn_ywWqCnXDGGmmg",
@@ -30,7 +30,7 @@ const response = await method.entities('ent_au22b1fbFJbp8').update_auth_session(
 `.trim();
 
 const python = `
-response = method.entities('ent_au22b1fbFJbp8').update_auth_session({
+response = method.entities.update_auth_session('ent_au22b1fbFJbp8', {
   "answers": [
     {
       "question_id": "qtn_ywWqCnXDGGmmg",
