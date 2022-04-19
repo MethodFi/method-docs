@@ -1,0 +1,42 @@
+# Launch Auth Element
+
+**About**: Using the `element_token` retrieved from your backend server in the previous step, you can launch
+the Auth Element using your desired implementation.
+
+### Webview
+The Auth Element is optimized to work within Webviews, including on iOS and Android. The Auth URL
+corresponds the environment you are building in:
+
+```text
+https://elements.dev.methodfi.com (Development)
+https://elements.sandbox.methodfi.com (Sandbox)
+https://elements.production.methodfi.com (Production)
+```
+
+#### Communication between Auth and your app
+Communication between your app is handled using HTTP redirects. Your webview / app should intercept the
+redirects in order to react accordingly to state changes.
+
+All redirect URLs will have the scheme ("prefix") `methodelements`. The event source will be
+the URL host and the payload will be query strings.
+
+##### General Element Events
+```text
+methodelements://general?{event_data}
+```
+
+##### Auth Specific Element Events
+```text
+methodelements://auth?{event_data}
+```
+
+#### Initialize Auth Element
+Open a webview in your app to your desired environment using the element_token you obtained for an entity
+
+```
+https://elements.production.methodfi.com?token={element_token}
+```
+
+#### Auth Events
+
+➡️  See [Element Events](/api/elements/events) for more info.
