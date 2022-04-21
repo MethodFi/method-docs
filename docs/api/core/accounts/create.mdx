@@ -7,21 +7,30 @@ import AccountsCreateLiability from '../../../../src/snippets/AccountsCreateLiab
 
 **API Method**: `POST /accounts`
 
-#### Collecting a liability's account number
+---
+#### <u>Collecting a liability's account number</u>
 
 Due to the sensitive nature of a liability's account number, we recommend collecting the account number from your end-user using a third-party aggregator (e.g. Plaid) or using Method Link.
 
-1. _Using a third-party aggregator_ - Student loans linked to your app using [Plaid Liabilities](https://plaid.com/products/liabilities)
-2. _Using Method Link_ - Recommended for liabilities that you do not have the account number for, and need to collect it from your end-user. (Example: PAN for credit card liabilities). ➡️ Method Link securely transmits it directly to Method without it passing through your servers.
+1. __Using a third-party aggregator__ - Student loans linked to your app using [Plaid Liabilities](https://plaid.com/products/liabilities)
+2. __Using Method Link__ - Recommended for liabilities that you do not have the account number for, and need to collect it from your end-user. (Example: PAN for credit card liabilities). ➡️ Method Link securely transmits it directly to Method without it passing through your servers.
 
-:::note
-Creating a `liability` account will automatically validate the account number with the merchant in order to lower the risk of failed/returned payments.
+Creating a `liability` account will automatically validate the account number with the
+merchant in order to lower the risk of failed/returned payments
+
+:::tip
+We recommend using __[Method's data product](https://methodfi.com/products/data)__ to easily retrieve all of a person's debts
+and automatically create `liability` accounts for each of those debts.
+
+➡️ See our __[Retrieve an entity's debts](/guides/quick-start/retrieve-an-entitys-debts)__ quick start
+guide to get started.
 :::
 
-:::note
-Creating an `ach` account will require an additional step for verification to confirm the validity of the account. ➡️ See [ACH account verification.](/api/core/accounts/ach-verification/object)
-:::
+#### <u>ACH account verification</u>
+Creating an `ach` account will require an additional step for verification to confirm
+the validity of the account. ➡️ See [ACH account verification.](/api/core/accounts/ach-verification/object)
 
+---
 
 <!-- > 👷 **Coming Soon**: Method.js is in limited beta! If you'd like to get an early preview for your team, contact us via our shared slack or send us an email (team@methodfi.com) -->
 
