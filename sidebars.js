@@ -37,6 +37,7 @@ module.exports = {
     // Payments
     { label: 'Payments', className: 'sidebar-section-header sidebar-icon-guides-payments', type: 'doc', id: 'guides/payments' },
     'guides/payments/create-a-payment',
+    'guides/payments/monetize-with-payment-fees',
     'guides/payments/lifecycle-and-errors',
 
     // Use cases
