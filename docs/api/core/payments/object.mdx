@@ -27,32 +27,36 @@ Payments are processed on business days (Monday - Friday) at 10:30 AM and 1:30 P
   "estimated_completion_date": "2020-12-11",
   "source_settlement_date": "2020-12-09",
   "destination_settlement_date": "2020-12-11",
+  "fee": null,
   "created_at": "2020-12-09T00:42:31.209Z",
   "updated_at": "2020-12-09T00:43:30.996Z"
 }
 ```
 
 #### Attributes
-
-| Name                          | Type                 | Description                                                                                                                                                                                                                                          |
-|-------------------------------|----------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `id`                          | `string`             | Unique identifier for the payment.                                                                                                                                                                                                                   |
-| `reversal_id`                 | `string`, `nullable` | The `id` of an active `reversal`.                                                                                                                                                                                                                    |
-| `source_trace_id`             | `string`, `nullable` | The underlying `id` for the bank transaction on the source account relating to this payment.                                                                                                                                                         |
-| `destination_trace_id`        | `string`, `nullable` | The underlying `id` for the bank transaction on the destination account relating to this payment.                                                                                                                                                    |
-| `source`                      | `string`             | The `id` of an `ach` account from which the payment amount will be retrieved.                                                                                                                                                                        |
-| `destination`                 | `string`             | The `id` of an `ach` or `liability` account to which the payment amount will be sent.                                                                                                                                                                |
-| `amount`                      | `integer`            | The amount of the payment to be created in cents. (e.g. $1.00 = 100)                                                                                                                                                                                 |
-| `description`                 | `string` `nullable`  | Optional description (maximum of 10 characters).                                                                                                                                                                                                     |
-| `status`                      | `string`             | Status of the payment. Possible statuses: `pending`, `processing`, `sent`, `failed`, `canceled`, `reversal_required`, `reversal_processing`, `reversed`. See *Payment Statuses* for more info.                                                       |
-| `fund_status`                 | `string`             | Fund status of the payment. Possible statuses: `pending`, `requested`, `clearing`, `failed`, `sent`, `unknown`. See *Payment Fund Statuses*.  This property is available only when [individual payments are retrieved](/api/core/payments/retrieve). |
-| `error`                       | `object` `nullable`  | An object representing an error that occurred while processing this payment. See [payment errors](/api/errors/resource#payment-errors).                                                                                                              |
-| `metadata`                    | `object` `nullable`  | Additional data provided during creation. See [metadata](/api/metadata).                                                                                                                                                                             |
-| `estimated_completion_date`   | `string`, `nullable` | An estimated date, in ISO 8601 format (YYYY-MM-DD), on which the payment should be completed.                                                                                                                                                        |
-| `source_settlement_date`      | `string`, `nullable` | An estimated date, in ISO 8601 format (YYYY-MM-DD), on which the funds pulled from the source account will be completed.                                                                                                                             |
-| `destination_settlement_date` | `string`, `nullable` | An estimated date, in ISO 8601 format (YYYY-MM-DD), on which the funds pushed to the destination account will be completed.                                                                                                                          |
-| `created_at`                  | `string`             | Timestamp of when the payment was created.                                                                                                                                                                                                           |
-| `updated_at`                  | `string`             | Timestamp of when the payment was last updated.                                                                                                                                                                                                      |
+| Name                          | Type                 | Description                                                                                                                                                                                                                                                                  |
+|-------------------------------|----------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `id`                          | `string`             | Unique identifier for the payment.                                                                                                                                                                                                                                           |
+| `reversal_id`                 | `string`, `nullable` | The `id` of an active `reversal`.                                                                                                                                                                                                                                            |
+| `source_trace_id`             | `string`, `nullable` | The underlying `id` for the bank transaction on the source account relating to this payment.                                                                                                                                                                                 |
+| `destination_trace_id`        | `string`, `nullable` | The underlying `id` for the bank transaction on the destination account relating to this payment.                                                                                                                                                                            |
+| `source`                      | `string`             | The `id` of an `ach` account from which the payment amount will be retrieved.                                                                                                                                                                                                |
+| `destination`                 | `string`             | The `id` of an `ach` or `liability` account to which the payment amount will be sent.                                                                                                                                                                                        |
+| `amount`                      | `integer`            | The amount of the payment to be created in cents. (e.g. $1.00 = 100)                                                                                                                                                                                                         |
+| `description`                 | `string` `nullable`  | Optional description (maximum of 10 characters).                                                                                                                                                                                                                             |
+| `status`                      | `string`             | Status of the payment. Possible statuses: `pending`, `processing`, `sent`, `failed`, `canceled`, `reversal_required`, `reversal_processing`, `reversed`. See [payment statuses](#payment-statuses).                                                                          |
+| `fund_status`                 | `string`             | Fund status of the payment. Possible statuses: `pending`, `requested`, `clearing`, `failed`, `sent`, `unknown`. See [payment fund statuses](#payment-fund-statuses).  This property is available only when [individual payments are retrieved](/api/core/payments/retrieve). |
+| `error`                       | `object` `nullable`  | An object representing an error that occurred while processing this payment. See [payment errors](/api/errors/resource#payment-errors).                                                                                                                                      |
+| `metadata`                    | `object` `nullable`  | Additional data provided during creation. See [metadata](/api/metadata).                                                                                                                                                                                                     |
+| `estimated_completion_date`   | `string`, `nullable` | An estimated date, in ISO 8601 format (YYYY-MM-DD), on which the payment should be completed.                                                                                                                                                                                |
+| `source_settlement_date`      | `string`, `nullable` | An estimated date, in ISO 8601 format (YYYY-MM-DD), on which the funds pulled from the source account will be completed.                                                                                                                                                     |
+| `destination_settlement_date` | `string`, `nullable` | An estimated date, in ISO 8601 format (YYYY-MM-DD), on which the funds pushed to the destination account will be completed.                                                                                                                                                  |
+| `destination_settlement_date` | `string`, `nullable` | An estimated date, in ISO 8601 format (YYYY-MM-DD), on which the funds pushed to the destination account will be completed.                                                                                                                                                  |
+| `fee`                         | `object`, `nullable` | Payment fee information. If provided, the payment will incur a fee which will be deducted from the total amount received by the destination account.                                                                                                                         |
+| `fee.type`                    | `string`             | The type of fee applied to the payment. Possible types: `total`, `markup`. See [payment fee types](#payment-fee-types).                                                                                                                                                      |
+| `fee.amount`                  | `number`             | The fee amount applied to the payment.                                                                                                                                                                                                                                       |
+| `created_at`                  | `string`             | Timestamp of when the payment was created.                                                                                                                                                                                                                                   |
+| `updated_at`                  | `string`             | Timestamp of when the payment was last updated.                                                                                                                                                                                                                              |
 
 ### Payment Statuses
 
@@ -108,4 +112,40 @@ The payment funds have been sent to the destination account.
 The status of the payment's funds is unknown.
 
 
+### Payment Fee Types
 
+A payment's fee type determines how much of the payment's amount will
+be deducted from the amount received by the destination account.
+
+* `total`
+This fee type will deduct a flat fee from the amount
+received by the destination account.
+
+  __Example:__ If a $10.00 payment is created with a `total` fee of $2.00, then the resulting
+  amount received by the destination account will be $8.00.
+
+  This means that you make total of $2.00 from the payment. However, the
+  Method fee for this payment will still be included in your monthly
+  invoice.
+
+  ```
+  Received by destination = Payment - Total fee
+  $8.00                   = $10.00  - $2.00
+  ```
+
+* `markup`
+This fee type will deduct a fee on top of Method's per-payment fee
+from the amount received by the destination account
+
+  __Example:__ If a $10.00 payment is created with a `markup` fee of $2.00
+  and your Method fee is $1.00, then the resulting amount received by the
+  destination account will be $7.00 (Amount - Markup Fee - Method Fee).
+
+  This means that you make $2.00 from the payment. Additionally, the Method fee
+  has already been covered by the source account, and this completed payment
+  will not be included in your monthly invoice.
+
+  ```
+  Received by destination = Payment - Markup fee - Example Method per-payment fee
+  $7.00                   = $10.00  - $2.00      - $1.00
+  ```
