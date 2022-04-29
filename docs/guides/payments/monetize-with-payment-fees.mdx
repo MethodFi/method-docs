@@ -1,0 +1,64 @@
+---
+sidebar_label: Monetize with payment fees
+---
+
+import PaymentsCreateWithTotalFee from '../../../src/snippets/PaymentsCreateWithTotalFee';
+import PaymentsCreateWithMarkupFee from '../../../src/snippets/PaymentsCreateWithMarkupFee';
+
+# Monetize with payment fees
+Make money from each payment by charging a fee. Method
+support two types of payment fees:
+
+- [Total fee](#total-fee) - charging a flat fee on the payment.
+- [Markup fee](#markup-fee) - charging a fee on top of Method's per-payment fee.
+
+:::info
+Accrued fee credits will be applied to your current month's invoice.
+If the sum of your fees is greater than your current month's invoice,
+you can choose to either keep them as credit for the next month's invoice,
+or choose to have Method transfer the credits directly to your bank
+account.
+:::
+
+➡️ See the [fee API reference](/api/core/payments/object#payment-fee-types) for more details.
+
+---
+
+### Total Fee
+Charge a flat fee from the amount received by payment's
+destination account. If a total fee is applied to a
+payment, this payment will still be included as a billable
+item in your monthly invoice.
+
+
+<PaymentsCreateWithTotalFee />
+
+The following equation explains how the `total` fee is applied
+to the payment based on the example request.
+
+```
+Received by destination = Payment - Total fee
+$48.00                  = $50.00  - $2.00
+```
+- __Accrued fee credit:__ $2.00
+- __Included in monthly invoice:__ Yes
+
+---
+
+### Markup Fee
+Charge a fee on top of Method's per-payment fee from the
+amount received by payment's destination account. Since this
+type of fee already accounts for Method's per-payment fee,
+this payment <u>will not</u> be included in your monthly invoice.
+
+<PaymentsCreateWithMarkupFee />
+
+The following equation explains how the `markup` fee is applied
+to the payment based on the example request.
+
+```
+Received by destination = Payment - Markup fee - Example Method per-payment fee
+$47.00                  = $50.00  - $2.00      - $1.00
+```
+- __Accrued fee credit:__ $2.00
+- __Included in monthly invoice:__ No
