@@ -17,7 +17,7 @@ Only payments in the `pending` status can be `canceled`.
 :::
 
 If the payment is created __before__ the current business day's [cutoff time](/api/core/payments/object#cutoff-time)
-(Monday - Friday 10:30 AM and 1:30 PM CST), it will be processed and transition into the `processing` status. If it is
+(Monday - Friday 10:30 AM, 1:30 PM, and 4:30 PM CST), it will be processed and transition into the `processing` status. If it is
 created __after__ the current business day's cutoff time, the payment will be processed on the next business day.
 
 If the payment was successful, the transferred funds should be reflected on the destination account
