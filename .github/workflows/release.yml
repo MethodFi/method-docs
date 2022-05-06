@@ -25,10 +25,10 @@ jobs:
           node-version: 14
 
       - name: Install npm packages
-        run: yarn
+        run: npm install
 
       - name: Build docs
-        run: yarn run build
+        run: npm run build
 
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v1
