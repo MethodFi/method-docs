@@ -16,13 +16,15 @@ Development, Sandbox and Production share similar functionality with minor diffe
 
 #### Development
 ➡️ We recommend building your integration in the `Development` environment. This will prevent accidentally sending a payment while initially building / testing your integration.
-* Entities: KYC is disabled. All Entities will become `active` immediately, once all the required information is provided.
+* Entities: KYC is disabled. All entities will become `active` immediately, once all the required information is provided.
+* Entities Capabilities: `payments:receive` and `payments:sent` are granted for any valid entity input. `data:retrieve` and `data:sync` are only granted for [Simulated Entities](elements/auth/intro#simulate-requirements)
 * Accounts: `account_numbers` are not validated and any input will be accepted.
 * Link: Account numbers are not validated and any input will be accepted.
 * Payments: Simulated - Payments will not be sent to our banking networks. However, the payment will transition to `sent` at the standard cutoff time for simulation purposes.
 
 #### Sandbox
 ➡️ We recommend switching to `Sandbox` once you are ready to test your integration with your own financial accounts.
+* Entities: KYC is enabled. All entities will undergo validation before being granted any capabilities.
 * Payments: Live - Payments will be sent to our banking networks at the standard cutoff times.
 * Live Payment Limit: 20 transactions per month ($1 limit / transaction)
 

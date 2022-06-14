@@ -17,7 +17,7 @@ Each account is owned by an entity, and an entity can own multiple accounts.
 
 ---
 
-### ACH account
+## ACH account
 
 You only need basic ACH information to start creating an ACH account:
 
@@ -40,7 +40,7 @@ If you have not created an entity, see [create an entity](/guides/entities/creat
 :::tip
 If the newly created ACH account does not contain the `payments:send` capability,
 you must next verify this account in order to start sending funds from it. See
-the [ach verification](/guides/accounts/ach-verification) for more details.
+the [ACH Verification](/guides/accounts/ach-verification) for more details.
 :::
 
 #### Request
@@ -72,7 +72,7 @@ the [ach verification](/guides/accounts/ach-verification) for more details.
 
 ---
 
-### Liability account
+## Liability account
 Liability accounts are accounts that hold a type of debt or balance owed to a financial institution, and can
 only be used to receive payments. Each liability account belongs to a financial institution, which is also referred to as
 a [merchant](/api/core/merchants/object) in the Method ecosystem.
@@ -80,11 +80,16 @@ a [merchant](/api/core/merchants/object) in the Method ecosystem.
 The verification process for liability accounts happen immediately upon creation. This process
 determines if the provided account number exists within a specific financial institution.
 
-:::tip
-You can automatically retrieve and create liability accounts for an entity using
+### Create using Method Data
+💡 You can automatically retrieve all of an entity's liabilities using
 __Method Data__. See the [retrieve an entity's debts](/guides/quick-start/retrieve-an-entitys-debts) guide
 to learn more.
-:::
+
+### Create using Link Element
+📱 You can embed the Link Element to securly allow your user's to connect their debts directly to Method. See
+[Overview of Link Element](../../api/elements/link/intro) to learn more.
+
+### Create using API
 
 Before creating a liability account, ensure that you have gathered the following liability account information:
 - The `mch_id` of the merchant that corresponds to the account's financial institution.
@@ -129,19 +134,28 @@ After searching for the corresponding merchant, you can now create the liability
     "mch_id": "mch_2",
     "mask": "4455",
     "type": "student_loan",
+    "data_status": "pending",
+    "data_last_successful_sync": null,
     "student_loan": {
       "name": "FedLoan Student Loan",
       "sub_type": "federal",
       "sequence": 6,
-      "balance": 132600,
-      "disbursed_at": "2015-06-29"
+      "balance": 1952634,
+      "last_payment_amount": 1150,
+      "last_payment_date": "2022-04-22",
+      "next_payment_due_date": "2022-10-28",
+      "next_payment_minimum_amount": 0,
+      "disbursed_at": "2018-01-22",
+      "interest_rate_percentage": 3.4,
+      "interest_rate_type": "fixed"
     }
   },
   "clearing": null,
   "metadata": null,
   "status": "active",
   "capabilities": [
-    "payments:receive"
+    "payments:receive",
+    "data:sync"
   ],
   "error": null,
   "created_at": "2020-12-09T02:56:19.548Z",

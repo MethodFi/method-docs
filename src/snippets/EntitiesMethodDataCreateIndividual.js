@@ -11,7 +11,7 @@ curl https://production.methodfi.com/entities \\
     "individual": {
       "first_name": "Kevin",
       "last_name": "Doyle",
-      "phone": "+16505555555",
+      "phone": "+15121231111",
     }
   }'
 `.trim();
@@ -22,7 +22,7 @@ const entity = await method.entities.create({
   individual: {
     first_name: 'Kevin',
     last_name: 'Doyle',
-    phone: '+16505555555',
+    phone: '+15121231111',
   },
 });
 `.trim();
@@ -33,7 +33,7 @@ entity = method.entities.create({
   'individual': {
     'first_name': 'Kevin',
     'last_name': 'Doyle',
-    'phone': '+16505555555'
+    'phone': '+15121231111'
   }
 })
 `.trim();

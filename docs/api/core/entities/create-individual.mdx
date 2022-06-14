@@ -9,7 +9,7 @@ An Entity can be created with an empty object and progressively updated with mor
 **API Method**: `POST /entities`
 
 :::tip
-We recommend verifying the entity's phone number and email before initiating the verification process.
+The entity's phone number _must_ be verified before used for creating an Entity.
 :::
 
 ### Request
@@ -25,14 +25,14 @@ We recommend verifying the entity's phone number and email before initiating the
 | `individual.first_name` | `string`            | ✅        | The legal first name of the individual entity.                                                                         |
 | `individual.last_name`  | `string`            | ✅        | The legal last name of the individual entity.                                                                          |
 | `individual.phone`      | `string`            | ✅        | Mobile phone number of the individual entity in E.164 format. The number will only be used for KYC / AML verification. |
-| `individual.email`      | `string`            | ✅        | Email address of the individual entity. The email will only be used for KYC / AML verification.                        |
-| `individual.dob`        | `string`            | ✅        | The entity's date of birth in ISO 8601 format.                                                                         |
-| `address`               | `object`            | ✅        | The entity's address.                                                                                                  |
-| `address.line1`         | `string`            | ✅        | The first line of the entity's address.                                                                                |
+| `individual.email`      | `string`            |         | Email address of the individual entity. The email will only be used for KYC / AML verification.                        |
+| `individual.dob`        | `string`            |         | The entity's date of birth in ISO 8601 format.                                                                         |
+| `address`               | `object`            |         | The entity's address.                                                                                                  |
+| `address.line1`         | `string`            |         | The first line of the entity's address.                                                                                |
 | `address.line2`         | `string` `nullable` |          | The second line of the entity's address.                                                                               |
-| `address.city`          | `string`            | ✅        | The city of the entity's address.                                                                                      |
-| `address.state`         | `string`            | ✅        | The two-letter abbreviation for the state of the entity's address.                                                     |
-| `address.zip`           | `string`            | ✅        | The ZIP code of the entity's address.                                                                                  |
+| `address.city`          | `string`            |         | The city of the entity's address.                                                                                      |
+| `address.state`         | `string`            |         | The two-letter abbreviation for the state of the entity's address.                                                     |
+| `address.zip`           | `string`            |         | The ZIP code of the entity's address.                                                                                  |
 
 ### Response
 
@@ -59,9 +59,12 @@ We recommend verifying the entity's phone number and email before initiating the
   },
   "capabilities": [
     "payments:send",
-    "payments:receive"
+    "payments:receive",
+    "data:sync"
   ],
-  "available_capabilities": [],
+  "available_capabilities": [
+    "data:retrieve"
+  ],
   "pending_capabilities": [],
   "error": null,
   "status": "active",

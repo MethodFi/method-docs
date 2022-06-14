@@ -4,7 +4,10 @@ Accounts are a representation of an entity's financial accounts. An account can 
 
 * To create an `ach` account you will need the routing and account number of the depository account. We recommend using [Plaid](https://plaid.com/products/auth) to retrieve your entity's `ach` information.
 
-* To create a `liability` account you will need the `merchant` id (`mch_id`) and the account number of the liability.
+* To create a `liability` account you can use:
+    - Method Data - 💡 You can automatically retrieve all of an entity's liabilities using Method Data. See the [retrieve an entity's debts](/guides/quick-start/retrieve-an-entitys-debts) guide to learn more.
+    - Method Link - 📱 You can embed the Link Element to securly allow your user's to connect their debts directly to Method. See [Overview of Link Element](/api/elements/link/intro) to learn more.
+    - API - You will need the `merchant` id (`mch_id`) and the account number of the liability.
 
 :::info Important
 The `holder_id` is the id of the `Entity` who owns this account. Associating the incorrect `Entity` will lead to failed/returned payments.
@@ -45,22 +48,34 @@ The `holder_id` is the id of the `Entity` who owns this account. Associating the
   "type": "liability",
   "ach": null,
   "liability": {
-    "mch_id": "mch_2",
-    "mask": "4455",
-    "type": "student_loan",
-    "student_loan": {
-      "name": "FedLoan Student Loan",
-      "sub_type": "federal",
-      "sequence": 6,
-      "balance": 132600,
-      "disbursed_at": "2015-06-29"
+    "mch_id": "mch_183",
+    "mask": "6382",
+    "type": "credit_card",
+    "data_status": "pending",
+    "data_last_successful_sync": null,
+    "credit_card": {
+      "name": "Chase Sapphire Reserve",
+      "balance": 550472,
+      "opened_at": "2016-11-25",
+      "last_payment_date": "2022-05-27",
+      "last_payment_amount": 361000,
+      "next_payment_due_date": null,
+      "next_payment_minimum_amount": null,
+      "last_statement_balance": 760501,
+      "remaining_statement_balance": 0,
+      "available_credit": 1788500,
+      "pending_purchase_authorization_amount": 54136,
+      "pending_credit_authorization_amount": null,
+      "interest_saving_balance": null,
+      "interest_rate_percentage": 21.75,
+      "interest_rate_type": "variable"
     }
   },
   "clearing": null,
-  "metadata": null,
   "status": "active",
   "capabilities": [
-    "payments:receive"
+    "payments:receive",
+    "data:sync"
   ],
   "error": null,
   "created_at": "2020-12-09T02:56:19.548Z",
@@ -126,6 +141,7 @@ The following are possible capabilities an account can have. This indicates if a
 - `payments:receive` The account can be used as a payment destination.
 - `payments:send` The account can be used as a payment source.
 - `data:retrieve` The account has additional liability information from [Method Data](/guides/quick-start/retrieve-an-entitys-debts).
+- `data:sync` The account has enhanced data and live data refresh from FI via Method Sync.
 
 #### Account Statuses
 

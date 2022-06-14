@@ -1,35 +1,46 @@
 import React from 'react';
 import TabbedCodeBlock from '../components/TabbedCodeBlock';
 
-const curl = `
-curl https://production.methodfi.com/elements/token \\
-  -X POST \\
-  -H "Authorization: Bearer sk_WyZEWVfTcH7GqmPzUPk65Vjc" \\
-  -H "Content-Type: application/json" \\
-  -d '{
-    "entity_id": "ent_au22b1fbFJbp8",
-    "team_name": "Demo Auth App",
-    "type": "auth",
-    "auth": {}
-  }'
+const iframe = `
+methodelements://auth
+  ?op=success
+  &element_type=auth
 `.trim();
 
-const nodejs = `
-const token = await method.elements.createToken({
-  entity_id: 'ent_au22b1fbFJbp8',
-  team_name: 'Demo Auth App',
-  type: 'auth',
-  auth: {},
+const react = `
+const method = useMethod({
+  env: 'production', 
+  onEvent: (payload) => {},
+  onSuccess: (payload) => {}, // Invoked when auth has successfully completed.
+  onError: (payload) => {},
+  onExit: (payload) => {},
+  onOpen: (payload) => {},
 });
 `.trim();
 
-const python = `
-token = method.elements.create_token({
-  'entity_id': 'ent_au22b1fbFJbp8',
-  'team_name': 'Demo Auth App',
-  'type': 'auth',
-  'auth': {}
-})
+const js = `
+const config = {
+  env: 'production', // dev | sandbox | production
+  onEvent: (event) => {
+    // Invoked for every event sent by the element.
+    // Event is a native MessageEvent instance.
+  },
+  onSuccess: (payload) => {
+    // Invoked when auth has successfully completed.
+  },
+  onError: (error) => {
+    // Invoked when an error is raised during.
+  },
+  onExit: (payload) => {
+    // Invoked when a user exits any element flow, or
+    // immediately after an error is raised.
+  },
+  onOpen : (payload) => {
+    // Invoked when an element has successfully launched.
+  },
+};
+
+const method = new Method(config);
 `.trim();
 
 export default function () {
@@ -38,9 +49,9 @@ export default function () {
       groupId="all"
       name="elements-create-auth-token"
       items={[
-        { title: 'cURL', language: 'shell', content: curl },
-        { title: 'Node.js', language: 'javascript', content: nodejs },
-        { title: 'Python', language: 'python', content: python },
+        { title: 'HTTP / iFrame', language: 'shell', content: iframe },
+        { title: 'React', language: 'javascript', content: react },
+        { title: 'Javascript', language: 'javascript', content: js },
       ]} />
   );
 }

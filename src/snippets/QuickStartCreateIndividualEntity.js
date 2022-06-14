@@ -11,7 +11,7 @@ curl https://dev.methodfi.com/entities \\
     "individual": {
       "first_name": "Kevin",
       "last_name": "Doyle",
-      "phone": "+16505555555",
+      "phone": "+15121231111",
       "email": "kevin.doyle@gmail.com",
       "dob": "1997-03-18"
     },
@@ -31,7 +31,7 @@ const entity = await method.entities.create({
   individual: {
     first_name: 'Kevin',
     last_name: 'Doyle',
-    phone: '+16505555555',
+    phone: '+15121231111',
     email: 'kevin.doyle@gmail.com',
     dob: '1997-03-18',
   },
@@ -51,7 +51,7 @@ entity = method.entities.create({
   'individual': {
     'first_name': 'Kevin',
     'last_name': 'Doyle',
-    'phone': '+16505555555',
+    'phone': '+15121231111',
     'email': 'kevin.doyle@gmail.com',
     'dob': '1997-03-18',
   },
