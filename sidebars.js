@@ -18,6 +18,7 @@ module.exports = {
     { label: 'Quick start', className: 'sidebar-section-header sidebar-icon-guides-quick-start', type: 'doc', id: 'guides/quick-start' },
     'guides/quick-start/environment-setup',
     'guides/quick-start/retrieve-an-entitys-debts',
+    'guides/quick-start/sync-a-liability',
     'guides/quick-start/create-your-first-payment',
     'guides/quick-start/going-live',
 
@@ -100,6 +101,7 @@ module.exports = {
         'api/core/accounts/object',
         'api/core/accounts/create',
         'api/core/accounts/retrieve',
+        'api/core/accounts/sync',
         'api/core/accounts/list',
         {
           type: 'category',
