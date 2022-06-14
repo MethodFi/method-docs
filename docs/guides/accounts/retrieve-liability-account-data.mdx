@@ -1,24 +1,52 @@
 ---
-sidebar_label: Retrieve liability account data
+sidebar_label: Liability account data
 ---
 
 import AccountsRetrieve from '../../../src/snippets/AccountsRetrieve';
+import AccountSync from '../../../src/snippets/AccountSync';
 
-# Retrieve liability account data
+
+# Liability account data
 
 Accounts connected through [Method Data](/guides/quick-start/retrieve-an-entitys-debts)
-automatically have enhanced and comprehensive liability data, and are ready to receive payments.
+automatically have basic liability data, and are ready to receive payments.
 
-:::caution
-Only accounts with the `data:retrieve` capability activated can continue
-with this guide. See the [Method Data](/guides/quick-start/retrieve-an-entitys-debts) flow
-section if you wish to follow this guide.
-:::
+In order to retrieve enhanced / expanded liability data you must initiate a sync using [Method Sync](/guides/quick-start/sync-a-liability)
 
 ---
 
-### Retrieve liability account
-This request retrieves a liability account created from the Method Data flow.
+### Sync a liability's data
+
+✨ Method Sync allows you to retrieve real-time enhanced data for any liability created in Method. Method Sync is available
+for a fast growing list of `merchants`.
+
+With Sync, you can fetch key liability details such as `interest_rate_percentage`, `payoff_amount`, `balance` and much more
+in real-time directly from the servicer or financial institution. ➡️ See all available data fields below per liability type.
+
+💡 To check the status of a sync use the data_status and data_last_successful_sync in the account.liability response.
+
+#### Request
+<AccountSync />
+
+#### Response
+
+```json
+{
+  "data": {
+    "id": "acc_sync_6d94yUUMjbcXL",
+    "acc_id": "acc_Zc4F2aTLt8CBt",
+    "status": "in_progress",
+    "error": null,
+    "created_at": "2022-06-14T15:10:28.213Z",
+    "updated_at": "2022-06-14T15:10:28.213Z"
+  }
+}
+```
+
+---
+
+### Retrieve a liability's data
+This request retrieves a liability account created from the Method Data + Method Sync flow.
 
 ➡️ See [liability account types](/api/core/accounts/object#liability-account-types) to learn more.
 
@@ -32,8 +60,8 @@ This request retrieves a liability account created from the Method Data flow.
     "mch_id": "mch_2",
     "mask": "4455",
     "type": "student_loan",
-    "data_status": "pending",
-    "data_last_successful_sync": null,
+    "data_status": "active",
+    "data_last_successful_sync": "2022-06-14T15:13:02.546Z",
     "student_loan": {
       "name": "FedLoan Student Loan",
       "sub_type": "federal",
@@ -61,8 +89,8 @@ This request retrieves a liability account created from the Method Data flow.
     "mch_id": "mch_183",
     "mask": "6382",
     "type": "credit_card",
-    "data_status": "pending",
-    "data_last_successful_sync": null,
+    "data_status": "active",
+    "data_last_successful_sync": "2022-06-14T15:13:02.546Z",
     "credit_card": {
       "name": "Chase Sapphire Reserve",
       "balance": 550472,
@@ -94,8 +122,8 @@ This request retrieves a liability account created from the Method Data flow.
     "mch_id": "mch_183",
     "mask": "2901",
     "type": "mortgage",
-    "data_status": "pending",
-    "data_last_successful_sync": null,
+    "data_status": "active",
+    "data_last_successful_sync": "2022-06-14T15:13:02.546Z",
     "mortgage": {
       "name": "Chase Mortgage",
       "balance": 8976762,
@@ -125,8 +153,8 @@ This request retrieves a liability account created from the Method Data flow.
     "mch_id": "mch_2347",
     "mask": "0966",
     "type": "auto_loan",
-    "data_status": "pending",
-    "data_last_successful_sync": null,
+    "data_status": "active",
+    "data_last_successful_sync": "2022-06-14T15:13:02.546Z",
     "auto_loan": {
       "name": "Volvo Cars Auto Loan",
       "sub_type": "loan",

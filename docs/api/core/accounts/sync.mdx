@@ -1,0 +1,62 @@
+import AccountSync from "../../../../src/snippets/AccountSync";
+
+# Sync an account
+
+**About**: Sync an account allows you to fetch real-time data for a liability directly from the Merchant (FI). A sync can be
+initiated for an account containing the `data:sync` capability in `available_capability` or `capability`.
+
+**API Method**: `POST /accounts/:account_id/sync`
+
+---
+
+### Primer on Sync
+
+#### About Method Sync
+✨ Method Sync allows you to retrieve real-time enhanced data for any liability created in Method. Method Sync is available
+for a fast growing list of `merchants`.
+
+With Sync, you can fetch key liability details such as `interest_rate_percentage`, `payoff_amount`, `balance` and much more
+in real-time directly from the servicer or financial institution. ➡️ See all [available data fields](../../../guides/accounts/retrieve-liability-account-data) per liability type.
+
+#### Tips
+
+Method Sync interfaces directly with financial institutions, as a result, syncs in average take <60 seconds to complete,
+but in rare-cases can take up to 180 seconds.
+
+💡 To check the status of a sync use the `data_status` and `data_last_successful_sync` in the `account.liability` response.
+
+Sync is optimized for speed, and will eagerly save / notify of new updates to a liability (even if the sync is still `in_progress` and incomplete)
+In practice, this means that some fields might temporarily return `null` while we wait for data to be received from the financial institution.
+
+💡 We recommend subscribing to `account:update` [webhook](/api/core/webhooks/object) to be notified of all changes.
+
+#### Nightly Sync
+After a successful initial sync, a liability account will receive nightly data updates directly from the financial institution.
+You'll be notified in real-time of any updates via an `account:update` webhook.
+
+---
+
+### Request
+
+#### Example
+<AccountSync />
+
+### Response
+
+#### Example
+
+An object with the current sync status. Only one sync can be created at a time. Initiating a sync while one is `in_progress`
+will return the current `in_progress` sync.
+
+```json
+{
+  "data": {
+    "id": "acc_sync_6d94yUUMjbcXL",
+    "acc_id": "acc_Zc4F2aTLt8CBt",
+    "status": "in_progress",
+    "error": null,
+    "created_at": "2022-06-14T15:10:28.213Z",
+    "updated_at": "2022-06-14T15:10:28.213Z"
+  }
+}
+```
