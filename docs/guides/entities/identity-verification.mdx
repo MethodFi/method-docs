@@ -8,13 +8,13 @@ import ConnectionsRetrieve from '../../../src/snippets/ConnectionsRetrieve';
 
 # Identity verification
 
-With additional identity verification, you will be able to automatically retrieve
+In lieu of using Method's Auth Element, you can use the Auth Session endpoint to automatically retrieve
 and link all of an individual entity's debts to Method. This additional verification
 will require the entity to answer a set of security questions that will verify
 their identity and ownership over those debts.
 
 :::caution
-Only entities with the `data:retrieve` capability available can continue
+Only entities with the `data:retrieve` in `available_capabilities` can continue
 with this guide. Refer back to the [retrieve data capability](/guides/entities/capabilities#retrieve-data)
 section if you wish to follow this guide.
 :::
@@ -57,18 +57,18 @@ correctly answer.
 ### Update an auth session
 Next we'll provide the answers to the security questions. This request
 may either return a list of additional security questions, or a
-`cxn_id` which indicates that the verification was successful.
+`authenticated` boolean which indicates that the verification was successful.
 
 <EntitiesUpdateIndividualAuthSession />
 
 #### Response (Verification Successful)
-Once we receive a non-null `cxn_id`, we have successfully verified this entity's
+Once we receive a true `authenticated` key, we have successfully verified this entity's
 identity and retrieved their debt accounts.
 
 ```json
 {
   "questions": [],
-  "cxn_id": "cxn_iENwAPKnNqA5j"
+  "authenticated": true,
 }
 ```
 
@@ -96,41 +96,107 @@ Simply repeat the request with answers for the new set of security questions.
     },
     ...
   ],
-  "cxn_id": null
+  "authenticated": false
 }
 ```
 
 ---
 
-### Retrieving the verified connection
-The resulting resource created from verifying an entity's identity is
-a connection object which contains the list of debt accounts retrieved
-for this entity.
+### Retrieve the created liability accounts
+Now we'll retrieve the accounts created from the entity's completed Auth Element.
+We'll use the entities' ID to retrieve all of the debts under their name.
 
-<ConnectionsRetrieve />
+The retrieved accounts created from this flow have the following capabilities:
+
+* `data:retrieve` capability indicating that it was connected as part of this flow (Method Data).
+* `payments:receive` capability indicating that the account is fully setup to be used for payments via Method Payments.
+* `data:sync` capability indicating this liability can receive enhanced data and nightly data updates via Method Sync. ➡️ Learn more here.
+
+<AccountsHolderMethodDataList />
 
 #### Response
+
 ```json
-{
-  "id": "cxn_iENwAPKnNqA5j",
-  "entity_id": "ent_au22b1fbFJbp8",
-  "accounts": [
-    "acc_XaDZc8tE4YVeJ",
-    "acc_k5NzziUDg7hTg",
-    "acc_p3xR5ne3iAX6g",
-    "acc_mDDi64jzWUgSx",
-    "acc_EpcLnJSkSCnRM"
-  ],
-  "source": "method_data",
-  "status": "success",
-  "error": null,
-  "created_at": "2022-02-16T18:02:21.866Z",
-  "updated_at": "2022-02-20T22:50:45.391Z",
-  "last_synced_at": "2022-02-20T22:50:45.391Z"
-}
+[
+    {
+      "id": "acc_XaDZc8tE4YVeJ",
+      "holder_id": "ent_au22b1fbFJbp8",
+      "type": "liability",
+      "ach": null,
+      "liability": {
+        "mch_id": "mch_2347",
+        "mask": "4512",
+        "type": "auto_loan",
+        "data_status": "pending",
+        "data_last_successful_sync": null,
+        "auto_loan": {
+          "name": "Volvo Cars Auto Loan",
+          "sub_type": "loan",
+          "balance": 6083960,
+          "opened_at": null,
+          "payoff_amount": null,
+          "payoff_amount_term": null,
+          "last_payment_amount": 88800,
+          "last_payment_date": "2022-05-12",
+          "next_payment_due_date": "2022-06-01",
+          "next_payment_minimum_amount": 88883,
+          "term_length": 84,
+          "interest_rate_percentage": 5.7,
+          "interest_rate_type": "fixed"
+        }
+      },
+      "status": "active",
+      "capabilities": [
+        "payments:receive",
+        "data:retrieve"
+      ],
+      "available_capabilities": [
+        "data:sync"
+      ],
+      "error": null,
+      "created_at": "2022-02-16T00:47:32.508Z",
+      "updated_at": "2022-02-16T00:47:32.508Z"
+    },
+    {
+      "id": "acc_k5NzziUDg7hTg",
+      "holder_id": "ent_au22b1fbFJbp8",
+      "type": "liability",
+      "liability": {
+        "mch_id": "mch_183",
+        "mask": "6382",
+        "type": "credit_card",
+        "data_status": "pending",
+        "data_last_successful_sync": null,
+        "credit_card": {
+          "name": "Chase Sapphire Reserve",
+          "balance": 550472,
+          "opened_at": "2016-11-25",
+          "last_payment_date": "2022-05-27",
+          "last_payment_amount": 361000,
+          "next_payment_due_date": null,
+          "next_payment_minimum_amount": null,
+          "last_statement_balance": 760501,
+          "remaining_statement_balance": 0,
+          "available_credit": 1788500,
+          "pending_purchase_authorization_amount": 54136,
+          "pending_credit_authorization_amount": null,
+          "interest_saving_balance": null,
+          "interest_rate_percentage": 21.75,
+          "interest_rate_type": "variable"
+        }
+      },
+      "status": "active",
+      "capabilities": [
+        "payments:receive",
+        "data:retrieve"
+      ],
+      "available_capabilities": [
+        "data:sync"
+      ],
+      "error": null,
+      "created_at": "2022-02-16T02:56:19.548Z",
+      "updated_at": "2022-02-16T02:56:19.548Z"
+    },
+  ...
+]
 ```
-
-➡️ See [the connection object](/api/core/connections/object) for details on the API.
-
----
-

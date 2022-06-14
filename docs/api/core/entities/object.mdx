@@ -133,17 +133,17 @@ An entity will have specific capabilities based on the data provided. An entity 
 #### Capabilities Types
 
 * `payments:receive`
-The entity can be a `destination` and receive payments from any other entity. *Minimum required information:* `first_name`, `last_name` and either `email` or `phone`.
-
-* `payments:limited-send`
-The entity can be a `source` and send payments from ACH `Account` created using Method Link + Plaid / MX. *Minimum required information:* `first_name`, `last_name` and either `email` or `phone`.
+The entity can be a `destination` and receive payments from any other entity. *Minimum required information:* `first_name`, `last_name`, and `phone`.
 
 * `payments:send`
-The entity can be a `source` and send payments from any ACH `Account` regardless of how they were created. *Minimum required information:* `first_name`, `last_name`, `dob` and either `email` or `phone`.
+The entity can be a `source` and send payments from any ACH `Account` regardless of how they were created. *Minimum required information:* `first_name`, `last_name`, and `phone`.
 
 * `data:retrieve`
 The entity can automatically retrieve and link their debts
-through [Method Data](/guides/quick-start/retrieve-an-entitys-debts).
+through [Method Data - Retrieve an entity's debts](/guides/quick-start/retrieve-an-entitys-debts).
+*Minimum required information:* `first_name`, `last_name`, and `phone`.
+
+* `data:sync` *Minimum required information:* `first_name`, `last_name`, and `phone`.
 
 ### Entity Statuses
 

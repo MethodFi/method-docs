@@ -17,8 +17,8 @@ module.exports = {
     // Quick start
     { label: 'Quick start', className: 'sidebar-section-header sidebar-icon-guides-quick-start', type: 'doc', id: 'guides/quick-start' },
     'guides/quick-start/environment-setup',
-    'guides/quick-start/create-your-first-payment',
     'guides/quick-start/retrieve-an-entitys-debts',
+    'guides/quick-start/create-your-first-payment',
     'guides/quick-start/going-live',
 
     // Entities
@@ -83,7 +83,6 @@ module.exports = {
         'api/core/entities/retrieve',
         'api/core/entities/update',
         'api/core/entities/list',
-        'api/core/entities/refresh-capabilities',
         {
           type: 'category',
           label: 'Auth Session (Method Data)',
@@ -169,16 +168,16 @@ module.exports = {
         'api/core/reports/download',
       ],
     },
-    {
-      type: 'category',
-      label: 'Connections',
-      items: [
-        'api/core/connections/object',
-        'api/core/connections/list',
-        'api/core/connections/retrieve',
-        'api/core/connections/update',
-      ],
-    },
+    // {
+    //   type: 'category',
+    //   label: 'Connections',
+    //   items: [
+    //     'api/core/connections/object',
+    //     'api/core/connections/list',
+    //     'api/core/connections/retrieve',
+    //     'api/core/connections/update',
+    //   ],
+    // },
     { label: 'Elements', className: 'sidebar-section-header sidebar-icon-api-elements', type: 'link', href: '/api/elements/intro' },
     'api/elements/intro',
     'api/elements/events',

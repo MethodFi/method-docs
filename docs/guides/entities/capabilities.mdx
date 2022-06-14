@@ -14,17 +14,23 @@ with banking regulations.
 An entity's capabilities can be revoked due to payment failures. See
 [payment errors and capabilities](/guides/payments/lifecycle-and-errors#errors-and-capabilities).
 
-:::tip
-_Available capabilities_ are located in the entity's `available_capabilities` property, while
-_activated capabilities_ are located in the entity's `capabilities` property.
-:::
-
-#### Capability prefixes
+### Capability prefixes
 
 | Prefix     | Example         | Description                                                                                                                                                                                      |
 |------------|-----------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `payments` | `payments:send` | This prefix indicates that a capability is part of Method's core payments product.                                                                                                               |
-| `data`     | `data:retrieve` | This prefix indicates that a capability is part of Method's separate data product. This product requires additional setup for your organization. Contact team@methodfi.com for more information. |
+| `payments` | `payments:send` | This prefix indicates that a capability is part of Method Payments.                                                                                                               |
+| `data`     | `data:retrieve` | This prefix indicates that a capability is part of Method Data.  |
+
+### Capability statuses
+
+Capabilities are an indicator of an entities' status. Based on KYC and risk Method might require additional information
+to enable a capability. The location of a capability indicates the next steps to activate that capability.
+
+| Field                                             | Meaning                                                     | Next Steps                                                                                                                                                                                            |
+|---------------------------------------------------|-------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `pending_capability`                              | Unable to activate capability based on provided data.       | Provide more data using [Entity Update endpoint](../../api/core/entities/update)                                                                                                                      |
+| `available_capability` (only for `data:retrieve`) | Capability is ready to be activated based on provided data. | Start the auth flow using [Entity Auth Session endpoint](/guides/entities/identity-verification) or launch the [Auth Element](/guides/quick-start/retrieve-an-entitys-debts#3-launch-the-auth-element). |
+| `capability`                                      | Capability has been activated based on provided data.       | 🚀                                                                                                                                                                                                     |
 
 ℹ️ See [entity capabilities](/api/core/entities/object#entity-capabilities)
 for details on the API.
@@ -34,20 +40,11 @@ for details on the API.
 ### Entity information
 
 Method allows you to create entities with minimal information, then update
-that entity as you collect more information. Below is a list of information
-that defines an entity's uniqueness for each type of entity.
+that entity as you collect more information.
 
-#### Individuals
-- Name
-- Email
-- Phone
-- DOB (Date of birth)
-- Address
+Below you'll find a description of the minimum required information to enable a capability.
 
-#### Corporations
-- Legal business name
-- EIN (Employer identification number)
-- Address
+⚠️ These requirements might differ depending on your company's risk profile, contact Method Team if you have any questions.
 
 :::note
 Once an entity's property has been set, that property can no longer be updated.
@@ -55,36 +52,35 @@ Once an entity's property has been set, that property can no longer be updated.
 
 ---
 
-### Receive payments
+### Receive payments (payments:receive)
 An entity is allowed to receive funds if it has the `payments:receive` capability
 activated. Below is a list of the minimum requirements for an entity to activate
 this capability.
 
 #### Individual
 - Name + Phone
-- Name + Email
 
 #### Corporation
 - Legal business name + EIN + Address
 
 ---
 
-### Send payments
+### Send payments (payments:send)
 An entity is allowed to send funds if it has the `payments:send` capability
 activated. Below is a list of the minimum requirements for an entity to activate
 this capability.
 
 #### Individual
 - Name + DOB + Phone
-- Name + DOB + Email
-- Name + DOB + Address
+- Name + DOB + Phone +Email
+- Name + DOB + Phone + Address
 
 #### Corporation
 - Legal business name + EIN + Address
 
 ---
 
-### Retrieve data
+### Retrieve data (data:retrieve)
 
 Retrieve all of an entity's debts with the `data:retrieve` capability.
 Before we can activate this capability, we must first make it available.
@@ -98,4 +94,24 @@ is required.
 - Name + Phone + Address
 - Name + Phone + DOB + Address
 
+⚠️ Only available for individual entities.
+
 ➡️ Learn more about this capability in the [identity verification section](/guides/entities/identity-verification).
+
+---
+
+### Sync Data (data:sync)
+
+Sync a liability's data using the `data:sync` capability.
+Before we can activate this capability, we must first make it available.
+In most cases, it is sufficient to provide and individual's name and phone
+to make this capability available. For some entities, however, more information
+is required.
+
+#### Individual
+- Name + Phone
+- Name + Phone + DOB
+- Name + Phone + Address
+- Name + Phone + DOB + Address
+
+⚠️ Only available for individual entities.
