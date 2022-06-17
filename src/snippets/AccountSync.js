@@ -2,7 +2,7 @@ import React from 'react';
 import TabbedCodeBlock from '../components/TabbedCodeBlock';
 
 const curl = `
-curl https://production.methodfi.com/accounts/acc_Zc4F2aTLt8CBt/sync \\
+curl https://production.methodfi.com/accounts/acc_Zc4F2aTLt8CBt/syncs \\
   -X POST \\
   -H "Authorization: Bearer sk_WyZEWVfTcH7GqmPzUPk65Vjc"
 `.trim();
