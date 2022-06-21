@@ -8,11 +8,11 @@ curl https://production.methodfi.com/accounts/acc_Zc4F2aTLt8CBt/syncs \\
 `.trim();
 
 const nodejs = `
-const account = await method.accounts.sync('acc_Zc4F2aTLt8CBt');
+const account = await method.accounts('acc_Zc4F2aTLt8CBt').syncs.create();
 `.trim();
 
 const python = `
-account = method.accounts.sync('acc_Zc4F2aTLt8CBt')
+account = method.accounts('acc_Zc4F2aTLt8CBt').syncs.create()
 `.trim();
 
 export default function () {
