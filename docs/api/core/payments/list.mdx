@@ -13,14 +13,17 @@ import PaymentsList from '../../../../src/snippets/PaymentsList';
 
 #### Parameters
 
-| Name          | Required | Description                                                                                            |
-|---------------|----------|--------------------------------------------------------------------------------------------------------|
-| `type`        |          | The type of payments to retrieve. Options: `standard` or `clearing`                                    |
-| `status`      |          | The status of payments to retrieve. See [payment statuses](/api/core/payments/object#payment-statuses) |
-| `source`      |          | The id of the `Account` that is a payment's source.                                                    |
-| `destination` |          | The id of the `Account` that is a payment's destination.                                               |
-| `acc_id`      |          | The id of the `Account` that is either a payment's source or destination.                              |
-| `reversal_id` |          | The id of the `Reversal` corresponding to a payment.                                                   |
+| Name                    | Required | Description                                                                                            |
+|-------------------------|----------|--------------------------------------------------------------------------------------------------------|
+| `type`                  |          | The type of payments to retrieve. Options: `standard` or `clearing`                                    |
+| `status`                |          | The status of payments to retrieve. See [payment statuses](/api/core/payments/object#payment-statuses) |
+| `source`                |          | The id of the `Account` that is a payment's source.                                                    |
+| `destination`           |          | The id of the `Account` that is a payment's destination.                                               |
+| `acc_id`                |          | The id of the `Account` that is either a payment's source or destination.                              |
+| `reversal_id`           |          | The id of the `Reversal` corresponding to a payment.                                                   |
+| `source_holder_id`      |          | The id of the `Entity` who holds the source account in a payment.                                      |
+| `destination_holder_id` |          | The id of the `Entity` who holds the destination account in a payment.                                 |
+
 
 ### Response
 
