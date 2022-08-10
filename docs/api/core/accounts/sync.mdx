@@ -30,6 +30,11 @@ In practice, this means that some fields might temporarily return `null` while w
 
 💡 We recommend subscribing to `account:update` [webhook](/api/core/webhooks/object) to be notified of all changes.
 
+Liability accounts that are created in dev environments will not have syncing capabilities enabled by default.
+
+💡 To simulate Sync in dev environments, use one of the provided `mch_id` and `account_number` pairs. 
+  See [Simulate Sync](/guides/accounts/create-an-account#simulate-sync) for more details.
+
 #### Nightly Sync
 After a successful initial sync, a liability account will receive nightly data updates directly from the financial institution.
 You'll be notified in real-time of any updates via an `account:update` webhook.
