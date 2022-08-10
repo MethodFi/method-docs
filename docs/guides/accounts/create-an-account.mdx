@@ -103,6 +103,24 @@ for a merchant.
 
 ℹ️ See [list merchants](/api/core/merchants/list) for details on the API.
 
+#### Simulate Sync
+To simulate liability account syncs in the dev environments, provide a `mch_id` and `account_number` pair from the table below.
+
+ℹ️ See [Sync an account](/api/core/accounts/sync) for details on the API.
+
+:::caution
+Providing a `mch_id` and `account_number` pair in the `dev` environments that is not listed
+in the table below will not enable the `data:sync` capability for the account.
+:::
+
+| mch_id          | account_number                            | Liability type|
+|-----------------|-------------------------------------------|---------------|
+| `mch_183`       | `4936494462408721`                        | Credit card   |
+| `mch_2`         | `6720443305`                              | Student loan  |
+| `mch_2157`      | `456637152`                               | Auto loan     |
+| `mch_32`        | `5142211993`                              | Mortgage      |
+
+
 <MerchantSearchByName />
 
 ##### Response
