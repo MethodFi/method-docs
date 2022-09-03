@@ -6,6 +6,42 @@ See the latest changes and updates to Method's API.
 🚀 Method is the easiest way to embed debt repayment into your app. ([Learn More](https://methodfi.com))
 :::
 
+### August 2022
+
+* **🏦 Payment support** All liability connected with Method Data can now be paid using Method Payments. No user interaction or API changes required!
+* **🧮 Interest rate coverage**: Interest rate is returned by default for most `auto_loan`, `personal_loan` and `mortgage` liabilities without performing a liability sync.
+* **🏠 Mortgage address**: For most `mortgage` liabilities, the property address is returned by default without performing a liability sync.
+* **🏃 Speed increase**: Increased the speed by 50% of an initial liability sync and the speed by 74% of an initial `auth_session`.
+* **🙋 Improved ownership detection**: For most liabilities Method can now detect if the entity is an additional user or joint holder of a liability.
+* **🧑‍🔧 Improved Dev Env**: Method Sync can now be fully mocked in Method's `dev` environment. 
+* **🏬 Improved Method Sync**: Improved stability and coverage of merchants that supported Method Sync.
+
+### July 2022
+
+* **🔐 Method KBA**: Improved Method Data Auth (`auth_session`) conversion by utilizing Method's own Knowledge-Based-Authentication flow.
+* **🎛 Expanded liability types**: Method Data now returns enhanced data for new liability types including: `personal_loan`, `heloc`, `collection` and `credit_builder`.
+* **🏠 Improved credit card data**: For all `credit_card` liabilities, Method Sync now returns live data for `statement_balance`, `remaining_statement_balance`,`interest_rate` and more. Improved detection between `business`, `flexible_spending` and `charge` cards.
+* **🏠 Improved mortgage data**: For all `mortgage` liabilities, Method Sync now returns live data for `escrow_balance`, `principal_balance`, `payoff_amount`, `payoff_amount_term`, `interest_rate` and more.
+* **🚗 Improved auto loan data**: For all `auto_loan` liabilities, Method Sync now returns live data for `payoff_amount`, `payoff_amount_term`, `interest_rate`, and more. Improved detection for `loan` vs `lease` auto liabilities.
+* **🐞 Bug Fixes**: Squashed over 50+ bugs as part of Method Data + Sync launch. Thanks to all of our early users for your feedback and support! 🙏🏽
+* **🏬 Expanded Merchant support**: Added Method Sync support for over 2,000+ merchants.
+* **✅ Updated client libraries and SDKs**: Updated type definitions for Method Sync & Liabilities updates. ([docs](/libraries))
+
+
+### June 2022
+
+* **🔄 Method Sync**: Introducting our latest data product. With Method Sync, get real-time data for all liabilities. (https://methodfi.com/blog/method-sync)
+* **🎛 Expanded liability data**: As part of Method Sync's launch, any liabilities retrieved with Method Data include new fields such as `interest_rate`, `payoff_amount`, `next_payment_due_date`, `balance` and much more. ([docs](/guides/accounts/retrieve-liability-account-data))
+* **✅ Updated client libraries and SDKs**: Updated type definitions for Method Sync and Liability updates. ([docs](/libraries))
+
+### May 2022
+
+* **🧑‍🔧 Under the hood improvements**: We are working on major rearchitecting for an exciting new launch. Thanks to all of our beta testers
+for your feedback and support! 🙏🏽
+* **✅ Updated client libraries and SDKs**: Updated type definitions, and fixed version compatibility bugs. ([docs](/libraries))
+* **🏬 Expanded Merchant support**: Added payments and data support for over 1,500+ new merchants.
+
+
 ### April 2022
 * **🔍 Auth Element**: Created a new element for entity verification. Get started with
 [this guide](/guides/quick-start/retrieve-an-entitys-debts). ([docs](/api/elements/auth/intro))
