@@ -14,11 +14,15 @@ const python = `
 accounts = method.accounts.list()
 `.trim();
 
+const response = {};
+
 export default function () {
   return (
     <TabbedCodeBlock
       groupId="all"
       name="accounts-list"
+      title="GET /accounts"
+      response={response}
       items={[
         { title: 'cURL', language: 'shell', content: curl },
         { title: 'Node.js', language: 'javascript', content: nodejs },

@@ -14,11 +14,15 @@ const python = `
 account = method.accounts.get('acc_Zc4F2aTLt8CBt')
 `.trim();
 
+const response = {};
+
 export default function () {
   return (
     <TabbedCodeBlock
       groupId="all"
       name="accounts-retrieve"
+      title="GET /accounts/:account_id"
+      response={response}
       items={[
         { title: 'cURL', language: 'shell', content: curl },
         { title: 'Node.js', language: 'javascript', content: nodejs },

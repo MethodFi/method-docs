@@ -1,75 +1,106 @@
+---
+title: Create an individual entity
+sidebar_label: Create an individual entity
+hide_table_of_contents: true
+hide_title: true
+---
+
+import ObjectPropList from '../../../../src/components/ObjectPropList';
 import EntitiesCreateIndividual from '../../../../src/snippets/EntitiesCreateIndividual';
 
-# Create an individual entity
-
-**About**: Creates a new individual entity, and initiates the KYC / AML verification. The identity verification will almost always be fulfilled synchronously. If a verification takes longer than 5 seconds, the request will be handled asynchronously and a webhook will be fired when there is an update.
-
-An Entity can be created with an empty object and progressively updated with more information from your end user. See [Entity Capabilities](/api/core/entities/object#entity-capabilities) for more info.
-
-**API Method**: `POST /entities`
-
-:::tip
-The entity's phone number _must_ be verified before used for creating an Entity.
-:::
-
-### Request
-
-#### Example
-<EntitiesCreateIndividual />
-
-#### Parameters
-| Name                    | Type                | Required | Description                                                                                                            |
-|-------------------------|---------------------|----------|------------------------------------------------------------------------------------------------------------------------|
-| `type`                  | `string`            | ✅        | The type of the entity. Option for individual entity: `individual`                                                     |
-| `individual`            | `object`            | ✅        | Information of the entity with a type of `individual`                                                                  |
-| `individual.first_name` | `string`            | ✅        | The legal first name of the individual entity.                                                                         |
-| `individual.last_name`  | `string`            | ✅        | The legal last name of the individual entity.                                                                          |
-| `individual.phone`      | `string`            | ✅        | Mobile phone number of the individual entity in E.164 format. The number will only be used for KYC / AML verification. |
-| `individual.email`      | `string`            |         | Email address of the individual entity. The email will only be used for KYC / AML verification.                        |
-| `individual.dob`        | `string`            |         | The entity's date of birth in ISO 8601 format.                                                                         |
-| `address`               | `object`            |         | The entity's address.                                                                                                  |
-| `address.line1`         | `string`            |         | The first line of the entity's address.                                                                                |
-| `address.line2`         | `string` `nullable` |          | The second line of the entity's address.                                                                               |
-| `address.city`          | `string`            |         | The city of the entity's address.                                                                                      |
-| `address.state`         | `string`            |         | The two-letter abbreviation for the state of the entity's address.                                                     |
-| `address.zip`           | `string`            |         | The ZIP code of the entity's address.                                                                                  |
-
-### Response
-
-#### Example
-```json
-{
-  "id": "ent_au22b1fbFJbp8",
-  "type": "individual",
-  "individual": {
-    "first_name": "Kevin",
-    "last_name": "Doyle",
-    "phone": "+16505555555",
-    "email": "kevin.doyle@gmail.com",
-    "dob": "1997-03-18"
-  },
-  "corporation": null,
-  "receive_only": null,
-  "address": {
-    "line1": "3300 N Interstate 35",
-    "line2": null,
-    "city": "Austin",
-    "state": "TX",
-    "zip": "78705"
-  },
-  "capabilities": [
-    "payments:send",
-    "payments:receive",
-    "data:sync"
-  ],
-  "available_capabilities": [
-    "data:retrieve"
-  ],
-  "pending_capabilities": [],
-  "error": null,
-  "status": "active",
-  "metadata": null,
-  "created_at": "2020-12-09T00:40:51.107Z",
-  "updated_at": "2020-12-09T00:40:51.107Z"
-}
-```
+<ObjectPropList
+  isRequest
+  title="Create an individual entity"
+  about={(
+    <div>
+      Creates a new individual entity, and initiates the KYC / AML
+      verification. The identity verification will almost always be fulfilled synchronously.
+      If a verification takes longer than 5 seconds, the request will be handled asynchronously
+      and a webhook will be fired when there is an update.
+      <br/><br/>
+      An Entity can be created with an empty object and progressively updated with more information
+      from your end user. See <a href="/api/core/entities/object#entity-capabilities">Entity Capabilities</a> for
+      more info.
+    </div>
+  )}
+  snippetsElement={<EntitiesCreateIndividual />}
+  fields={[
+    {
+      name: 'type',
+      type: 'string',
+      children: <div>The type of the entity. Option for individual entity: <code>individual</code></div>,
+      required: true,
+    },
+    {
+      name: 'individual',
+      type: 'object',
+      children: 'Individual information of the entity.',
+      required: true,
+    },
+    {
+      name: 'individual.first_name',
+      type: 'string',
+      children: 'The legal first name of the individual entity.',
+      required: true,
+    },
+    {
+      name: 'individual.last_name',
+      type: 'string',
+      children: 'The legal last name of the individual entity.',
+      required: true,
+    },
+    {
+      name: 'individual.phone',
+      type: 'string',
+      children: (
+        <div>
+          Mobile phone number of the individual entity in E.164 format. The number will only be used for KYC / AML verification.
+          <br/><br/>
+          <span className="pill-info">💡 Tip</span> The entity's
+          phone number <strong>must</strong> be verified before used for creating an Entity.
+        </div>
+      ),
+      required: true,
+    },
+    {
+      name: 'individual.email',
+      type: 'string',
+      children: 'Email address of the individual entity. The email will only be used for KYC / AML verification.',
+    },
+    {
+      name: 'individual.dob',
+      type: 'string',
+      children: 'The entity\'s date of birth in ISO 8601 format.',
+    },
+    {
+      name: 'address',
+      type: 'object',
+      children: 'The entity\'s address.',
+    },
+    {
+      name: 'address.line1',
+      type: 'string',
+      children: 'The first line of the entity\'s address.',
+    },
+    {
+      name: 'address.line2',
+      type: 'string',
+      children: 'The second line of the entity\'s address.',
+    },
+    {
+      name: 'address.city',
+      type: 'string',
+      children: 'The city of the entity\'s address.',
+    },
+    {
+      name: 'address.state',
+      type: 'string',
+      children: 'The two-letter abbreviation for the state of the entity\'s address',
+    },
+    {
+      name: 'address.zip',
+      type: 'string',
+      children: 'The ZIP code of the entity\'s address.',
+    },
+  ]}
+/>

@@ -1,57 +1,70 @@
+---
+hide_table_of_contents: true
+---
+
+import ObjectPropList from '../../../../src/components/ObjectPropList';
 import EntitiesCreateReceiveOnly from '../../../../src/snippets/EntitiesCreateReceiveOnly';
 
 # Create a receive only entity
 
-**About**: Creates a new receive only entity. Receive only entities can only be used as a `destination` in a `Payment`. This type of entity allows you to push money to an entities' accounts without needing extensive KYC / AML PII ("Personally identifiable information). Receive only entities should be used as a last resort or for one-of payments.
-
-**API Method**: `POST /entities`
+**About**: Creates a new receive only entity. Receive only entities can only be used
+as a `destination` in a `Payment`. This type of entity allows you to push money to an entities' accounts
+without needing extensive KYC / AML PII (Personally Identifiable Information). Receive only
+entities should be used as a last resort or for one-of payments.
 
 :::tip
 To create a receive only entity, either the email or phone must be provided. Receive only entities cannot be updated.
 :::
 
 :::caution Deprecation
-As of 2021-06-27, receive only entities are being deprecated. We recommend using an `individual` entity with `payments:receive` capabilities. See [Entity Capabilities](/api/core/entities/object#entity-capabilities) for more info.
+As of 2021-06-27, receive only entities are being deprecated. We recommend using
+an `individual` entity with `payments:receive` capabilities.
+See [Entity Capabilities](/api/core/entities/object#entity-capabilities) for more info.
 :::
 
-### Request
+### Request Body
 
-#### Example
-<EntitiesCreateReceiveOnly />
-
-#### Parameters
-| Name                 | Type     | Required | Description                                                                                                          |
-|----------------------|----------|----------|----------------------------------------------------------------------------------------------------------------------|
-| `type`               | `string` | ✅        | The type of the entity. Option for Receive Only entity: `receive_only`                                               |
-| `receive_only`       | `object` | ✅        | Information of the entity with a type of `receive_only`                                                              |
-| `receive_only.name`  | `string` | ✅        | The legal name of the entity. This name should match the name on record in the `accounts` associated to this entity. |
-| `receive_only.phone` | `string` |          | Phone number of the entity in E.164 format. The number will only be used for KYC / AML purposes.                     |
-| `receive_only.email` | `string` |          | Email address of the entity. The email will only be used for KYC / AML purposes.                                     |
-
-### Response
-
-#### Example
-```json
-{
-  "id": "ent_ixcRfFb7qQe46",
-  "type": "receive_only",
-  "individual": null,
-  "corporation": null,
-  "receive_only": {
-    "name": "Kevin Doyle",
-    "phone": "+16505555555",
-    "email": "kevin.doyle@gmail.com"
-  },
-  "address": {},
-  "capabilities": [
-    "payments:receive"
-  ],
-  "available_capabilities": [],
-  "pending_capabilities": [],
-  "error": null,
-  "status": "active",
-  "metadata": null,
-  "created_at": "2020-12-09T00:40:51.107Z",
-  "updated_at": "2020-12-09T00:40:51.107Z"
-}
-```
+<ObjectPropList
+  isRequest
+  snippetsElement={<EntitiesCreateReceiveOnly />}
+  fields={[
+    {
+      name: 'type',
+      type: 'string',
+      children: (
+        <div>
+          The type of the entity. Option for Receive Only
+          entity: <code>receive_only</code>.
+        </div>
+      ),
+      required: true,
+    },
+    {
+      name: 'receive_only',
+      type: 'object',
+      children: 'Information of the receive_only entity.',
+      required: true,
+    },
+    {
+      name: 'receive_only.name',
+      type: 'string',
+      children: (
+        <div>
+          The legal name of the entity. This name should match the name
+          on record in the <code>accounts</code> associated to this entity.
+        </div>
+      ),
+      required: true,
+    },
+    {
+      name: 'receive_only.phone',
+      type: 'string',
+      children: 'Phone number of the entity in E.164 format. The number will only be used for KYC / AML purposes.',
+    },
+    {
+      name: 'receive_only.email',
+      type: 'string',
+      children: 'Email address of the entity. The email will only be used for KYC / AML purposes.',
+    },
+  ]}
+/>

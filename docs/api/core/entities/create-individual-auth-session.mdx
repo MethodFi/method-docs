@@ -1,11 +1,14 @@
+---
+hide_table_of_contents: true
+---
+
 import EntitiesCreateIndividualAuthSession from '../../../../src/snippets/EntitiesCreateIndividualAuthSession';
+import ObjectPropList from '../../../../src/components/ObjectPropList';
 
 # Create an individual auth session
 
 **About**: Creates a new auth session for an entity to automatically retrieve their
 debt accounts.
-
-**API Method**: `POST /entities/:entity_id/auth_session`
 
 :::caution
 This endpoint is only accessible to entities that have the `data:retrieve` capability
@@ -17,44 +20,10 @@ If your organization is enrolled in Method's non-KBA authentication, you can ski
 [retrieve the accounts for an entity](/api/core/accounts/list).
 :::
 
-### Request
+### Request Body
 
-#### Example
-<EntitiesCreateIndividualAuthSession />
-
-### Response
-
-#### Example
-```json
-{
-  "questions": [
-    {
-      "id" : "qtn_ywWqCnXDGGmmg",
-      "text" : "What is the monthly payment of your most recent auto loan or lease?",
-      "answers" : [
-        {
-          "id" : "ans_qHLLEUBVpSpTK",
-          "text" : "$601 - $700"
-        },
-        {
-          "id" : "ans_b3xLiwTS8ygMy",
-          "text" : "$701 - $800"
-        },
-        {
-          "id" : "ans_Z5mMMLFy6waMK",
-          "text" : "$801 - $900"
-        },
-        {
-          "id" : "ans_BeSaN5Vj6tRjh",
-          "text" : "$901 - $1000"
-        },
-        {
-          "id" : "ans_74H68MJjqNhk8",
-          "text" : "None of the Above"
-        }
-      ]
-    },
-    ...
-  ]
-}
-```
+<ObjectPropList
+  isRequest
+  snippetsElement={<EntitiesCreateIndividualAuthSession />}
+  fields={[]}
+/>

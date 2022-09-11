@@ -19,6 +19,8 @@ export default function () {
     <TabbedCodeBlock
       groupId="all"
       name="merchants-list-by-name"
+      title="GET /merchants?name={name}"
+      response={{}}
       items={[
         { title: 'cURL', language: 'shell', content: curl },
         { title: 'Node.js', language: 'javascript', content: nodejs },

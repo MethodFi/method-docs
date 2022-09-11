@@ -24,6 +24,8 @@ export default function () {
     <TabbedCodeBlock
       groupId="all"
       name="simulate-payments-update"
+      title="POST /simulate/payments/:payment_id"
+      response={{}}
       items={[
         { title: 'cURL', language: 'shell', content: curl },
         { title: 'Node.js', language: 'javascript', content: nodejs },

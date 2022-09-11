@@ -50,11 +50,15 @@ entity = method.entities.update('ent_dSN2Lk3ifnWZA', {
 })
 `.trim();
 
+const response = {};
+
 export default function () {
   return (
     <TabbedCodeBlock
       groupId="all"
       name="update-method-data-individual"
+      title="PUT /entities/:entity_id"
+      response={response}
       items={[
         { title: 'cURL', language: 'shell', content: curl },
         { title: 'Node.js', language: 'javascript', content: nodejs },

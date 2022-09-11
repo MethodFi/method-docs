@@ -20,6 +20,8 @@ export default function () {
     <TabbedCodeBlock
       groupId="all"
       name="payments-delete"
+      title="DELETE /payments/:payment_id"
+      response={{}}
       items={[
         { title: 'cURL', language: 'shell', content: curl },
         { title: 'Node.js', language: 'javascript', content: nodejs },

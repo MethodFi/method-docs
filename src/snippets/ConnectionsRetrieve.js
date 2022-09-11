@@ -14,11 +14,15 @@ const python = `
 connection = method.connections.get('cxn_iENwAPKnNqA5j')
 `.trim();
 
+const response = {};
+
 export default function () {
   return (
     <TabbedCodeBlock
       groupId="all"
       name="connections-retrieve"
+      title="GET /connections/:connectionId"
+      response={response}
       items={[
         { title: 'cURL', language: 'shell', content: curl },
         { title: 'Node.js', language: 'javascript', content: nodejs },

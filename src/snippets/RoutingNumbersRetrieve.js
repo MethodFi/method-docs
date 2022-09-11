@@ -19,6 +19,8 @@ export default function () {
     <TabbedCodeBlock
       groupId="all"
       name="routing-numbers-retrieve"
+      title="GET /routing_numbers?routing_number={routingNumber}"
+      response={{}}
       items={[
         { title: 'cURL', language: 'shell', content: curl },
         { title: 'Node.js', language: 'javascript', content: nodejs },

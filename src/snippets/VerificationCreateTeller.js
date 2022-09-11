@@ -139,6 +139,8 @@ export default function () {
     <TabbedCodeBlock
       groupId="all"
       name="verification-create-teller"
+      title="POST /accounts/:account_id/verification"
+      response={{}}
       items={[
         { title: 'cURL', language: 'shell', content: curl },
         { title: 'Node.js', language: 'javascript', content: nodejs },

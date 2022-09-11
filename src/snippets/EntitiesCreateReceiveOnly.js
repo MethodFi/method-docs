@@ -38,11 +38,36 @@ entity = method.entities.create({
 })
 `.trim();
 
+const response = {
+  "id": "ent_ixcRfFb7qQe46",
+  "type": "receive_only",
+  "individual": null,
+  "corporation": null,
+  "receive_only": {
+    "name": "Kevin Doyle",
+    "phone": "+16505555555",
+    "email": "kevin.doyle@gmail.com"
+  },
+  "address": {},
+  "capabilities": [
+    "payments:receive"
+  ],
+  "available_capabilities": [],
+  "pending_capabilities": [],
+  "error": null,
+  "status": "active",
+  "metadata": null,
+  "created_at": "2020-12-09T00:40:51.107Z",
+  "updated_at": "2020-12-09T00:40:51.107Z"
+};
+
 export default function () {
   return (
     <TabbedCodeBlock
       groupId="all"
       name="create-receive-only"
+      title="POST /entities"
+      response={response}
       items={[
         { title: 'cURL', language: 'shell', content: curl },
         { title: 'Node.js', language: 'javascript', content: nodejs },

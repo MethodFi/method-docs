@@ -19,6 +19,8 @@ export default function () {
     <TabbedCodeBlock
       groupId="all"
       name="reports-retrieve"
+      title="GET /reports/:report_id"
+      response={{}}
       items={[
         { title: 'cURL', language: 'shell', content: curl },
         { title: 'Node.js', language: 'javascript', content: nodejs },

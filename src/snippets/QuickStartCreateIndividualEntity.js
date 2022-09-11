@@ -70,6 +70,8 @@ export default function () {
     <TabbedCodeBlock
       groupId="all"
       name="quick-start-create-individual"
+      title="POST /entities"
+      response={{}}
       items={[
         { title: 'cURL', language: 'shell', content: curl },
         { title: 'Node.js', language: 'javascript', content: nodejs },

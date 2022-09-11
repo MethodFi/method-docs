@@ -1,163 +1,400 @@
-# The entity object
+---
+title: The entity object
+sidebar_label: The entity object
+hide_table_of_contents: true
+hide_title: true
+---
 
-Entities are a representation of your application's end-users. Throughout Method's ecosystem, an `Entity` is the legal owner of any `Account`. When creating an `Entity` we will perform a KYC / AML verification on your behalf. In most cases, the verification takes seconds and only requires basic information from your end-user.
+import ObjectPropList from '../../../../src/components/ObjectPropList';
 
-Entities can be either an 1) individual/person, 2) company/corporation.
-
-### Entity object
-
-#### Example - Individual Entity
-```json
-{
-  "id": "ent_au22b1fbFJbp8",
-  "type": "individual",
-  "individual": {
-    "first_name": "Kevin",
-    "last_name": "Doyle",
-    "phone": "+16505555555",
-    "email": "kevin.doyle@gmail.com",
-    "dob": "1997-03-18"
-  },
-  "corporation": null,
-  "receive_only": null,
-  "address": {
-    "line1": "3300 N Interstate 35",
-    "line2": null,
-    "city": "Austin",
-    "state": "TX",
-    "zip": "78705"
-  },
-  "capabilities": [
-    "payments:send",
-    "payments:receive"
-  ],
-  "available_capabilities": [],
-  "pending_capabilities": [],
-  "error": null,
-  "status": "active",
-  "metadata": null,
-  "created_at": "2020-12-09T00:40:51.107Z",
-  "updated_at": "2020-12-09T00:40:51.107Z"
-}
-```
-
-#### Example - Corporation Entity
-```json
-{
-  "id": "ent_y1a9e1fbnJ1f3",
-  "type": "c_corporation",
-  "individual": null,
-  "receive_only": null,
-  "corporation": {
-    "name": "Alphabet Inc.",
-    "dba": "Google",
-    "ein": "641234567",
-    "owners": [
-      {
-        "first_name": "Sergey",
-        "last_name": "Brin",
-        "phone": "+16505555555",
-        "email": "sergey@google.com",
-        "dob": "1973-08-21",
+<ObjectPropList
+  title="The entity object"
+  about={(
+    <div>
+      Entities are a representation of your application's end-users. Throughout
+      Method's ecosystem, an <code>Entity</code> is the legal owner of any <code>Account</code>.
+      <br/><br/>
+      When  creating an <code>Entity</code> we will perform a KYC / AML verification on your behalf. In
+      most cases, the verification takes seconds and only requires basic information
+      from your end-user.
+    </div>
+  )}
+  fields={[
+    {
+      name: 'id',
+      type: 'string',
+      children: 'Unique identifier for the entity',
+    },
+    {
+      name: 'type',
+      type: 'enum',
+      enums: [
+        { name: 'individual', children: 'A person or individual.' },
+        { name: 'c_corporation', children: 'A company or corporation.' },
+      ],
+      children: 'The type of the entity',
+    },
+    {
+      name: 'individual',
+      type: 'object,null',
+      children: 'Individual information of the entity.',
+    },
+    {
+      name: 'individual.first_name',
+      type: 'string,null',
+      children: 'The legal first name of the individual entity.',
+    },
+    {
+      name: 'individual.last_name',
+      type: 'string,null',
+      children: 'The legal last name of the individual entity.',
+    },
+    {
+      name: 'individual.phone',
+      type: 'string,null',
+      children: 'Mobile phone number of the individual entity in E.164 format. The number will only be used for KYC / AML verification.',
+    },
+    {
+      name: 'individual.email',
+      type: 'string,null',
+      children: 'Email address of the individual entity. The email will only be used for KYC / AML verification.',
+    },
+    {
+      name: 'individual.dob',
+      type: 'string,null',
+      children: 'The entity\'s date of birth in ISO 8601 format.',
+    },
+    {
+      name: 'corporation',
+      type: 'object,null',
+      children: 'Corporation information of the entity.',
+    },
+    {
+      name: 'corporation.name',
+      type: 'string,null',
+      children: 'The legal name of the corporation entity.',
+    },
+    {
+      name: 'corporation.dba',
+      type: 'string,null',
+      children: 'DBA (Doing Business As) name of the corporation entity.',
+    },
+    {
+      name: 'corporation.ein',
+      type: 'string',
+      children: 'The EIN of the corporation entity.',
+    },
+    {
+      name: 'corporation.owners',
+      type: 'object[]',
+      children: 'The details of the corporation\'s owners (only include individuals owning 25% or more of the corporation).',
+    },
+    // TODO: start define these
+    {
+      name: 'corporation.owners[].first_name',
+      type: 'string',
+      children: 'The details of the corporation\'s owners (only include individuals owning 25% or more of the corporation).',
+    },
+    {
+      name: 'corporation.owners[].phone',
+      type: 'string',
+      children: 'The details of the corporation\'s owners (only include individuals owning 25% or more of the corporation).',
+    },
+    {
+      name: 'corporation.owners[].email',
+      type: 'string',
+      children: 'The details of the corporation\'s owners (only include individuals owning 25% or more of the corporation).',
+    },
+    {
+      name: 'corporation.owners[].dob',
+      type: 'string',
+      children: 'The details of the corporation\'s owners (only include individuals owning 25% or more of the corporation).',
+    },
+    {
+      name: 'corporation.owners[].address',
+      type: 'object',
+      children: 'The details of the corporation\'s owners (only include individuals owning 25% or more of the corporation).',
+    },
+    {
+      name: 'corporation.owners[].address.line1',
+      type: 'string',
+      children: 'The details of the corporation\'s owners (only include individuals owning 25% or more of the corporation).',
+    },
+    {
+      name: 'corporation.owners[].address.line2',
+      type: 'string',
+      children: 'The details of the corporation\'s owners (only include individuals owning 25% or more of the corporation).',
+    },
+    {
+      name: 'corporation.owners[].address.city',
+      type: 'string',
+      children: 'The details of the corporation\'s owners (only include individuals owning 25% or more of the corporation).',
+    },
+    {
+      name: 'corporation.owners[].address.state',
+      type: 'string',
+      children: 'The details of the corporation\'s owners (only include individuals owning 25% or more of the corporation).',
+    },
+    {
+      name: 'corporation.owners[].address.zip',
+      type: 'string',
+      children: 'The details of the corporation\'s owners (only include individuals owning 25% or more of the corporation).',
+    },
+    // TODO: end define these
+    {
+      name: 'capabilities',
+      type: 'enum[]',
+      enums: [
+        {
+          name: 'payments:receive',
+          children: (
+            <div>
+              The entity can be a <code>destination</code> and receive payments from any
+              other entity.
+              <br/><br/>
+              <strong>Minimum required information: </strong>
+              <code>first_name</code>, <code>last_name</code>, and <code>phone</code>.
+            </div>
+          )
+        },
+        {
+          name: 'payments:send',
+          children: (
+            <div>
+              The entity can be a <code>source</code> and send payments from any ACH
+              account regardless of how they were created.
+              <br/><br/>
+              <strong>Minimum required information: </strong>
+              <code>first_name</code>, <code>last_name</code>, and <code>phone</code>.
+            </div>
+          )
+        },
+        {
+          name: 'data:retrieve',
+          children: (
+            <div>
+              The entity can automatically retrieve and link their debts
+              through <a href="/guides/quick-start/retrieve-an-entitys-debts">Method Data - Retrieve an entity's debts</a>.
+              <br/><br/>
+              <strong>Minimum required information: </strong>
+              <code>first_name</code>, <code>last_name</code>, and <code>phone</code>.
+            </div>
+          )
+        },
+        {
+          name: 'data:sync',
+          children: (
+            <div>
+              <strong>Minimum required information: </strong>
+              <code>first_name</code>, <code>last_name</code>, and <code>phone</code>.
+            </div>
+          )
+        },
+      ],
+      children: (
+        <div>
+          The active capabilities of the entity.
+          <br/><br/>
+          An entity will have specific capabilities based on the data provided. An
+          entity can be further updated with more information to expand the
+          capabilities of an entity.
+        </div>
+      ),
+    },
+    {
+      name: 'available_capabilities',
+      type: 'enum[]',
+      children: 'The capabilities of an entity that require additional verification to fully activate.',
+    },
+    {
+      name: 'pending_capabilities',
+      type: 'enum[]',
+      children: 'A list of possible capabilities for an entity that an entity can activate.',
+    },
+    {
+      name: 'error',
+      type: 'object,null',
+      children: (
+        <div>
+          An object representing an error that occurred for this entity.
+          See <a href="/api/errors/resource#entity-errors">entity errors</a>.
+        </div>
+      ),
+    },
+    {
+      name: 'address',
+      type: 'object',
+      children: 'The entity\'s address.',
+    },
+    {
+      name: 'address.line1',
+      type: 'string,null',
+      children: 'The first line of the entity\'s address.',
+    },
+    {
+      name: 'address.line2',
+      type: 'string,null',
+      children: 'The second line of the entity\'s address.',
+    },
+    {
+      name: 'address.city',
+      type: 'string,null',
+      children: 'The city of the entity\'s address.',
+    },
+    {
+      name: 'address.state',
+      type: 'string,null',
+      children: 'The two-letter abbreviation for the state of the entity\'s address',
+    },
+    {
+      name: 'address.zip',
+      type: 'string,null',
+      children: 'The ZIP code of the entity\'s address.',
+    },
+    {
+      name: 'status',
+      type: 'enum',
+      enums: [
+        {
+          name: 'active',
+          children: (
+            <div>
+              The entity has passed basic KYC / AML verification. Once active, the entity will
+              have at least the <code>payments:receive</code> capability.
+            </div>
+          ),
+        },
+        {
+          name: 'incomplete',
+          children: (
+            <div>
+              The entity does not have any capabilities yet. Update the entity by providing
+              more information to enable capabilities.
+            </div>
+          ),
+        },
+        {
+          name: 'disabled',
+          children: (
+            <div>
+              The entity has been disabled and no longer has capabilities. Entities
+              can transition into the <code>disabled</code> status if an entity revokes authorization
+              for a payment that has already been sent.
+            </div>
+          ),
+        },
+      ],
+      children: (
+        <div>
+          Status of the entity's KYC / AML verification. An entity will enter the
+          following statuses as it undergoes KYC / AML verification.
+        </div>
+      )
+    },
+    {
+      name: 'metadata',
+      type: 'object,null',
+      children: (
+        <div>
+          Additional data provided during creation.
+          See <a href="/api/metadata">metadata</a>.
+        </div>
+      ),
+    },
+    {
+      name: 'created_at',
+      type: 'string',
+      children: 'Timestamp of when the entity was created.',
+    },
+    {
+      name: 'updated_at',
+      type: 'string',
+      children: 'Timestamp of when the entity was last updated.',
+    },
+  ]}
+  snippets={[
+    {
+      title: 'Individual',
+      language: 'json',
+      value: {
+        "id": "ent_au22b1fbFJbp8",
+        "type": "individual",
+        "individual": {
+          "first_name": "Kevin",
+          "last_name": "Doyle",
+          "phone": "+16505555555",
+          "email": "kevin.doyle@gmail.com",
+          "dob": "1997-03-18"
+        },
+        "corporation": null,
+        "receive_only": null,
         "address": {
-          "line1": "600 Amphitheatre Parkway",
+          "line1": "3300 N Interstate 35",
+          "line2": null,
+          "city": "Austin",
+          "state": "TX",
+          "zip": "78705"
+        },
+        "capabilities": [
+          "payments:send",
+          "payments:receive"
+        ],
+        "available_capabilities": [],
+        "pending_capabilities": [],
+        "error": null,
+        "status": "active",
+        "metadata": null,
+        "created_at": "2020-12-09T00:40:51.107Z",
+        "updated_at": "2020-12-09T00:40:51.107Z"
+      },
+    },
+    {
+      title: 'Corporation',
+      language: 'json',
+      value: {
+        "id": "ent_y1a9e1fbnJ1f3",
+        "type": "c_corporation",
+        "individual": null,
+        "receive_only": null,
+        "corporation": {
+          "name": "Alphabet Inc.",
+          "dba": "Google",
+          "ein": "641234567",
+          "owners": [
+            {
+              "first_name": "Sergey",
+              "last_name": "Brin",
+              "phone": "+16505555555",
+              "email": "sergey@google.com",
+              "dob": "1973-08-21",
+              "address": {
+                "line1": "600 Amphitheatre Parkway",
+                "line2": null,
+                "city": "Mountain View",
+                "state": "CA",
+                "zip": "94043"
+              }
+            }
+          ]
+        },
+        "address": {
+          "line1": "1600 Amphitheatre Parkway",
           "line2": null,
           "city": "Mountain View",
           "state": "CA",
           "zip": "94043"
-        }
-      }
-    ]
-  },
-  "address": {
-    "line1": "1600 Amphitheatre Parkway",
-    "line2": null,
-    "city": "Mountain View",
-    "state": "CA",
-    "zip": "94043"
-  },
-  "capabilities": [
-    "payments:send",
-    "payments:receive"
-  ],
-  "available_capabilities": [],
-  "pending_capabilities": [],
-  "error": null,
-  "status": "active",
-  "metadata": null,
-  "created_at": "2020-12-09T00:40:51.107Z",
-  "updated_at": "2020-12-09T00:40:51.107Z"
-}
-```
-
-### Entity Attributes
-
-| Name                     | Type                 | Description                                                                                                                                                                                                                     |
-|--------------------------|----------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `id`                     | `string`             | Unique identifier for the entity.                                                                                                                                                                                               |
-| `type`                   | `string`             | The type of the entity. Option for receive only entity: `receive_only` Option for individual entity: `individual` Options for corporation entity: `c_corporation`, `s_corporation`, `llc`, `partnership`, `sole_proprietorship` |
-| `individual`             | `object` `nullable`  | Information of the entity with a type of `individual`                                                                                                                                                                           |
-| `individual.first_name`  | `string`             | The legal first name of the individual entity.                                                                                                                                                                                  |
-| `individual.last_name`   | `string`             | The legal last name of the individual entity.                                                                                                                                                                                   |
-| `individual.phone`       | `string`             | Mobile phone number of the individual entity in E.164 format. The number will only be used for KYC / AML verification.                                                                                                          |
-| `individual.email`       | `string`             | Email address of the individual entity. The email will only be used for KYC / AML verification.                                                                                                                                 |
-| `individual.dob`         | `string`             | The entity's date of birth in ISO 8601 format.                                                                                                                                                                                  |
-| `corporation`            | `object` `nullable`  | Information of the entity with a type of `c_corporation`, `s_corporation`, `limited_liability_company`, `partnership`, `sole_proprietorship`                                                                                    |
-| `corporation.name`       | `string`             | The legal name of the corporation entity.                                                                                                                                                                                       |
-| `corporation.dba`        | `string` `nullable`  | DBA (Doing Business As) name of the corporation entity                                                                                                                                                                          |
-| `corporation.ein`        | `string`             | The EIN of the corporation entity.                                                                                                                                                                                              |
-| `corporation.owners`     | `array`              | The details of the corporation's owners (only include individuals owning 25% or more of the corporation)                                                                                                                        |
-| `receive_only`           | `object` `nullable`  | 🚧 Deprecated: Information of the entity with a type of `receive_only`.                                                                                                                                                          |
-| `receive_only.name`      | `string`             | The legal name of the entity. This name should match the name on record in the `accounts` associated to this entity.                                                                                                            |
-| `receive_only.phone`     | `string`             | Phone number of the entity in E.164 format. The number will only be used for KYC / AML purposes.                                                                                                                                |
-| `receive_only.email`     | `string`             | Email address of the entity. The email will only be used for KYC / AML purposes.                                                                                                                                                |
-| `capabilities`           | `array`              | The active capabilities of the entity. See *Entity Capabilities* for more info.                                                                                                                                                 |
-| `available_capabilities` | `array`              | The capabilities of an entity that require additional verification to fully activate. See *Entity Capabilities* for more info.                                                                                                  |
-| `pending_capabilities`   | `array`              | A list of possible capabilities for an entity that an entity can activate. See *Entity Capabilities* for more info.                                                                                                             |
-| `error`                  | `object` `nullable`  | An object representing an error that occurred for this entity. See [entity errors](/api/errors/resource#entity-errors).                                                                                                         |
-| `address`                | `object`             | The entity's address.                                                                                                                                                                                                           |
-| `address.line1`          | `string`             | The first line of the entity's address.                                                                                                                                                                                         |
-| `address.line2`          | `string` `nullable`  | The second line of the entity's address.                                                                                                                                                                                        |
-| `address.city`           | `string`             | The city of the entity's address.                                                                                                                                                                                               |
-| `address.state`          | `string`             | The two-letter abbreviation for the state of the entity's address.                                                                                                                                                              |
-| `address.zip`            | `string`             | The ZIP code of the entity's address.                                                                                                                                                                                           |
-| `status`                 | `string`             | Status of the entity's KYC / AML verification. Possible statuses: `active`, `incomplete`, `disabled`. See *Entity Statuses* for more info.                                                                                      |
-| `metadata`               | `object`, `nullable` | Additional data provided during creation. See [metadata](/api/metadata).                                                                                                                                                        |
-| `created_at`             | `string`             | Timestamp of when the entity was created.                                                                                                                                                                                       |
-| `updated_at`             | `string`             | Timestamp of when the entity was last updated.                                                                                                                                                                                  |
-
-### Entity Capabilities
-
-An entity will have specific capabilities based on the data provided. An entity can be further updated with more information to expand the possible capabilities of an entity.
-
-#### Capabilities Types
-
-* `payments:receive`
-The entity can be a `destination` and receive payments from any other entity. *Minimum required information:* `first_name`, `last_name`, and `phone`.
-
-* `payments:send`
-The entity can be a `source` and send payments from any ACH `Account` regardless of how they were created. *Minimum required information:* `first_name`, `last_name`, and `phone`.
-
-* `data:retrieve`
-The entity can automatically retrieve and link their debts
-through [Method Data - Retrieve an entity's debts](/guides/quick-start/retrieve-an-entitys-debts).
-*Minimum required information:* `first_name`, `last_name`, and `phone`.
-
-* `data:sync` *Minimum required information:* `first_name`, `last_name`, and `phone`.
-
-### Entity Statuses
-
-An entity will enter the following statuses as it undergoes KYC / AML verification.
-
-* `active`
-The entity has passed basic KYC / AML verification. Once active, the entity will
-have at least the `payments:receive` capability.
-
-* `incomplete`
-The entity does not have any capabilities yet. Update the entity by providing
-more information to enable capabilities.
-
-* `disabled`
-The entity has been disabled and no longer has capabilities. Entities
-can transition into the `disabled` status if an entity revokes authorization
-for a payment that has already been sent.
+        },
+        "capabilities": [
+          "payments:send",
+          "payments:receive"
+        ],
+        "available_capabilities": [],
+        "pending_capabilities": [],
+        "error": null,
+        "status": "active",
+        "metadata": null,
+        "created_at": "2020-12-09T00:40:51.107Z",
+        "updated_at": "2020-12-09T00:40:51.107Z"
+      },
+    },
+  ]} />

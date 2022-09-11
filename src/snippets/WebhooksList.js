@@ -19,6 +19,8 @@ export default function () {
     <TabbedCodeBlock
       groupId="all"
       name="webhooks-list"
+      title="GET /webhooks"
+      response={{}}
       items={[
         { title: 'cURL', language: 'shell', content: curl },
         { title: 'Node.js', language: 'javascript', content: nodejs },

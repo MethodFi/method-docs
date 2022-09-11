@@ -1,4 +1,5 @@
 import React from 'react';
+import CodeBlock from '@theme/CodeBlock';
 import TabbedCodeBlock from '../components/TabbedCodeBlock';
 
 const curl = `
@@ -42,6 +43,8 @@ export default function () {
     <TabbedCodeBlock
       groupId="all"
       name="idempotency"
+      title="POST /payments"
+      response={{}}
       items={[
         { title: 'cURL', language: 'shell', content: curl },
         { title: 'Node.js', language: 'javascript', content: nodejs },

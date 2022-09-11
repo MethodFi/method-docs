@@ -23,11 +23,15 @@ account = method
   .exchange_public_account_token('pk_acc_iZKeBTmnmw3aSGePcfdweUEJTBXwsfR4')
 `.trim();
 
+const response = {};
+
 export default function () {
   return (
     <TabbedCodeBlock
       groupId="all"
       name="elements-exchange-public-account-token"
+      title="POST /elements/accounts/exchange"
+      response={response}
       items={[
         { title: 'cURL', language: 'shell', content: curl },
         { title: 'Node.js', language: 'javascript', content: nodejs },

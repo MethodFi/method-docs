@@ -40,6 +40,8 @@ export default function () {
     <TabbedCodeBlock
       groupId="all"
       name="quick-start-accounts-create-liability"
+      title="POST /accounts"
+      response={{}}
       items={[
         { title: 'cURL', language: 'shell', content: curl },
         { title: 'Node.js', language: 'javascript', content: nodejs },

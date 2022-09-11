@@ -14,11 +14,15 @@ const python = `
 accounts = method.accounts.list({ 'holder_id': 'ent_au22b1fbFJbp8' })
 `.trim();
 
+const response = {};
+
 export default function () {
   return (
     <TabbedCodeBlock
       groupId="all"
       name="accounts-holder-method-data-list"
+      title="GET /accounts?holder_id={holder_id}"
+      response={response}
       items={[
         { title: 'cURL', language: 'shell', content: curl },
         { title: 'Node.js', language: 'javascript', content: nodejs },

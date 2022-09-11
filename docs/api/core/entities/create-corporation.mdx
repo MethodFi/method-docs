@@ -1,79 +1,109 @@
+---
+title: Create a corporation entity
+sidebar_label: Create a corporation entity
+hide_table_of_contents: true
+hide_title: true
+---
+
 import EntitiesCreateCorporation from '../../../../src/snippets/EntitiesCreateCorporation';
+import ObjectPropList from '../../../../src/components/ObjectPropList';
 
-# Create a corporation entity
-
-**About**: Creates a new corporation entity, and initiates the KYC / AML verification. The identity verification will almost always be fulfilled synchronously. If a verification takes longer than 5 seconds, the request will be handled asynchronously and a webhook will be fired when there is an update.
-
-**API Method**: `POST /entities`
-
-### Request
-
-#### Example
-<EntitiesCreateCorporation />
-
-#### Parameters
-| Name                 | Type     | Required | Description                                                                                                                                                 |
-|----------------------|----------|----------|-------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `type`               | `string` | ✅        | The type of the entity. Options for corporation entity: `c_corporation`, `s_corporation`, `llc`, `partnership`, `sole_proprietorship` |
-| `corporation`        | `object` | ✅        | Information of the entity with a type of `c_corporation`, `s_corporation`, `llc`, `partnership`, `sole_proprietorship`                |
-| `corporation.name`   | `string` | ✅        | The legal name of the corporation entity.                                                                                                                   |
-| `corporation.dba`    | `string` |          | DBA (Doing Business As) name of the corporation entity                                                                                                      |
-| `corporation.ein`    | `string` | ✅        | The EIN of the corporation entity.                                                                                                                          |
-| `corporation.owners` | `array`  | ✅        | The details of the corporation's owners (only include individuals owning 25% or more of the corporation)                                                    |
-| `address`            | `object` | ✅        | The entity's address.                                                                                                                                       |
-| `address.line1`      | `string` | ✅        | The first line of the entity's address.                                                                                                                     |
-| `address.line2`      | `string` |          | The second line of the entity's address.                                                                                                                    |
-| `address.city`       | `string` | ✅        | The city of the entity's address.                                                                                                                           |
-| `address.state`      | `string` | ✅        | The two-letter abbreviation for the state of the entity's address.                                                                                          |
-| `address.zip`        | `string` | ✅        | The ZIP code of the entity's address.                                                                                                                       |
-
-### Response
-
-#### Example
-```json
-{
-  "id": "ent_y1a9e1fbnJ1f3",
-  "type": "c_corporation",
-  "individual": null,
-  "receive_only": null,
-  "corporation": {
-    "name": "Alphabet Inc.",
-    "dba": "Google",
-    "ein": "641234567",
-    "owners": [
-      {
-        "first_name": "Sergey",
-        "last_name": "Brin",
-        "phone": "+16505555555",
-        "email": "sergey@google.com",
-        "dob": "1973-08-21",
-        "address": {
-          "line1": "600 Amphitheatre Parkway",
-          "line2": null,
-          "city": "Mountain View",
-          "state": "CA",
-          "zip": "94043"
-        }
-      }
-    ]
-  },
-  "address": {
-    "line1": "1600 Amphitheatre Parkway",
-    "line2": null,
-    "city": "Mountain View",
-    "state": "CA",
-    "zip": "94043"
-  },
-  "capabilities": [
-    "payments:send",
-    "payments:receive"
-  ],
-  "available_capabilities": [],
-  "pending_capabilities": [],
-  "error": null,
-  "status": "active",
-  "metadata": null,
-  "created_at": "2020-12-09T00:40:51.107Z",
-  "updated_at": "2020-12-09T00:40:51.107Z"
-}
-```
+<ObjectPropList
+  title="Create a corporation entity"
+  about={(
+    <div>
+      Creates a new corporation entity, and initiates the KYC / AML verification. The
+      identity verification will almost always be fulfilled synchronously. If a verification takes
+      longer than 5 seconds, the request will be handled asynchronously and a webhook will be fired
+      when there is an update.
+    </div>
+  )}
+  isRequest
+  snippetsElement={<EntitiesCreateCorporation />}
+  fields={[
+    {
+      name: 'type',
+      type: 'string',
+      children: (
+        <div>
+          The type of the entity. Options for corporation entity:
+          {' '}
+          <code>c_corporation</code>,
+          {' '}
+          <code>s_corporation</code>,
+          {' '}
+          <code>llc</code>,
+          {' '}
+          <code>partnership</code>,
+          {' '}
+          <code>sole_proprietorship</code>.
+        </div>
+      ),
+      required: true,
+    },
+    {
+      name: 'corporation',
+      type: 'object',
+      children: 'Information of the corporation entity.',
+      required: true,
+    },
+    {
+      name: 'corporation.name',
+      type: 'string',
+      children: 'The legal name of the corporation entity.',
+      required: true,
+    },
+    {
+      name: 'corporation.dba',
+      type: 'string',
+      children: 'DBA (Doing Business As) name of the corporation entity.',
+    },
+    {
+      name: 'corporation.ein',
+      type: 'string',
+      children: 'The EIN of the corporation entity.',
+      required: true,
+    },
+    {
+      name: 'corporation.owners',
+      type: 'object[]',
+      children: 'The details of the corporation\'s owners (only include individuals owning 25% or more of the corporation)',
+      required: true,
+    },
+    {
+      name: 'address',
+      type: 'object',
+      children: 'The entity\'s address.',
+      required: true,
+    },
+    {
+      name: 'address.line1',
+      type: 'string',
+      children: 'The first line of the entity\'s address.',
+      required: true,
+    },
+    {
+      name: 'address.line2',
+      type: 'string',
+      children: 'The second line of the entity\'s address.',
+    },
+    {
+      name: 'address.city',
+      type: 'string',
+      children: 'The city of the entity\'s address.',
+      required: true,
+    },
+    {
+      name: 'address.state',
+      type: 'string',
+      children: 'The two-letter abbreviation for the state of the entity\'s address',
+      required: true,
+    },
+    {
+      name: 'address.zip',
+      type: 'string',
+      children: 'The ZIP code of the entity\'s address.',
+      required: true,
+    },
+  ]}
+/>

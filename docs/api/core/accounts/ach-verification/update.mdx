@@ -4,7 +4,7 @@ import VerificationUpdate from '../../../../../src/snippets/VerificationUpdate';
 
 **About**: This endpoint is to confirm the two amounts (in cents) deposited into the associated ACH account. Only verifications of type `micro_deposits` are allowed to be updated.
 
-**API Method**: `PUT /accounts/:accountId/verification`
+**API Method**: `PUT /accounts/:account_id/verification`
 
 :::caution Important
 If multiple unsuccessful attempts have been made, the verification will transition into the `disabled` status. In this case, a new ACH account and verification must be created.

@@ -30,6 +30,8 @@ export default function () {
     <TabbedCodeBlock
       groupId="all"
       name="reversals-update"
+      title="PUT /payments/:payment_id/reversals/:reversal_id"
+      response={{}}
       items={[
         { title: 'cURL', language: 'shell', content: curl },
         { title: 'Node.js', language: 'javascript', content: nodejs },

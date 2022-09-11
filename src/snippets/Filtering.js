@@ -25,6 +25,8 @@ export default function () {
     <TabbedCodeBlock
       groupId="all"
       name="payments-list-with-filters"
+      title="GET /payments?source={account_id}&status={status}"
+      response={{}}
       items={[
         { title: 'cURL', language: 'shell', content: curl },
         { title: 'Node.js', language: 'javascript', content: nodejs },

@@ -1,52 +1,18 @@
+---
+title: Retrieve an entity
+sidebar_label: Retrieve an entity
+hide_table_of_contents: true
+hide_title: true
+---
+
 import EntitiesRetrieve from '../../../../src/snippets/EntitiesRetrieve';
+import ObjectPropList from '../../../../src/components/ObjectPropList';
 
-# Retrieve an entity
-
-**About**: Returns the entity associated with the id.
-
-**API Method**: `GET /entities/:entityId`
-
-### Request
-
-#### Example
-<EntitiesRetrieve />
-
-### Response
-
-#### Example
-```json
-{
-  "id": "ent_au22b1fbFJbp8",
-  "type": "individual",
-  "individual": {
-    "first_name": "Kevin",
-    "last_name": "Doyle",
-    "phone": "+16505555555",
-    "email": "kevin.doyle@gmail.com",
-    "dob": "1997-03-18"
-  },
-  "corporation": null,
-  "receive_only": null,
-  "address": {
-    "line1": "3300 N Interstate 35",
-    "line2": null,
-    "city": "Austin",
-    "state": "TX",
-    "zip": "78705"
-  },
-  "capabilities": [
-    "payments:send",
-    "payments:receive",
-    "data:sync"
-  ],
-  "available_capabilities": [
-    "data:retrieve"
-  ],
-  "pending_capabilities": [],
-  "error": null,
-  "status": "active",
-  "metadata": null,
-  "created_at": "2020-12-09T00:40:51.107Z",
-  "updated_at": "2020-12-09T00:40:51.107Z"
-}
-```
+<ObjectPropList
+  isRequest
+  about="Returns the entity associated with the id."
+  returns="Returns the entity associated with the id."
+  title="Retrieve an entity"
+  snippetsElement={<EntitiesRetrieve />}
+  fields={[]}
+/>
