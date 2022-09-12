@@ -99,7 +99,8 @@ module.exports = {
       label: 'Accounts',
       items: [
         'api/core/accounts/object',
-        'api/core/accounts/create',
+        'api/core/accounts/create-ach',
+        'api/core/accounts/create-liability',
         'api/core/accounts/retrieve',
         'api/core/accounts/sync',
         'api/core/accounts/list',

@@ -1,0 +1,59 @@
+---
+title: Create a liability account
+sidebar_label: Create a liability account
+hide_table_of_contents: true
+hide_title: true
+---
+
+import ObjectPropList from '../../../../src/components/ObjectPropList';
+import AccountsCreateLiability from '../../../../src/snippets/AccountsCreateLiability';
+
+
+<ObjectPropList
+  isRequest
+  title="Create a account"
+  about={(
+    <div>
+      Creates a new <code>liability</code> account for a unique entity based on the parameters provided.
+      <br/><br/>
+      <u>Collecting a liability's account number:</u><br/>
+      Due to the sensitive nature of a liability's account number, we recommend collecting the account number from your end-user using one of the secure pathways below.
+      <br/>
+      <ol>
+        <li> Method Data - 💡 You can automatically retrieve all of an entity's liabilities using Method Data. See the <a href="/guides/quick-start/retrieve-an-entitys-debts">retrieve an entity's debts</a> guide to learn more.</li>
+        <li> Method Link - 📱 You can embed the Link Element to securly allow your user's to connect their debts directly to Method. See <a href="/api/elements/link/intro">Overview of Link Element</a> to learn more.</li>
+        <li> API + Third Party Aggregator - You will need the <code>merchant</code> id (<code>mch_id</code>) and the account number of the liability. Use an aggregator such as Plaid.</li>
+      </ol>
+      Creating a <code>liability</code> account will automatically validate the account number with the
+      merchant in order to lower the risk of failed/returned payments
+    </div>
+  )}
+  returns= {"Account"}
+  snippetsElement={<AccountsCreateLiability />}
+  fields={[
+    {
+      name: 'holder_id',
+      type: 'string',
+      children: <div>The id of the <code>Entity</code> who is the legal holder of this account.</div>,
+      required: true,
+    },
+    {
+      name: 'liability',
+      type: 'object',
+      children: 'Liability account information.',
+      required: true,
+    },
+    {
+      name: 'liability.mch_id',
+      type: 'string',
+      children: 'Unique identifier of the merchant.',
+      required: true,
+    },
+    {
+      name: 'liability.account_number',
+      type: 'string',
+      children: 'The account number of the liability. (e.g. PAN for credit cards, Payment ref for student loans).',
+      required: true,
+    },
+  ]}
+/>

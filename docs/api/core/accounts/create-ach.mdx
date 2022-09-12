@@ -1,0 +1,67 @@
+---
+title: Create an ACH account
+sidebar_label: Create an ACH account
+hide_table_of_contents: true
+hide_title: true
+---
+
+import ObjectPropList from '../../../../src/components/ObjectPropList';
+import AccountsCreateACH from '../../../../src/snippets/AccountsCreateACH';
+
+
+<ObjectPropList
+  isRequest
+  title="Create an ACH account"
+  about={(
+    <div>
+      Creates a new <code>ach</code> account for a unique entity based on the parameters provided.
+      <br/><br/>
+      <u>ACH account verification:</u><br/> Creating an <code>ach</code> account will require an additional step for verification to confirm
+the validity of the account. ➡️ See <a href="/api/core/accounts/ach-verification/object">ACH account verification.</a>
+    </div>
+  )}
+  returns= {"ACH Account"}
+  snippetsElement={<AccountsCreateACH />}
+  fields={[
+    {
+      name: 'holder_id',
+      type: 'string',
+      children: <div>The id of the <code>Entity</code> who is the legal holder of this account</div>,
+      required: true,
+    },
+    {
+      name: 'ach',
+      type: 'object',
+      children: 'ACH account information.',
+      required: true,
+    },
+    {
+      name: 'ach.routing',
+      type: 'string',
+      children: 'ABA routing number of the ACH account. (maximum of 9 characters).',
+      required: true,
+    },
+    {
+      name: 'ach.number',
+      type: 'string',
+      children: 'Account number of the ACH account. (maximum of 17 characters).',
+      required: true,
+    },
+    {
+      name: 'ach.type',
+      type: 'string',
+      children: 'Type of ACH account.',
+      enums: [
+        {
+          name: 'checking',
+          children: 'Checking account',
+        },
+        {
+          name: 'savings',
+          children: 'Savings account',
+        },
+      ],
+      required: true,
+    },
+  ]}
+/>
