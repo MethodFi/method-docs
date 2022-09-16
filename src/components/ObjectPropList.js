@@ -24,19 +24,21 @@ export default function ObjectPropList(props) {
 
           {/* Attributes */}
           <div>
-            <h3 className="margin-vert--none">
-              {isRequest ? 'Parameters' : 'Attributes'}
-            </h3>
+            {fields && (
+              <h3 className="margin-vert--none">
+                {isRequest ? 'Parameters' : 'Attributes'}
+              </h3>
+            )}
             <hr className="margin-vert--md" style={{ borderWidth: 0.5 }} />
           </div>
-          {(fields.length === 0 && isRequest) && <p className="text-muted">No parameters</p>}
-          {fields.map(({ children, ...rest }) => (
+          {fields && (fields.length === 0 && isRequest) && <p className="text-muted">No parameters</p>}
+          {fields && fields.map(({ children, ...rest }) => (
             <ObjectPropItem key={rest.name} isRequest={isRequest} {...rest}>
               {children}
             </ObjectPropItem>
           ))}
 
-          {isRequest && (
+          {isRequest && returns && (
             <div>
               <h3 className="margin-vert--none margin-top--lg">
                 Returns
@@ -51,7 +53,7 @@ export default function ObjectPropList(props) {
             {snippets && (
               <TabbedCodeBlock
                 groupId="all"
-                name="accounts-holder-method-data-list"
+                name={snippets.map((x) => x.title).join('-')}
                 items={snippets.map(({ title, value, language }) => ({
                   title,
                   language: language,

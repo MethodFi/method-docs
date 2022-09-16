@@ -46,6 +46,7 @@ const response = {
       ]
     },
   ],
+  "authenticated": false,
 };
 
 export default function () {

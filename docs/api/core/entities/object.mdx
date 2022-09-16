@@ -89,58 +89,61 @@ import ObjectPropList from '../../../../src/components/ObjectPropList';
       type: 'object[]',
       children: 'The details of the corporation\'s owners (only include individuals owning 25% or more of the corporation).',
     },
-    // TODO: start define these
     {
       name: 'corporation.owners[].first_name',
       type: 'string',
-      children: 'The details of the corporation\'s owners (only include individuals owning 25% or more of the corporation).',
+      children: 'The legal first name of the corporation owner.',
+    },
+    {
+      name: 'corporation.owners[].last_name',
+      type: 'string',
+      children: 'The legal last name of the corporation owner.',
     },
     {
       name: 'corporation.owners[].phone',
       type: 'string',
-      children: 'The details of the corporation\'s owners (only include individuals owning 25% or more of the corporation).',
+      children: 'Mobile phone number of the corporation owner in E.164 format. The number will only be used for KYC / AML verification.',
     },
     {
       name: 'corporation.owners[].email',
       type: 'string',
-      children: 'The details of the corporation\'s owners (only include individuals owning 25% or more of the corporation).',
+      children: 'Email address of the corporation owner. The email will only be used for KYC / AML verification.',
     },
     {
       name: 'corporation.owners[].dob',
       type: 'string',
-      children: 'The details of the corporation\'s owners (only include individuals owning 25% or more of the corporation).',
+      children: 'The corporation owner\'s date of birth in ISO 8601 format.',
     },
     {
       name: 'corporation.owners[].address',
       type: 'object',
-      children: 'The details of the corporation\'s owners (only include individuals owning 25% or more of the corporation).',
+      children: 'The corporation owner\'s address.',
     },
     {
       name: 'corporation.owners[].address.line1',
-      type: 'string',
-      children: 'The details of the corporation\'s owners (only include individuals owning 25% or more of the corporation).',
+      type: 'string,null',
+      children: 'The first line of the corporation owner\'s address.',
     },
     {
       name: 'corporation.owners[].address.line2',
-      type: 'string',
-      children: 'The details of the corporation\'s owners (only include individuals owning 25% or more of the corporation).',
+      type: 'string,null',
+      children: 'The second line of the corporation owner\'s address.',
     },
     {
       name: 'corporation.owners[].address.city',
-      type: 'string',
-      children: 'The details of the corporation\'s owners (only include individuals owning 25% or more of the corporation).',
+      type: 'string,null',
+      children: 'The city of the corporation owner\'s address.',
     },
     {
       name: 'corporation.owners[].address.state',
-      type: 'string',
-      children: 'The details of the corporation\'s owners (only include individuals owning 25% or more of the corporation).',
+      type: 'string,null',
+      children: 'The two-letter abbreviation for the state of the corporation owner\'s address.',
     },
     {
       name: 'corporation.owners[].address.zip',
-      type: 'string',
-      children: 'The details of the corporation\'s owners (only include individuals owning 25% or more of the corporation).',
+      type: 'string,null',
+      children: 'The ZIP code of the corporation owner\'s address.',
     },
-    // TODO: end define these
     {
       name: 'capabilities',
       type: 'enum[]',
@@ -244,7 +247,7 @@ import ObjectPropList from '../../../../src/components/ObjectPropList';
     {
       name: 'address.state',
       type: 'string,null',
-      children: 'The two-letter abbreviation for the state of the entity\'s address',
+      children: 'The two-letter abbreviation for the state of the entity\'s address.',
     },
     {
       name: 'address.zip',

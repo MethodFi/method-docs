@@ -2,21 +2,21 @@ import React from 'react';
 import TabbedCodeBlock from '../components/TabbedCodeBlock';
 
 const curl = `
-curl "https://production.methodfi.com/payments?source=acc_JMJZT6r7iHi8e&status=pending" \\
+curl "https://production.methodfi.com/payments?page_limit=1&to_date=2020-12-10" \\
   -H "Authorization: Bearer sk_WyZEWVfTcH7GqmPzUPk65Vjc"
 `.trim();
 
 const nodejs = `
 const payments = await method.payments.list({
-  source: 'acc_JMJZT6r7iHi8e',
-  status: 'pending',
+  page_limit: 1,
+  to_date: '2020-12-10',
 });
 `.trim();
 
 const python = `
 payments = method.payments.list({
-  'source': 'acc_JMJZT6r7iHi8e',
-  'status': 'pending'
+  'page_limit': 1,
+  'to_date': '2020-12-10'
 })
 `.trim();
 
@@ -48,8 +48,8 @@ export default function () {
   return (
     <TabbedCodeBlock
       groupId="all"
-      name="payments-list-with-filters"
-      title="GET /payments?source=acc_JMJZT6r7iHi8e&status=pending"
+      name="payments-list-with-pagination"
+      title="GET /payments?page_limit=1&to_date=2020-12-10"
       response={response}
       items={[
         { title: 'cURL', language: 'shell', content: curl },

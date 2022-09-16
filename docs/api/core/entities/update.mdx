@@ -8,8 +8,6 @@ hide_title: true
 import EntitiesUpdate from '../../../../src/snippets/EntitiesUpdate';
 import ObjectPropList from '../../../../src/components/ObjectPropList';
 
-### Request Body
-
 <ObjectPropList
   isRequest
   title="Update an entity"
@@ -27,5 +25,36 @@ import ObjectPropList from '../../../../src/components/ObjectPropList';
     </div>
   )}
   snippetsElement={<EntitiesUpdate />}
-  fields={[]}
+  fields={[
+    {
+      name: 'individual',
+      type: 'object',
+      children: (
+        <div>
+          Individual information of the
+          entity. See <a href="/api/core/entities/object#individual">individual entity.</a>
+        </div>
+      ),
+    },
+    {
+      name: 'corporation',
+      type: 'object',
+      children: (
+        <div>
+          Corporation information of the
+          entity. See <a href="/api/core/entities/object#corporation">corporation entity.</a>
+        </div>
+      ),
+    },
+    {
+      name: 'address',
+      type: 'object',
+      children: (
+        <div>
+          The entity's address. See <a href="/api/core/entities/object#address">entity address.</a>
+        </div>
+      ),
+    },
+  ]}
+  returns="Returns the entity with the updated fields."
 />

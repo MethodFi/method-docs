@@ -1,4 +1,5 @@
 import * as React from 'react';
+import EnumsList from './EnumsList';
 
 export default function ObjectPropItem(props) {
   const {
@@ -35,21 +36,7 @@ export default function ObjectPropItem(props) {
             <div className="text-muted">
               {typeof children === 'string' ? <span>{children}</span> : children}
             </div>
-            {enums && (
-              <div className="object-prop-item-enums margin-vert--md">
-                <div className="object-prop-item-enums-item padding-vert--sm padding-left--md">
-                  <strong>Possible enum values</strong>
-                </div>
-                {enums.map((enumItem) => (
-                  <div className="object-prop-item-enums-item padding-vert--sm padding-left--md">
-                    <h4 className="margin-bottom--xs">
-                      <code className="transparent">{enumItem.name}</code>
-                    </h4>
-                    <div className="text-muted">{enumItem.children}</div>
-                  </div>
-                ))}
-              </div>
-            )}
+            {enums && <EnumsList title="Possible enum values" items={enums} />}
           </div>
         </div>
         {isRequest && (

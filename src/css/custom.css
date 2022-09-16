@@ -110,7 +110,7 @@
   --ifm-color-success-contrast-foreground: #003100;
   --ifm-color-info-dark: #4cb3d4;
   --ifm-color-info-darker: #47a9c9;
-  --ifm-color-info-darkest: #3b8ba5;
+  --ifm-color-info-darkest: #275e70;
   --ifm-color-info-light: #6ecfef;
   --ifm-color-info-lighter: #87d8f2;
   --ifm-color-info-lightest: #aae3f6;
@@ -235,6 +235,10 @@ a.transparent, a.transparent:hover {
 
 .text-muted {
   color: #93A1A1;
+}
+
+.text-white {
+  color: white !important;
 }
 
 .text-danger {
@@ -459,4 +463,9 @@ code.transparent {
   padding: 2px 6px;
   border-radius: 4px;
   font-weight: 900;
+}
+
+
+.tabs__item {
+  white-space: nowrap;
 }

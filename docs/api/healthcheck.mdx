@@ -1,20 +1,22 @@
+---
+title: Health Check
+sidebar_label: Health Check
+hide_table_of_contents: true
+hide_title: true
+---
+
 import HealthCheckSample from '../../src/snippets/HealthCheck';
+import ObjectPropList from '../../src/components/ObjectPropList';
 
-# Health Check
-
-A health check may be performed by hitting the `/ping` endpoint.
-
-### Example request
-
-<HealthCheckSample />
-
-### Example response
-Returns and HTTP status of **200** with the following payload indicating that the API is healthy.
-
-```json
-{
-    "success": true,
-    "data": null,
-    "message": "pong"
-}
-```
+<ObjectPropList
+  isRequest
+  title="Health Check"
+  about={(
+    <div>
+      A health check may be performed by hitting the <code>/ping</code> endpoint.
+    </div>
+  )}
+  snippetsElement={<HealthCheckSample />}
+  fields={[]}
+  returns="Returns and HTTP status of 200 with the following payload indicating that the API is healthy."
+/>
