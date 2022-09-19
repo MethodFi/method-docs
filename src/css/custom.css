@@ -81,7 +81,75 @@
 
 
 :root {
+  /* Copied */
+  --ifm-color-secondary: #ebedf0;
+  --ifm-color-success: #00a400;
+  --ifm-color-info: #54c7ec;
+  --ifm-color-warning: #ffba00;
+  --ifm-color-danger: #fa383e;
+  --ifm-color-primary-light: #538ce9;
+  --ifm-color-primary-lighter: #72a1ed;
+  --ifm-color-primary-lightest: #9abcf2;
+  --ifm-color-primary-contrast-background: #ebf2fc;
+  --ifm-color-primary-contrast-foreground: #102445;
+  --ifm-color-secondary-dark: #d4d5d8;
+  --ifm-color-secondary-darker: #c8c9cc;
+  --ifm-color-secondary-darkest: #a4a6a8;
+  --ifm-color-secondary-light: #eef0f2;
+  --ifm-color-secondary-lighter: #f1f2f5;
+  --ifm-color-secondary-lightest: #f5f6f8;
+  --ifm-color-secondary-contrast-background: #fdfdfe;
+  --ifm-color-secondary-contrast-foreground: #474748;
+  --ifm-color-success-dark: #009400;
+  --ifm-color-success-darker: #008b00;
+  --ifm-color-success-darkest: #007300;
+  --ifm-color-success-light: #26b226;
+  --ifm-color-success-lighter: #4dbf4d;
+  --ifm-color-success-lightest: #80d280;
+  --ifm-color-success-contrast-background: #e6f6e6;
+  --ifm-color-success-contrast-foreground: #003100;
+  --ifm-color-info-dark: #4cb3d4;
+  --ifm-color-info-darker: #47a9c9;
+  --ifm-color-info-darkest: #275e70;
+  --ifm-color-info-light: #6ecfef;
+  --ifm-color-info-lighter: #87d8f2;
+  --ifm-color-info-lightest: #aae3f6;
+  --ifm-color-info-contrast-background: #eef9fd;
+  --ifm-color-info-contrast-foreground: #193c47;
+  --ifm-color-warning-dark: #e6a700;
+  --ifm-color-warning-darker: #d99e00;
+  --ifm-color-warning-darkest: #b38200;
+  --ifm-color-warning-light: #ffc426;
+  --ifm-color-warning-lighter: #ffcf4d;
+  --ifm-color-warning-lightest: #ffdd80;
+  --ifm-color-warning-contrast-background: #fff8e6;
+  --ifm-color-warning-contrast-foreground: #4d3800;
+  --ifm-color-danger-dark: #e13238;
+  --ifm-color-danger-darker: #d53035;
+  --ifm-color-danger-darkest: #af272b;
+  --ifm-color-danger-light: #fb565b;
+  --ifm-color-danger-lighter: #fb7478;
+  --ifm-color-danger-lightest: #fd9c9f;
+  --ifm-color-danger-contrast-background: #ffebec;
+  --ifm-color-danger-contrast-foreground: #4b1113;
+  --ifm-color-white: #fff;
+  --ifm-color-black: #000;
+  --ifm-color-gray-0: var(--ifm-color-white);
+  --ifm-color-gray-100: #f5f6f7;
+  --ifm-color-gray-200: #ebedf0;
+  --ifm-color-gray-300: #dadde1;
+  --ifm-color-gray-400: #ccd0d5;
+  --ifm-color-gray-500: #bec3c9;
+  --ifm-color-gray-600: #8d949e;
+  --ifm-color-gray-700: #606770;
+  --ifm-color-gray-800: #444950;
+  --ifm-color-gray-900: #1c1e21;
+
+  /* Custom */
   --ifm-color-primary: #00ECAC;
+  --ifm-color-primary-dark: #00ECAC;
+  --ifm-color-primary-darker: #127575;
+  --ifm-color-primary-darkest: #127575;
   --ifm-hr-border-width: 1px;
   --ifm-menu-link-padding-vertical: 4px;
   --ifm-menu-link-padding-horizontal: 8px;
@@ -100,6 +168,10 @@
 
 h1, h2, h3, h4, h5, h6 {
   letter-spacing: 0.5px;
+}
+
+h1 {
+  font-size: 2.5rem;
 }
 
 .docusaurus-highlight-code-line {
@@ -142,8 +214,9 @@ code, pre {
 }
 
 hr {
-  border-color: var(--ifm-hr-border-width);
+  border-color: white;
   opacity: 0.1;
+  background: white;
 }
 
 .hero {
@@ -158,6 +231,30 @@ a.transparent, a.transparent:hover {
 
 .text-primary {
   color: var(--ifm-color-primary);
+}
+
+.text-muted {
+  color: #93A1A1;
+}
+
+.text-white {
+  color: white !important;
+}
+
+.text-danger {
+  color: var(--ifm-color-danger-lightest);
+}
+
+.text-warning {
+  color: var(--ifm-color-warning-lightest);
+}
+
+.text-success {
+  color: var(--ifm-color-success-lightest);
+}
+
+.text-info {
+  color: var(--ifm-color-info-lightest);
 }
 
 .menu {
@@ -294,4 +391,86 @@ code.transparent {
   background: none !important;
   border: none;
   color: inherit;
+}
+
+.prism-code > code {
+  max-height: calc(100vh - 300px);
+}
+
+.theme-code-block div:first-child {
+  background-color: #0D3D3D !important;
+  border: none;
+  /*color: #93A1A1 !important;*/
+  letter-spacing: 0.5px;
+}
+
+.object-prop-item-enums {
+  width: 100%;
+  border-radius: var(--ifm-global-radius);
+  border-width: 1px;
+  border-color: rgba(255, 255, 255, 0.1);
+  border-style: solid;
+}
+
+.object-prop-item-enums-item:not(:last-child) {
+  border-bottom: 1px rgba(255, 255, 255, 0.1) solid;
+}
+
+.clean-btn {
+  opacity: 0.4 !important;
+}
+
+.custom-hash-link, .custom-hash-link:hover {
+  color: inherit;
+}
+
+.custom-hash-link:hover {
+  color: var(--ifm-color-primary) !important;
+  text-decoration: none;
+}
+
+.pill-info {
+  color: white;
+  border-right: 6px;
+  background-color: var(--ifm-color-info-darkest);
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-weight: 900;
+}
+
+.pill-warning {
+  color: white;
+  border-right: 6px;
+  background-color: var(--ifm-color-warning-darkest);
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-weight: 900;
+}
+
+.pill-danger {
+  color: white;
+  border-right: 6px;
+  background-color: var(--ifm-color-danger-darkest);
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-weight: 900;
+}
+
+.pill-success {
+  color: white;
+  border-right: 6px;
+  background-color: var(--ifm-color-success-darkest);
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-weight: 900;
+}
+
+.tabs__item {
+  white-space: nowrap;
+}
+
+.dotted-divider {
+  width: 25%;
+  margin: 1.5rem auto;
+  border: 1px dashed black;
 }

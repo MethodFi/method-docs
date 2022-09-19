@@ -1,52 +1,76 @@
+---
+title: Create a payment
+sidebar_label: Create a payment
+hide_table_of_contents: true
+hide_title: true
+---
+
 import PaymentsCreate from '../../../../src/snippets/PaymentsCreate';
+import ObjectPropList from '../../../../src/components/ObjectPropList';
 
-# Create a payment
-
-**About**: Creates a new payment to the specified account. Payments are transmitted electronically from a source account to a destination account. Payments are posted to the destination account (_settled_) in 1-2 business days. Verify the payment cutoff times for precise settlement times.
-
-**API Method**: `POST /payments`
-
-:::tip Important
-Only `ach` accounts can be used as a payment source. Destination accounts can be both `ach` and `liability`.
-:::
-
-### Request
-
-#### Example
-<PaymentsCreate />
-
-#### Parameters
-
-| Name          | Type      | Required | Description                                                                           |
-|---------------|-----------|----------|---------------------------------------------------------------------------------------|
-| `amount`      | `integer` | ✅        | The amount of the payment to be created in cents. (e.g. $1.00 = 100)                  |
-| `source`      | `string`  | ✅        | The `id` of an `ach` account from which the payment amount will be retrieved.         |
-| `destination` | `string`  | ✅        | The `id` of an `ach` or `liability` account to which the payment amount will be sent. |
-| `description` | `string`  |          | Optional description (maximum of 10 characters).                                      |
-### Response
-
-#### Example
-
-The payment will be sent based on the cutoff times. The `status` of the payment will be updated when the payment is sent to our banking networks.
-
-```json
-{
-  "id": "pmt_rPrDPEwyCVUcm",
-  "reversal_id": null,
-  "source_trace_id": null,
-  "destination_trace_id": null,
-  "source": "acc_JMJZT6r7iHi8e",
-  "destination": "acc_AXthnzpBnxxWP",
-  "amount": 5000,
-  "description": "Loan Pmt",
-  "status": "pending",
-  "error": null,
-  "metadata": null,
-  "estimated_completion_date": "2020-12-11",
-  "source_settlement_date": "2020-12-09",
-  "destination_settlement_date": "2020-12-11",
-  "fee": null,
-  "created_at": "2020-12-09T00:42:31.209Z",
-  "updated_at": "2020-12-09T00:43:30.996Z"
-}
-```
+<ObjectPropList
+  isRequest
+  title="Create a payment"
+  about={(
+    <div>
+      Creates a new payment to the specified account. Payments are transmitted electronically from
+      a source account to a destination account. Payments are posted to the destination account
+      (<strong>settled</strong>) in 1-2 business days. Verify the payment cutoff times for precise settlement times.
+      <hr className="dotted-divider" />
+      <span className="pill-info">💡 Important:</span> Only <code>ach</code> accounts can be used
+      as a payment source. Destination accounts can be both <code>ach</code> and <code>liability</code>.
+    </div>
+  )}
+  snippetsElement={<PaymentsCreate />}
+  fields={[
+    {
+      name: 'amount',
+      type: 'number',
+      children: 'The amount of the payment to be created in cents. (e.g. $1.00 = 100)',
+      required: true,
+    },
+    {
+      name: 'source',
+      type: 'string',
+      children: (
+        <div>
+          The <code>id</code> of an <code>ach</code> account from which
+          the payment amount will be retrieved.
+        </div>
+      ),
+      required: true,
+    },
+    {
+      name: 'destination',
+      type: 'string',
+      children: (
+        <div>
+          The <code>id</code> of an <code>ach</code> or <code>liability</code> account to
+          which the payment amount will be sent.
+        </div>
+      ),
+      required: true,
+    },
+    {
+      name: 'description',
+      type: 'string',
+      children: 'The payment\'s description (maximum of 10 characters).',
+      required: true,
+    },
+    {
+      name: 'fee',
+      type: 'object',
+      children: (
+        <div>
+          Payment fee information. See <a href="/api/core/payments/object#fee">payment fee</a>.
+        </div>
+      ),
+    },
+  ]}
+  returns={(
+    <div>
+      Returns a payment object. The payment will be sent based on the cutoff times. The <code>status</code> of the payment
+      will be updated when the payment is sent to our banking networks.
+    </div>
+  )}
+/>

@@ -32,11 +32,17 @@ token = method.elements.create_token({
 })
 `.trim();
 
+const response = {
+  "element_token": "pk_elem_f3TZsKnmP7Q69bX65hRHngBEb8mT8gbG"
+};
+
 export default function () {
   return (
     <TabbedCodeBlock
       groupId="all"
       name="elements-create-auth-token"
+      title="POST /elements/token"
+      response={response}
       items={[
         { title: 'cURL', language: 'shell', content: curl },
         { title: 'Node.js', language: 'javascript', content: nodejs },

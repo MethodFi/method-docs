@@ -1,60 +1,36 @@
+---
+title: Create an individual auth session
+sidebar_label: Create an individual auth session
+hide_table_of_contents: true
+hide_title: true
+---
+
 import EntitiesCreateIndividualAuthSession from '../../../../src/snippets/EntitiesCreateIndividualAuthSession';
+import ObjectPropList from '../../../../src/components/ObjectPropList';
 
-# Create an individual auth session
-
-**About**: Creates a new auth session for an entity to automatically retrieve their
-debt accounts.
-
-**API Method**: `POST /entities/:entity_id/auth_session`
-
-:::caution
-This endpoint is only accessible to entities that have the `data:retrieve` capability
-in `available_capabilities`.
-:::
-
-:::info
-If your organization is enrolled in Method's non-KBA authentication, you can skip the auth session and
-[retrieve the accounts for an entity](/api/core/accounts/list).
-:::
-
-### Request
-
-#### Example
-<EntitiesCreateIndividualAuthSession />
-
-### Response
-
-#### Example
-```json
-{
-  "questions": [
-    {
-      "id" : "qtn_ywWqCnXDGGmmg",
-      "text" : "What is the monthly payment of your most recent auto loan or lease?",
-      "answers" : [
-        {
-          "id" : "ans_qHLLEUBVpSpTK",
-          "text" : "$601 - $700"
-        },
-        {
-          "id" : "ans_b3xLiwTS8ygMy",
-          "text" : "$701 - $800"
-        },
-        {
-          "id" : "ans_Z5mMMLFy6waMK",
-          "text" : "$801 - $900"
-        },
-        {
-          "id" : "ans_BeSaN5Vj6tRjh",
-          "text" : "$901 - $1000"
-        },
-        {
-          "id" : "ans_74H68MJjqNhk8",
-          "text" : "None of the Above"
-        }
-      ]
-    },
-    ...
-  ]
-}
-```
+<ObjectPropList
+  isRequest
+  title="Create an individual auth session"
+  about={(
+    <div>
+      Creates a new auth session for an entity to automatically retrieve their
+      debt accounts.
+      <hr className="dotted-divider" />
+      <span className="pill-warning">⚠️ Caution:</span> This endpoint is only
+      accessible to entities that have the <code>data:retrieve</code> capability
+      in <code>available_capabilities</code>.
+      <br/><br/>
+      <span className="pill-info">ℹ️ Info:</span> If your organization is
+      enrolled in Method's non-KBA authentication, you can skip the auth session
+      and <a href="/api/core/accounts/list">retrieve the accounts for an entity.</a>
+    </div>
+  )}
+  snippetsElement={<EntitiesCreateIndividualAuthSession />}
+  fields={[]}
+  returns={(
+    <div>
+      Returns an object containing a list of security questions
+      required to verify an entity's identity.
+    </div>
+  )}
+/>

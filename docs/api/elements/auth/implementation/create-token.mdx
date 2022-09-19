@@ -1,31 +1,53 @@
+---
+title: Create element token
+sidebar_label: Create element token
+hide_table_of_contents: true
+hide_title: true
+---
+
 import ElementsCreateAuthToken from '../../../../../src/snippets/ElementsCreateAuthToken';
+import ObjectPropList from '../../../../../src/components/ObjectPropList';
 
-# Create element token
-
-**About**: Creates an element token to launch an Auth Element session for a specific
-entity. Element tokens are only valid for 30 minutes after they are created, and can
-only be used once.
-
-**API Method**: `POST /elements/token`
-
-### Request
-
-<ElementsCreateAuthToken />
-
-#### Parameters
-| Name          | Type     | Required | Description                                                                      |
-|---------------|----------|----------|----------------------------------------------------------------------------------|
-| `entity_id`   | `string` | ✅        | The id of the end user (`entity`) for which the `element_token` will be created. |
-| `team_name`   | `string` | ✅        | The name used to refer to your company/app throughout the auth flow.             |
-| `type`        | `string` | ✅        | The type of element you wish to launch. In this case `auth`.                     |
-| `auth`        | `object` | ✅        | Auth element information.                                                        |
-
-### Response
-
-#### Example
-
-```json
-{
-  "element_token": "pk_elem_f3TZsKnmP7Q69bX65hRHngBEb8mT8gbG"
-}
-```
+<ObjectPropList
+  isRequest
+  title="Create element token"
+  about={(
+    <div>
+      Creates an element token to launch an Auth Element session for a specific
+      entity. Element tokens are only valid for 30 minutes after they are created, and can
+      only be used once.
+    </div>
+  )}
+  snippetsElement={<ElementsCreateAuthToken />}
+  fields={[
+    {
+      name: 'entity_id',
+      type: 'string',
+      children: (
+        <div>
+          The id of the end user (<code>entity</code>) for which the <code>element_token</code> will be created.
+        </div>
+      ),
+      required: true,
+    },
+    {
+      name: 'team_name',
+      type: 'string',
+      children: 'The name used to refer to your company/app throughout the auth flow.',
+      required: true,
+    },
+    {
+      name: 'type',
+      type: 'enum',
+      children: 'The type of element you wish to launch.',
+      enums: [{ name: 'auth' }],
+      required: true,
+    },
+    {
+      name: 'auth',
+      type: 'object',
+      children: 'Auth element information.',
+      required: true,
+    },
+  ]}
+/>

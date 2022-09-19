@@ -1,4 +1,5 @@
 import React from 'react';
+
 import TabbedCodeBlock from '../components/TabbedCodeBlock';
 
 const curl = `
@@ -14,11 +15,18 @@ const python = `
 merchants = method.merchants.list({ 'provider_id.plaid': '{ins_id}' })
 `.trim();
 
+const response = `{
+  "mch_id": "mch_2",
+  ...
+}`;
+
 export default function () {
   return (
     <TabbedCodeBlock
       groupId="all"
       name="merchants-list-provider-plaid"
+      title="GET /merchants?provider_id.plaid={ins_id}"
+      response={response}
       items={[
         { title: 'cURL', language: 'shell', content: curl },
         { title: 'Node.js', language: 'javascript', content: nodejs },

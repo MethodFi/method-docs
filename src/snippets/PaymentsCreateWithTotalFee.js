@@ -49,6 +49,7 @@ export default function () {
     <TabbedCodeBlock
       groupId="all"
       name="payments-create-with-total-fee"
+      title="POST /payments"
       items={[
         { title: 'cURL', language: 'shell', content: curl },
         { title: 'Node.js', language: 'javascript', content: nodejs },

@@ -1,57 +1,136 @@
-# The reversal object
-A reversal is automatically created to balance out funds that were incompletely processed for an unsuccessful payment.
+---
+title: The reversal object
+sidebar_label: The reversal object
+hide_table_of_contents: true
+hide_title: true
+---
 
-### Reversal object
+import CodeBlock from '@theme/CodeBlock';
+import ObjectPropList from '../../../../../src/components/ObjectPropList';
 
-#### Example
-
-```json
-{
-  "id": "rvs_eaBAUJtetgMdR",
-  "pmt_id": "pmt_rPrDPEwyCVUcm",
-  "target_account": "acc_JMJZT6r7iHi8e",
-  "trace_id": null,
-  "direction": "debit",
-  "description": "PmtRvrsl",
-  "amount": 5000,
-  "status": "pending_approval",
-  "error": null,
-  "created_at": "2020-12-09T00:42:31.209Z",
-  "updated_at": "2020-12-09T00:43:30.996Z"
-}
-```
-
-#### Attributes
-
-| Name             | Type                 | Description                                                                                                                                           |
-|------------------|----------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `id`             | `string`             | Unique identifier for the reversal.                                                                                                                   |
-| `pmt_id`         | `string`             | The `id` of the payment to be reversed.                                                                                                               |
-| `target_account` | `string`             | The `id` of the `ach` account to process the reversal.                                                                                                |
-| `trace_id`       | `string`, `nullable` | The underlying `id` for the bank transaction relating to this reversal.                                                                               |
-| `direction`      | `string`             | The direction of the reversal. Possible values: `debit`, `credit`.                                                                                    |
-| `description`    | `string`             | The description of the reversal (maximum of 10 characters).                                                                                           |
-| `status`         | `string`             | Status of the reversal. Possible statuses: `pending_approval`, `pending`, `processing`, `sent`, `failed`. See [reversal statuses](#reversal-statuses) |
-| `amount`         | `integer`            | The reversal amount in cents.                                                                                                                         |
-| `error`          | `object` `nullable`  | An object representing an error that occurred while processing this reversal. See [reversal errors](/api/errors/resource#payment-reversal-errors).    |
-| `created_at`     | `string`             | Timestamp of when the reversal was created.                                                                                                           |
-| `updated_at`     | `string`             | Timestamp of when the reversal was last updated.                                                                                                      |
-
-### Reversal Statuses
-
-A reversal will enter the following statuses as it is processed.
-
-* `pending_approval`
-The reversal is pending approval and will not be processed unless approved. See [update reversal](/api/core/payments/reversals/update).
-
-* `pending`
-The reversal has been approved and is waiting to be processed.
-
-* `processing`
-The reversal is being processed.
-
-* `sent`
-The reversal has been successfully processed and is now completed.
-
-* `failed`
-An error occurred while either processing the reversal.
+<ObjectPropList
+  title="The reversal object"
+  about={(
+    <div>
+      A reversal is automatically created to balance out funds that
+      were incompletely processed for an unsuccessful payment.
+    </div>
+  )}
+  snippetsElement={(
+    <CodeBlock
+      className="language-json"
+      title="THE REVERSAL OBJECT">
+      {JSON.stringify({
+        "id": "rvs_eaBAUJtetgMdR",
+        "pmt_id": "pmt_rPrDPEwyCVUcm",
+        "target_account": "acc_JMJZT6r7iHi8e",
+        "trace_id": null,
+        "direction": "debit",
+        "description": "PmtRvrsl",
+        "amount": 5000,
+        "status": "pending_approval",
+        "error": null,
+        "created_at": "2020-12-09T00:42:31.209Z",
+        "updated_at": "2020-12-09T00:43:30.996Z"
+      }, null, 2)}
+    </CodeBlock>
+  )}
+  fields={[
+    {
+      name: 'id',
+      type: 'string',
+      children: 'Unique identifier for the reversal.',
+    },
+    {
+      name: 'pmt_id',
+      type: 'string',
+      children: (
+        <div>
+          The <code>id</code> of the payment to be reversed.
+        </div>
+      ),
+    },
+    {
+      name: 'target_account',
+      type: 'string',
+      children: (
+        <div>
+          The <code>id</code> of the <code>ach</code> account to process the reversal.
+        </div>
+      ),
+    },
+    {
+      name: 'trace_id',
+      type: 'string,null',
+      children: (
+        <div>
+          The underlying <code>id</code> for the bank transaction relating to this reversal.
+        </div>
+      ),
+    },
+    {
+      name: 'direction',
+      type: 'enum',
+      children: 'The direction of the reversal',
+      enums: [
+        { name: 'debit' },
+        { name: 'credit' },
+      ],
+    },
+    {
+      name: 'description',
+      type: 'string',
+      children: 'The description of the reversal (maximum of 10 characters).',
+    },
+    {
+      name: 'status',
+      type: 'enum',
+      children: 'Status of the reversal.',
+      enums: [
+        {
+          name: 'pending_approval',
+          children: (
+            <div>
+              The reversal is pending approval and will not be processed
+              unless approved. See <a href="/api/core/payments/reversals/update">update reversal</a>.
+            </div>
+          ),
+        },
+        { name: 'pending', children: 'The reversal has been approved and is waiting to be processed.' },
+        { name: 'processing', children: 'The reversal is being processed.' },
+        { name: 'sent', children: 'The reversal has been successfully processed and is now completed.' },
+        { name: 'failed', children: 'An error occurred while either processing the reversal.' },
+      ],
+    },
+    {
+      name: 'amount',
+      type: 'number',
+      children: 'The reversal amount in cents.',
+    },
+    {
+      name: 'amount',
+      type: 'number',
+      children: 'The reversal amount in cents.',
+    },
+    {
+      name: 'error',
+      type: 'object,null',
+      children: (
+        <div>
+          An object representing an error that occurred while processing this reversal.
+          See <a href="/api/errors/resource#reversal-errors">reversal errors</a>.
+        </div>
+      ),
+    },
+    {
+      name: 'created_at',
+      type: 'string',
+      children: 'Timestamp of when the reversal was created.',
+    },
+    {
+      name: 'updated_at',
+      type: 'string',
+      children: 'Timestamp of when the reversal was last updated.',
+    },
+  ]}
+/>

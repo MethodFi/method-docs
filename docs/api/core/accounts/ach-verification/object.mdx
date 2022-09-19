@@ -1,60 +1,170 @@
-# The verification object
-In order to lower the risk of failed/returned payments, ACH accounts must first be verified to ensure ownership and validity of the account before it can be used to send payments.
+---
+title: The verification object
+sidebar_label: The verification object
+hide_table_of_contents: true
+hide_title: true
+---
 
-Account verification only applies to ACH accounts. __Liability accounts don't require this verification step__  since account numbers are validated automatically with the merchant.
+import CodeBlock from '@theme/CodeBlock';
+import ObjectPropList from '../../../../../src/components/ObjectPropList';
 
-:::caution
-In the `dev`, and `sandbox` environments, ACH accounts are automatically verified by default. If you would like to disable this feature to fully simluate the verification process for the `production` environment, please contact support at team@methodfi.com
-:::
-
-### Verification object
-
-#### Example
-
-```json
-{
-  "id": "vrf_73TAQ8njUFsLJ",
-  "status": "initiated",
-  "type": "micro_deposits",
-  "error": null,
-  "initiated_at": "2021-10-12T20:42:46.433Z",
-  "pending_at": "1970-01-01T00:00:00.000Z",
-  "verified_at": "1970-01-01T00:00:00.000Z",
-  "disabled_at": "1970-01-01T00:00:00.000Z",
-  "created_at": "2021-10-12T20:42:46.433Z",
-  "updated_at": "2021-10-12T20:42:46.433Z"
-}
-```
-
-#### Attributes
-
-| Name           | Type     | Description                                                                                                                               |
-|----------------|----------|-------------------------------------------------------------------------------------------------------------------------------------------|
-| `id`           | `string` | Unique identifier for the verification.                                                                                                   |
-| `status`       | `string` | Status of the verification. Possible statuses: `initiated`, `pending`, `verified`, `disabled`. See [verification statuses](#verification-statuses). |
-| `type`         | `string` | Type of the verification. Possible types: `micro_deposits`, `plaid`, `mx`, `teller`, `auto_verify`, `trusted_provisioner`. See [verification types](#verification-types). |
-| `error`        | `object` `nullable`  | An object representing an error that occurred for this verification. See [account verification errors](/api/errors/resource#account-verification-errors).
-| `initiated_at` | `string` | Timestamp of when the verification transitioned into `initiated` status.                                                                  |
-| `pending_at`   | `string` | Timestamp of when the verification transitioned into `pending` status.                                                                    |
-| `verified_at`  | `string` | Timestamp of when the verification transitioned into `verified` status.                                                                   |
-| `disabled_at`  | `string` | Timestamp of when the verification transitioned into `disabled` status.                                                                   |
-| `created_at`   | `string` | Timestamp of when the verification was created.                                                                                           |
-| `updated_at`   | `string` | Timestamp of when the verification was last updated.                                                                                      |
-
-#### Verification Statuses
-The following are possible statuses a verification can be in.
-
-- `initiated` The initial status of a verification.
-- `pending` For verifications of type `micro_deposits`, this is when the micro-deposits have been sent to the associated bank account. You can only verify the deposited amounts once the verification is in this status.
-- `verified` The verification was successful, and the associated ACH account will have an additional `payments:send` capability. See [account capabilities](/api/core/accounts/object#account-capabilities) for more info.
-- `disabled` Multiple unsuccessful attempts have been made to complete the verification.
-
-
-#### Verification Types
-The following are possible types by which an ACH account can be verified.
-
-- `micro_deposits` Two small amounts of money will be deposited into the ACH account, once received (within 1 - 3 business days) the account holder will then [verify the amounts (in cents) that were deposited](/api/core/accounts/ach-verification/update).
-- `plaid` The Account is verified by providing balance and transaction data from Plaid.
-- `teller` The Account is verified by providing balance and transaction data from Teller.
-- `mx` The account is verified by providing account and transaction data from MX.
-- `auto_verify` The account was verified with Plaid through the [Method Link Element](/api/elements/link/intro) or the account was verified automatically in the `dev` or `sandbox` environment where verification is disabled by default.
+<ObjectPropList
+  title="The verification object"
+  about={(
+    <div>
+      In order to lower the risk of failed/returned payments, ACH accounts must first be
+      verified to ensure ownership and validity of the account before it can be used
+      to send payments.
+      Account verification only applies to ACH
+      accounts. <strong>Liability accounts don't require this verification step</strong> since account
+      numbers are validated automatically with the merchant.
+      <hr className="dotted-divider" />
+      <span className="pill-warning">⚠️ Caution:</span> In the <code>dev</code>, and <code>sandbox</code> environments,
+      ACH accounts are automatically verified by default. If you would like to disable this feature to fully
+      simulate the verification process for the <code>production</code> environment, please contact support
+      at <a href="mailto:team@methodfi.com">team@methodfi.com</a>.
+    </div>
+  )}
+  snippetsElement={(
+    <CodeBlock
+      className="language-json"
+      title="THE VERIFICATION OBJECT">
+      {JSON.stringify({
+        "id": "vrf_73TAQ8njUFsLJ",
+        "status": "initiated",
+        "type": "micro_deposits",
+        "error": null,
+        "initiated_at": "2021-10-12T20:42:46.433Z",
+        "pending_at": "1970-01-01T00:00:00.000Z",
+        "verified_at": "1970-01-01T00:00:00.000Z",
+        "disabled_at": "1970-01-01T00:00:00.000Z",
+        "created_at": "2021-10-12T20:42:46.433Z",
+        "updated_at": "2021-10-12T20:42:46.433Z"
+      }, null, 2)}
+    </CodeBlock>
+  )}
+  fields={[
+    {
+      name: 'id',
+      type: 'string',
+      children: 'Unique identifier for the verification.',
+    },
+    {
+      name: 'status',
+      type: 'enum',
+      children: 'Status of the verification',
+      enums: [
+        {
+          name: 'initiated',
+          children: 'The initial status of a verification.',
+        },
+        {
+          name: 'pending',
+          children: (
+            <div>
+              For verifications of type <code>micro_deposits</code>, this is when the micro-deposits have
+              been sent to the associated bank account. You can only verify the deposited amounts once the
+              verification is in this status.
+            </div>
+          ),
+        },
+        {
+          name: 'verified',
+          children: (
+            <div>
+              The verification was successful, and the associated ACH account will have an
+              additional <code>payments:send</code> capability. See <a href="/api/core/accounts/object#capabilities">account capabilities</a> for more info.
+            </div>
+          ),
+        },
+        {
+          name: 'disabled',
+          children: 'Multiple unsuccessful attempts have been made to complete the verification.',
+        },
+      ],
+    },
+    {
+      name: 'type',
+      type: 'enum',
+      children: 'Type of the verification',
+      enums: [
+        {
+          name: 'micro_deposits',
+          children: (
+            <div>
+              Two small amounts of money will be deposited into the ACH account, once
+              received (within 1 - 3 business days) the account holder will
+              then <a href="/api/core/accounts/ach-verification/update">verify the amounts (in cents) that were deposited</a>.
+            </div>
+          ),
+        },
+        {
+          name: 'plaid',
+          children: 'The Account is verified by providing balance and transaction data from Plaid.',
+        },
+        {
+          name: 'teller',
+          children: 'The Account is verified by providing balance and transaction data from Teller.',
+        },
+        {
+          name: 'mx',
+          children: 'The account is verified by providing account and transaction data from MX.',
+        },
+        {
+          name: 'auto_verify',
+          children: (
+            <div>
+              The account was verified with Plaid through
+              the <a href="/api/elements/link/intro">Method Link Element</a> or the account was verified automatically
+              in the <code>dev</code> or <code>sandbox</code> environment where verification is disabled by default.
+            </div>
+          ),
+        },
+        {
+          name: 'trusted_provisioner',
+          children: 'The ACH account has automatically been verified against a routing number whitelist set on the organization',
+        },
+      ],
+    },
+    {
+      name: 'error',
+      type: 'object,null',
+      children: (
+        <div>
+          An object representing an error that occurred for this verification.
+          See <a href="/api/errors/resource#account-verification-errors">account verification errors</a>.
+        </div>
+      ),
+    },
+    {
+      name: 'initiated_at',
+      type: 'string',
+      children: <div>Timestamp of when the verification transitioned into <code>initiated</code> status.</div>,
+    },
+    {
+      name: 'pending_at',
+      type: 'string',
+      children: <div>Timestamp of when the verification transitioned into <code>pending</code> status.</div>,
+    },
+    {
+      name: 'verified_at',
+      type: 'string',
+      children: <div>Timestamp of when the verification transitioned into <code>verified</code> status.</div>,
+    },
+    {
+      name: 'disabled_at',
+      type: 'string',
+      children: <div>Timestamp of when the verification transitioned into <code>disabled</code> status.</div>,
+    },
+    {
+      name: 'created_at',
+      type: 'string',
+      children: 'Timestamp of when the verification was created.',
+    },
+    {
+      name: 'updated_at',
+      type: 'string',
+      children: 'Timestamp of when the verification was last updated.',
+    },
+  ]}
+/>

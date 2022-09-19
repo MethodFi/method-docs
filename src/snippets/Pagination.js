@@ -2,16 +2,22 @@ import React from 'react';
 import TabbedCodeBlock from '../components/TabbedCodeBlock';
 
 const curl = `
-curl https://production.methodfi.com/payments \\
+curl "https://production.methodfi.com/payments?page_limit=1&to_date=2020-12-10" \\
   -H "Authorization: Bearer sk_WyZEWVfTcH7GqmPzUPk65Vjc"
 `.trim();
 
 const nodejs = `
-const payments = await method.payments.list();
+const payments = await method.payments.list({
+  page_limit: 1,
+  to_date: '2020-12-10',
+});
 `.trim();
 
 const python = `
-payments = method.payments.list()
+payments = method.payments.list({
+  'page_limit': 1,
+  'to_date': '2020-12-10'
+})
 `.trim();
 
 const response = {
@@ -42,8 +48,8 @@ export default function () {
   return (
     <TabbedCodeBlock
       groupId="all"
-      name="payments-list"
-      title="GET /payments"
+      name="payments-list-with-pagination"
+      title="GET /payments?page_limit=1&to_date=2020-12-10"
       response={response}
       items={[
         { title: 'cURL', language: 'shell', content: curl },

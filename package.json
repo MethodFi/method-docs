@@ -4,14 +4,16 @@
   "private": true,
   "scripts": {
     "docusaurus": "./node_modules/.bin/docusaurus",
-    "start": "./node_modules/.bin/docusaurus start",
+    "start": "./node_modules/.bin/docusaurus start --host 0.0.0.0",
     "build": "./node_modules/.bin/docusaurus build",
     "swizzle": "./node_modules/.bin/docusaurus swizzle",
     "deploy": "./node_modules/.bin/docusaurus deploy",
     "clear": "./node_modules/.bin/docusaurus clear",
     "serve": "./node_modules/.bin/docusaurus serve",
     "write-translations": "./node_modules/.bin/docusaurus write-translations",
-    "write-heading-ids": "./node_modules/.bin/docusaurus write-heading-ids"
+    "write-heading-ids": "./node_modules/.bin/docusaurus write-heading-ids",
+    "docker-build": "docker build -t local/method-docs .",
+    "docker-start": "docker run --rm -it -p 3000:3000 -v $(pwd):/usr/src/app:rw local/method-docs"
   },
   "dependencies": {
     "@docusaurus/core": "^2.0.0-beta.18",
@@ -22,11 +24,13 @@
     "@svgr/webpack": "^6.2.1",
     "clsx": "^1.1.1",
     "file-loader": "^6.2.0",
-    "framer-motion": "^6.3.0",
+    "framer-motion": "^6.5.1",
     "prism-react-renderer": "^1.2.1",
     "react": "^17.0.1",
+    "react-collapsible": "^2.10.0",
     "react-dom": "^17.0.1",
     "react-icons": "^4.3.1",
+    "react-sticky-box": "^1.0.2",
     "url-loader": "^4.1.1"
   },
   "browserslist": {

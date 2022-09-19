@@ -1,38 +1,18 @@
+---
+title: List all reversals for a payment
+sidebar_label: List all reversals for a payment
+hide_table_of_contents: true
+hide_title: true
+---
+
 import ReversalsList from '../../../../../src/snippets/ReversalsList';
+import ObjectPropList from '../../../../../src/components/ObjectPropList';
 
-# List all reversals for a payment
-
-**About**: Returns all the reversals associated with a payment, or an empty array if none have been created.
-
-**API Method**: `GET /payments/:paymentId/reversals`
-
-### Request
-
-#### Example
-<ReversalsList />
-
-### Response
-
-#### Example
-
-An array of reversal objects will be returned.
-
-```json
-{
-  "data": [
-    {
-      "id": "rvs_eaBAUJtetgMdR",
-      "pmt_id": "pmt_rPrDPEwyCVUcm",
-      "target_account": "acc_JMJZT6r7iHi8e",
-      "trace_id": null,
-      "direction": "debit",
-      "description": "PmtRvrsl",
-      "amount": 5000,
-      "status": "pending_approval",
-      "error": null,
-      "created_at": "2020-12-09T00:42:31.209Z",
-      "updated_at": "2020-12-09T00:43:30.996Z"
-    }
-  ]
-}
-```
+<ObjectPropList
+  isRequest
+  title="List all reversals for a payment"
+  about="Returns all the reversals associated with a payment, or an empty list if none have been created."
+  snippetsElement={<ReversalsList />}
+  fields={[]}
+  returns="Returns the reversal associated with the id."
+/>

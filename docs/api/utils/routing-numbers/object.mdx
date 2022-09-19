@@ -1,44 +1,107 @@
-# The Routing Number object
+---
+title: The Routing Number object
+sidebar_label: The Routing Number object
+hide_table_of_contents: true
+hide_title: true
+---
 
-A routing number is a nine-digit code that is used to identify a bank or financial institution.
+import CodeBlock from '@theme/CodeBlock';
+import ObjectPropList from '../../../../src/components/ObjectPropList';
 
-### Routing Number object
-
-#### Example
-
-```json
-{
-  "id": "rtn_9xs4xQn4ZAmMK",
-  "institution_name": "CAPITAL ONE N.A.",
-  "routing_number": "031176110",
-  "logo": "https://s3.us-west-2.amazonaws.com/static.methodfi.com/ins-logos/1623725401472-capital-one-na.png",
-  "office_type": "main",
-  "change_date": "2016-05-25T05:00:00.000Z",
-  "address": {
-    "line1": "PO BOX 85139",
-    "line2": null,
-    "state": "VA",
-    "city": "RICHMOND",
-    "zip": "23238"
-  },
-  "phone": "844-309-0809"
-}
-```
-
-#### Attributes
-
-| Name               | Type                 | Description                                                                                               |
-|--------------------|----------------------|-----------------------------------------------------------------------------------------------------------|
-| `id`               | `string`, `nullable` | A unique identifier for a routing number.                                                                 |
-| `institution_name` | `string`             | The name of the bank or financial institution.                                                            |
-| `routing_number`   | `string`             | The nine-digit routing number.                                                                            |
-| `logo`             | `string`, `nullable` | A logo of the bank or financial institution.                                                              |
-| `office_type`      | `string`             | Whether the routing number belongs to a `main` or `branch` location of the bank or financial institution. |
-| `change_date`      | `string`, `nullable` | When the routing number was last changed.                                                                 |
-| `address`          | `object`             | Address information of the bank or financial institution.                                                 |
-| `address.line1`    | `string`, `nullable` | The first line of the bank's or financial institution's address.                                          |
-| `address.line2`    | `string`, `nullable` | The second line of the bank's or financial institution's address.                                         |
-| `address.city`     | `string`, `nullable` | The city of the bank's or financial institution's address.                                                |
-| `address.state`    | `string`, `nullable` | The state of the bank's or financial institution's address.                                               |
-| `address.zip`      | `string`, `nullable` | The zip code of the bank's or financial institution's address.                                            |
-| `phone`            | `string`, `nullable` | The phone number of the bank or financial institution.                                                    |
+<ObjectPropList
+  title="The Routing Number object"
+  about="A routing number is a nine-digit code that is used to identify a bank or financial institution."
+  snippetsElement={(
+    <CodeBlock
+      className="language-json"
+      title="THE BIN OBJECT">
+      {JSON.stringify({
+        "id": "rtn_9xs4xQn4ZAmMK",
+        "institution_name": "CAPITAL ONE N.A.",
+        "routing_number": "031176110",
+        "logo": "https://s3.us-west-2.amazonaws.com/static.methodfi.com/ins-logos/1623725401472-capital-one-na.png",
+        "office_type": "main",
+        "change_date": "2016-05-25T05:00:00.000Z",
+        "address": {
+          "line1": "PO BOX 85139",
+          "line2": null,
+          "state": "VA",
+          "city": "RICHMOND",
+          "zip": "23238"
+        },
+        "phone": "844-309-0809"
+      }, null, 2)}
+    </CodeBlock>
+  )}
+  fields={[
+    {
+      name: 'id',
+      type: 'string,null',
+      children: 'A unique identifier for a routing number.',
+    },
+    {
+      name: 'institution_name',
+      type: 'string',
+      children: 'The name of the bank or financial institution.',
+    },
+    {
+      name: 'routing_number',
+      type: 'string',
+      children: 'The nine-digit routing number.',
+    },
+    {
+      name: 'logo',
+      type: 'string,null',
+      children: 'A logo of the bank or financial institution.',
+    },
+    {
+      name: 'office_type',
+      type: 'enum',
+      children: 'The type of office associated with the routing number',
+      enums: [
+        { name: 'main' },
+        { name: 'branch' },
+      ],
+    },
+    {
+      name: 'change_date',
+      type: 'string,null',
+      children: 'When the routing number was last changed.',
+    },
+    {
+      name: 'address',
+      type: 'object',
+      children: 'Address information of the bank or financial institution.',
+    },
+    {
+      name: 'address.line1',
+      type: 'string,null',
+      children: 'The first line of the bank\'s or financial institution\'s address.',
+    },
+    {
+      name: 'address.line2',
+      type: 'string,null',
+      children: 'The second line of the bank\'s or financial institution\'s address.',
+    },
+    {
+      name: 'address.city',
+      type: 'string,null',
+      children: 'The city of the bank\'s or financial institution\'s address.',
+    },
+    {
+      name: 'address.state',
+      type: 'string,null',
+      children: 'The state of the bank\'s or financial institution\'s address.',
+    },
+    {
+      name: 'address.zip',
+      type: 'string,null',
+      children: 'The zip code of the bank\'s or financial institution\'s address.',
+    },
+    {
+      name: 'phone',
+      type: 'string,null',
+      children: 'The phone number of the bank or financial institution.',
+    },
+  ]}
+/>

@@ -1,45 +1,43 @@
 ---
+title: Environment setup
 sidebar_label: Environment setup
+hide_table_of_contents: true
+hide_title: true
 ---
 
+import CodeBlock from '@theme/CodeBlock';
 import QuickStartHealthCheck from '../../../src/snippets/QuickStartHealthCheck';
+import ObjectPropList from '../../../src/components/ObjectPropList';
 
-# Environment setup
-
-Before we start interacting with the Method API, let's first make sure
-you have __API keys__ for the `development` environment which you can get by
-signing up in the [Method Dashboard](https://dashboard.methodfi.com).
-
-#### Sample API key
-```shell
-sk_WyZEWVfTcH7GqmPzUPk65Vjc
-```
-
-### API environments
-
-Although this guide will be done in the `development` environment, each
-step can also be done in the `sandbox`, and `production` environments. Learn more about
-how each [environment](/api/environments) works.
-
-:::note
-Following this guide in the `developement` environment will __not__ move real
-money from one account to another, nor will any data be real.
-:::
-
-### Verifying access
-
-Let's verify that your API keys work. We'll do this by performing a health check of
-the `development` environment. You can utilize any of Method's official
-[API client libraries](/libraries#api-client-libraries) to do this.
-
-#### Request
-<QuickStartHealthCheck />
-
-#### Response
-```json
-{
-    "success": true,
-    "data": null,
-    "message": "pong"
-}
-```
+<ObjectPropList
+  title="Environment setup"
+  about={(
+    <div>
+      Before we start interacting with the Method API, let's first make sure
+      you have <strong>API keys</strong> for the <code>development</code> environment which you can get by
+      signing up in the <a href="https://dashboard.methodfi.com">Method Dashboard</a>.
+      <hr className="dotted-divider" />
+      <h4>API environments</h4>
+      Although this guide will be done in the <code>development</code> environment, each
+      step can also be done in the <code>sandbox</code>, and <code>production</code> environments. Learn more about
+      how each <a href="/api/environments">environment</a> works.
+      <br/><br/>
+      <span className="pill-info">💡 Tip</span> Following this guide in the <code>development</code> environment
+      will <strong>not</strong> move real money from one account to another, nor will any data be real.
+      <hr className="dotted-divider" />
+      <h4>Verifying access</h4>
+      Let's verify that your API keys work. We'll do this by performing a health check of
+      the <code>development</code> environment. You can utilize any of Method's
+      official <a href="/libraries#api-client-libraries">API client libraries</a> to do this.
+    </div>
+  )}
+  snippetsElement={(
+    <div>
+      <CodeBlock className="language-shell" title="Sample API key">
+        sk_WyZEWVfTcH7GqmPzUPk65Vjc
+      </CodeBlock>
+      <hr className="dotted-divider" />
+      <QuickStartHealthCheck />
+    </div>
+  )}
+/>

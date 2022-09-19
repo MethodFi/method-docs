@@ -1,64 +1,51 @@
+---
+title: Update an individual auth session
+sidebar_label: Update an individual auth session
+hide_table_of_contents: true
+hide_title: true
+---
+
 import EntitiesUpdateIndividualAuthSession from '../../../../src/snippets/EntitiesUpdateIndividualAuthSession';
+import ObjectPropList from '../../../../src/components/ObjectPropList';
 
-# Update an individual auth session
-
-**About**: Update an auth session for an entity to automatically retrieve their
-debt accounts.
-
-**API Method**: `PUT /entities/:entityId/auth_session`
-
-:::caution
-This endpoint is only accessible to entities that have the `data:retrieve` capability
-in `available_capabilities`.
-:::
-
-### Request
-
-#### Example
-<EntitiesUpdateIndividualAuthSession />
-
-### Response
-
-#### Example (Additional Authentication Required)
-```json
-{
-  "questions": [
+<ObjectPropList
+  isRequest
+  about={(
+    <div>
+      Update an auth session for an entity to automatically retrieve their
+      debt accounts.
+      <hr className="dotted-divider" />
+      <span className="pill-warning">⚠️ Caution:</span> This endpoint is only
+      accessible to entities that have the <code>data:retrieve</code> capability
+      in <code>available_capabilities</code>.
+    </div>
+  )}
+  snippetsElement={<EntitiesUpdateIndividualAuthSession />}
+  fields={[
     {
-      "id" : "qtn_7smgfLrU6M5tt",
-      "text" : "Which of the following is a current or previous employer?",
-      "answers" : [
-        {
-          "id" : "ans_ZExAcSeGjgEwS",
-          "text" : "Men's Wearhouse"
-        },
-        {
-          "id" : "ans_8MRLxgtQxEmYV",
-          "text" : "Target"
-        },
-        {
-          "id" : "ans_C5mDrRBmaP9Bs",
-          "text" : "Walmart"
-        },
-        {
-          "id" : "ans_wZkNPi9G7Xnge",
-          "text" : "Wells Fargo"
-        },
-        {
-          "id" : "ans_CUbfCtZ4sNBwQ",
-          "text" : "None of the Above"
-        }
-      ]
+      name: 'answers',
+      type: 'object[]',
+      children: 'A list of the answers for the auth session\'s security questions',
+      required: true,
     },
-    ...
-  ],
-  "authenticated": false
-}
-```
-
-#### Example (Successfully Authenticated)
-```json
-{
-  "questions": [],
-  "authenticated": true
-}
-```
+    {
+      name: 'answers[].question_id',
+      type: 'string',
+      children: 'The ID of the security question.',
+      required: true,
+    },
+    {
+      name: 'answers[].answer_id',
+      type: 'string',
+      children: 'The ID of the selected answer corresponding to the security question.',
+      required: true,
+    },
+  ]}
+  returns={(
+    <div>
+      Returns an object with a list of additional security questions (if necessary, otherwise an empty list),
+      and the <code>authenticated</code> field indicating whether or not the entity's
+      identity was successfully verified.
+    </div>
+  )}
+/>

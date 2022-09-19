@@ -17,11 +17,15 @@ const python = `
 connection = method.connections.update('cxn_iENwAPKnNqA5j', { 'status': 'syncing' });
 `.trim();
 
+const response = {};
+
 export default function () {
   return (
     <TabbedCodeBlock
       groupId="all"
       name="connections-update"
+      title="PUT /connections/:connectionId"
+      response={response}
       items={[
         { title: 'cURL', language: 'shell', content: curl },
         { title: 'Node.js', language: 'javascript', content: nodejs },

@@ -20,6 +20,7 @@ export default function () {
     <TabbedCodeBlock
       groupId="all"
       name="webhooks-delete"
+      title="DELETE /webhooks/:webhook_id"
       items={[
         { title: 'cURL', language: 'shell', content: curl },
         { title: 'Node.js', language: 'javascript', content: nodejs },

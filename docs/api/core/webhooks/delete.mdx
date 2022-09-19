@@ -1,23 +1,18 @@
+---
+title: Delete a webhook
+sidebar_label: Delete a webhook
+hide_table_of_contents: true
+hide_title: true
+---
+
 import WebhooksDelete from '../../../../src/snippets/WebhooksDelete';
+import ObjectPropList from '../../../../src/components/ObjectPropList';
 
-# Delete a webhook
-
-**About**: Deletes the webhook associated with the id.
-
-**API Method**: `DELETE /webhooks/:webhookId`
-
-### Request
-
-#### Example
-<WebhooksDelete />
-
-#### Parameters
-
-| Name | Type     | Required | Description                        |
-|------|----------|----------|------------------------------------|
-| `id` | `string` | ✅       | The Id of the webhook to delete. |
-
-
-### Response
-
-Returns `200` with an empty object on success
+<ObjectPropList
+  isRequest
+  title="Delete a webhook"
+  about="Deletes the webhook associated with the id."
+  snippetsElement={<WebhooksDelete />}
+  fields={[]}
+  returns={<div>Returns <code>200</code> with an empty object on success</div>}
+/>

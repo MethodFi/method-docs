@@ -1,52 +1,17 @@
+---
+hide_table_of_contents: true
+---
+
 import EntitiesRefreshCapabilities from '../../../../src/snippets/EntitiesRefreshCapabilities';
+import ObjectPropList from '../../../../src/components/ObjectPropList';
 
 # Refresh an entity's capabilities
 
 **About**: Refresh an entity's capabilities to ensures that an entity's capabilities
 up-to-date with new releases.
 
-**API Method**: `POST /entities/:entity_id/refresh_capabilities`
-
-### Request
-
-#### Example
-<EntitiesRefreshCapabilities />
-
-### Response
-
-#### Example
-```json
-{
-  "id": "ent_au22b1fbFJbp8",
-  "type": "individual",
-  "individual": {
-    "first_name": "Kevin",
-    "last_name": "Doyle",
-    "phone": "+16505555555",
-    "email": "kevin.doyle@gmail.com",
-    "dob": "1997-03-18"
-  },
-  "corporation": null,
-  "receive_only": null,
-  "address": {
-    "line1": "3300 N Interstate 35",
-    "line2": null,
-    "city": "Austin",
-    "state": "TX",
-    "zip": "78705"
-  },
-  "capabilities": [
-    "payments:send",
-    "payments:receive"
-  ],
-  "available_capabilities": [
-    "data:retrieve"
-  ],
-  "pending_capabilities": [],
-  "error": null,
-  "status": "active",
-  "metadata": null,
-  "created_at": "2020-12-09T00:40:51.107Z",
-  "updated_at": "2020-12-09T00:40:51.107Z"
-}
-```
+<ObjectPropList
+  isRequest
+  snippetsElement={<EntitiesRefreshCapabilities />}
+  fields={[]}
+/>

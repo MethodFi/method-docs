@@ -1,61 +1,60 @@
+---
+title: Update an entity
+sidebar_label: Update an entity
+hide_table_of_contents: true
+hide_title: true
+---
+
 import EntitiesUpdate from '../../../../src/snippets/EntitiesUpdate';
+import ObjectPropList from '../../../../src/components/ObjectPropList';
 
-# Update an entity
-
-**About**: Updates an entity with the parameters sent.
-
-**API Method**: `PUT /entities/:entityId`
-
-:::tip
-Updating an entity with more information will enable further capabilities on the Entity. See [Entity Capabilities](/api/core/entities/object#entity-capabilities) for more info.
-:::
-
-:::caution
-Once an entity's property has been set, that property can no longer be updated.
-:::
-
-
-### Request
-
-#### Example
-<EntitiesUpdate />
-
-### Response
-
-#### Example
-```json
-{
-  "id": "ent_au22b1fbFJbp8",
-  "type": "individual",
-  "individual": {
-    "first_name": "Kevin",
-    "last_name": "Doyle",
-    "phone": "+16505555555",
-    "email": "kevin.doyle@gmail.com",
-    "dob": "1997-03-18"
-  },
-  "corporation": null,
-  "receive_only": null,
-  "address": {
-    "line1": "3300 N Interstate 35",
-    "line2": null,
-    "city": "Austin",
-    "state": "TX",
-    "zip": "78705"
-  },
-  "capabilities": [
-    "payments:send",
-    "payments:receive",
-    "data:sync"
-  ],
-  "available_capabilities": [
-    "data:retrieve"
-  ],
-  "pending_capabilities": [],
-  "error": null,
-  "status": "active",
-  "metadata": null,
-  "created_at": "2020-12-09T00:40:51.107Z",
-  "updated_at": "2020-12-09T00:40:51.107Z"
-}
-```
+<ObjectPropList
+  isRequest
+  title="Update an entity"
+  about={(
+    <div>
+      <span>Updates an entity with the parameters sent.</span>
+      <hr className="dotted-divider" />
+      <span className="pill-info">💡 Tip:</span> Updating an entity
+      with more information will enable further capabilities on
+      the Entity. See <a href="/api/core/entities/object#capabilities">entity capabilities</a> for
+      more info.
+      <br/><br/>
+      <span className="pill-warning">⚠️ Caution:</span> Once an entity's
+      property has been set, that property can no longer be updated.
+    </div>
+  )}
+  snippetsElement={<EntitiesUpdate />}
+  fields={[
+    {
+      name: 'individual',
+      type: 'object',
+      children: (
+        <div>
+          Individual information of the
+          entity. See <a href="/api/core/entities/object#individual">individual entity.</a>
+        </div>
+      ),
+    },
+    {
+      name: 'corporation',
+      type: 'object',
+      children: (
+        <div>
+          Corporation information of the
+          entity. See <a href="/api/core/entities/object#corporation">corporation entity.</a>
+        </div>
+      ),
+    },
+    {
+      name: 'address',
+      type: 'object',
+      children: (
+        <div>
+          The entity's address. See <a href="/api/core/entities/object#address">entity address.</a>
+        </div>
+      ),
+    },
+  ]}
+  returns="Returns the entity with the updated fields."
+/>

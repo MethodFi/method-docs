@@ -1,67 +1,142 @@
-# The webhook object
+---
+title: The webhook object
+sidebar_label: The webhook object
+hide_table_of_contents: true
+hide_title: true
+---
 
-Webhooks allow the Method API to notify your application when certain events occur.
+import CodeBlock from '@theme/CodeBlock';
+import ObjectPropList from '../../../../src/components/ObjectPropList';
 
-To receive webhook notifications, you must first register the URL where the webhook should be sent and the triggering event. When the event occurs, the API will send an HTTP request containing the notification to the specified URL. If a valid HTTP response is not received, the API will retry.
+<ObjectPropList
+  title="The webhook object"
+  about={(
+    <div>
+      Webhooks allow the Method API to notify your application when certain events occur.
+      <br/>
+      <br/>
+      To receive webhook notifications, you must first register the URL where the webhook
+      should be sent and the triggering event. When the event occurs, the API will send an
+      HTTP request containing the notification to the specified URL. If a valid HTTP response
+      is not received, the API will retry.
+    </div>
+  )}
+  snippetsElement={(
+    <CodeBlock
+      className="language-json"
+      title="THE WEBHOOK OBJECT">
+      {JSON.stringify({
+        "id": "whk_cSGjA6d9N8y8R",
+        "type": "payment.update",
+        "url": "https://api.example.app/webhook",
+        "auth_token": "md7UqcTSmvXCBzPORDwOkE",
+        "metadata": null,
+        "created_at": "2020-12-09T00:41:05.647Z",
+        "updated_at": "2020-12-09T00:41:05.647Z"
+      }, null, 2)}
+    </CodeBlock>
+  )}
+  fields={[
+    {
+      name: 'id',
+      type: 'string',
+      children: 'Unique identifier for the webhook.',
+    },
+    {
+      name: 'type',
+      type: 'enum',
+      children: 'The event type to be sent to this url.',
+      enums: [
+        { name: 'payment.create', children: ' A new payment was successfully created.' },
+        { name: 'payment.update', children: 'A payment\'s status changed.'},
+        { name: 'account.create', children: ' A new account was successfully created.' },
+        { name: 'account.update', children: 'An account\'s status changed.'},
+        { name: 'entity.create', children: ' A new entity was successfully created.' },
+        { name: 'entity.update', children: 'An entity\'s status changed.'},
+        { name: 'account_verification.create', children: ' A new account verification was successfully created.' },
+        { name: 'account_verification.update', children: 'An account\'s verification status changed.'},
+        { name: 'payment_reversal.create', children: ' A new payment reversal was successfully created.' },
+        { name: 'payment_reversal.update', children: 'A payment\'s reversal status changed.'},
+        { name: 'connection.create', children: ' A new connection was successfully created.' },
+        { name: 'connection.update', children: 'A connection\'s status changed.'},
+      ],
+    },
+    {
+      name: 'url',
+      type: 'string',
+      children: 'The HTTPS URL receiving the webhook event.',
+    },
+    {
+      name: 'auth_token',
+      type: 'string,null',
+      children: (
+        <div>
+          Secret token for request validation. Will be sent as a <code>base64</code> encoded string
+          in the <code>Authorization</code> header of the webhook.
+        </div>
+      ),
+    },
+    {
+      name: 'metadata',
+      type: 'object,null',
+      children: (
+        <div>
+          Additional data provided during creation.
+          See <a href="/api/metadata">metadata</a>.
+        </div>
+      ),
+    },
+    {
+      name: 'created_at',
+      type: 'string',
+      children: 'Timestamp of when the webhook was created.',
+    },
+    {
+      name: 'updated_at',
+      type: 'string',
+      children: 'Timestamp of when the webhook was last updated.',
+    },
+  ]}
+/>
 
-### Webhook object
+<hr className="dotted-divider" />
 
-#### Example
-
-```json
-{
-  "id": "whk_cSGjA6d9N8y8R",
-  "type": "payment.update",
-  "url": "https://api.example.app/webhook",
-  "auth_token": "md7UqcTSmvXCBzPORDwOkE",
-  "metadata": null,
-  "created_at": "2020-12-09T00:41:05.647Z",
-  "updated_at": "2020-12-09T00:41:05.647Z"
-}
-```
-
-#### Attributes
-
-| Name         | Type                 | Description                                                                                                                  |
-|--------------|----------------------|------------------------------------------------------------------------------------------------------------------------------|
-| `id`         | `string`             | Unique identifier for the webhook.                                                                                           |
-| `type`       | `string`             | The event type to be sent to this url. See `Webhook Events` for all available events.                                        |
-| `url`        | `string`             | The HTTPS URL receiving the webhook event.                                                                                   |
-| `auth_token` | `string`, `nullable` | Secret token for request validation. Will be sent as a `base64` encoded string in the `Authorization` header of the webhook. |
-| `metadata`   | `object`, `nullable` | Additional data provided during creation. See [metadata](/api/metadata).                                                                   |
-| `created_at` | `string`             | Timestamp of when the webhook was created.                                                                                   |
-| `updated_at` | `string`             | Timestamp of when the webhook was last updated.                                                                              |
-
-### Events
-
-The following event types can be registered to a webhook:
-* `payment.create` - A new payment was successfully created.
-* `payment.update` - A payment's status changed.
-* `account.create` - A new account was successfully created.
-* `account.update` - An account's status changed.
-* `entity.create` - A new entity was successfully created.
-* `entity.update` - An entity's status changed.
-* `account_verification.create` - A new account verification was successfully created.
-* `account_verification.update` - An account's verification status changed.
-* `payment_reversal.create` - A new payment reversal was successfully created.
-* `payment_reversal.update` - A payment's reversal status changed.
-* `connection.create` - A new connection was successfully created.
-* `connection.update` - A connection's status changed.
-
-### Webhook event object
-
-```json
-{
-  "type":"payment.create",
-  "op":"create",
-  "id":"pmt_jqFdSAQDtUPqx"
-}
-```
-
-#### Webhook event attributes
-
-| Name   | Type     | Description                                                    |
-|--------|----------|----------------------------------------------------------------|
-| `type` | `string` | The event type. See `Webhook Events` for all available events. |
-| `op`   | `string` | The operation that generated the event.                        |
-| `id`   | `string` | The identifier of the resource modified.                       |
+<ObjectPropList
+  title="Webhook event object"
+  snippetsElement={(
+    <CodeBlock
+      className="language-json"
+      title="WEBHOOK EVENT OBJECT">
+      {JSON.stringify({
+        "id":"pmt_jqFdSAQDtUPqx",
+        "type":"payment.create",
+        "op":"create"
+      }, null, 2)}
+    </CodeBlock>
+  )}
+  fields={[
+    {
+      name: 'id',
+      type: 'string',
+      children: 'The identifier of the resource modified.',
+    },
+    {
+      name: 'type',
+      type: 'string',
+      children: (
+        <div>
+          The event type. See <a href="/api/core/webhooks/object#type">webhook events</a>.
+        </div>
+      ),
+    },
+    {
+      name: 'op',
+      type: 'enum',
+      children: 'The operation that generated the event',
+      enums: [
+        { name: 'create' },
+        { name: 'update' },
+      ],
+    },
+  ]}
+/>

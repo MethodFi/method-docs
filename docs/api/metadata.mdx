@@ -1,13 +1,34 @@
+---
+title: Metadata
+sidebar_label: Metadata
+hide_table_of_contents: true
+hide_title: true
+---
+
+import ObjectPropList from '../../src/components/ObjectPropList';
 import MetadataSample from '../../src/snippets/Metadata';
 
-# Metadata
+<ObjectPropList
+  isRequest
+  title="Metadata"
+  about={(
+    <div>
+      Method allows you to provide arbitrary data upon creation of any Core API resource. This
+      data is referred to as <strong>metadata</strong> and will be returned as the <code>metadata</code> attribute
+      on any Core API resource.
+      <hr className="dotted-divider" />
+      Adding metadata to Core API resources is useful if you want to provide additional identifiers
+      that reference specific records or rows in your own database.
+    </div>
+  )}
+  fields={[
+    {
+      name: 'metadata',
+      type: 'object',
+      children: 'A valid JSON object that must be less than 1KB in size when serialized.',
+    },
+  ]}
+  snippetsElement={<MetadataSample />}
+  returns="Returns the created resource with the provided metadata object."
+/>
 
-Method allows you to provide arbitrary data upon creation of any Core API resource. This data is referred to as **metadata** and will be returned as the `metadata` attribute on any Core API resource.
-
-Adding metadata to Core API resources is useful if you want to provide additional identifiers that reference specific records or rows in your own database.
-
-The provided metadata should be a valid JSON object, and must be less than 1KB in size when serialized.
-
-#### Example - create an entity with metadata
-
-<MetadataSample />

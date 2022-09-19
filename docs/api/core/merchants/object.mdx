@@ -1,79 +1,158 @@
-# The merchant object
+---
+title: The merchant object
+sidebar_label: The merchant object
+hide_table_of_contents: true
+hide_title: true
+---
 
-**About**: Merchants are financial institutions that accept payments for a `liability`. This includes student loan servicers, credit cards, mortgages, etc. Method's API covers the majority of merchants in the US.
+import ObjectPropList from '../../../../src/components/ObjectPropList';
 
-:::info Important
-Merchants / Financial institutions with multiple verticals have a unique `mch_id` for each vertical. (e.g. Chase - Credit Cards & Chase - Auto Loans )
-:::
+<ObjectPropList
+  title="The merchant object"
+  about={(
+    <div>
+      Merchants are financial institutions that accept payments for a <code>liability</code>. This
+      includes student loan servicers, credit cards, mortgages, etc. Method's API covers the majority
+      of merchants in the US.
+      <hr className="dotted-divider" />
+      <span className="pill-info">ℹ️ Info:</span> Merchants / Financial institutions
+      with multiple verticals have a unique <code>mch_id</code> for each
+      vertical (e.g. Chase - Credit Cards & Chase - Auto Loans )
+    </div>
+  )}
+  returns="Returns the entity associated with the id."
+  snippets={[
+    {
+      title: 'Chase',
+      language: 'json',
+      value: {
+        "mch_id": "mch_1",
+        "parent_name": "Chase",
+        "name": "Chase - Credit Cards",
+        "logo": "https://static.methodfi.com/mch-logos/1616215578688-chase.png",
+        "description": "Chase Mastercard & Visa",
+        "note": "For Credit Card Accounts Only",
+        "types": [
+          "credit_card"
+        ],
+        "account_prefixes": [
+          "403116",
+          "438857"
+        ],
+        "provider_ids": {
+          "plaid": ["ins_3"],
+          "mx": ["chase"],
+          "finicity": ["5"]
+        }
+      },
+    },
+    {
+      title: 'FedLoan',
+      language: 'json',
+      value: {
+        "mch_id": "mch_21",
+        "parent_name": "FedLoan",
+        "name": "FedLoan Servicing",
+        "logo": "https://static.methodfi.com/mch-logos/1616215578688-fedloan.png",
+        "description": null,
+        "note": null,
+        "types": [
+          "student_loan"
+        ],
+        "account_prefixes": [
+          "5655"
+        ],
+        "provider_ids": {
+          "plaid": ["ins_116527"],
+          "mx": [],
+          "finicity": ["100302"]
+        }
+      },
+    },
+  ]}
+  fields={[
+    {
+      name: 'mch_id',
+      type: 'string',
+      children: 'Unique identifier for the merchant. Required for retrieving a merchant token.',
+    },
+    {
+      name: 'parent_name',
+      type: 'string',
+      children: 'A presentable name for the parent organization. Useful for a merchant with multiple verticals.',
+    },
+    {
+      name: 'name',
+      type: 'string',
+      children: 'A presentable name of the merchant.',
+    },
+    {
+      name: 'logo',
+      type: 'string',
+      children: 'A URL to the logo / icon for the merchant.',
+    },
+    {
+      name: 'description',
+      type: 'string,null',
+      children: 'A detailed name provided by the merchant.',
+    },
+    {
+      name: 'note',
+      type: 'string,null',
+      children: 'Additional details provided by the merchant.',
+    },
+    {
+      name: 'types',
+      type: 'enum[]',
+      children: 'The type of liability this merchant handles. This field is important for merchants with multiple verticals. (e.g. Chase - Credit Cards & Chase - Auto Loans).',
+      enums: [
+        { name: 'auto_loan' },
+        { name: 'business_loan' },
+        { name: 'home_loan' },
+        { name: 'loan' },
+        { name: 'personal_loan' },
+        { name: 'student_loan' },
+        { name: 'home_equity_loan' },
+        { name: 'mortgage' },
+        { name: 'electric_utility' },
+        { name: 'internet_utility' },
+        { name: 'telephone_utility' },
+        { name: 'television_utility' },
+        { name: 'water_utility' },
+        { name: 'waste_utility' },
+        { name: 'utility' },
+        { name: 'credit_card' },
+        { name: 'insurance' },
+        { name: 'medical' },
+        { name: 'bank' },
+      ],
+    },
+    {
+      name: 'account_prefixes',
+      type: 'string[]',
+      children: 'Prefixes of valid account numbers for this merchant.',
+    },
+    {
+      name: 'provider_ids',
+      type: 'object',
+      children: 'Related IDs for this merchant in third-party aggregators.',
+    },
+    {
+      name: 'provider_ids.plaid',
+      type: 'string[]',
+      children: 'A list of Plaid institution ids for this merchant.',
+    },
+    {
+      name: 'provider_ids.mx',
+      type: 'string[]',
+      children: 'A list of MX institution ids for this merchant.',
+    },
+    {
+      name: 'provider_ids.finicity',
+      type: 'string[]',
+      children: 'A list of Finicity institution ids for this merchant.',
+    },
+  ]}
+/>
 
-### Merchant object
 
-#### Example - Chase Credit Card
-```json
-{
-  "mch_id": "mch_1",
-  "parent_name": "Chase",
-  "name": "Chase - Credit Cards",
-  "logo": "https://static.methodfi.com/mch-logos/1616215578688-chase.png",
-  "description": "Chase Mastercard & Visa",
-  "note": "For Credit Card Accounts Only",
-  "types": [
-    "credit_card"
-  ],
-  "account_prefixes": [
-    "403116",
-    "438857"
-  ],
-  "provider_ids": {
-    "plaid": ["ins_3"],
-    "mx": ["chase"],
-    "finicity": ["5"]
-  }
-}
-```
-
-#### Example - FedLoan Student Loan
-```json
-{
-  "mch_id": "mch_21",
-  "parent_name": "FedLoan",
-  "name": "FedLoan Servicing",
-  "logo": "https://static.methodfi.com/mch-logos/1616215578688-fedloan.png",
-  "description": null,
-  "note": null,
-  "types": [
-    "student_loan"
-  ],
-  "account_prefixes": [
-    "5655"
-  ],
-  "provider_ids": {
-    "plaid": ["ins_116527"],
-    "mx": [],
-    "finicity": ["100302"]
-  }
-}
-```
-
-#### Attributes
-
-| Name                    | Type                | Description                                                                                                                                                  |
-|-------------------------|---------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `mch_id`                | `string`            | Unique identifier for the merchant. Required for retrieving a merchant token.                                                                                |
-| `parent_name`           | `string`            | A presentable name for the parent organization. Useful for a merchant with multiple verticals.                                                               |
-| `name`                  | `string`            | A presentable name of the merchant.                                                                                                                          |
-| `logo`                  | `string`            | A URL to the logo / icon for the merchant.                                                                                                                   |
-| `description`           | `string` `nullable` | A detailed name provided by the merchant.                                                                                                                    |
-| `note`                  | `string` `nullable` | Additional details provided by the merchant.                                                                                                                 |
-| `types`                 | `[string]`          | The type of liability this merchant handles. This field is important for merchants with multiple verticals. (e.g. Chase - Credit Cards & Chase - Auto Loans). See *Merchant Types* for more info. |
-| `account_prefixes`      | `[string]`          | Prefixes of valid account numbers for this merchant.                                                                                                         |
-| `provider_ids`          | `object`            | Related ID for this merchant in third-party aggregators.                                                                                                     |
-| `provider_ids.plaid`    | `[string]` | A list of Plaid institution ids for this merchant.                                                                                                                  |
-| `provider_ids.mx`       | `[string]` | A list of MX institution ids for this merchant.                                                                                                                     |
-| `provider_ids.finicity` | `[string]` | A list of Finicity institution ids for this merchant.                                                                                                               |
-
-### Merchant Types
-
-A merchant can have 1 or more of the following types. These types describe the types of liabilities, services provided, or products handled by the merchant.
-
-`auto_loan`, `business_loan`, `home_loan`, `loan`, `personal_loan`, `student_loan`, `home_equity_loan`, `mortgage`, `electric_utility`, `internet_utility`, `telephone_utility`, `television_utility`, `water_utility`, `waste_utility`, `utility`, `credit_card`, `insurance`, `medical`, `bank`.

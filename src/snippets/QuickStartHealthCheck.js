@@ -25,11 +25,19 @@ method = Method(env='dev', api_key='sk_WyZEWVfTcH7GqmPzUPk65Vjc')
 method.ping()
 `.trim();
 
+const response = {
+  "success": true,
+  "data": null,
+  "message": "pong"
+};
+
 export default function () {
   return (
     <TabbedCodeBlock
       groupId="all"
       name="quick-start-healthcheck"
+      title="GET /ping"
+      response={response}
       items={[
         { title: 'cURL', language: 'shell', content: curl },
         { title: 'Node.js', language: 'javascript', content: nodejs },

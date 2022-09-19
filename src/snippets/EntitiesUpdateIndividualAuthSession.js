@@ -41,11 +41,27 @@ response = method.entities.update_auth_session('ent_au22b1fbFJbp8', {
 })
 `.trim();
 
+// #### Example (Additional Authentication Required)
+const response = {
+  "questions": [],
+  "authenticated": true
+};
+
+// #### Example (Successfully Authenticated)
+// ```json
+// {
+//   "questions": [],
+//   "authenticated": true
+// }
+// ```
+
 export default function () {
   return (
     <TabbedCodeBlock
       groupId="all"
       name="update-individual-auth-session"
+      title="PUT /entities/:entity_id/auth_session"
+      response={response}
       items={[
         { title: 'cURL', language: 'shell', content: curl },
         { title: 'Node.js', language: 'javascript', content: nodejs },

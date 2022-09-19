@@ -1,21 +1,18 @@
+---
+title: Download a report
+sidebar_label: Download a report
+hide_table_of_contents: true
+hide_title: true
+---
+
 import ReportsDownload from '../../../../src/snippets/ReportsDownload';
+import ObjectPropList from '../../../../src/components/ObjectPropList';
 
-# Download a report
-
-**About**: Returns the results of the report associated with the id.
-
-**API Method**: `GET /reports/:reportId/download`
-
-### Request
-
-#### Example
-<ReportsDownload />
-
-#### Parameters
-
-| Name | Type     | Required | Description                        |
-|------|----------|----------|------------------------------------|
-| `id` | `string` | ✅       | The Id of the report whose results to retrieve.  |
-
-### Response
-Returns the report's results in CSV format.
+<ObjectPropList
+  isRequest
+  title="Download a report"
+  about="Returns the results of the report associated with the id."
+  snippetsElement={<ReportsDownload />}
+  fields={[]}
+  returns="Returns the report's results in CSV format."
+/>

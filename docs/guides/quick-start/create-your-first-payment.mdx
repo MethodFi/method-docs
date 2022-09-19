@@ -10,7 +10,7 @@ import QuickStartCreatePayment from '../../../src/snippets/QuickStartCreatePayme
 # Create your first payment
 
 ✨ __Method Payments__ allows you to push funds to any type of debt account (mortgate, student loan, credit cards, bills and more)
-at more than 10,000 financial institutions or loan servicers. 
+at more than 10,000 financial institutions or loan servicers.
 
 ## Steps
   - [Create an entity](#1-creating-an-entity) that will become the holder/owner of both the source and destination accounts.
@@ -28,40 +28,6 @@ legal owner of any account connected. Using an incorrect entity with an account 
 
 #### Request
 <QuickStartCreateIndividualEntity />
-
-#### Response
-```json
-{
-  "id": "ent_au22b1fbFJbp8",
-  "type": "individual",
-  "individual": {
-    "first_name": "Kevin",
-    "last_name": "Doyle",
-    "phone": "+15121231111",
-    "email": "kevin.doyle@gmail.com",
-    "dob": "1997-03-18"
-  },
-  "corporation": null,
-  "receive_only": null,
-  "address": {
-    "line1": "3300 N Interstate 35",
-    "line2": null,
-    "city": "Austin",
-    "state": "TX",
-    "zip": "78705"
-  },
-  "capabilities": [
-    "payments:send",
-    "payments:receive",
-    "data:sync"
-  ],
-  "error": null,
-  "status": "active",
-  "metadata": null,
-  "created_at": "2020-12-09T00:40:51.107Z",
-  "updated_at": "2020-12-09T00:40:51.107Z"
-}
-```
 
 ---
 
@@ -81,31 +47,6 @@ All ACH source accounts need to be verified. See [ACH Verification](/guides/acco
 
 #### Request
 <QuickStartCreateSource />
-
-#### Response
-```json
-{
-  "id": "acc_b9q2XVAnNFbp3",
-  "holder_id": "ent_au22b1fbFJbp8",
-  "type": "ach",
-  "ach": {
-    "routing": "367537407",
-    "number": "57838927",
-    "type": "checking"
-  },
-  "liability": null,
-  "clearing": null,
-  "metadata": null,
-  "status": "active",
-  "capabilities": [
-    "payments:receive",
-    "payments:send"
-  ],
-  "error": null,
-  "created_at": "2020-12-09T00:40:51.107Z",
-  "updated_at": "2020-12-09T00:40:51.107Z"
-}
-```
 
 ---
 
@@ -139,46 +80,6 @@ to learn more.
 #### Request
 <QuickStartCreateDestination />
 
-#### Response
-```json
-{
-  "id": "acc_Zc4F2aTLt8CBt",
-  "holder_id": "ent_au22b1fbFJbp8",
-  "type": "liability",
-  "ach": null,
-  "liability": {
-    "mch_id": "mch_2",
-    "mask": "4455",
-    "type": "student_loan",
-    "data_status": "pending",
-    "data_last_successful_sync": null,
-    "student_loan": {
-      "name": "FedLoan Student Loan",
-      "sub_type": "federal",
-      "sequence": 6,
-      "balance": 1952634,
-      "last_payment_amount": 1150,
-      "last_payment_date": "2022-04-22",
-      "next_payment_due_date": "2022-10-28",
-      "next_payment_minimum_amount": 0,
-      "disbursed_at": "2018-01-22",
-      "interest_rate_percentage": 3.4,
-      "interest_rate_type": "fixed"
-    }
-  },
-  "clearing": null,
-  "metadata": null,
-  "status": "active",
-  "capabilities": [
-    "payments:receive",
-    "data:sync"
-  ],
-  "error": null,
-  "created_at": "2020-12-09T02:56:19.548Z",
-  "updated_at": "2020-12-09T02:56:19.548Z"
-}
-```
-
 ---
 
 ## 4. Create your first payment
@@ -190,28 +91,5 @@ and the destination accounts id (`acc_Zc4F2aTLt8CBt`), we'll create a $50 paymen
 
 #### Request
 <QuickStartCreatePayment />
-
-#### Response
-```json
-{
-  "id": "pmt_rPrDPEwyCVUcm",
-  "reversal_id": null,
-  "source_trace_id": null,
-  "destination_trace_id": null,
-  "source": "acc_b9q2XVAnNFbp3",
-  "destination": "acc_Zc4F2aTLt8CBt",
-  "amount": 5000,
-  "description": "Loan Pmt",
-  "status": "pending",
-  "error": null,
-  "metadata": null,
-  "estimated_completion_date": "2020-12-11",
-  "source_settlement_date": "2020-12-09",
-  "destination_settlement_date": "2020-12-11",
-  "fee": null,
-  "created_at": "2020-12-09T00:42:31.209Z",
-  "updated_at": "2020-12-09T00:43:30.996Z"
-}
-```
 
 🚀 It's that easy! The payment will be posted at the destination account in 2 business days.

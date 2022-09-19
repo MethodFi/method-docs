@@ -46,6 +46,7 @@ export default function () {
     <TabbedCodeBlock
       groupId="all"
       name="elements-create-link-token"
+      title="POST /elements/token"
       items={[
         { title: 'cURL', language: 'shell', content: curl },
         { title: 'Node.js', language: 'javascript', content: nodejs },

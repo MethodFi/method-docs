@@ -32,11 +32,17 @@ token = method.elements.create_token({
 })
 `.trim();
 
+const response = {
+  "element_token": "pk_elem_BtzySdrQGFmLdAPw5gXSQNCxQkhCkT3K"
+};
+
 export default function () {
   return (
     <TabbedCodeBlock
       groupId="all"
       name="elements-create-link-token2"
+      title="POST /elements/token"
+      response={response}
       items={[
         { title: 'cURL', language: 'shell', content: curl },
         { title: 'Node.js', language: 'javascript', content: nodejs },
