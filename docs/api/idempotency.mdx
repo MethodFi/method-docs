@@ -1,29 +1,57 @@
+---
+title: Idempotency
+sidebar_label: Idempotency
+hide_table_of_contents: true
+hide_title: true
+---
+
+import CodeBlock from '@theme/CodeBlock';
 import IdempotencySample from '../../src/snippets/Idempotency';
+import ObjectPropList from '../../src/components/ObjectPropList';
 
-# Idempotency
-
-Method's API supports idempotency for safely retrying requests without accidentally performing the same operation twice. This helps avoid unwanted duplication in case of failures and retries. For example, in the case of a timeout error, it is possible to safely retry sending the same API payment call multiple times with the guarantee that the payment will only be created once.
-
-Method's idempotency works by saving the resulting status code and body of the first request made for any given idempotency key, regardless of whether it succeeded or failed. Subsequent requests with the same key return the same result, including `500` errors.
-
-### Enable idempotency
-
-To submit a request for idempotent processing, send a request with the `Idempotency-Key: <key>` header. The `<key>` can be any unique string up to 255 characters long. (We recommend using V4 UUIDs). All `POST` requests accept idempotency keys.
-
-<IdempotencySample />
-
-
-### Idempotency error
-
-In the unlikely event that the idempotent data store is unavailable, the API returns a `503` error status with the a sub type of `IDEMPOTENCY_UNAVAILABLE` If idempotency is required, we recommend try your request later, otherwise, fall back to non-idempotent processing by not submitting the `Idempotency-Key` header.
-
-```json
-{
-  "error": {
-    "type": "API_ERROR",
-    "code": 503,
-    "sub_type": "IDEMPOTENCY_UNAVAILABLE",
-    "message": "Idempotent requests are temporarily unavailable. To ensure idempotency try your request later, or fall back to a non-idempotent request."
-  }
-}
-```
+<ObjectPropList
+  title="Idempotency"
+  about={(
+    <div>
+      <p>
+        Method's API supports idempotency for safely retrying requests without accidentally performing the
+        same operation twice. This helps avoid unwanted duplication in case of failures and retries. For
+        example, in the case of a timeout error, it is possible to safely retry sending the same API payment
+        call multiple times with the guarantee that the payment will only be created once.
+      </p>
+      Method's idempotency works by saving the resulting status code and body of the first request
+      made for any given idempotency key, regardless of whether it succeeded or failed. Subsequent
+      requests with the same key return the same result, including <code>500</code> errors.
+      <hr className="dotted-divider" />
+      <h4>Enable idempotency</h4>
+      To submit a request for idempotent processing, send a request with
+      the <code>Idempotency-Key: {'<key>'}</code> header. The <code>{'<key>'}</code> can be any unique string
+      up to 255 characters long. (We recommend using V4 UUIDs). All <code>POST</code> requests accept
+      idempotency keys.
+      <hr className="dotted-divider" />
+      <h4>Idempotency error</h4>
+      In the unlikely event that the idempotent data store is unavailable, the API returns
+      a <code>503</code> error status with the a sub type of <code>IDEMPOTENCY_UNAVAILABLE</code> If idempotency
+      is required, we recommend try your request later, otherwise, fall back to non-idempotent processing by
+      not submitting the <code>Idempotency-Key</code> header.
+    </div>
+  )}
+  snippetsElement={(
+    <div>
+      <IdempotencySample />
+      <hr className="dotted-divider" />
+      <CodeBlock
+        className="language-json"
+        title="IDEMPOTENCY ERROR">
+        {JSON.stringify({
+          "error": {
+            "type": "API_ERROR",
+            "code": 503,
+            "sub_type": "IDEMPOTENCY_UNAVAILABLE",
+            "message": "Idempotent requests are temporarily unavailable. To ensure idempotency try your request later, or fall back to a non-idempotent request."
+          }
+        }, null, 2)}
+      </CodeBlock>
+    </div>
+  )}
+/>

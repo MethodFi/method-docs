@@ -42,7 +42,7 @@ export default function TabbedCodeBlock(props) {
       </Tabs>
       {response && (
         <CodeBlock className="language-json" title="RESPONSE">
-          {JSON.stringify(response, null, 2)}
+          {typeof response === 'string' ? response : JSON.stringify(response, null, 2)}
         </CodeBlock>
       )}
     </div>

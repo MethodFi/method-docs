@@ -1,155 +1,295 @@
-# The payment object
+---
+title: The payment object
+sidebar_label: The payment object
+hide_table_of_contents: true
+hide_title: true
+---
 
-Payments allow you to easily move money between two accounts. Using payments you can move money between two `ach` accounts (e.g. Checking & Savings) or move money (_pay_) a `liability` (e.g. Student Loans, Credit Cards, etc.)
+import CodeBlock from '@theme/CodeBlock';
+import ObjectPropList from '../../../../src/components/ObjectPropList';
 
-All payments are processed electronically between the source and destination, and take 2-3 business days depending on the receiving institution.
-
-#### Cutoff Time
-Payments are processed on business days (Monday - Friday), excluding US Banking Holidays.
-
-- Source processing windows: 10:30 AM, 1:30 PM, and 4:30 PM CST
-- Destination processing windows:
-  - __ACH__: 10:30 AM, 1:30 PM, and 4:30 PM CST
-  - __Liability__: 1:30 PM CST
-
-### Payment object
-
-#### Example
-
-```json
-{
-  "id": "pmt_rPrDPEwyCVUcm",
-  "reversal_id": null,
-  "source_trace_id": null,
-  "destination_trace_id": null,
-  "source": "acc_JMJZT6r7iHi8e",
-  "destination": "acc_AXthnzpBnxxWP",
-  "amount": 5000,
-  "description": "Loan Pmt",
-  "status": "pending",
-  "error": null,
-  "metadata": null,
-  "estimated_completion_date": "2020-12-11",
-  "source_settlement_date": "2020-12-09",
-  "destination_settlement_date": "2020-12-11",
-  "fee": null,
-  "created_at": "2020-12-09T00:42:31.209Z",
-  "updated_at": "2020-12-09T00:43:30.996Z"
-}
-```
-
-#### Attributes
-| Name                          | Type                 | Description                                                                                                                                                                                                                                                                  |
-|-------------------------------|----------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `id`                          | `string`             | Unique identifier for the payment.                                                                                                                                                                                                                                           |
-| `reversal_id`                 | `string`, `nullable` | The `id` of an active `reversal`.                                                                                                                                                                                                                                            |
-| `source_trace_id`             | `string`, `nullable` | The underlying `id` for the bank transaction on the source account relating to this payment.                                                                                                                                                                                 |
-| `destination_trace_id`        | `string`, `nullable` | The underlying `id` for the bank transaction on the destination account relating to this payment.                                                                                                                                                                            |
-| `source`                      | `string`             | The `id` of an `ach` account from which the payment amount will be retrieved.                                                                                                                                                                                                |
-| `destination`                 | `string`             | The `id` of an `ach` or `liability` account to which the payment amount will be sent.                                                                                                                                                                                        |
-| `amount`                      | `integer`            | The amount of the payment to be created in cents. (e.g. $1.00 = 100)                                                                                                                                                                                                         |
-| `description`                 | `string` `nullable`  | Optional description (maximum of 10 characters).                                                                                                                                                                                                                             |
-| `status`                      | `string`             | Status of the payment. Possible statuses: `pending`, `processing`, `sent`, `failed`, `canceled`, `reversal_required`, `reversal_processing`, `reversed`. See [payment statuses](#payment-statuses).                                                                          |
-| `fund_status`                 | `string`             | Fund status of the payment. Possible statuses: `pending`, `requested`, `clearing`, `failed`, `sent`, `unknown`. See [payment fund statuses](#payment-fund-statuses).  This property is available only when [individual payments are retrieved](/api/core/payments/retrieve). |
-| `error`                       | `object` `nullable`  | An object representing an error that occurred while processing this payment. See [payment errors](/api/errors/resource#payment-errors).                                                                                                                                      |
-| `metadata`                    | `object` `nullable`  | Additional data provided during creation. See [metadata](/api/metadata).                                                                                                                                                                                                     |
-| `estimated_completion_date`   | `string`, `nullable` | An estimated date, in ISO 8601 format (YYYY-MM-DD), on which the payment should be completed.                                                                                                                                                                                |
-| `source_settlement_date`      | `string`, `nullable` | An estimated date, in ISO 8601 format (YYYY-MM-DD), on which the funds pulled from the source account will be completed.                                                                                                                                                     |
-| `destination_settlement_date` | `string`, `nullable` | An estimated date, in ISO 8601 format (YYYY-MM-DD), on which the funds pushed to the destination account will be completed.                                                                                                                                                  |
-| `fee`                         | `object`, `nullable` | Payment fee information. If provided, the payment will incur a fee which will be deducted from the total amount received by the destination account.                                                                                                                         |
-| `fee.type`                    | `string`             | The type of fee applied to the payment. Possible types: `total`, `markup`. See [payment fee types](#payment-fee-types).                                                                                                                                                      |
-| `fee.amount`                  | `number`             | The fee amount applied to the payment.                                                                                                                                                                                                                                       |
-| `created_at`                  | `string`             | Timestamp of when the payment was created.                                                                                                                                                                                                                                   |
-| `updated_at`                  | `string`             | Timestamp of when the payment was last updated.                                                                                                                                                                                                                              |
-
-### Payment Statuses
-
-A payment will enter the following statuses as it is processed.
-
-* `pending`
-Initial status after the payment is created. Payment will stay in this state until it is
-processed (see: [Cutoff Time](#cutoff-time)). Payment can be deleted in this state.
-
-* `processing`
-The payment is being processed. At this point, the payment can no longer be deleted.
-
-* `sent`
-The payment has been executed and sent to the banking networks.
-
-* `failed`
-An error occurred while either pulling funds from the source account or
-pushing funds to the destination account.
-
-* `canceled`
-The payment was canceled and was never processed.
-
-* `reversal_required`
-The payment failed and requires a reversal. The payment's `reversal_id` is set with the `id` of the
-newly created reversal. The reversal should then be approved.
-
-* `reversal_processing`
-The active reversal corresponding to this payment has been approved and is being processed.
-
-* `reversed`
-The active reversal has successfully been completed.
-
-### Payment Fund Statuses
-
-A payment's funds will enter the following statuses as it is processed.
-
-* `pending`
-Initial fund status after the payment is created.
-
-* `requested`
-The payment funds have been requested from the source account.
-
-* `clearing`
-The payment funds from the source account have been received.
-
-* `failed`
-The clearing of funds for a payment have failed.
-
-* `sent`
-The payment funds have been sent to the destination account.
-
-* `unknown`
-The status of the payment's funds is unknown.
-
-
-### Payment Fee Types
-
-A payment's fee type determines how much of the payment's amount will
-be deducted from the amount received by the destination account.
-
-* `total`
-This fee type will deduct a flat fee from the amount
-received by the destination account.
-
-  __Example:__ If a $10.00 payment is created with a `total` fee of $2.00, then the resulting
-  amount received by the destination account will be $8.00.
-
-  This means that you make total of $2.00 from the payment. However, the
-  Method fee for this payment will still be included in your monthly
-  invoice.
-
-  ```
-  Received by destination = Payment - Total fee
-  $8.00                   = $10.00  - $2.00
-  ```
-
-* `markup`
-This fee type will deduct a fee on top of Method's per-payment fee
-from the amount received by the destination account
-
-  __Example:__ If a $10.00 payment is created with a `markup` fee of $2.00
-  and your Method fee is $1.00, then the resulting amount received by the
-  destination account will be $7.00 (Amount - Markup Fee - Method Fee).
-
-  This means that you make $2.00 from the payment. Additionally, the Method fee
-  has already been covered by the source account, and this completed payment
-  will not be included in your monthly invoice.
-
-  ```
-  Received by destination = Payment - Markup fee - Example Method per-payment fee
-  $7.00                   = $10.00  - $2.00      - $1.00
-  ```
+<ObjectPropList
+  title="The payment object"
+  about={(
+    <div>
+      Payments allow you to easily move money between two accounts. Using payments
+      you can move money between two <code>ach</code> accounts (e.g. Checking & Savings) or
+      move money (<strong>pay</strong>) a <code>liability</code> (e.g. Student Loans, Credit Cards, etc.)
+      All payments are processed electronically between the source and destination, and
+      take 2-3 business days depending on the receiving institution.
+      <hr className="dotted-divider"/>
+      <h4>Cutoff Time</h4>
+      Payments are processed on business days (Monday - Friday), excluding US Banking Holidays.
+      <ul>
+        <li>Source processing windows: 10:30 AM, 1:30 PM, and 4:30 PM CST</li>
+        <li>
+          Destination processing windows:
+          <ul>
+            <li><strong>ACH</strong>: 10:30 AM, 1:30 PM, and 4:30 PM CST</li>
+            <li><strong>Liability</strong>: 1:30 PM CST</li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  )}
+  snippetsElement={(
+    <CodeBlock
+      className="language-json"
+      title="THE PAYMENT OBJECT">
+      {JSON.stringify({
+        "id": "pmt_rPrDPEwyCVUcm",
+        "reversal_id": null,
+        "source_trace_id": null,
+        "destination_trace_id": null,
+        "source": "acc_JMJZT6r7iHi8e",
+        "destination": "acc_AXthnzpBnxxWP",
+        "amount": 5000,
+        "description": "Loan Pmt",
+        "status": "pending",
+        "error": null,
+        "metadata": null,
+        "estimated_completion_date": "2020-12-11",
+        "source_settlement_date": "2020-12-09",
+        "destination_settlement_date": "2020-12-11",
+        "fee": null,
+        "created_at": "2020-12-09T00:42:31.209Z",
+        "updated_at": "2020-12-09T00:43:30.996Z"
+      }, null, 2)}
+    </CodeBlock>
+  )}
+  fields={[
+    {
+      name: 'id',
+      type: 'string',
+      children: 'Unique identifier for the payment.',
+    },
+    {
+      name: 'reversal_id',
+      type: 'string,null',
+      children: (
+        <div>
+          The <code>id</code> of an active <code>reversal</code>.
+        </div>
+      ),
+    },
+    {
+      name: 'source_trace_id',
+      type: 'string,null',
+      children: (
+        <div>
+          The underlying <code>id</code> for the bank transaction on the source account relating to this payment.
+        </div>
+      ),
+    },
+    {
+      name: 'destination_trace_id',
+      type: 'string,null',
+      children: (
+        <div>
+          The underlying <code>id</code> for the bank transaction on the destination account relating to this payment.
+        </div>
+      ),
+    },
+    {
+      name: 'source',
+      type: 'string',
+      children: (
+        <div>
+          The <code>id</code> of an <code>ach</code> account from which the payment amount will be retrieved.
+        </div>
+      ),
+    },
+    {
+      name: 'destination',
+      type: 'string',
+      children: (
+        <div>
+          The <code>id</code> of an <code>ach</code> or <code>liability</code> account to which the
+          payment amount will be sent.
+        </div>
+      ),
+    },
+    {
+      name: 'amount',
+      type: 'number',
+      children: 'The amount of the payment to be created in cents. (e.g. $1.00 = 100)',
+    },
+    {
+      name: 'description',
+      type: 'string',
+      children: 'The payment\'s description (maximum of 10 characters).',
+    },
+    {
+      name: 'status',
+      type: 'enum',
+      children: 'Status of the payment',
+      enums: [
+        {
+          name: 'pending',
+          children: 'Initial status after the payment is created. Payment will stay in this state until it is processed. Payment can be deleted in this state.',
+        },
+        {
+          name: 'processing',
+          children: 'The payment is being processed. At this point, the payment can no longer be deleted.',
+        },
+        {
+          name: 'sent',
+          children: 'The payment has been executed and sent to the banking networks.',
+        },
+        {
+          name: 'failed',
+          children: 'An error occurred while either pulling funds from the source account or pushing funds to the destination account.',
+        },
+        {
+          name: 'canceled',
+          children: 'The payment was canceled and was never processed.',
+        },
+        {
+          name: 'reversal_required',
+          children: (
+            <div>
+              The payment failed and requires a reversal. The payment's <code>reversal_id</code> is set
+              with the <code>id</code> of the newly created reversal. The reversal should then be approved.
+            </div>
+          ),
+        },
+        {
+          name: 'reversal_processing',
+          children: 'The active reversal corresponding to this payment has been approved and is being processed.',
+        },
+        {
+          name: 'reversed',
+          children: 'The active reversal has successfully been completed.',
+        },
+      ],
+    },
+    {
+      name: 'fund_status',
+      type: 'enum',
+      children: 'Fund status of the payment. This property is available only when individual payments are retrieved.',
+      enums: [
+        { name: 'pending', children: 'Initial fund status after the payment is created.' },
+        { name: 'requested', children: 'The payment funds have been requested from the source account.' },
+        { name: 'clearing', children: 'The payment funds from the source account have been received.' },
+        { name: 'failed', children: 'The clearing of funds for a payment have failed.' },
+        { name: 'sent', children: 'The payment funds have been sent to the destination account.' },
+        { name: 'unknown', children: 'The status of the payment\'s funds is unknown.' },
+      ],
+    },
+    {
+      name: 'error',
+      type: 'object,null',
+      children: (
+        <div>
+          An object representing an error that occurred while processing this payment.
+          See <a href="/api/errors/resource#payment-errors">payment errors</a>.
+        </div>
+      ),
+    },
+    {
+      name: 'metadata',
+      type: 'object,null',
+      children: (
+        <div>
+          Additional data provided during creation.
+          See <a href="/api/metadata">metadata</a>.
+        </div>
+      ),
+    },
+    {
+      name: 'estimated_completion_date',
+      type: 'string,null',
+      children: 'An estimated date, in ISO 8601 format (YYYY-MM-DD), on which the payment should be completed.',
+    },
+    {
+      name: 'source_settlement_date',
+      type: 'string,null',
+      children: 'An estimated date, in ISO 8601 format (YYYY-MM-DD), on which the funds pulled from the source account will be completed.',
+    },
+    {
+      name: 'destination_settlement_date',
+      type: 'string,null',
+      children: 'An estimated date, in ISO 8601 format (YYYY-MM-DD), on which the funds pushed to the destination account will be completed.',
+    },
+    {
+      name: 'fee',
+      type: 'object,null',
+      children: 'Payment fee information. If provided, the payment will incur a fee which will be deducted from the total amount received by the destination account.',
+    },
+    {
+      name: 'fee.amount',
+      type: 'number',
+      children: 'The fee amount applied to the payment.',
+    },
+    {
+      name: 'fee.type',
+      type: 'enum',
+      children: (
+        <div>
+          The type of fee applied to the payment.
+          <hr className="dotted-divider" />
+          A payment's fee type determines how much of the payment's amount will
+          be deducted from the amount received by the destination account.
+        </div>
+      ),
+      enums: [
+        {
+          name: 'total',
+          children: (
+            <div>
+              This fee type will deduct a flat fee from the amount received by the destination account.
+              <hr className="dotted-divider" />
+              <strong>Example: </strong>
+              If a $10.00 payment is created with a <code>total</code> fee of $2.00, then the resulting
+              amount received by the destination account will be $8.00.
+              <br/>
+              This means that you make total of $2.00 from the payment. However, the
+              Method fee for this payment will still be included in your monthly
+              invoice.
+              <hr className="dotted-divider" />
+              <CodeBlock>
+                Received by destination = Payment - Total fee
+                {'\n'}
+                $8.00                   = $10.00  - $2.00
+              </CodeBlock>
+            </div>
+          ),
+        },
+        {
+          name: 'markup',
+          children: (
+            <div>
+              This fee type will deduct a fee on top of Method's per-payment fee from the
+              amount received by the destination account
+              <hr className="dotted-divider" />
+              <strong>Example: </strong>
+              If a $10.00 payment is created with a <code>markup</code> fee of $2.00
+              and your Method fee is $1.00, then the resulting amount received by the
+              destination account will be $7.00 (Amount - Markup Fee - Method Fee).
+              <br/>
+              This means that you make $2.00 from the payment. Additionally, the Method fee
+              has already been covered by the source account, and this completed payment
+              will not be included in your monthly invoice.
+              <hr className="dotted-divider" />
+              <CodeBlock>
+                Received by destination = Payment - Markup fee - Example Method per-payment fee
+                {'\n'}
+                $7.00                   = $10.00  - $2.00      - $1.00
+              </CodeBlock>
+            </div>
+          ),
+        },
+      ],
+    },
+    {
+      name: 'created_at',
+      type: 'string',
+      children: 'Timestamp of when the payment was created.',
+    },
+    {
+      name: 'updated_at',
+      type: 'string',
+      children: 'Timestamp of when the payment was last updated.',
+    },
+  ]}
+/>

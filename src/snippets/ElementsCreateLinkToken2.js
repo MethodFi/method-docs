@@ -32,7 +32,9 @@ token = method.elements.create_token({
 })
 `.trim();
 
-const response = {};
+const response = {
+  "element_token": "pk_elem_BtzySdrQGFmLdAPw5gXSQNCxQkhCkT3K"
+};
 
 export default function () {
   return (

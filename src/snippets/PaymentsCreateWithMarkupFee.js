@@ -50,7 +50,6 @@ export default function () {
       groupId="all"
       name="payments-create-with-markup-fee"
       title="POST /payments"
-      response={{}}
       items={[
         { title: 'cURL', language: 'shell', content: curl },
         { title: 'Node.js', language: 'javascript', content: nodejs },

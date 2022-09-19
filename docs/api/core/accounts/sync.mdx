@@ -1,67 +1,77 @@
+---
+title: Sync an account
+sidebar_label: Sync an account
+hide_table_of_contents: true
+hide_title: true
+---
+
 import AccountSync from "../../../../src/snippets/AccountSync";
+import ObjectPropList from '../../../../src/components/ObjectPropList';
 
-# Sync an account
-
-**About**: Sync an account allows you to fetch real-time data for a liability directly from the Merchant (FI). A sync can be
-initiated for an account containing the `data:sync` capability in `available_capability` or `capability`.
-
-**API Method**: `POST /accounts/:account_id/syncs`
-
----
-
-### Primer on Sync
-
-#### About Method Sync
-✨ Method Sync allows you to retrieve real-time enhanced data for any liability created in Method. Method Sync is available
-for a fast growing list of `merchants`.
-
-With Sync, you can fetch key liability details such as `interest_rate_percentage`, `payoff_amount`, `balance` and much more
-in real-time directly from the servicer or financial institution. ➡️ See all [available data fields](../../../guides/accounts/retrieve-liability-account-data) per liability type.
-
-#### Tips
-
-Method Sync interfaces directly with financial institutions, as a result, syncs in average take <60 seconds to complete,
-but in rare-cases can take up to 180 seconds.
-
-💡 To check the status of a sync use the `data_status` and `data_last_successful_sync` in the `account.liability` response.
-
-Sync is optimized for speed, and will eagerly save / notify of new updates to a liability (even if the sync is still `in_progress` and incomplete)
-In practice, this means that some fields might temporarily return `null` while we wait for data to be received from the financial institution.
-
-💡 We recommend subscribing to `account:update` [webhook](/api/core/webhooks/object) to be notified of all changes.
-
-Liability accounts that are created in dev environments will not have syncing capabilities enabled by default.
-
-💡 To simulate Sync in dev environments, use one of the provided `mch_id` and `account_number` pairs. 
-  See [Simulate Sync](/guides/accounts/create-an-account#simulate-sync) for more details.
-
-#### Nightly Sync
-After a successful initial sync, a liability account will receive nightly data updates directly from the financial institution.
-You'll be notified in real-time of any updates via an `account:update` webhook.
-
----
-
-### Request
-
-#### Example
-<AccountSync />
-
-### Response
-
-#### Example
-
-An object with the current sync status. Only one sync can be created at a time. Initiating a sync while one is `in_progress`
-will return the current `in_progress` sync.
-
-```json
-{
-  "data": {
-    "id": "acc_sync_6d94yUUMjbcXL",
-    "acc_id": "acc_Zc4F2aTLt8CBt",
-    "status": "in_progress",
-    "error": null,
-    "created_at": "2022-06-14T15:10:28.213Z",
-    "updated_at": "2022-06-14T15:10:28.213Z"
-  }
-}
-```
+<ObjectPropList
+  isRequest
+  title="Sync an account"
+  about={(
+    <div>
+      Sync an account allows you to fetch real-time data for a liability directly from the Merchant (FI). A sync can be
+      initiated for an account containing the <code>data:sync</code> capability
+      in <code>available_capability</code> or <code>capability</code>.
+      <hr className="dotted-divider" />
+      <h4>About Method Sync</h4>
+      <p>
+        ✨ Method Sync allows you to retrieve real-time enhanced data for any liability created in Method. Method Sync is available
+        for a fast growing list of <code>merchants</code>.
+      </p>
+      <p>
+        With Sync, you can fetch key liability details such
+        as <code>interest_rate_percentage</code>, <code>payoff_amount</code>, <code>balance</code> and much more
+        in real-time directly from the servicer or financial institution.
+        See all <a href="../../../guides/accounts/retrieve-liability-account-data">available data fields</a> per
+        liability type.
+      </p>
+      <hr className="dotted-divider" />
+      <h4>Tips</h4>
+      <p>
+        Method Sync interfaces directly with financial institutions, as a result, syncs in average
+        take &lt; 60 seconds to complete, but in rare-cases can take up to 180 seconds.
+      </p>
+      <p>
+        💡 To check the status of a sync use the <code>data_status</code> and <code>data_last_successful_sync</code> in
+        the <code>account.liability</code> response.
+      </p>
+      <p>
+        Sync is optimized for speed, and will eagerly save / notify of new updates to a
+        liability (even if the sync is still <code>in_progress</code> and incomplete)
+        In practice, this means that some fields might temporarily return <code>null</code> while we wait for
+        data to be received from the financial institution.
+      </p>
+      <p>
+        💡 We recommend subscribing to <code>account:update</code> <a href="/api/core/webhooks/object">webhook</a> to
+        be notified of all changes.
+      </p>
+      <p>
+        Liability accounts that are created in dev environments will not have syncing capabilities enabled by default.
+      </p>
+      <p>
+        💡 To simulate Sync in dev environments, use one of the
+        provided <code>mch_id</code> and <code>account_number</code> pairs.
+        See <a href="/guides/accounts/create-an-account#simulate-sync">Simulate Sync</a> for more details.
+      </p>
+      <hr className="dotted-divider" />
+      <h4>Nightly Sync</h4>
+      <p>
+        After a successful initial sync, a liability account will receive nightly data updates directly from
+        the financial institution. You'll be notified in real-time of any updates via
+        an <code>account:update</code> webhook.
+      </p>
+    </div>
+  )}
+  snippetsElement={<AccountSync />}
+  fields={[]}
+  returns={(
+    <div>
+      Returns an object with the current sync status. Only one sync can be created at a time. Initiating a sync while
+      one is <code>in_progress</code> will return the current <code>in_progress</code> sync.
+    </div>
+  )}
+/>

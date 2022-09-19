@@ -1,5 +1,5 @@
 import React from 'react';
-import CodeBlock from '@theme/CodeBlock';
+
 import TabbedCodeBlock from '../components/TabbedCodeBlock';
 
 const curl = `
@@ -15,7 +15,10 @@ const python = `
 merchants = method.merchants.list({ 'provider_id.plaid': '{ins_id}' })
 `.trim();
 
-const response = {};
+const response = `{
+  "mch_id": "mch_2",
+  ...
+}`;
 
 export default function () {
   return (

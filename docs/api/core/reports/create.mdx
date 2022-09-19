@@ -1,34 +1,33 @@
+---
+title: Create a report
+sidebar_label: Create a report
+hide_table_of_contents: true
+hide_title: true
+---
+
 import ReportsCreate from '../../../../src/snippets/ReportsCreate';
+import ObjectPropList from '../../../../src/components/ObjectPropList';
 
-# Create a report
-
-**About**: Creates a new report for a specific `type`. Once created, you can retrieve the report results from the URL returned.
-
-**API Method**: `POST /reports`
-
-### Request
-
-#### Example
-<ReportsCreate />
-
-#### Parameters
-
-| Name   | Type     | Required | Description                                                                 |
-|--------|----------|----------|-----------------------------------------------------------------------------|
-| `type` | `string` | ✅        | The type of report to generate. See *Report Types* for all available types. |
-
-### Response
-
-#### Example
-
-```json
-{
-  "id": "rpt_cj2mkA3hFyHT5",
-  "type": "payments.created.current",
-  "url": "https://production.methodfi.com/reports/rpt_cj2mkA3hFyHT5/download",
-  "status": "completed",
-  "metadata": null,
-  "created_at": "2021-08-25T23:18:05.261Z",
-  "updated_at": "2021-08-25T23:18:05.261Z"
-}
-```
+<ObjectPropList
+  isRequest
+  title="Create a report"
+  about={(
+    <div>
+      Creates a new report for a specific <code>type</code>. Once created, you can retrieve the
+      report results from the URL returned.
+    </div>
+  )}
+  snippetsElement={<ReportsCreate />}
+  fields={[
+    {
+      name: 'type',
+      type: 'enum',
+      children: (
+        <div>
+          The report type generated. See <a href="/api/core/reports/object#type">report types</a>.
+        </div>
+      ),
+    },
+  ]}
+  returns="Returns a report object."
+/>

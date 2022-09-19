@@ -161,12 +161,6 @@ A merchant is a representation of a financial institution that gets associated w
 
 <MerchantsListProviderPlaid />
 
-```json
-{
-  "mch_id": "mch_2",
-  ...
-}
-```
 
 ➡️  See the [GET /merchants endpoint](/api/core/merchants/list) for more info.
 
@@ -221,13 +215,6 @@ A merchant is a representation of a financial institution that gets associated w
 :::
 
 <MerchantsListProviderPlaid />
-
-```json
-{
-  "mch_id": "mch_2",
-  ...
-}
-```
 
 **3.** Plaid Auth will only provided you with the `mask` or the last 4 digits of a person's liability account, you will need to collect the remaining initial numbers by launching the [Link Element](/api/elements/link/intro). First create a link `element_token` from your app's backend. See [create an element token](/api/elements/link/implementation/create-token) for more info.
 

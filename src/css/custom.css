@@ -465,7 +465,12 @@ code.transparent {
   font-weight: 900;
 }
 
-
 .tabs__item {
   white-space: nowrap;
+}
+
+.dotted-divider {
+  width: 25%;
+  margin: 1.5rem auto;
+  border: 1px dashed black;
 }

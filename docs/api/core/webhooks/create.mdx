@@ -1,36 +1,50 @@
+---
+title: Create a webhook
+sidebar_label: Create a webhook
+hide_table_of_contents: true
+hide_title: true
+---
+
 import WebhooksCreate from '../../../../src/snippets/WebhooksCreate';
+import ObjectPropList from '../../../../src/components/ObjectPropList';
 
-# Create a webhook
-
-**About**: Creates a new webhook for a specific `type` and `url`. Your application will be notified of updates to the chosen event type.
-
-**API Method**: `POST /webhooks`
-
-### Request
-
-#### Example
-<WebhooksCreate />
-
-#### Parameters
-
-| Name        | Type     | Required | Description                                                                                          |
-|-------------|----------|----------|------------------------------------------------------------------------------------------------------|
-| `type`      | `string` | ✅        | The event type to be sent to this url. See `Webhook Events` for all available events.                |
-| `url`       | `string` | ✅        | The HTTPS URL receiving the webhook event.                                                           |
-| `auth_token` | `string` |          | Secret token for request validation. Will be sent as a `base64` encoded string in the `Authorization` header of the webhook. |
-
-### Response
-
-#### Example
-
-```json
-{
-  "id": "whk_cSGjA6d9N8y8R",
-  "type": "payment.update",
-  "url": "https://api.example.app/webhook",
-  "auth_token": "md7UqcTSmvXCBzPORDwOkE",
-  "metadata": null,
-  "created_at": "2020-12-09T00:41:05.647Z",
-  "updated_at": "2020-12-09T00:41:05.647Z"
-}
-```
+<ObjectPropList
+  isRequest
+  title="Create a webhook"
+  about={(
+    <div>
+      Creates a new webhook for a specific <code>type</code> and <code>url</code>. Your application
+      will be notified of updates to the chosen event type.
+    </div>
+  )}
+  snippetsElement={<WebhooksCreate />}
+  fields={[
+    {
+      name: 'type',
+      type: 'enum',
+      children: (
+        <div>
+          The event type to be sent to this url. See <a href="/api/core/webhooks/object#type">webhook event types</a>.
+        </div>
+      ),
+      required: true,
+    },
+    {
+      name: 'url',
+      type: 'string',
+      children: 'The HTTPS URL receiving the webhook event.',
+      required: true,
+    },
+    {
+      name: 'auth_token',
+      type: 'string,null',
+      children: (
+        <div>
+          Secret token for request validation. Will be sent as a <code>base64</code> encoded string
+          in the <code>Authorization</code> header of the webhook.
+        </div>
+      ),
+    },
+  ]}
+  returns="Returns a webhook object."
+/>

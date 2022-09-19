@@ -41,15 +41,12 @@ token = method.elements.create_token({
 })
 `.trim();
 
-const response = {};
-
 export default function () {
   return (
     <TabbedCodeBlock
       groupId="all"
       name="elements-create-link-token"
       title="POST /elements/token"
-      response={response}
       items={[
         { title: 'cURL', language: 'shell', content: curl },
         { title: 'Node.js', language: 'javascript', content: nodejs },

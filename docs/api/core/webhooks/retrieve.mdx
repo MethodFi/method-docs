@@ -1,35 +1,18 @@
+---
+title: Retrieve a webhook
+sidebar_label: Retrieve a webhook
+hide_table_of_contents: true
+hide_title: true
+---
+
 import WebhooksRetrieve from '../../../../src/snippets/WebhooksRetrieve';
+import ObjectPropList from '../../../../src/components/ObjectPropList';
 
-# Retrieve a webhook
-
-**About**: Returns the webhook associated with the id.
-
-**API Method**: `GET /webhooks/:webhook_id`
-
-### Request
-
-#### Example
-<WebhooksRetrieve />
-
-#### Parameters
-
-| Name | Type     | Required | Description                        |
-|------|----------|----------|------------------------------------|
-| `id` | `string` | ✅       | The Id of the webhook to retrieve. |
-
-
-### Response
-
-#### Example
-
-```json
-{
-  "id": "whk_cSGjA6d9N8y8R",
-  "type": "payment.update",
-  "url": "https://api.example.app/webhook",
-  "auth_token": "md7UqcTSmvXCBzPORDwOkE",
-  "metadata": null,
-  "created_at": "2020-12-09T00:41:05.647Z",
-  "updated_at": "2020-12-09T00:41:05.647Z"
-}
-```
+<ObjectPropList
+  isRequest
+  title="Retrieve a webhook"
+  about="Returns the webhook associated with the id."
+  snippetsElement={<WebhooksRetrieve />}
+  fields={[]}
+  returns="Returns the webhook associated with the id."
+/>

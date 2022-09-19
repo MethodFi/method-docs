@@ -35,7 +35,6 @@ export default function () {
       groupId="all"
       name="webhooks-create"
       title="POST /webhooks"
-      response={{}}
       items={[
         { title: 'cURL', language: 'shell', content: curl },
         { title: 'Node.js', language: 'javascript', content: nodejs },

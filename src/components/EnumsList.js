@@ -9,12 +9,12 @@ export default function EnumsList(props) {
   return (
     <div className="object-prop-item-enums margin-vert--md">
       {title && (
-        <div className="object-prop-item-enums-item padding-vert--sm padding-left--md text-white">
+        <div className="object-prop-item-enums-item padding-vert--sm padding-horiz--md text-white">
           <strong>{title}</strong>
         </div>
       )}
       {items.map((enumItem) => (
-        <div className="object-prop-item-enums-item padding-vert--sm padding-left--md">
+        <div className="object-prop-item-enums-item padding-vert--sm padding-horiz--md">
           <h4 className="margin-bottom--xs">
             <code className="transparent text-white">{enumItem.name}</code>
           </h4>

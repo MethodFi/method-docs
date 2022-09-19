@@ -13,8 +13,8 @@ import ObjectPropList from '../../../../src/components/ObjectPropList';
     <div>
       Entities are a representation of your application's end-users. Throughout
       Method's ecosystem, an <code>Entity</code> is the legal owner of any <code>Account</code>.
-      <br/><br/>
-      When  creating an <code>Entity</code> we will perform a KYC / AML verification on your behalf. In
+      <hr className="dotted-divider" />
+      When creating an <code>Entity</code> we will perform a KYC / AML verification on your behalf. In
       most cases, the verification takes seconds and only requires basic information
       from your end-user.
     </div>
@@ -152,9 +152,10 @@ import ObjectPropList from '../../../../src/components/ObjectPropList';
           name: 'payments:receive',
           children: (
             <div>
-              The entity can be a <code>destination</code> and receive payments from any
-              other entity.
-              <br/><br/>
+              <p>
+                The entity can be a <code>destination</code> and receive payments from any
+                other entity.
+              </p>
               <strong>Minimum required information: </strong>
               <code>first_name</code>, <code>last_name</code>, and <code>phone</code>.
             </div>
@@ -164,9 +165,10 @@ import ObjectPropList from '../../../../src/components/ObjectPropList';
           name: 'payments:send',
           children: (
             <div>
-              The entity can be a <code>source</code> and send payments from any ACH
-              account regardless of how they were created.
-              <br/><br/>
+              <p>
+                The entity can be a <code>source</code> and send payments from any ACH
+                account regardless of how they were created.
+              </p>
               <strong>Minimum required information: </strong>
               <code>first_name</code>, <code>last_name</code>, and <code>phone</code>.
             </div>
@@ -176,9 +178,10 @@ import ObjectPropList from '../../../../src/components/ObjectPropList';
           name: 'data:retrieve',
           children: (
             <div>
-              The entity can automatically retrieve and link their debts
-              through <a href="/guides/quick-start/retrieve-an-entitys-debts">Method Data - Retrieve an entity's debts</a>.
-              <br/><br/>
+              <p>
+                The entity can automatically retrieve and link their debts
+                through <a href="/guides/quick-start/retrieve-an-entitys-debts">Method Data - Retrieve an entity's debts</a>.
+              </p>
               <strong>Minimum required information: </strong>
               <code>first_name</code>, <code>last_name</code>, and <code>phone</code>.
             </div>
@@ -196,8 +199,9 @@ import ObjectPropList from '../../../../src/components/ObjectPropList';
       ],
       children: (
         <div>
-          The active capabilities of the entity.
-          <br/><br/>
+          <p>
+            The active capabilities of the entity.
+          </p>
           An entity will have specific capabilities based on the data provided. An
           entity can be further updated with more information to expand the
           capabilities of an entity.

@@ -1,39 +1,58 @@
+---
+title: Create an MX verification
+sidebar_label: Create an MX verification
+hide_table_of_contents: true
+hide_title: true
+---
+
 import VerificationCreateMX from '../../../../../src/snippets/VerificationCreateMX';
+import ObjectPropList from '../../../../../src/components/ObjectPropList';
 
-# Create an MX verification
-
-**About**: Verify an ACH account by providing the raw account and transaction data from MX.
-
-**API Method**: `POST /accounts/:account_id/verification`
-
-### Request
-
-#### Example
-<VerificationCreateMX />
-
-#### Parameters
-
-| Name              | Type       | Required | Description                                              |
-|-------------------|------------|----------|----------------------------------------------------------|
-| `type`            | `string`   | ✅        | The type of verification. Option for MX: `mx`.           |
-| `mx`              | `object`   | ✅        | Object containing account data from MX.                  |
-| `mx.account`     | `object`   | ✅        | The raw account data received from MX. See https://docs.mx.com/atrium#endpoints_accounts_read_account                   |
-| `mx.transactions` | `object[]` | ✅        | The a list of the raw transaction data received from MX. See https://docs.mx.com/atrium#endpoints_accounts_list_account_transactions |
-
-### Response
-
-#### Example
-```json
-{
-    "id": "vrf_73TAQ8njUFsLJ",
-    "status": "verified",
-    "type": "mx",
-    "error": null,
-    "initiated_at": "1970-01-01T00:00:00.000Z",
-    "pending_at": "1970-01-01T00:00:00.000Z",
-    "verified_at": "2021-10-12T21:23:48.447Z",
-    "disabled_at": "1970-01-01T00:00:00.000Z",
-    "created_at": "2021-10-12T21:23:48.449Z",
-    "updated_at": "2021-10-12T21:23:48.449Z"
-}
-```
+<ObjectPropList
+  isRequest
+  title="Create an MX verification"
+  about={(
+    <div>
+      Verify an ACH account by providing the raw account and transaction data from MX.
+    </div>
+  )}
+  snippetsElement={<VerificationCreateMX />}
+  fields={[
+    {
+      name: 'type',
+      type: 'enum',
+      children: 'The type of verification.',
+      enums: [{ name: 'mx' }],
+      required: true,
+    },
+    {
+      name: 'mx',
+      type: 'object',
+      children: 'Object containing account data from Plaid',
+      required: true,
+    },
+    {
+      name: 'mx.account',
+      type: 'object',
+      children: (
+        <div>
+          The raw account data received from MX.
+          See <a href="https://docs.mx.com/atrium#endpoints_accounts_read_account">account data.</a>
+        </div>
+      ),
+      required: true,
+    },
+    {
+      name: 'mx.transactions',
+      type: 'object[]',
+      children: (
+        <div>
+          The a list of the raw transaction data received from MX
+          See <a href="https://docs.mx.com/atrium#endpoints_accounts_list_account_transactions">account transactions</a>
+        </div>
+      ),
+      required: true,
+    },
+  ]}
+  returns="Returns the verification associated with the id."
+/>

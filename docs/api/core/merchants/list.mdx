@@ -1,95 +1,59 @@
+---
+title: List all merchants
+sidebar_label: List all merchants
+hide_table_of_contents: true
+hide_title: true
+---
+
+import ObjectPropList from '../../../../src/components/ObjectPropList';
 import MerchantsList from '../../../../src/snippets/MerchantsList';
 
-# List all merchants
-
-**About**: Returns the most popular `liability` merchants that are payable using Method's API.
-
-**API Method**: `GET /merchants`
-
-:::info Important
-Only the most popular merchants are returned at once in the call to `GET /merchants`. Use the available filters/query parameters to narrow your search and find many more merchants.
-:::
-
-### Request
-
-#### Example
-<MerchantsList />
-
-#### Parameters
-
-| Name                   | Type     | Required | Description                                                                                                       |
-|------------------------|----------|----------|-------------------------------------------------------------------------------------------------------------------|
-| `name`                 | `string` |          | Name of the merchant to find.                                                                                     |
-| `creditor_name`        | `string` |          | The name of the creditor as seen in a credit report. Ex. `JPMCB CARD` pertains to a Chase Credit Card. |
-| `provider_id.plaid`    | `string` |          | Plaid id for the merchant to find.                                                                                |
-| `provider_id.mx`       | `string` |          | MX id for the merchant to find.                                                                                   |
-| `provider_id.finicity` | `string` |          | Finicity id for the merchant to find.                                                                             |
-
-### Response
-
-#### Example
-
-An array of merchant objects will be returned.
-
-```json
-{
-  "data": [
+<ObjectPropList
+  isRequest
+  title="List all merchants"
+  about={(
+    <div>
+      Returns the most popular <code>liability</code> merchants that are payable using Method's API.
+      <hr className="dotted-divider" />
+      <span className="pill-info">ℹ️ Info:</span> Only the most popular merchants are returned at
+      once in the call to <code>GET /merchants</code>. Use the available filters/query parameters
+      to narrow your search and find many more merchants.
+    </div>
+  )}
+  snippetsElement={<MerchantsList />}
+  fields={[
     {
-      "mch_id": "mch_1",
-      "parent_name": "Chase",
-      "name": "Chase - Credit Cards",
-      "logo": "https://static.methodfi.com/mch-logos/1616215578688-chase.png",
-      "description": "Chase Mastercard & Visa",
-      "note": "For Credit Card Accounts Only",
-      "types": [
-        "credit_card"
-      ],
-      "account_prefixes": [
-        "403116",
-        "438857"
-      ],
-      "provider_ids": {
-        "plaid": ["ins_3"],
-        "mx": ["chase"],
-        "finicity": ["5"]
-      }
+      name: 'name',
+      type: 'string',
+      children: 'Name of the merchant to find.',
     },
     {
-      "mch_id": "mch_21",
-      "parent_name": "FedLoan",
-      "name": "FedLoan Servicing",
-      "logo": "https://static.methodfi.com/mch-logos/1616215578688-fedloan.png",
-      "description": null,
-      "note": null,
-      "types": [
-        "student_loan"
-      ],
-      "account_prefixes": [
-        "5655"
-      ],
-      "provider_ids": {
-        "plaid": ["ins_116527"],
-        "mx": [],
-        "finicity": ["100302"]
-      }
+      name: 'creditor_name',
+      type: 'string',
+      children: (
+        <div>The name of the creditor as seen in a credit
+          report. Ex. <code>JPMCB CARD</code> pertains to a Chase Credit Card.
+        </div>
+      ),
     },
     {
-      "mch_id": "mch_231",
-      "parent_name": "Wells Fargo",
-      "name": "Wells Fargo - Home Mortgage",
-      "logo": "https://static.methodfi.com/mch-logos/1616215578688-wells-fargo.png",
-      "description": null,
-      "note": null,
-      "types": [
-        "mortgage"
-      ],
-      "account_prefixes": [],
-      "provider_ids": {
-        "plaid": [],
-        "mx": [],
-        "finicity": []
-      }
-    }
-  ]
-}
-```
+      name: 'provider_id.plaid',
+      type: 'string',
+      children: 'Plaid id for the merchant to find.',
+      ignoreIndent: true,
+    },
+    {
+      name: 'provider_id.mx',
+      type: 'string',
+      children: 'MX id for the merchant to find.',
+      ignoreIndent: true,
+    },
+    {
+      name: 'provider_id.finicity',
+      type: 'string',
+      children: 'Finicity id for the merchant to find.',
+      ignoreIndent: true,
+    },
+  ]}
+  returns="Returns a list of merchant objects."
+/>

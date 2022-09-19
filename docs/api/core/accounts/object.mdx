@@ -14,12 +14,12 @@ import ObjectPropList from '../../../../src/components/ObjectPropList';
       Accounts are a representation of an entity's financial accounts. An
       account can be a checking or savings account (<code>ach</code>) or
       a credit card, student loan, etc. (<code>liability</code>).
-      <br/><br/>
+      <hr className="dotted-divider" />
       <h4>ACH</h4>
       To create an <code>ach</code> account you will need the routing and account number
       of the depository account. We recommend using <a href="https://plaid.com/products/auth">Plaid</a> to retrieve
       your entity's <code>ach</code> information.
-      <br/><br/>
+      <hr className="dotted-divider" />
       <h4>Liability</h4>
       To create a <code>liability</code> account you can use:
       <ul>
@@ -270,132 +270,166 @@ import ObjectPropList from '../../../../src/components/ObjectPropList';
       type: 'object,null',
       children: <div>The id of the <code>Entity</code> who is the legal holder of this account.</div>,
     },
+    {
+      name: 'ach.routing',
+      type: 'string',
+      children: 'ABA routing number of the ACH account. (maximum of 9 characters).',
+    },
+    {
+      name: 'ach.number',
+      type: 'string',
+      children: 'Account number of the ACH account. (maximum of 17 characters).',
+    },
+    {
+      name: 'ach.type',
+      type: 'enum',
+      children: 'Type of ACH account',
+      enums: [
+        { name: 'checking' },
+        { name: 'savings' },
+      ],
+    },
+    {
+      name: 'liability',
+      type: 'object,null',
+      children: 'Liability account information',
+    },
+    {
+      name: 'liability.mch_id',
+      type: 'string',
+      children: 'Unique identifier of the merchant associated with this account.',
+    },
+    {
+      name: 'liability.mask',
+      type: 'string,null',
+      children: 'The last 4 digits of the associated account number.',
+    },
+    {
+      name: 'liability.type',
+      type: 'enum',
+      children: (
+        <div>
+          <p>
+            The type of liability account.
+          </p>
+          The following are possible values for <code>liability.type</code>. For any of these values
+          except <code>unknown</code>, a corresponding key with the same name will be populated with
+          data for that specific type.
+          <hr className="dotted-divider"/>
+          <strong>Example</strong>: If an account has <code>liability.type</code> equal to <code>credit_card</code>,
+          then <code>liability.credit_card</code> will be populated with credit card information.
+        </div>
+      ),
+      enums: [
+        { name: 'student_loan' },
+        { name: 'credit_card' },
+        { name: 'auto_loan' },
+        { name: 'mortgage' },
+        { name: 'personal_loan' },
+        { name: 'loan' },
+        { name: 'unknown' },
+      ],
+    },
+    {
+      name: 'metadata',
+      type: 'object,null',
+      children: (
+        <div>
+          Additional data provided during creation.
+          See <a href="/api/metadata">metadata</a>.
+        </div>
+      ),
+    },
+    {
+      name: 'status',
+      type: 'enum',
+      children: 'Status of an account.',
+      enums: [
+        {
+          name: 'active',
+          children: (
+            <div>The account has at least the <code>payments:receive</code> capability.</div>
+          ),
+        },
+        {
+          name: 'disabled',
+          children: (
+            <div>
+              The account has been disabled and no longer has capabilities. Accounts
+              can transition into the <code>disabled</code> status if a related payment
+              fails due to invalid account information.
+            </div>
+          ),
+        },
+        {
+          name: 'closed',
+          children: (
+            <div>
+              The account was created using <a href="/guides/quick-start/retrieve-an-entitys-debts">Method Data</a> and
+              is either fully paid-off or no longer exists. Accounts in `closed` will not have capabilities.
+            </div>
+          ),
+        },
+        {
+          name: 'processing',
+          children: (
+            <div>
+              The account was created using <a href="/guides/quick-start/retrieve-an-entitys-debts">Method Data</a> and
+              is currently being processed. Once that account has successfully been processed, its status
+              will transition to active and will be available to receive payments. Accounts
+              in <code>processing</code> will not have capabilities.
+            </div>
+          ),
+        },
+      ],
+    },
+    {
+      name: 'capabilities',
+      type: 'enum',
+      children: (
+        <div>
+          <p>Capabilities of the account</p>
+          The following are possible capabilities an account can have. This indicates if an account is
+          capable of receiving money (as a destination) or sending money (as a source).
+          <hr className="dotted-divider" />
+          ℹ️ ACH accounts, require an <a href="/api/core/accounts/ach-verification/object">additional verification step</a> to
+          start sending money.
+        </div>
+      ),
+      enums: [
+        { name: 'payments:receive', children: 'The account can be used as a payment destination.' },
+        { name: 'payments:send', children: 'The account can be used as a payment source.' },
+        {
+          name: 'data:retrieve',
+          children: (
+            <div>
+              The account has additional liability information
+              from <a href="/guides/quick-start/retrieve-an-entitys-debts">Method Data</a>.
+            </div>
+          )
+        },
+        { name: 'data:sync', children: 'The account has enhanced data and live data refresh from FI via Method Sync.' },
+      ],
+    },
+    {
+      name: 'error',
+      type: 'object,null',
+      children: (
+        <div>
+          An object representing an error that occurred while processing this account.
+          See <a href="/api/errors/resource#account-errors">account errors</a>.
+        </div>
+      ),
+    },
+    {
+      name: 'created_at',
+      type: 'string',
+      children: 'Timestamp of when the account was created.',
+    },
+    {
+      name: 'updated_at',
+      type: 'string',
+      children: 'Timestamp of when the account was last updated.',
+    },
   ]}
-  returns=""
 />
-
-
-[//]: # ()
-[//]: # (| `ach`                                               | `object` `nullable`  | ACH account information.                                                                                                           |)
-
-[//]: # (| `ach.routing`                                       | `string`             | ABA routing number of the ACH account. &#40;maximum of 9 characters&#41;.                                                                  |)
-
-[//]: # (| `ach.number`                                        | `string`             | Account number of the ACH account. &#40;maximum of 17 characters&#41;.                                                                     |)
-
-[//]: # (| `ach.type`                                          | `string`             | Type of ACH account. Options: `checking` or `savings`                                                                              |)
-
-[//]: # (| `liability`                                         | `object` `nullable`  | Liability account information.                                                                                                     |)
-
-[//]: # (| `liability.mch_id`                                  | `string`             | Unique identifier of the merchant associated with this account.                                                                    |)
-
-[//]: # (| `liability.mask`                                    | `string`, `nullable` | The last 4 digits of the associated account number.                                                                                |)
-
-[//]: # (| `liability.type`                                    | `string`             | The type of liability account. See [liability account types]&#40;#liability-account-types&#41;                                             |)
-
-[//]: # (| `liability.student_loan`                            | `object`, `nullable` | Student loan liability information.                                                                                                |)
-
-[//]: # (| `liability.student_loan.name`                       | `string`             | A name given to the student loan.                                                                                                  |)
-
-[//]: # (| `liability.student_loan.sub_type`                   | `string`             | The type of student loan. Options: `federal` or `private`                                                                          |)
-
-[//]: # (| `liability.student_loan.sequence`                   | `number`, `nullable` | The student loan's sequence number.                                                                                                |)
-
-[//]: # (| `liability.student_loan.balance`                    | `number`             | The student loan's remaining balance.                                                                                              |)
-
-[//]: # (| `liability.student_loan.disbursed_at`               | `string`, `nullable` | The date, in ISO 8601 format &#40;YYYY-MM-DD&#41;, in which the student loan was disbursed.                                                |)
-
-[//]: # (| `liability.credit_card`                             | `object`, `nullable` | Credit card liability information.                                                                                                 |)
-
-[//]: # (| `liability.credit_card.name`                        | `string`             | A name given to the credit card.                                                                                                   |)
-
-[//]: # (| `liability.credit_card.balance`                     | `number`             | The credit card's current balance.                                                                                                 |)
-
-[//]: # (| `liability.credit_card.last_payment_amount`         | `number`             | The amount of the last payment made to the credit card.                                                                            |)
-
-[//]: # (| `liability.credit_card.last_payment_date`           | `string`, `nullable` | The date, in ISO 8601 format &#40;YYYY-MM-DD&#41;, when the last payment amount was made.                                                  |)
-
-[//]: # (| `liability.credit_card.next_payment_due_date`       | `string`, `nullable` | The date, in ISO 8601 format &#40;YYYY-MM-DD&#41;, when the next payment amount is due.                                                    |)
-
-[//]: # (| `liability.credit_card.next_payment_minimum_amount` | `number`             | The minimum amount to be paid on the next due date.                                                                                |)
-
-[//]: # (| `liability.credit_card.opened_at`                   | `string`, `nullable` | The date, in ISO 8601 format &#40;YYYY-MM-DD&#41;, when the credit card account was opened.                                                |)
-
-[//]: # (| `liability.loan`                                    | `object`, `nullable` | Loan liability information.                                                                                                        |)
-
-[//]: # (| `liability.loan.name`                               | `string`             | A name given to the loan.                                                                                                          |)
-
-[//]: # (| `liability.loan.balance`                            | `number`             | The loan's remaining balance.                                                                                                      |)
-
-[//]: # (| `liability.loan.opened_at`                          | `string`, `nullable` | The date, in ISO 8601 format &#40;YYYY-MM-DD&#41;, when the loan account was opened.                                                       |)
-
-[//]: # (| `liability.auto_loan`                               | `string`, `nullable` | Auto loan liability information.                                                                                                   |)
-
-[//]: # (| `liability.auto_loan.name`                          | `string`             | A name given to the auto loan.                                                                                                     |)
-
-[//]: # (| `liability.auto_loan.balance`                       | `number`             | The auto loan's remaining balance.                                                                                                 |)
-
-[//]: # (| `liability.auto_loan.opened_at`                     | `string`, `nullable` | The date, in ISO 8601 format &#40;YYYY-MM-DD&#41;, when the auto loan account was opened.                                                  |)
-
-[//]: # (| `liability.mortgage`                                | `string`, `nullable` | Mortgage liability information.                                                                                                    |)
-
-[//]: # (| `liability.mortgage.name`                           | `string`             | A name given to the mortgage.                                                                                                      |)
-
-[//]: # (| `liability.mortgage.balance`                        | `number`             | The mortgage's remaining balance.                                                                                                  |)
-
-[//]: # (| `liability.mortgage.opened_at`                      | `string`, `nullable` | The date, in ISO 8601 format &#40;YYYY-MM-DD&#41;, when the mortgage account was opened.                                                   |)
-
-[//]: # (| `metadata`                                          | `object`, `nullable` | Additional data provided during creation. See [metadata]&#40;/api/metadata&#41;.                                                           |)
-
-[//]: # (| `status`                                            | `string`             | Status of an account. Possible statuses: `active`, `disabled`. See *Account Statuses* for more info.                               |)
-
-[//]: # (| `capabilities`                                      | `string[]`           | Capabilities of the account. Possible capabilities: `payments:receive`, `payments:send`. See *Account Capabilities* for more info. |)
-
-[//]: # (| `error`                                             | `object` `nullable`  | An object representing an error that occurred for this account. See [account errors]&#40;/api/errors/resource#account-errors&#41;.         |)
-
-[//]: # (| `created_at`                                        | `string`             | Timestamp of when the account was created.                                                                                         |)
-
-[//]: # (| `updated_at`                                        | `string`             | Timestamp of when the account was last updated.                                                                                    |)
-
-#### Account Capabilities
-
-The following are possible capabilities an account can have. This indicates if an account is capable of receiving money (as a destination) or sending money (as a source).
-
-
-ℹ️ ACH accounts, require an [additional verification step](/api/core/accounts/ach-verification/object) to start sending money.
-
-- `payments:receive` The account can be used as a payment destination.
-- `payments:send` The account can be used as a payment source.
-- `data:retrieve` The account has additional liability information from [Method Data](/guides/quick-start/retrieve-an-entitys-debts).
-- `data:sync` The account has enhanced data and live data refresh from FI via Method Sync.
-
-#### Account Statuses
-
-The following are possible statuses and account can be in.
-
-* `active`
-The account has at least the `payments:receive` capability.
-
-* `disabled`
-The account has been disabled and no longer has capabilities. Accounts
-can transition into the `disabled` status if a related payment
-fails due to invalid account information.
-
-* `closed`
-The account was created using [Method Data](/guides/quick-start/retrieve-an-entitys-debts) and is
-either fully paid-off or no longer exists. Accounts in `closed` will not have capabilities.
-
-* `processing`
-The account was created using [Method Data](/guides/quick-start/retrieve-an-entitys-debts) and is
-currently being processed. Once that account has successfully been processed, its status
-will transition to active and will be available to receive payments. Accounts in `processing` will
-not have capabilities.
-
-#### Liability Account Types
-
-The following are possible values for `liability.type`. For any of these values except `unknown`,
-a corresponding key with the same name will be populated with data for that specific type.
-
-__Example__: If an account has `liability.type` equal to `credit_card`, then `liability.credit_card` will
-be populated with credit card information.
-
-- `student_loan`, `credit_card`, `loan`, `auto_loan`, `mortgage`, `unknown`.

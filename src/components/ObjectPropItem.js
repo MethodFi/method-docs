@@ -9,6 +9,7 @@ export default function ObjectPropItem(props) {
     required,
     children,
     isRequest,
+    ignoreIndent
   } = props;
 
   const nameSplit = name.split('.');
@@ -16,16 +17,19 @@ export default function ObjectPropItem(props) {
 
   return (
     <div id={name}>
-      <div className="row" style={{ paddingLeft: `${depth}rem` }}>
+      <div className="row" style={{ paddingLeft: ignoreIndent ? '0rem' : `${depth}rem` }}>
         <div className={`col col--${isRequest ? '10' : '12'}`}>
           <div className="container row items-center">
             <a className="custom-hash-link" href={`#${name}`} name={name}>
               <h4 className="padding-right--xs margin-bottom--none">
-                <code className="transparent">
-                  <span className="text-muted">{nameSplit.slice(0, -1).join('.')}</span>
-                  {depth > 0 && '.'}
-                  {nameSplit.slice(-1).join()}
-                </code>
+                {ignoreIndent && <code className="transparent">{name}</code>}
+                {!ignoreIndent && (
+                  <code className="transparent">
+                    <span className="text-muted">{nameSplit.slice(0, -1).join('.')}</span>
+                    {depth > 0 && '.'}
+                    {nameSplit.slice(-1).join()}
+                  </code>
+                )}
               </h4>
             </a>
             <span className="text-muted">

@@ -1,35 +1,18 @@
+---
+title: Retrieve a report
+sidebar_label: Retrieve a report
+hide_table_of_contents: true
+hide_title: true
+---
+
 import ReportsRetrieve from '../../../../src/snippets/ReportsRetrieve';
+import ObjectPropList from '../../../../src/components/ObjectPropList';
 
-# Retrieve a report
-
-**About**: Returns the report associated with the id.
-
-**API Method**: `GET /reports/:report_id`
-
-### Request
-
-#### Example
-<ReportsRetrieve />
-
-#### Parameters
-
-| Name | Type     | Required | Description                        |
-|------|----------|----------|------------------------------------|
-| `id` | `string` | ✅       | The Id of the report to retrieve.  |
-
-
-### Response
-
-#### Example
-
-```json
-{
-  "id": "rpt_cj2mkA3hFyHT5",
-  "type": "payments.created.current",
-  "url": "https://production.methodfi.com/reports/rpt_cj2mkA3hFyHT5/download",
-  "status": "completed",
-  "metadata": null,
-  "created_at": "2021-08-25T23:18:05.261Z",
-  "updated_at": "2021-08-25T23:18:05.261Z"
-}
-```
+<ObjectPropList
+  isRequest
+  title="Retrieve a report"
+  about="Returns the report associated with the id."
+  snippetsElement={<ReportsRetrieve />}
+  fields={[]}
+  returns="Returns the report associated with the id."
+/>

@@ -1,58 +1,91 @@
+---
+title: List all payments
+sidebar_label: List all payments
+hide_table_of_contents: true
+hide_title: true
+---
+
 import PaymentsList from '../../../../src/snippets/PaymentsList';
+import ObjectPropList from '../../../../src/components/ObjectPropList';
 
-# List all payments
-
-**About**: Returns all the payments associated with your team, or an empty array if none have been created.
-
-**API Method**: `GET /payments`
-
-### Request
-
-#### Example
-<PaymentsList />
-
-#### Parameters
-
-| Name                    | Required | Description                                                                                            |
-|-------------------------|----------|--------------------------------------------------------------------------------------------------------|
-| `type`                  |          | The type of payments to retrieve. Options: `standard` or `clearing`                                    |
-| `status`                |          | The status of payments to retrieve. See [payment statuses](/api/core/payments/object#payment-statuses) |
-| `source`                |          | The id of the `Account` that is a payment's source.                                                    |
-| `destination`           |          | The id of the `Account` that is a payment's destination.                                               |
-| `acc_id`                |          | The id of the `Account` that is either a payment's source or destination.                              |
-| `reversal_id`           |          | The id of the `Reversal` corresponding to a payment.                                                   |
-| `source_holder_id`      |          | The id of the `Entity` who holds the source account in a payment.                                      |
-| `destination_holder_id` |          | The id of the `Entity` who holds the destination account in a payment.                                 |
-
-
-### Response
-
-#### Example
-
-An array of payment objects will be returned.
-
-```json
-{
-  "data": [
+<ObjectPropList
+  isRequest
+  title="List all payments"
+  about="Returns all the payments associated with your team, or an empty list if none have been created."
+  snippetsElement={<PaymentsList />}
+  fields={[
     {
-      "id": "pmt_rPrDPEwyCVUcm",
-      "reversal_id": null,
-      "source_trace_id": null,
-      "destination_trace_id": null,
-      "source": "acc_JMJZT6r7iHi8e",
-      "destination": "acc_AXthnzpBnxxWP",
-      "amount": 5000,
-      "description": "Loan Pmt",
-      "status": "pending",
-      "error": null,
-      "metadata": null,
-      "estimated_completion_date": "2020-12-11",
-      "source_settlement_date": "2020-12-09",
-      "destination_settlement_date": "2020-12-11",
-      "fee": null,
-      "created_at": "2020-12-09T00:42:31.209Z",
-      "updated_at": "2020-12-09T00:43:30.996Z"
-    }
-  ]
-}
-```
+      name: 'type',
+      type: 'enum',
+      children: 'The type of payments to retrieve.',
+      enums: [
+        { name: 'standard' },
+        { name: 'clearing' },
+      ],
+    },
+    {
+      name: 'status',
+      type: 'enum',
+      children: (
+        <div>
+          The status of payments to retrieve. See <a href="/api/core/payments/object#status">payment statuses</a>.
+        </div>
+      ),
+    },
+    {
+      name: 'source',
+      type: 'string',
+      children: (
+        <div>
+          The id of the <code>Account</code> that is a payment's source.
+        </div>
+      ),
+    },
+    {
+      name: 'destination',
+      type: 'string',
+      children: (
+        <div>
+          The id of the <code>Account</code> that is a payment's destination.
+        </div>
+      ),
+    },
+    {
+      name: 'acc_id',
+      type: 'string',
+      children: (
+        <div>
+          The id of the <code>Account</code> that is either a payment's source or destination
+        </div>
+      ),
+    },
+    {
+      name: 'reversal_id',
+      type: 'string',
+      children: (
+        <div>
+          The id of the <code>Reversal</code> corresponding to a payment.
+        </div>
+      ),
+    },
+    {
+      name: 'source_holder_id',
+      type: 'string',
+      children: (
+        <div>
+          The id of the <code>Entity</code> who holds the source account in a payment.
+        </div>
+      ),
+    },
+    {
+      name: 'destination_holder_id',
+      type: 'string',
+      children: (
+        <div>
+          The id of the <code>Entity</code> who holds the destination account in a payment.
+        </div>
+      ),
+    },
+  ]}
+  returns="Returns a list of payment objects."
+/>

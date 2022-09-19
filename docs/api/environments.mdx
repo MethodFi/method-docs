@@ -1,32 +1,79 @@
-# Environments
+---
+title: Environments
+sidebar_label: Environments
+hide_table_of_contents: true
+hide_title: true
+---
 
-Method has three primary API environments. Development, Sandbox and Production share similar functionality with minor differences. All testing should be done in the Development and Sandbox environments. All activity in the Production will be billed.
+import CodeBlock from '@theme/CodeBlock';
+import ObjectPropList from '../../src/components/ObjectPropList';
 
-Your team will have separate API keys for each Method environment. Keys are available under the Keys section in the [Method Dashboard](https://dashboard.methodfi.com).
+<ObjectPropList
+  title="Environments"
+  about={(
+    <div>
+      <p>
+        Method has three primary API environments. Development, Sandbox and Production share similar functionality
+        with minor differences. All testing should be done in the Development and Sandbox environments.
+        All activity in the Production will be billed. Your team will have separate API keys for each Method
+        environment. Keys are available under the Keys section in
+        the <a href="https://dashboard.methodfi.com">Method Dashboard</a>.
+      </p>
+      <p>
+        Development, Sandbox and Production share similar functionality with minor differences
+        listed below. All merchant data is the same across all environments.
+      </p>
+      <hr className="dotted-divider" />
+      <h4>Development</h4>
+      ➡️ We recommend building your integration in the <code>Development</code> environment.
+      This will prevent accidentally sending a payment while initially building / testing your integration.
+      <ul>
+        <li>
+          Entities: KYC is disabled. All entities will become <code>active</code> immediately, once all the required information is provided.
+        </li>
+        <li>
+          Entities Capabilities: <code>payments:receive</code> and <code>payments:sent</code> are granted for any
+          valid entity input. <code>data:retrieve</code> and <code>data:sync</code> are only granted
+          for <a href="elements/auth/intro#simulate-requirements">Simulated Entities</a>.
+        </li>
+        <li>
+          Accounts: <code>account_numbers</code> are not validated and any input will be accepted.
+        </li>
+        <li>
+          Link: Account numbers are not validated and any input will be accepted.
+        </li>
+        <li>
+          Payments: Simulated - Payments will not be sent to our banking networks. However, the payment will
+          transition to <code>sent</code> at the standard cutoff time for simulation purposes.
+        </li>
+      </ul>
+      <hr className="dotted-divider" />
+      <h4>Sandbox</h4>
+      ➡️ We recommend switching to <code>Sandbox</code> once you are ready to test your integration with your own financial accounts.
+      <ul>
+        <li>
+          Entities: KYC is enabled. All entities will undergo validation before being granted any capabilities.
+        </li>
+        <li>
+          Payments: Live - Payments will be sent to our banking networks at the standard cutoff times.
+        </li>
+        <li>
+          Live Payment Limit: 20 transactions per month ($1 limit / transaction)
+        </li>
+      </ul>
+      <hr className="dotted-divider" />
+      <h4>Production</h4>
+      ➡️ Go live with your Method integration with unlimited live payments; all requests are billed. 🚀
+    </div>
+  )}
+  snippetsElement={(
+    <CodeBlock title="API Hosts">
+      https://dev.methodfi.com (Development)
+      {'\n'}
+      https://sandbox.methodfi.com (Sandbox)
+      {'\n'}
+      https://production.methodfi.com (Production)
+    </CodeBlock>
+  )}
+/>
 
-### API Hosts
-```text
-https://dev.methodfi.com (Development)
-https://sandbox.methodfi.com (Sandbox)
-https://production.methodfi.com (Production)
-```
-
-### Environment Breakdown
-Development, Sandbox and Production share similar functionality with minor differences listed below. All merchant data is the same across all environments.
-
-#### Development
-➡️ We recommend building your integration in the `Development` environment. This will prevent accidentally sending a payment while initially building / testing your integration.
-* Entities: KYC is disabled. All entities will become `active` immediately, once all the required information is provided.
-* Entities Capabilities: `payments:receive` and `payments:sent` are granted for any valid entity input. `data:retrieve` and `data:sync` are only granted for [Simulated Entities](elements/auth/intro#simulate-requirements)
-* Accounts: `account_numbers` are not validated and any input will be accepted.
-* Link: Account numbers are not validated and any input will be accepted.
-* Payments: Simulated - Payments will not be sent to our banking networks. However, the payment will transition to `sent` at the standard cutoff time for simulation purposes.
-
-#### Sandbox
-➡️ We recommend switching to `Sandbox` once you are ready to test your integration with your own financial accounts.
-* Entities: KYC is enabled. All entities will undergo validation before being granted any capabilities.
-* Payments: Live - Payments will be sent to our banking networks at the standard cutoff times.
-* Live Payment Limit: 20 transactions per month ($1 limit / transaction)
-
-#### Production
-➡️ Go live with your Method integration with unlimited live payments; all requests are billed. 🚀

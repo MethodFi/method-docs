@@ -10,7 +10,7 @@ curl https://production.methodfi.com/accounts \\
     "holder_id": "ent_au22b1fbFJbp8",
     "liability": {
       "mch_id": "mch_2",
-      "account_number": "1122334455"
+      "number": "1122334455"
     }
   }'
 `.trim();
@@ -20,7 +20,7 @@ const account = await method.accounts.create({
   holder_id: 'ent_au22b1fbFJbp8',
   liability: {
     mch_id: 'mch_2',
-    account_number: '1122334455',
+    number: '1122334455',
   }
 });
 `.trim();
@@ -30,7 +30,7 @@ account = method.accounts.create({
   'holder_id': 'ent_au22b1fbFJbp8',
   'liability': {
     'mch_id': 'mch_2',
-    'account_number': '1122334455'
+    'number': '1122334455'
   }
 })
 `.trim();

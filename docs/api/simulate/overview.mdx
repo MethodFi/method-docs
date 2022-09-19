@@ -1,31 +1,51 @@
-# Overview
-
-To provide a seamless integration experience with Method in the
-[development environment](/api/environments#development), you can simulate updates on resources as they
-would naturally occur in the [sandbox](/api/environments#sandbox) and [production](/api/environments#production) environments.
-
-Simulation endpoints are prefixed with `/simulate` and will be in the following format:
-
-```
-https://dev.methodfi.com/simulate/<RESOURCE_NAME>
-```
-
-where `RESOURCE_NAME` refers any resource that supports simulations.
-
+---
+title: Overview
+sidebar_label: Overview
+hide_table_of_contents: true
+hide_title: true
 ---
 
-:::caution Important
-Simulation endpoints are only accessible in the development environment. Attempts to
-access these endpoints in `sandbox` or `production` will result in a 403 Forbidden error.
-:::
+import CodeBlock from '@theme/CodeBlock';
+import ObjectPropList from '../../../src/components/ObjectPropList';
 
-```json
-{
-  "error": {
-    "type": "INVALID_REQUEST",
-    "code": 403,
-    "sub_type": "FORBIDDEN",
-    "message": "Your authorization token is valid. However, you're unauthorized to access the requested resource."
-  }
-}
-```
+<ObjectPropList
+  isRequest
+  title="Overview"
+  about={(
+    <div>
+      To provide a seamless integration experience with Method in
+      the <a href="/api/environments#development">development environment</a> you can simulate updates
+      on resources as they would naturally occur in
+      the <a href="/api/environments#sandbox">sandbox</a> and <a href="/api/environments#production">production</a> environments.
+      <hr className="dotted-divider" />
+      <span className="pill-warning">⚠️ Caution:</span> Simulation endpoints are only accessible
+      in the development environment. Attempts to access these endpoints
+      in <code>sandbox</code> or <code>production</code> will result in a 403 Forbidden error.
+    </div>
+  )}
+  snippetsElement={(
+    <div>
+      <CodeBlock
+        title={(
+          <div>
+            Simulation endpoints are prefixed with <code>/simulate</code> and will be in the following format
+            where <code>RESOURCE_NAME</code> refers any resource that supports simulations.
+          </div>
+        )}>
+        {'https://dev.methodfi.com/simulate/<RESOURCE_NAME>'}
+      </CodeBlock>
+      <CodeBlock
+        className="language-json"
+        title="403 Forbidden Error">
+        {JSON.stringify({
+          "error": {
+            "type": "INVALID_REQUEST",
+            "code": 403,
+            "sub_type": "FORBIDDEN",
+            "message": "Your authorization token is valid. However, you're unauthorized to access the requested resource."
+          }
+        }, null, 2)}
+      </CodeBlock>
+    </div>
+  )}
+/>

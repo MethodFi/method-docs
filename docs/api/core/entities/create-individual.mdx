@@ -17,9 +17,9 @@ import EntitiesCreateIndividual from '../../../../src/snippets/EntitiesCreateInd
       verification. The identity verification will almost always be fulfilled synchronously.
       If a verification takes longer than 5 seconds, the request will be handled asynchronously
       and a webhook will be fired when there is an update.
-      <br/><br/>
+      <hr className="dotted-divider" />
       An Entity can be created with an empty object and progressively updated with more information
-      from your end user. See <a href="/api/core/entities/object#entity-capabilities">Entity Capabilities</a> for
+      from your end user. See <a href="/api/core/entities/object#capabilities">Entity Capabilities</a> for
       more info.
     </div>
   )}
@@ -55,7 +55,7 @@ import EntitiesCreateIndividual from '../../../../src/snippets/EntitiesCreateInd
       children: (
         <div>
           Mobile phone number of the individual entity in E.164 format. The number will only be used for KYC / AML verification.
-          <br/><br/>
+          <hr className="dotted-divider" />
           <span className="pill-info">💡 Tip</span> The entity's
           phone number <strong>must</strong> be verified before used for creating an Entity.
         </div>

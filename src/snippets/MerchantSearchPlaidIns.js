@@ -1,5 +1,4 @@
 import React from 'react';
-import CodeBlock from '@theme/CodeBlock';
 import TabbedCodeBlock from '../components/TabbedCodeBlock';
 
 const curl = `

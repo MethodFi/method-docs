@@ -14,7 +14,16 @@ const python = `
 bin = method.bins.get('414720')
 `.trim();
 
-const response = {};
+const response = {
+  "id": "bin_fWXVJF8HWYSdQ",
+  "bin": "414720",
+  "brand": "visa",
+  "issuer": "CHASE BANK USA, N.A.",
+  "type": "credit",
+  "category": "SIGNATURE",
+  "bank_url": "www.chase.com",
+  "sample_pan": "4147206867378753"
+};
 
 export default function () {
   return (

@@ -1,116 +1,114 @@
+---
+title: Create an account
+sidebar_label: Create an account
+hide_table_of_contents: true
+hide_title: true
+---
+
 import AccountsCreateACH from '../../../../src/snippets/AccountsCreateACH';
 import AccountsCreateLiability from '../../../../src/snippets/AccountsCreateLiability';
+import ObjectPropList from '../../../../src/components/ObjectPropList';
 
-# Create an account
-
-**About**: Creates a new account for a unique entity, either `ach` or `liability`, based on the parameters provided. An account is a unique representation of an `ach` or `liability` account.
-
-**API Method**: `POST /accounts`
-
----
-#### <u>Collecting a liability's account number</u>
-
-Due to the sensitive nature of a liability's account number, we recommend collecting the account number from your end-user using one of the secure pathways below.
-
-1. Method Data - 💡 You can automatically retrieve all of an entity's liabilities using Method Data. See the [retrieve an entity's debts](/guides/quick-start/retrieve-an-entitys-debts) guide to learn more.
-2. Method Link - 📱 You can embed the Link Element to securly allow your user's to connect their debts directly to Method. See [Overview of Link Element](/api/elements/link/intro) to learn more.
-3. API + Third Party Aggregator - You will need the `merchant` id (`mch_id`) and the account number of the liability. Use an aggregator such as Plaid.
-
-Creating a `liability` account will automatically validate the account number with the
-merchant in order to lower the risk of failed/returned payments
-
-#### <u>ACH account verification</u>
-Creating an `ach` account will require an additional step for verification to confirm
-the validity of the account. ➡️ See [ACH account verification.](/api/core/accounts/ach-verification/object)
-
----
-
-<!-- > 👷 **Coming Soon**: Method.js is in limited beta! If you'd like to get an early preview for your team, contact us via our shared slack or send us an email (team@methodfi.com) -->
-
-<!-- > ℹ️ **Important**: The `holder_id` is the `Entity` id for the legal holder of the `Account`. Associating the incorrect `Entity` will lead to failed / returned payments. -->
-
-### Request
-
-#### Example - `ach` account
-<AccountsCreateACH />
-
-#### Example - `liability` account
-<AccountsCreateLiability />
-
-#### Parameters
-
-| Name                       | Type     | Required | Description                                                                                     |
-|----------------------------|----------|----------|-------------------------------------------------------------------------------------------------|
-| `holder_id`                | `string` | ✅        | The id of the `Entity` who is the legal holder of this account.                                 |
-| `ach`                      | `object` |          | ACH account information.                                                                        |
-| `ach.routing`              | `string` | ✅        | ABA routing number of the ACH account. (maximum of 9 characters).                               |
-| `ach.number`               | `string` | ✅        | Account number of the ACH account. (maximum of 17 characters).                                  |
-| `ach.type`                 | `string` | ✅        | Type of ACH account. Options: `checking` or `savings`                                           |
-| `liability`                | `object` |          | Liability account information.                                                                  |
-| `liability.mch_id`         | `string` | ✅        | Unique identifier of the merchant.                                                              |
-| `liability.account_number` | `string` | ✅        | The account number of the liability. (e.g. PAN for credit cards, Payment ref for student loans) |
-### Response
-
-#### Example - `ach` account
-```json
-{
-  "id": "acc_b9q2XVAnNFbp3",
-  "holder_id": "ent_y1a9e1fbnJ1f3",
-  "type": "ach",
-  "ach": {
-    "routing": "367537407",
-    "number": "57838927",
-    "type": "checking"
-  },
-  "liability": null,
-  "clearing": null,
-  "metadata": null,
-  "status": "active",
-  "capabilities": [
-    "payments:receive"
-  ],
-  "error": null,
-  "created_at": "2020-12-09T00:40:51.107Z",
-  "updated_at": "2020-12-09T00:40:51.107Z"
-}
-```
-
-#### Example - `liability` account
-```json
-{
-  "id": "acc_Zc4F2aTLt8CBt",
-  "holder_id": "ent_au22b1fbFJbp8",
-  "type": "liability",
-  "ach": null,
-  "liability": {
-    "mch_id": "mch_2",
-    "mask": "4455",
-    "type": "student_loan",
-    "data_status": "pending",
-    "data_last_successful_sync": null,
-    "student_loan": {
-      "name": "FedLoan Student Loan",
-      "sub_type": "federal",
-      "sequence": 6,
-      "balance": 1952634,
-      "last_payment_amount": 1150,
-      "last_payment_date": "2022-04-22",
-      "next_payment_due_date": "2022-10-28",
-      "next_payment_minimum_amount": 0,
-      "disbursed_at": "2018-01-22",
-      "interest_rate_percentage": 3.4,
-      "interest_rate_type": "fixed"
-    }
-  },
-  "clearing": null,
-  "metadata": null,
-  "status": "active",
-  "capabilities": [
-    "payments:receive",
-    "data:sync"
-  ],
-  "error": null,
-  "created_at": "2020-12-09T02:56:19.548Z",
-  "updated_at": "2020-12-09T02:56:19.548Z"
-}
-```
+<ObjectPropList
+  isRequest
+  title="Create an account"
+  about={(
+    <div>
+      Creates a new account for a unique entity, either <code>ach</code> or <code>liability</code>, based
+      on the parameters provided. An account is a unique representation of
+      an <code>ach</code> or <code>liability</code> account.
+      <hr className="dotted-divider" />
+      <h4>Collecting a liability's account number</h4>
+      Due to the sensitive nature of a liability's account number, we recommend collecting
+      the account number from your end-user using one of the secure pathways below.
+      <ul>
+        <li>
+          <strong>💡 Method Data</strong> - you can
+          automatically retrieve all of an entity's liabilities using
+          Method Data. See the <a href="/guides/quick-start/retrieve-an-entitys-debts">retrieve an entity's debts</a> guide
+          to learn more.
+        </li>
+        <li>
+          <strong>📱 Method Link</strong> - you can embed the Link Element to securely allow your user's to connect
+          their debts directly to Method. See the <a href="/api/elements/link/intro">Overview of Link Element</a> to
+          learn more.
+        </li>
+        <li>
+          <strong>⚡ API</strong> - You will need the <code>merchant</code> id (<code>mch_id</code>) and
+          the account number of the liability.
+        </li>
+      </ul>
+      Creating a <code>liability</code> account will automatically validate the account number with the
+      merchant in order to lower the risk of failed/returned payments
+      <hr className="dotted-divider" />
+      <h4>ACH account verification</h4>
+      Creating an <code>ach</code> account will require an additional step for verification to confirm
+      the validity of the account. See <a href="/api/core/accounts/ach-verification/object">ACH account verification</a>.
+    </div>
+  )}
+  snippetsElement={(
+    <div>
+      <h2>ACH</h2>
+      <AccountsCreateACH />
+      <h2>Liability</h2>
+      <AccountsCreateLiability />
+    </div>
+  )}
+  fields={[
+    {
+      name: 'holder_id',
+      type: 'string',
+      children: (
+        <div>
+          The id of the <code>Entity</code> who is the legal holder of this account.
+        </div>
+      ),
+      required: true,
+    },
+    {
+      name: 'ach',
+      type: 'object',
+      children: 'ACH account information',
+    },
+    {
+      name: 'ach.routing',
+      type: 'string',
+      children: 'ABA routing number of the ACH account. (maximum of 9 characters).',
+      required: true,
+    },
+    {
+      name: 'ach.number',
+      type: 'string',
+      children: 'Account number of the ACH account. (maximum of 17 characters).',
+      required: true,
+    },
+    {
+      name: 'ach.type',
+      type: 'enum',
+      children: 'Type of ACH account',
+      enums: [
+        { name: 'checking' },
+        { name: 'savings' },
+      ],
+      required: true,
+    },
+    {
+      name: 'liability',
+      type: 'object',
+      children: 'Liability account information.',
+    },
+    {
+      name: 'liability.mch_id',
+      type: 'string',
+      children: 'Unique identifier of the merchant.',
+      required: true,
+    },
+    {
+      name: 'liability.number',
+      type: 'string',
+      children: 'The account number of the liability. (e.g. PAN for credit cards, Payment ref for student loans)',
+      required: true,
+    },
+  ]}
+  returns="Returns an account object."
+/>

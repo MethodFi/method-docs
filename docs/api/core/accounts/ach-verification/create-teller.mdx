@@ -1,39 +1,58 @@
+---
+title: Create a Teller verification
+sidebar_label: Create a Teller verification
+hide_table_of_contents: true
+hide_title: true
+---
+
 import VerificationCreateTeller from '../../../../../src/snippets/VerificationCreateTeller';
+import ObjectPropList from '../../../../../src/components/ObjectPropList';
 
-# Create a Teller verification
-
-**About**: Verify an ACH account by providing the raw balance and transaction data from Teller.
-
-**API Method**: `POST /accounts/:account_id/verification`
-
-### Request
-
-#### Example
-<VerificationCreateTeller />
-
-#### Parameters
-
-| Name                 | Type       | Required | Description                                                                                                   |
-|----------------------|------------|----------|---------------------------------------------------------------------------------------------------------------|
-| `type`               | `string`   | ✅        | The type of verification. Option for Teller: `teller`.                                                          |
-| `teller`              | `object`  | ✅        | Object containing account data from Teller.                                                                    |
-| `teller.balances`     | `object`  | ✅        | The raw balance data received from Teller. See https://teller.io/docs/api/2020-10-12#account_balances_anchor                    |
-| `teller.transactions` | `object[]`| ✅        | The a list of the raw transaction data received from Teller. See https://teller.io/docs/api/2020-10-12#transactions_anchor |
-
-### Response
-
-#### Example
-```json
-{
-    "id": "vrf_73TAQ8njUFsLJ",
-    "status": "verified",
-    "type": "teller",
-    "error": null,
-    "initiated_at": "1970-01-01T00:00:00.000Z",
-    "pending_at": "1970-01-01T00:00:00.000Z",
-    "verified_at": "2021-10-12T21:23:48.447Z",
-    "disabled_at": "1970-01-01T00:00:00.000Z",
-    "created_at": "2021-10-12T21:23:48.449Z",
-    "updated_at": "2021-10-12T21:23:48.449Z"
-}
-```
+<ObjectPropList
+  isRequest
+  title="Create a Teller verification"
+  about={(
+    <div>
+      Verify an ACH account by providing the raw balance and transaction data from Teller.
+    </div>
+  )}
+  snippetsElement={<VerificationCreateTeller />}
+  fields={[
+    {
+      name: 'type',
+      type: 'enum',
+      children: 'The type of verification.',
+      enums: [{ name: 'teller' }],
+      required: true,
+    },
+    {
+      name: 'teller',
+      type: 'object',
+      children: 'Object containing account data from Teller',
+      required: true,
+    },
+    {
+      name: 'teller.balances',
+      type: 'object',
+      children: (
+        <div>
+          The raw balance data received from Teller.
+          See <a href="https://teller.io/docs/api/2020-10-12#account_balances_anchor">account balances.</a>
+        </div>
+      ),
+      required: true,
+    },
+    {
+      name: 'teller.transactions',
+      type: 'object[]',
+      children: (
+        <div>
+          The a list of the raw transaction data received from Teller.
+          See <a href="https://teller.io/docs/api/2020-10-12#transactions_anchor">account transactions</a>
+        </div>
+      ),
+      required: true,
+    },
+  ]}
+  returns="Returns the verification associated with the id."
+/>

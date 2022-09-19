@@ -1,33 +1,90 @@
-# The BIN object
+---
+title: The BIN object
+sidebar_label: The BIN object
+hide_table_of_contents: true
+hide_title: true
+---
 
-A BIN (Bank Identification Number) is the initial set of four to six numbers that appear on a payment card. This provides information regarding the issuer of the card.
+import CodeBlock from '@theme/CodeBlock';
+import ObjectPropList from '../../../../src/components/ObjectPropList';
 
-### BIN object
-
-#### Example
-
-```json
-{
-  "id": "bin_fWXVJF8HWYSdQ",
-  "bin": "414720",
-  "brand": "visa",
-  "issuer": "CHASE BANK USA, N.A.",
-  "type": "credit",
-  "category": "SIGNATURE",
-  "bank_url": "www.chase.com",
-  "sample_pan": "4147206867378753"
-}
-```
-
-#### Attributes
-
-| Name       | Type                 | Description                                                                                           |
-|------------|----------------------|-------------------------------------------------------------------------------------------------------|
-| id         | `string`, `nullable` | A unique identifier for a `BIN`.                                                                      |
-| bin        | `string`, `nullable` | The 6-digit number.                                                                                   |
-| brand      | `string`             | The payment card brand. One of the following: `amex`, `diners_club`, `discover`, `mastercard`, `visa` |
-| issuer     | `string`, `nullable` | The issuer of the payment card.                                                                       |
-| type       | `string`             | The type of payment card. Either `credit` or `debit`                                                  |
-| category   | `string`, `nullable` | The payment card category.                                                                            |
-| bank_url   | `string`, `nullable` | The website URL of the associated bank.                                                                |
-| sample_pan | `string`, `nullable` | An example Primary Account Number for the bin.                                                         |
+<ObjectPropList
+  title="The BIN object"
+  about={(
+    <div>
+      A BIN (Bank Identification Number) is the initial set of four to six numbers that
+      appear on a payment card. This provides information regarding the issuer of the card.
+    </div>
+  )}
+  snippetsElement={(
+    <CodeBlock
+      className="language-json"
+      title="THE BIN OBJECT">
+      {JSON.stringify({
+        "id": "bin_fWXVJF8HWYSdQ",
+        "bin": "414720",
+        "brand": "visa",
+        "issuer": "CHASE BANK USA, N.A.",
+        "type": "credit",
+        "category": "SIGNATURE",
+        "bank_url": "www.chase.com",
+        "sample_pan": "4147206867378753"
+      }, null, 2)}
+    </CodeBlock>
+  )}
+  fields={[
+    {
+      name: 'id',
+      type: 'string,null',
+      children: (
+        <div>A unique identifier for a <code>BIN</code>.</div>
+      ),
+    },
+    {
+      name: 'bin',
+      type: 'string,null',
+      children: 'The 6-digit number',
+    },
+    {
+      name: 'brand',
+      type: 'enum',
+      children: 'The payment card brand',
+      enums: [
+        { name: 'amex' },
+        { name: 'diners_club' },
+        { name: 'discover' },
+        { name: 'mastercard' },
+        { name: 'visa' },
+      ],
+    },
+    {
+      name: 'issuer',
+      type: 'string,null',
+      children: 'The issuer of the payment card.',
+    },
+    {
+      name: 'type',
+      type: 'enum',
+      children: 'The type of payment card.',
+      enums: [
+        { name: 'credit' },
+        { name: 'debit' },
+      ],
+    },
+    {
+      name: 'category',
+      type: 'string,null',
+      children: 'The payment card category',
+    },
+    {
+      name: 'bank_url',
+      type: 'string,null',
+      children: 'The website URL of the associated bank.',
+    },
+    {
+      name: 'sample_pan',
+      type: 'string,null',
+      children: 'An example Primary Account Number for the bin.',
+    },
+  ]}
+/>

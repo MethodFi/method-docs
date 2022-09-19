@@ -1,48 +1,48 @@
+---
+title: Update payment status
+sidebar_label: Update payment status
+hide_table_of_contents: true
+hide_title: true
+---
+
 import SimulatePaymentsUpdate from '../../../../src/snippets/SimulatePaymentsUpdate';
+import ObjectPropList from '../../../../src/components/ObjectPropList';
 
-# Update payment status
-
-**About**: Updates a payment's status with the parameters sent.
-
-**API Method**: `POST /simulate/payments/:payment_id`
-
-
-### Request
-
-#### Example
-<SimulatePaymentsUpdate />
-
-#### Parameters
-| Name         | Type                 | Required | Description                                                                                                                                 |
-|--------------|----------------------|----------|---------------------------------------------------------------------------------------------------------------------------------------------|
-| `status`     | `string`             | ✅        | The next status to which the payment should transition. See [valid status transitions](#valid-status-transitions).                                                       |
-| `error_code` | `number`, `nullable` |          | The desired payment error code to simulate. Required when status is `reversal_required` or `reversal_processing`. Possible values: `10001`. |
-
-### Response
-
-#### Example
-```json
-{
-  "id": "pmt_rPrDPEwyCVUcm",
-  "reversal_id": null,
-  "source_trace_id": null,
-  "destination_trace_id": null,
-  "source": "acc_JMJZT6r7iHi8e",
-  "destination": "acc_AXthnzpBnxxWP",
-  "amount": 5000,
-  "description": "Loan Pmt",
-  "status": "processing",
-  "error": null,
-  "metadata": null,
-  "estimated_completion_date": "2020-12-11",
-  "source_settlement_date": "2020-12-09",
-  "destination_settlement_date": "2020-12-11",
-  "fee": null,
-  "created_at": "2020-12-09T00:42:31.209Z",
-  "updated_at": "2020-12-09T00:43:30.996Z"
-}
-```
-
+<ObjectPropList
+  isRequest
+  title="Update payment status"
+  about="Updates a payment's status with the parameters sent."
+  snippetsElement={<SimulatePaymentsUpdate />}
+  fields={[
+    {
+      name: 'status',
+      type: 'string',
+      children: 'The next status to which the payment should transition.',
+      required: true,
+    },
+    {
+      name: 'error_code',
+      type: 'enum',
+      children: (
+        <div>
+          The desired payment error code to simulate. Required when status
+          is <code>reversal_required</code> or <code>reversal_processing</code>.
+        </div>
+      ),
+      enums: [
+        {
+          name: '10001',
+          children: (
+            <div>
+              Simulates a failure with the <a href="/api/errors/10001">insufficient funds error</a>.
+            </div>
+          ),
+        },
+      ],
+    },
+  ]}
+  returns="Returns a payment with the updated status."
+/>
 
 ### Valid status transitions
 

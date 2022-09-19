@@ -134,13 +134,26 @@ verification = method
   })
 `.trim();
 
+const response = {
+  "id": "vrf_73TAQ8njUFsLJ",
+  "status": "verified",
+  "type": "teller",
+  "error": null,
+  "initiated_at": "1970-01-01T00:00:00.000Z",
+  "pending_at": "1970-01-01T00:00:00.000Z",
+  "verified_at": "2021-10-12T21:23:48.447Z",
+  "disabled_at": "1970-01-01T00:00:00.000Z",
+  "created_at": "2021-10-12T21:23:48.449Z",
+  "updated_at": "2021-10-12T21:23:48.449Z"
+};
+
 export default function () {
   return (
     <TabbedCodeBlock
       groupId="all"
       name="verification-create-teller"
       title="POST /accounts/:account_id/verification"
-      response={{}}
+      response={response}
       items={[
         { title: 'cURL', language: 'shell', content: curl },
         { title: 'Node.js', language: 'javascript', content: nodejs },
