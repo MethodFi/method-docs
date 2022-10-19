@@ -1,0 +1,26 @@
+---
+title: Retrieve an individual entity's credit score
+sidebar_label: Retrieve an individual entity's credit score
+hide_table_of_contents: true
+hide_title: true
+---
+
+import EntitiesRetrieveCreditScore from '../../../../src/snippets/EntitiesRetrieveCreditScore';
+import ObjectPropList from '../../../../src/components/ObjectPropList';
+
+<ObjectPropList
+  isRequest
+  about={(
+    <div>
+      Returns an entity's VantageScore 3.0 credit score (300 to 850).
+      <hr className="dotted-divider" />
+      <span className="pill-warning">⚠️ Caution:</span> This endpoint is only
+      accessible to entities that have the <code>data:retrieve</code> capability
+      in <code>capabilities</code>.
+    </div>
+  )}
+  returns="Returns an entity's VantageScore 3.0 credit score (300 to 850)."
+  title="Retrieve an individual entity's credit score"
+  snippetsElement={<EntitiesRetrieveCreditScore />}
+  fields={[]}
+/>
