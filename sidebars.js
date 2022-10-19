@@ -82,6 +82,7 @@ module.exports = {
         'api/core/entities/create-individual',
         'api/core/entities/create-corporation',
         'api/core/entities/retrieve',
+        'api/core/entities/retrieve-individual-credit-score',
         'api/core/entities/update',
         'api/core/entities/list',
         {
