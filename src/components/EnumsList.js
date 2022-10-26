@@ -14,7 +14,7 @@ export default function EnumsList(props) {
         </div>
       )}
       {items.map((enumItem) => (
-        <div className="object-prop-item-enums-item padding-vert--sm padding-horiz--md">
+        <div key={enumItem.name} className="object-prop-item-enums-item padding-vert--sm padding-horiz--md">
           <h4 className="margin-bottom--xs">
             <code className="transparent text-white">{enumItem.name}</code>
           </h4>

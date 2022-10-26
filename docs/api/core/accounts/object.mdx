@@ -263,6 +263,8 @@ import ObjectPropList from '../../../../src/components/ObjectPropList';
       enums: [
         { name: 'ach', children: 'A bank account (Checking or Savings).' },
         { name: 'liability', children: 'A debt-type account (Credit Card, Mortgage, etc).' },
+        // TODO[mdelcarmen]: text
+        { name: 'clearing', children: 'A debt-type account (Credit Card, Mortgage, etc).' },
       ],
     },
     {
@@ -287,6 +289,31 @@ import ObjectPropList from '../../../../src/components/ObjectPropList';
       enums: [
         { name: 'checking' },
         { name: 'savings' },
+      ],
+    },
+    // TODO[mdelcarmen]: text
+    {
+      name: 'clearing',
+      type: 'object,null',
+      children: <div>The id of the <code>Entity</code> who is the legal holder of this account.</div>,
+    },
+    {
+      name: 'clearing.routing',
+      type: 'string',
+      children: 'ABA routing number of the ACH account. (maximum of 9 characters).',
+    },
+    {
+      name: 'clearing.number',
+      type: 'string',
+      children: 'Account number of the ACH account. (maximum of 17 characters).',
+    },
+    {
+      name: 'clearing.type',
+      type: 'enum',
+      children: 'Type of ACH account',
+      enums: [
+        { name: 'multi_use' },
+        { name: 'single_use' },
       ],
     },
     {
@@ -331,6 +358,212 @@ import ObjectPropList from '../../../../src/components/ObjectPropList';
       ],
     },
     {
+      // TODO[mdelcarmen]: text
+      name: 'liability.data_status',
+      type: 'enum',
+      children: (
+        <div>
+          something here about data statuses
+        </div>
+      ),
+      enums: [
+        { name: 'unavailable' },
+        { name: 'pending' },
+        { name: 'syncing' },
+        { name: 'active' },
+        { name: 'failed' },
+        { name: 'unknown' },
+      ],
+    },
+    {
+      name: 'liability.data_last_successful_sync',
+      type: 'string,null',
+      children: 'Timestamp of when the account was last successfully synced.',
+    },
+    {
+      // TODO[mdelcarmen]: text
+      name: 'liability.data_status_error',
+      type: 'object,null',
+      children: (
+        <div>
+          An object representing an error that occurred while this account was syncing.
+          See <a href="/api/errors/resource#account-errors">account sync errors</a>.
+        </div>
+      ),
+    },
+    {
+      // TODO[mdelcarmen]: text
+      name: 'liability.data_sync_type',
+      type: 'enum',
+      enums: [
+        { name: 'auto' },
+        { name: 'manual' },
+      ],
+      children: 'The ownership type ...',
+    },
+    {
+      // TODO[mdelcarmen]: text
+      name: 'liability.ownership',
+      type: 'enum',
+      enums: [
+        { name: 'primary' },
+        { name: 'authorized' },
+        { name: 'joint' },
+        { name: 'unknown' },
+      ],
+      children: 'The ownership type ...',
+    },
+    {
+      // TODO[mdelcarmen]: text
+      name: 'liability.payment_status',
+      type: 'enum',
+      enums: [
+        { name: 'activating' },
+        { name: 'active' },
+        { name: 'unavailable' },
+      ],
+      children: 'The ownership type ...',
+    },
+    // TODO[mdelcarmen]: text
+    { name: 'liability.hash', type: 'string', children: 'The ownership type ...' },
+    // TODO[mdelcarmen]: text Loan
+    { name: 'liability.loan', type: 'object,null', children: 'liability.loan' },
+    { name: 'liability.loan.name', type: 'null', children: 'liability.loan.name' },
+    { name: 'liability.loan.balance', type: 'null', children: 'liability.loan.balance' },
+    { name: 'liability.loan.opened_at', type: 'null', children: 'liability.loan.opened_at' },
+    { name: 'liability.loan.original_loan_amount', type: 'null', children: 'liability.loan.original_loan_amount' },
+    { name: 'liability.loan.sub_type', type: 'null', children: 'liability.loan.sub_type' },
+    { name: 'liability.loan.term_length', type: 'null', children: 'liability.loan.term_length' },
+    { name: 'liability.loan.closed_at', type: 'null', children: 'liability.loan.closed_at' },
+    { name: 'liability.loan.last_payment_amount', type: 'null', children: 'liability.loan.last_payment_amount' },
+    { name: 'liability.loan.last_payment_date', type: 'null', children: 'liability.loan.last_payment_date' },
+    { name: 'liability.loan.next_payment_minimum_amount', type: 'null', children: 'liability.loan.next_payment_minimum_amount' },
+    { name: 'liability.loan.next_payment_due_date', type: 'null', children: 'liability.loan.next_payment_due_date' },
+    { name: 'liability.loan.interest_rate_type', type: 'null', children: 'liability.loan.interest_rate_type' },
+    { name: 'liability.loan.interest_rate_percentage', type: 'null', children: 'liability.loan.interest_rate_percentage' },
+    // TODO[mdelcarmen]: text Student Loan
+    { name: 'liability.student_loan', type: 'object,null', children: 'liability.student_loan' },
+    { name: 'liability.student_loan.name', type: 'null', children: 'liability.student_loan.name' },
+    { name: 'liability.student_loan.sub_type', type: 'null', children: 'liability.student_loan.sub_type' },
+    { name: 'liability.student_loan.sequence', type: 'null', children: 'liability.student_loan.sequence' },
+    { name: 'liability.student_loan.balance', type: 'null', children: 'liability.student_loan.balance' },
+    { name: 'liability.student_loan.last_payment_amount', type: 'null', children: 'liability.student_loan.last_payment_amount' },
+    { name: 'liability.student_loan.last_payment_date', type: 'null', children: 'liability.student_loan.last_payment_date' },
+    { name: 'liability.student_loan.next_payment_due_date', type: 'null', children: 'liability.student_loan.next_payment_due_date' },
+    { name: 'liability.student_loan.next_payment_minimum_amount', type: 'null', children: 'liability.student_loan.next_payment_minimum_amount' },
+    { name: 'liability.student_loan.disbursed_at', type: 'null', children: 'liability.student_loan.disbursed_at' },
+    { name: 'liability.student_loan.interest_rate_percentage', type: 'null', children: 'liability.student_loan.interest_rate_percentage' },
+    { name: 'liability.student_loan.interest_rate_type', type: 'null', children: 'liability.student_loan.interest_rate_type' },
+    { name: 'liability.student_loan.original_loan_amount', type: 'null', children: 'liability.student_loan.original_loan_amount' },
+    { name: 'liability.student_loan.term_length', type: 'null', children: 'liability.student_loan.term_length' },
+    { name: 'liability.student_loan.closed_at', type: 'null', children: 'liability.student_loan.closed_at' },
+    { name: 'liability.student_loan.expected_payoff_date', type: 'null', children: 'liability.student_loan.expected_payoff_date' },
+    { name: 'liability.student_loan.principal_balance', type: 'null', children: 'liability.student_loan.principal_balance' },
+    { name: 'liability.student_loan.payoff_amount', type: 'null', children: 'liability.student_loan.payoff_amount' },
+    { name: 'liability.student_loan.payoff_amount_term', type: 'null', children: 'liability.student_loan.payoff_amount_term' },
+    // TODO[mdelcarmen]: text Auto Loan
+    { name: 'liability.auto_loan', type: 'object,null', children: 'liability.auto_loan' },
+    { name: 'liability.auto_loan.name', type: 'null', children: 'liability.auto_loan.name' },
+    { name: 'liability.auto_loan.sub_type', type: 'null', children: 'liability.auto_loan.sub_type' },
+    { name: 'liability.auto_loan.balance', type: 'null', children: 'liability.auto_loan.balance' },
+    { name: 'liability.auto_loan.opened_at', type: 'null', children: 'liability.auto_loan.opened_at' },
+    { name: 'liability.auto_loan.term_length', type: 'null', children: 'liability.auto_loan.term_length' },
+    { name: 'liability.auto_loan.payoff_amount', type: 'null', children: 'liability.auto_loan.payoff_amount' },
+    { name: 'liability.auto_loan.payoff_amount_term', type: 'null', children: 'liability.auto_loan.payoff_amount_term' },
+    { name: 'liability.auto_loan.last_payment_amount', type: 'null', children: 'liability.auto_loan.last_payment_amount' },
+    { name: 'liability.auto_loan.last_payment_date', type: 'null', children: 'liability.auto_loan.last_payment_date' },
+    { name: 'liability.auto_loan.next_payment_due_date', type: 'null', children: 'liability.auto_loan.next_payment_due_date' },
+    { name: 'liability.auto_loan.next_payment_minimum_amount', type: 'null', children: 'liability.auto_loan.next_payment_minimum_amount' },
+    { name: 'liability.auto_loan.interest_rate_percentage', type: 'null', children: 'liability.auto_loan.interest_rate_percentage' },
+    { name: 'liability.auto_loan.interest_rate_type', type: 'null', children: 'liability.auto_loan.interest_rate_type' },
+    { name: 'liability.auto_loan.original_loan_amount', type: 'null', children: 'liability.auto_loan.original_loan_amount' },
+    { name: 'liability.auto_loan.closed_at', type: 'null', children: 'liability.auto_loan.closed_at' },
+    { name: 'liability.auto_loan.per_diem_amount', type: 'null', children: 'liability.auto_loan.per_diem_amount' },
+    { name: 'liability.auto_loan.expected_payoff_date', type: 'null', children: 'liability.auto_loan.expected_payoff_date' },
+    { name: 'liability.auto_loan.late_fees_amount', type: 'null', children: 'liability.auto_loan.late_fees_amount' },
+    { name: 'liability.auto_loan.past_due_balance', type: 'null', children: 'liability.auto_loan.past_due_balance' },
+    { name: 'liability.auto_loan.past_due_date', type: 'null', children: 'liability.auto_loan.past_due_date' },
+    { name: 'liability.auto_loan.past_due_status', type: 'null', children: 'liability.auto_loan.past_due_status' },
+    { name: 'liability.auto_loan.mileage_allocation', type: 'null', children: 'liability.auto_loan.mileage_allocation' },
+    { name: 'liability.auto_loan.past_due_amount', type: 'null', children: 'liability.auto_loan.past_due_amount' },
+    { name: 'liability.auto_loan.principal_balance', type: 'null', children: 'liability.auto_loan.principal_balance' },
+    // TODO[mdelcarmen]: text Mortgage
+    { name: 'liability.mortgage', type: 'object,null', children: 'liability.mortgage' },
+    { name: 'liability.mortgage.name', type: 'null', children: 'liability.mortgage.name' },
+    { name: 'liability.mortgage.balance', type: 'null', children: 'liability.mortgage.balance' },
+    { name: 'liability.mortgage.opened_at', type: 'null', children: 'liability.mortgage.opened_at' },
+    { name: 'liability.mortgage.term_length', type: 'null', children: 'liability.mortgage.term_length' },
+    { name: 'liability.mortgage.principal_balance', type: 'null', children: 'liability.mortgage.principal_balance' },
+    { name: 'liability.mortgage.original_loan_amount', type: 'null', children: 'liability.mortgage.original_loan_amount' },
+    { name: 'liability.mortgage.last_payment_amount', type: 'null', children: 'liability.mortgage.last_payment_amount' },
+    { name: 'liability.mortgage.last_payment_date', type: 'null', children: 'liability.mortgage.last_payment_date' },
+    { name: 'liability.mortgage.next_payment_due_date', type: 'null', children: 'liability.mortgage.next_payment_due_date' },
+    { name: 'liability.mortgage.next_payment_minimum_amount', type: 'null', children: 'liability.mortgage.next_payment_minimum_amount' },
+    { name: 'liability.mortgage.expected_payoff_date', type: 'null', children: 'liability.mortgage.expected_payoff_date' },
+    { name: 'liability.mortgage.interest_rate_percentage', type: 'null', children: 'liability.mortgage.interest_rate_percentage' },
+    { name: 'liability.mortgage.interest_rate_type', type: 'null', children: 'liability.mortgage.interest_rate_type' },
+    { name: 'liability.mortgage.sub_type', type: 'null', children: 'liability.mortgage.sub_type' },
+    { name: 'liability.mortgage.closed_at', type: 'null', children: 'liability.mortgage.closed_at' },
+    { name: 'liability.mortgage.escrow_balance', type: 'null', children: 'liability.mortgage.escrow_balance' },
+    { name: 'liability.mortgage.address_street', type: 'null', children: 'liability.mortgage.address_street' },
+    { name: 'liability.mortgage.address_city', type: 'null', children: 'liability.mortgage.address_city' },
+    { name: 'liability.mortgage.address_state', type: 'null', children: 'liability.mortgage.address_state' },
+    { name: 'liability.mortgage.address_zip', type: 'null', children: 'liability.mortgage.address_zip' },
+    { name: 'liability.mortgage.property_value', type: 'null', children: 'liability.mortgage.property_value' },
+    { name: 'liability.mortgage.past_due_status', type: 'null', children: 'liability.mortgage.past_due_status' },
+    { name: 'liability.mortgage.past_due_balance', type: 'null', children: 'liability.mortgage.past_due_balance' },
+    { name: 'liability.mortgage.past_due_date', type: 'null', children: 'liability.mortgage.past_due_date' },
+    { name: 'liability.mortgage.year_to_date_interest_paid', type: 'null', children: 'liability.mortgage.year_to_date_interest_paid' },
+    { name: 'liability.mortgage.year_to_date_principal_paid', type: 'null', children: 'liability.mortgage.year_to_date_principal_paid' },
+    { name: 'liability.mortgage.payoff_amount', type: 'null', children: 'liability.mortgage.payoff_amount' },
+    { name: 'liability.mortgage.payoff_amount_term', type: 'null', children: 'liability.mortgage.payoff_amount_term' },
+    { name: 'liability.mortgage.year_to_date_taxes_paid', type: 'null', children: 'liability.mortgage.year_to_date_taxes_paid' },
+    { name: 'liability.mortgage.year_start_principal_balance', type: 'null', children: 'liability.mortgage.year_start_principal_balance' },
+    // TODO[mdelcarmen]: text Credit Card
+    { name: 'liability.credit_card', type: 'object,null', children: 'liability.credit_card' },
+    { name: 'liability.credit_card.name', type: 'null', children: 'liability.credit_card.name' },
+    { name: 'liability.credit_card.balance', type: 'null', children: 'liability.credit_card.balance' },
+    { name: 'liability.credit_card.opened_at', type: 'null', children: 'liability.credit_card.opened_at' },
+    { name: 'liability.credit_card.last_payment_date', type: 'null', children: 'liability.credit_card.last_payment_date' },
+    { name: 'liability.credit_card.last_payment_amount', type: 'null', children: 'liability.credit_card.last_payment_amount' },
+    { name: 'liability.credit_card.next_payment_due_date', type: 'null', children: 'liability.credit_card.next_payment_due_date' },
+    { name: 'liability.credit_card.next_payment_minimum_amount', type: 'null', children: 'liability.credit_card.next_payment_minimum_amount' },
+    { name: 'liability.credit_card.last_statement_balance', type: 'null', children: 'liability.credit_card.last_statement_balance' },
+    { name: 'liability.credit_card.remaining_statement_balance', type: 'null', children: 'liability.credit_card.remaining_statement_balance' },
+    { name: 'liability.credit_card.available_credit', type: 'null', children: 'liability.credit_card.available_credit' },
+    { name: 'liability.credit_card.interest_rate_percentage', type: 'null', children: 'liability.credit_card.interest_rate_percentage' },
+    { name: 'liability.credit_card.interest_rate_type', type: 'null', children: 'liability.credit_card.interest_rate_type' },
+    { name: 'liability.credit_card.sub_type', type: 'null', children: 'liability.credit_card.sub_type' },
+    { name: 'liability.credit_card.term_length', type: 'null', children: 'liability.credit_card.term_length' },
+    { name: 'liability.credit_card.closed_at', type: 'null', children: 'liability.credit_card.closed_at' },
+    { name: 'liability.credit_card.past_due_status', type: 'null', children: 'liability.credit_card.past_due_status' },
+    { name: 'liability.credit_card.past_due_balance', type: 'null', children: 'liability.credit_card.past_due_balance' },
+    { name: 'liability.credit_card.past_due_date', type: 'null', children: 'liability.credit_card.past_due_date' },
+    { name: 'liability.credit_card.auto_pay_status', type: 'null', children: 'liability.credit_card.auto_pay_status' },
+    { name: 'liability.credit_card.auto_pay_amount', type: 'null', children: 'liability.credit_card.auto_pay_amount' },
+    { name: 'liability.credit_card.auto_pay_date', type: 'null', children: 'liability.credit_card.auto_pay_date' },
+    { name: 'liability.credit_card.credit_limit', type: 'null', children: 'liability.credit_card.credit_limit' },
+    { name: 'liability.credit_card.pending_purchase_authorization_amount', type: 'null', children: 'liability.credit_card.pending_purchase_authorization_amount' },
+    { name: 'liability.credit_card.pending_credit_authorization_amount', type: 'null', children: 'liability.credit_card.pending_credit_authorization_amount' },
+    { name: 'liability.credit_card.interest_saving_balance', type: 'null', children: 'liability.credit_card.interest_saving_balance' },
+    { name: 'liability.credit_card.next_statement_date', type: 'null', children: 'liability.credit_card.next_statement_date' },
+    // TODO[mdelcarmen]: text Personal Loan
+    { name: 'liability.personal_loan', type: 'object,null', children: 'liability.personal_loan' },
+    { name: 'liability.personal_loan.name', type: 'null', children: 'liability.personal_loan.name' },
+    { name: 'liability.personal_loan.balance', type: 'null', children: 'liability.personal_loan.balance' },
+    { name: 'liability.personal_loan.opened_at', type: 'null', children: 'liability.personal_loan.opened_at' },
+    { name: 'liability.personal_loan.original_loan_amount', type: 'null', children: 'liability.personal_loan.original_loan_amount' },
+    { name: 'liability.personal_loan.sub_type', type: 'null', children: 'liability.personal_loan.sub_type' },
+    { name: 'liability.personal_loan.term_length', type: 'null', children: 'liability.personal_loan.term_length' },
+    { name: 'liability.personal_loan.closed_at', type: 'null', children: 'liability.personal_loan.closed_at' },
+    { name: 'liability.personal_loan.last_payment_amount', type: 'null', children: 'liability.personal_loan.last_payment_amount' },
+    { name: 'liability.personal_loan.last_payment_date', type: 'null', children: 'liability.personal_loan.last_payment_date' },
+    { name: 'liability.personal_loan.next_payment_minimum_amount', type: 'null', children: 'liability.personal_loan.next_payment_minimum_amount' },
+    { name: 'liability.personal_loan.next_payment_due_date', type: 'null', children: 'liability.personal_loan.next_payment_due_date' },
+    { name: 'liability.personal_loan.interest_rate_type', type: 'null', children: 'liability.personal_loan.interest_rate_type' },
+    { name: 'liability.personal_loan.interest_rate_percentage', type: 'null', children: 'liability.personal_loan.interest_rate_percentage' },
+    { name: 'liability.personal_loan.expected_payoff_date', type: 'null', children: 'liability.personal_loan.expected_payoff_date' },
+    {
       name: 'metadata',
       type: 'object,null',
       children: (
@@ -366,7 +599,7 @@ import ObjectPropList from '../../../../src/components/ObjectPropList';
           children: (
             <div>
               The account was created using <a href="/guides/quick-start/retrieve-an-entitys-debts">Method Data</a> and
-              is either fully paid-off or no longer exists. Accounts in `closed` will not have capabilities.
+              is either fully paid-off or no longer exists. Accounts in <code>closed</code> will not have capabilities.
             </div>
           ),
         },
@@ -385,6 +618,35 @@ import ObjectPropList from '../../../../src/components/ObjectPropList';
     },
     {
       name: 'capabilities',
+      type: 'enum',
+      children: (
+        <div>
+          <p>Capabilities of the account</p>
+          The following are possible capabilities an account can have. This indicates if an account is
+          capable of receiving money (as a destination) or sending money (as a source).
+          <hr className="dotted-divider" />
+          ℹ️ ACH accounts, require an <a href="/api/core/accounts/ach-verification/object">additional verification step</a> to
+          start sending money.
+        </div>
+      ),
+      enums: [
+        { name: 'payments:receive', children: 'The account can be used as a payment destination.' },
+        { name: 'payments:send', children: 'The account can be used as a payment source.' },
+        {
+          name: 'data:retrieve',
+          children: (
+            <div>
+              The account has additional liability information
+              from <a href="/guides/quick-start/retrieve-an-entitys-debts">Method Data</a>.
+            </div>
+          )
+        },
+        { name: 'data:sync', children: 'The account has enhanced data and live data refresh from FI via Method Sync.' },
+      ],
+    },
+    {
+      // TODO[mdelcarmen]: text
+      name: 'available_capabilities',
       type: 'enum',
       children: (
         <div>
