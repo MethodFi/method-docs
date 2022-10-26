@@ -363,7 +363,13 @@ import ObjectPropList from '../../../../src/components/ObjectPropList';
       type: 'enum',
       children: (
         <div>
-          something here about data statuses
+          <p>
+            something about data_status...
+          </p>
+          The following are possible values for <code>liability.data_status</code>. 
+          <hr className="dotted-divider"/>
+          <strong>Example</strong>: If an account has <code>liability.type</code> equal to <code>credit_card</code>,
+          then <code>liability.credit_card</code> will be populated with credit card information.
         </div>
       ),
       enums: [
@@ -426,15 +432,23 @@ import ObjectPropList from '../../../../src/components/ObjectPropList';
     },
     // TODO[mdelcarmen]: text
     { name: 'liability.hash', type: 'string', children: 'The ownership type ...' },
+    
     // TODO[mdelcarmen]: text Loan
-    { name: 'liability.loan', type: 'object,null', children: 'liability.loan' },
-    { name: 'liability.loan.name', type: 'null', children: 'liability.loan.name' },
-    { name: 'liability.loan.balance', type: 'null', children: 'liability.loan.balance' },
-    { name: 'liability.loan.opened_at', type: 'null', children: 'liability.loan.opened_at' },
-    { name: 'liability.loan.original_loan_amount', type: 'null', children: 'liability.loan.original_loan_amount' },
-    { name: 'liability.loan.sub_type', type: 'null', children: 'liability.loan.sub_type' },
-    { name: 'liability.loan.term_length', type: 'null', children: 'liability.loan.term_length' },
-    { name: 'liability.loan.closed_at', type: 'null', children: 'liability.loan.closed_at' },
+    { 
+      name: 'liability.loan', 
+      type: 'object,null', 
+      children: (
+        <div> 
+          Loan information for the liability. This will only be populated if <code>liability.type</code> is equal to <code>loan</code>.
+        </div>
+        ) 
+    },
+    { name: 'liability.loan.name', type: 'string,null', children: 'Name of the loan.' },
+    { name: 'liability.loan.balance', type: 'number,null', children: 'Current outstanding balance on this liability.' },
+    { name: 'liability.loan.opened_at', type: 'string,null', children: 'Date the loan account was opened.' },
+    { name: 'liability.loan.original_loan_amount', type: 'string,null', children: 'The original amount of the loan.' },
+    { name: 'liability.loan.term_length', type: 'string,null', children: 'The term length of the loan.' },
+    { name: 'liability.loan.closed_at', type: 'null', children: 'Date the loan account was closed' },
     { name: 'liability.loan.last_payment_amount', type: 'null', children: 'liability.loan.last_payment_amount' },
     { name: 'liability.loan.last_payment_date', type: 'null', children: 'liability.loan.last_payment_date' },
     { name: 'liability.loan.next_payment_minimum_amount', type: 'null', children: 'liability.loan.next_payment_minimum_amount' },
@@ -472,7 +486,7 @@ import ObjectPropList from '../../../../src/components/ObjectPropList';
     { name: 'liability.auto_loan.payoff_amount_term', type: 'null', children: 'liability.auto_loan.payoff_amount_term' },
     { name: 'liability.auto_loan.last_payment_amount', type: 'null', children: 'liability.auto_loan.last_payment_amount' },
     { name: 'liability.auto_loan.last_payment_date', type: 'null', children: 'liability.auto_loan.last_payment_date' },
-    { name: 'liability.auto_loan.next_payment_due_date', type: 'null', children: 'liability.auto_loan.next_payment_due_date' },
+    { name: 'liability.auto_loan.next_payment_due_date', type: 'null' },
     { name: 'liability.auto_loan.next_payment_minimum_amount', type: 'null', children: 'liability.auto_loan.next_payment_minimum_amount' },
     { name: 'liability.auto_loan.interest_rate_percentage', type: 'null', children: 'liability.auto_loan.interest_rate_percentage' },
     { name: 'liability.auto_loan.interest_rate_type', type: 'null', children: 'liability.auto_loan.interest_rate_type' },
@@ -487,82 +501,184 @@ import ObjectPropList from '../../../../src/components/ObjectPropList';
     { name: 'liability.auto_loan.mileage_allocation', type: 'null', children: 'liability.auto_loan.mileage_allocation' },
     { name: 'liability.auto_loan.past_due_amount', type: 'null', children: 'liability.auto_loan.past_due_amount' },
     { name: 'liability.auto_loan.principal_balance', type: 'null', children: 'liability.auto_loan.principal_balance' },
+    
+    
     // TODO[mdelcarmen]: text Mortgage
-    { name: 'liability.mortgage', type: 'object,null', children: 'liability.mortgage' },
-    { name: 'liability.mortgage.name', type: 'null', children: 'liability.mortgage.name' },
-    { name: 'liability.mortgage.balance', type: 'null', children: 'liability.mortgage.balance' },
-    { name: 'liability.mortgage.opened_at', type: 'null', children: 'liability.mortgage.opened_at' },
-    { name: 'liability.mortgage.term_length', type: 'null', children: 'liability.mortgage.term_length' },
-    { name: 'liability.mortgage.principal_balance', type: 'null', children: 'liability.mortgage.principal_balance' },
-    { name: 'liability.mortgage.original_loan_amount', type: 'null', children: 'liability.mortgage.original_loan_amount' },
-    { name: 'liability.mortgage.last_payment_amount', type: 'null', children: 'liability.mortgage.last_payment_amount' },
-    { name: 'liability.mortgage.last_payment_date', type: 'null', children: 'liability.mortgage.last_payment_date' },
-    { name: 'liability.mortgage.next_payment_due_date', type: 'null', children: 'liability.mortgage.next_payment_due_date' },
-    { name: 'liability.mortgage.next_payment_minimum_amount', type: 'null', children: 'liability.mortgage.next_payment_minimum_amount' },
-    { name: 'liability.mortgage.expected_payoff_date', type: 'null', children: 'liability.mortgage.expected_payoff_date' },
-    { name: 'liability.mortgage.interest_rate_percentage', type: 'null', children: 'liability.mortgage.interest_rate_percentage' },
-    { name: 'liability.mortgage.interest_rate_type', type: 'null', children: 'liability.mortgage.interest_rate_type' },
-    { name: 'liability.mortgage.sub_type', type: 'null', children: 'liability.mortgage.sub_type' },
-    { name: 'liability.mortgage.closed_at', type: 'null', children: 'liability.mortgage.closed_at' },
-    { name: 'liability.mortgage.escrow_balance', type: 'null', children: 'liability.mortgage.escrow_balance' },
-    { name: 'liability.mortgage.address_street', type: 'null', children: 'liability.mortgage.address_street' },
-    { name: 'liability.mortgage.address_city', type: 'null', children: 'liability.mortgage.address_city' },
-    { name: 'liability.mortgage.address_state', type: 'null', children: 'liability.mortgage.address_state' },
-    { name: 'liability.mortgage.address_zip', type: 'null', children: 'liability.mortgage.address_zip' },
-    { name: 'liability.mortgage.property_value', type: 'null', children: 'liability.mortgage.property_value' },
-    { name: 'liability.mortgage.past_due_status', type: 'null', children: 'liability.mortgage.past_due_status' },
+    { 
+      name: 'liability.mortgage', 
+      type: 'object,null',
+      children: (
+        <div> 
+          Mortgage information that will be populated if <code>liability.type</code> is equal to <code>mortgage</code>.
+        </div>
+        ) 
+    },
+    { name: 'liability.mortgage.name', type: 'string,null', children: 'Name of the mortgage account.' },
+    { name: 'liability.mortgage.balance', type: 'number,null', children: 'Current outstanding balance on this liability.' },
+    { name: 'liability.mortgage.opened_at', type: 'string,null', children: 'Date that the account was opened.' },
+    { name: 'liability.mortgage.term_length', type: 'number,null', children: 'Term length of the mortgage.' },
+    { name: 'liability.mortgage.principal_balance', type: 'number,null', children: 'liability.mortgage.principal_balance' },
+    { name: 'liability.mortgage.original_loan_amount', type: 'number,null', children: 'The original amount of the mortgage' },
+    { name: 'liability.mortgage.last_payment_amount', type: 'number,null', children: 'Amount of last payment on this account.' },
+    { name: 'liability.mortgage.last_payment_date', type: 'string,null', children: 'Date of last payment on this account.' },
+    { name: 'liability.mortgage.next_payment_due_date', type: 'string,null', children: 'Next payment\'s due date.' },
+    { name: 'liability.mortgage.next_payment_minimum_amount', type: 'number,null', children: 'Next minimum payment due for this account.' },
+    { name: 'liability.mortgage.expected_payoff_date', type: 'string,null', children: 'Expected date of payoff.' },
+    { name: 'liability.mortgage.interest_rate_percentage', type: 'number,null', children: 'The current interest rate percentage on this account' },
+    { 
+      name: 'liability.mortgage.interest_rate_type', 
+      type: 'enum,null', 
+      children: 'The type of interest rate that applies to this account.',
+      enums: [
+        { name: 'fixed' },
+        { name: 'variable' },
+      ]
+    },
+    { name: 'liability.mortgage.sub_type', type: 'enum,null', children: 'liability.mortgage.sub_type' },
+    { name: 'liability.mortgage.closed_at', type: 'string,null', children: 'Date of closing if the account has been closed.' },    {
+      name: 'liability.mortgage.past_due_status',
+      type: 'enum,null',
+      children: 'The past due status of the account.',
+      enums: [
+        { name: 'unknown' },
+        { name: 'overdue' },
+        { name: 'on_time' },
+      ]
+    },
     { name: 'liability.mortgage.past_due_balance', type: 'null', children: 'liability.mortgage.past_due_balance' },
     { name: 'liability.mortgage.past_due_date', type: 'null', children: 'liability.mortgage.past_due_date' },
-    { name: 'liability.mortgage.year_to_date_interest_paid', type: 'null', children: 'liability.mortgage.year_to_date_interest_paid' },
-    { name: 'liability.mortgage.year_to_date_principal_paid', type: 'null', children: 'liability.mortgage.year_to_date_principal_paid' },
-    { name: 'liability.mortgage.payoff_amount', type: 'null', children: 'liability.mortgage.payoff_amount' },
+    { name: 'liability.mortgage.payoff_amount', type: 'null', children: 'payoff amount' },
     { name: 'liability.mortgage.payoff_amount_term', type: 'null', children: 'liability.mortgage.payoff_amount_term' },
-    { name: 'liability.mortgage.year_to_date_taxes_paid', type: 'null', children: 'liability.mortgage.year_to_date_taxes_paid' },
-    { name: 'liability.mortgage.year_start_principal_balance', type: 'null', children: 'liability.mortgage.year_start_principal_balance' },
+    { name: 'liability.mortgage.escrow_balance', type: 'null', children: 'liability.mortgage.escrow_balance' },
+    { name: 'liability.mortgage.address_street', type: 'null', children: 'The street associated with the mortgage address.' },
+    { name: 'liability.mortgage.address_city', type: 'null', children: 'The city associated with the mortgage address.' },
+    { name: 'liability.mortgage.address_state', type: 'null', children: 'The state associated with the mortgage address.' },
+    { name: 'liability.mortgage.address_zip', type: 'null', children: 'The zip code associated with the mortgage address.' },
+    { name: 'liability.mortgage.property_value', type: 'null', children: 'The current estimated property value associated with the mortgage.' },
+    { name: 'liability.mortgage.year_to_date_taxes_paid', type: 'null', children: 'The year to date taxes paid on this mortgage.' },
+    { name: 'liability.mortgage.year_to_date_interest_paid', type: 'null', children: 'The year to date interest paid on this mortgage.' },
+    { name: 'liability.mortgage.year_to_date_principal_paid', type: 'null', children: 'The year to date principal paid on this mortgage' },
+    { name: 'liability.mortgage.year_start_principal_balance', type: 'null', children: 'The current year\'s starting principal balance.' },
+   
     // TODO[mdelcarmen]: text Credit Card
-    { name: 'liability.credit_card', type: 'object,null', children: 'liability.credit_card' },
-    { name: 'liability.credit_card.name', type: 'null', children: 'liability.credit_card.name' },
-    { name: 'liability.credit_card.balance', type: 'null', children: 'liability.credit_card.balance' },
-    { name: 'liability.credit_card.opened_at', type: 'null', children: 'liability.credit_card.opened_at' },
-    { name: 'liability.credit_card.last_payment_date', type: 'null', children: 'liability.credit_card.last_payment_date' },
-    { name: 'liability.credit_card.last_payment_amount', type: 'null', children: 'liability.credit_card.last_payment_amount' },
-    { name: 'liability.credit_card.next_payment_due_date', type: 'null', children: 'liability.credit_card.next_payment_due_date' },
-    { name: 'liability.credit_card.next_payment_minimum_amount', type: 'null', children: 'liability.credit_card.next_payment_minimum_amount' },
-    { name: 'liability.credit_card.last_statement_balance', type: 'null', children: 'liability.credit_card.last_statement_balance' },
-    { name: 'liability.credit_card.remaining_statement_balance', type: 'null', children: 'liability.credit_card.remaining_statement_balance' },
-    { name: 'liability.credit_card.available_credit', type: 'null', children: 'liability.credit_card.available_credit' },
-    { name: 'liability.credit_card.interest_rate_percentage', type: 'null', children: 'liability.credit_card.interest_rate_percentage' },
-    { name: 'liability.credit_card.interest_rate_type', type: 'null', children: 'liability.credit_card.interest_rate_type' },
-    { name: 'liability.credit_card.sub_type', type: 'null', children: 'liability.credit_card.sub_type' },
-    { name: 'liability.credit_card.term_length', type: 'null', children: 'liability.credit_card.term_length' },
-    { name: 'liability.credit_card.closed_at', type: 'null', children: 'liability.credit_card.closed_at' },
-    { name: 'liability.credit_card.past_due_status', type: 'null', children: 'liability.credit_card.past_due_status' },
-    { name: 'liability.credit_card.past_due_balance', type: 'null', children: 'liability.credit_card.past_due_balance' },
-    { name: 'liability.credit_card.past_due_date', type: 'null', children: 'liability.credit_card.past_due_date' },
-    { name: 'liability.credit_card.auto_pay_status', type: 'null', children: 'liability.credit_card.auto_pay_status' },
-    { name: 'liability.credit_card.auto_pay_amount', type: 'null', children: 'liability.credit_card.auto_pay_amount' },
-    { name: 'liability.credit_card.auto_pay_date', type: 'null', children: 'liability.credit_card.auto_pay_date' },
-    { name: 'liability.credit_card.credit_limit', type: 'null', children: 'liability.credit_card.credit_limit' },
-    { name: 'liability.credit_card.pending_purchase_authorization_amount', type: 'null', children: 'liability.credit_card.pending_purchase_authorization_amount' },
-    { name: 'liability.credit_card.pending_credit_authorization_amount', type: 'null', children: 'liability.credit_card.pending_credit_authorization_amount' },
-    { name: 'liability.credit_card.interest_saving_balance', type: 'null', children: 'liability.credit_card.interest_saving_balance' },
-    { name: 'liability.credit_card.next_statement_date', type: 'null', children: 'liability.credit_card.next_statement_date' },
+    { 
+      name: 'liability.credit_card', 
+      type: 'object,null',
+      children: (
+        <div> 
+          Credit card information that will be populated if <code>liability.type</code> is equal to <code>credit_card</code>.
+        </div>
+        ) 
+    },
+    { name: 'liability.credit_card.name', type: 'null', children: 'Name of the credit card account.' },
+    { name: 'liability.credit_card.balance', type: 'null', children: 'Current outstanding balance on this liability.' },
+    { name: 'liability.credit_card.opened_at', type: 'null', children: 'Date that the account was opened.' },
+    {
+      name: 'liability.credit_card.sub_type',
+      type: 'enum,null',
+      children: 'Sub type of the credit card.',
+      enums: [
+        { name: 'business' },
+        { name: 'charge' },
+        { name: 'flexible_spending' },
+        { name: 'secured' },
+      ]
+    },
+    { name: 'liability.credit_card.closed_at', type: 'string,null', children: 'Date of closing if the account has been closed.' },
+    { name: 'liability.credit_card.last_payment_amount', type: 'number,null', children: 'Amount of last payment on this account.' },
+    { name: 'liability.credit_card.last_payment_date', type: 'string,null', children: 'Date of last payment on this account.' },
+    { name: 'liability.credit_card.next_payment_minimum_amount', type: 'number,null', children: 'Next minimum payment due for this account.' },
+    { name: 'liability.credit_card.next_payment_due_date', type: 'string,null', children: 'Next payment\'s due date.' },
+    { name: 'liability.credit_card.last_statement_balance', type: 'null', children: 'Last statement\'s balance.' },
+    { name: 'liability.credit_card.remaining_statement_balance', type: 'null', children: 'The remaining statement balance on this account.' },
+    { name: 'liability.credit_card.next_statement_date', type: 'null', children: 'Date on which the next account statement will be issued.' },
+    { 
+      name: 'liability.credit_card.past_due_status',
+      type: 'null',
+      children: 'The past due status of the account.',
+      enums: [
+        { name: 'unknown' },
+        { name: 'overdue' },
+        { name: 'on_time' },
+      ]
+    },
+    { name: 'liability.credit_card.past_due_balance', type: 'number,null', children: 'The past due balance on this account.' },
+    { name: 'liability.credit_card.past_due_date', type: 'nmuber,null', children: 'The date from which the account is past due.' },
+    { 
+      name: 'liability.credit_card.auto_pay_status',
+      type: 'enum,null',
+      children: 'The auto pay status on this account.',
+      enums: [
+        { name: 'active' },
+        { name: 'inactive' },
+        { name: 'unknown' },
+      ]
+    },
+    { name: 'liability.credit_card.auto_pay_amount', type: 'number,null', children: 'The auto pay amount set on this account.' },
+    { name: 'liability.credit_card.auto_pay_date', type: 'string,null', children: 'The auto pay date set on this account.' },
+    { name: 'liability.credit_card.interest_rate_percentage', type: 'number,null', children: 'The current interest rate percentage on this account' },
+    { 
+      name: 'liability.credit_card.interest_rate_type', 
+      type: 'enum,null', 
+      children: 'The type of interest rate that applies to this account.',
+      enums: [
+        { name: 'fixed' },
+        { name: 'variable' },
+      ]
+    },
+    { name: 'liability.credit_card.available_credit', type: 'number,null', children: 'The available credit on this account.' },
+    { name: 'liability.credit_card.credit_limit', type: 'number,null', children: 'The credit limit set on this account.' },
+    // @TODO - Are the following relevant? no liabilities found
+    // { name: 'liability.credit_card.term_length', type: 'null', children: 'liability.credit_card.term_length' },
+    // { name: 'liability.credit_card.pending_purchase_authorization_amount', type: 'null', children: 'liability.credit_card.pending_purchase_authorization_amount' },
+    // { name: 'liability.credit_card.pending_credit_authorization_amount', type: 'null', children: 'liability.credit_card.pending_credit_authorization_amount' },
+    // { name: 'liability.credit_card.interest_saving_balance', type: 'null', children: 'liability.credit_card.interest_saving_balance' },
+    
     // TODO[mdelcarmen]: text Personal Loan
-    { name: 'liability.personal_loan', type: 'object,null', children: 'liability.personal_loan' },
-    { name: 'liability.personal_loan.name', type: 'null', children: 'liability.personal_loan.name' },
-    { name: 'liability.personal_loan.balance', type: 'null', children: 'liability.personal_loan.balance' },
-    { name: 'liability.personal_loan.opened_at', type: 'null', children: 'liability.personal_loan.opened_at' },
-    { name: 'liability.personal_loan.original_loan_amount', type: 'null', children: 'liability.personal_loan.original_loan_amount' },
-    { name: 'liability.personal_loan.sub_type', type: 'null', children: 'liability.personal_loan.sub_type' },
-    { name: 'liability.personal_loan.term_length', type: 'null', children: 'liability.personal_loan.term_length' },
-    { name: 'liability.personal_loan.closed_at', type: 'null', children: 'liability.personal_loan.closed_at' },
-    { name: 'liability.personal_loan.last_payment_amount', type: 'null', children: 'liability.personal_loan.last_payment_amount' },
-    { name: 'liability.personal_loan.last_payment_date', type: 'null', children: 'liability.personal_loan.last_payment_date' },
-    { name: 'liability.personal_loan.next_payment_minimum_amount', type: 'null', children: 'liability.personal_loan.next_payment_minimum_amount' },
-    { name: 'liability.personal_loan.next_payment_due_date', type: 'null', children: 'liability.personal_loan.next_payment_due_date' },
-    { name: 'liability.personal_loan.interest_rate_type', type: 'null', children: 'liability.personal_loan.interest_rate_type' },
-    { name: 'liability.personal_loan.interest_rate_percentage', type: 'null', children: 'liability.personal_loan.interest_rate_percentage' },
-    { name: 'liability.personal_loan.expected_payoff_date', type: 'null', children: 'liability.personal_loan.expected_payoff_date' },
+    { 
+      name: 'liability.personal_loan', 
+      type: 'object,null',
+      children: (
+        <div> 
+          Personal loan information that will be populated if <code>liability.type</code> is equal to <code>personal_loan</code>.
+        </div>
+        ) 
+    },
+    { name: 'liability.personal_loan.name', type: 'null', children: 'Name of the personal loan account.' },
+    { name: 'liability.personal_loan.balance', type: 'null', children: 'Current outstanding balance on this liability.' },
+    { name: 'liability.personal_loan.opened_at', type: 'null', children: 'Date that the account was opened.' },
+    { name: 'liability.personal_loan.original_loan_amount', type: 'null', children: 'The original amount of the personal loan.' },
+    {
+      name: 'liability.personal_loan.sub_type',
+      type: 'enum,null',
+      children: 'Sub type of the personal loan.',
+      enums: [
+        { name: 'heloc' },
+        { name: 'lease' },
+        { name: 'line_of_credit' },
+        { name: 'note' },
+        { name: 'purchase' },
+        { name: 'secured' },
+        { name: 'unsecured' },
+      ]
+    },
+    { name: 'liability.personal_loan.term_length', type: 'number,null', children: 'Term length of the personal loan.' },
+    { name: 'liability.personal_loan.closed_at', type: 'string,null', children: 'Date of closing if the account has been closed.' },
+    { name: 'liability.personal_loan.last_payment_amount', type: 'number,null', children: 'Amount of last payment on this account.' },
+    { name: 'liability.personal_loan.last_payment_date', type: 'string,null', children: 'Date of last payment on this account.' },
+    { name: 'liability.personal_loan.next_payment_minimum_amount', type: 'number,null', children: 'Next minimum payment due on this account.' },
+    { name: 'liability.personal_loan.next_payment_due_date', type: 'string,null', children: 'Next payment due date.' },
+    { 
+      name: 'liability.personal_loan.interest_rate_type', 
+      type: 'enum,null', 
+      children: 'The type of interest rate that applies to this account.',
+      enums: [
+        { name: 'fixed' },
+        { name: 'variable' },
+      ]
+    },
+    { name: 'liability.personal_loan.interest_rate_percentage', type: 'number,null', children: 'The current interest rate percentage on this account' },
+    { name: 'liability.personal_loan.expected_payoff_date', type: 'string,null', children: 'Expected date of payoff.' },
     {
       name: 'metadata',
       type: 'object,null',
