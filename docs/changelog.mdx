@@ -6,6 +6,32 @@ See the latest changes and updates to Method's API.
 🚀 Method is the easiest way to embed debt repayment into your app. ([Learn More](https://methodfi.com))
 :::
 
+### December 2022
+* **✨ Winter cleaning**: Focused on fixing a backlog of issues, improving developer experience, and general quality of life improvements throughout!
+
+### November 2022
+
+* **🪪 SSN in entities**: For our partners managing their own KYC, you can now pass last 4 or the entire SSN when creating / updating an entity.
+* **🧑‍💻 Dashboard CRUD**: You can now perform CRUD operations on your Method Dashboard on almost all Method endpints.
+* **🕵️ Intelligent phone verification**: Method Auth element utilizes telecom risk signals to prevent account takeover attacks and improve the verification experience.
+* **🗣️ Improved webhook performance**: Webhooks are now delivered faster and more reliably.
+* **🐞 Bug + Performance Improvements**: Squashed many bugs with general performance improvements to the API and Method Sync.
+
+### October 2022
+
+* **🏦 Payment Status flag**: Accounts now more clearly indicate the supported payment type.
+* **🔄 Method Sync in autopilot**: Method Sync can now be utilized either on-demand or nightly opportunist syncs.
+* **🌙 Nightly pull improvements**: Improved the nightly funds pull to be more efficient and accurate.
+* **🛡️ Dynamic lockouts**: Method Data auth sessions now dynamically lockout based on the number of failed attempts and entity risk level.
+* **🐞 Bug + Performance Improvements**: Squashed many bugs with general performance improvements to the API and Method Sync.
+
+### September 2022
+
+* **🛡️ Consent flow via Method Auth Element**: End-users will now be prompted to consent the account's they'll like to share with your app.
+* **📫 Improved Closed Account**: Method Sync can now detect accounts that have been closed and will return a `closed` status.
+* **🏦 Updated Micro Deposit flow**: Updated to comply with NACHA's Micro-Entries (Phase 1) rule.
+* **🐞 Bug + Performance Improvements**: Squashed many bugs with general performance improvements to the API and Method Sync.
+
 ### August 2022
 
 * **🏦 Payment support** All liability connected with Method Data can now be paid using Method Payments. No user interaction or API changes required!
@@ -130,32 +156,3 @@ account level ([docs](/api/core/accounts/object#account-capabilities))
 * **Generate Reports**: Allow users to generate reports using the `/reports` endpoints. ([docs](/api/core/reports/object))
 * **API Client for Node.js**: Created an API client library for node.js. ([docs](/libraries#api-client-libraries))
 * **Elements Javascript SDK**: Created a Javascript SDK for Elements. ([docs](/libraries#elements-client-libraries))
-
-### July 2021
-
-* **Guides**: Added a new guides section on the docs. Check out the [first guide](/guides/integrations/using-plaid).
-* **Elements**: Added a new elements section on the docs. Elements will encapsulate all embeddable UI components, including Link. ([docs](/api/elements/intro))
-* **Link deprecation**: Deprecated Method Link. Link will now be a part of Method Elements. ([docs](/api/elements/intro))
-
-### June 2021
-
-* **Entity capabilities**: An entity will have specific capabilities based on the data provided. ([docs](/api/core/entities/object#capabilities))
-* **Receive Only entities**: This entity type is being deprecated. See docs for more info. ([docs](/api/core/entities/object#capabilities))
-* **Mask in accounts**: A liabilities' mask (last 4) is now returned in the Account object. ([docs](/api/core/accounts/object))
-
-### May 2021
-
-* **Merchant logos**: Extended coverage of logos of merchants ([docs](/api/core/merchants/object))
-* **Receive Only entities**: Allows you to push money to an entities' accounts without needing extensive KYC / AML ([docs](/api/core/entities/create-receive-only))
-* **Payment simulator**: The dev environment now simulates a payment moving through its various states. ([docs](/api/environments))
-* **Improved Plaid & MX support**: Significantly improved coverage of merchants mapping to Plaid & MX aggregators ([docs](/api/core/merchants/list))
-
-### April 2021
-
-* **Hello World**: Method is live. Thanks for all the support. 🚀 ([Product Hunt](https://www.producthunt.com/posts/method-financial))
-* **Update Entity**: You can now update entities before initiating KYC / AML verification. ([docs](/api/core/entities/update))
-* **BIN Lookup**: Use our BIN endpoint to get metadata for a BIN ("Bank Identification Number"). ([docs](/api/utils/bins/object))
-
-### March 2021
-* **Method Link**: Method Link handles the tokenization, and creation of the account on your behalf. ([docs](/api/link/intro))
-
