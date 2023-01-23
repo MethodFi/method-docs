@@ -171,35 +171,9 @@ module.exports = {
         'api/core/reports/download',
       ],
     },
-    // {
-    //   type: 'category',
-    //   label: 'Connections',
-    //   items: [
-    //     'api/core/connections/object',
-    //     'api/core/connections/list',
-    //     'api/core/connections/retrieve',
-    //     'api/core/connections/update',
-    //   ],
-    // },
     { label: 'Elements', className: 'sidebar-section-header sidebar-icon-api-elements', type: 'link', href: '/api/elements/intro' },
     'api/elements/intro',
     'api/elements/events',
-    {
-      type: 'category',
-      label: 'Link',
-      items: [
-        'api/elements/link/intro',
-        {
-          type: 'category',
-          label: 'Implementation',
-          items: [
-            'api/elements/link/implementation/create-token',
-            'api/elements/link/implementation/launch-link',
-            'api/elements/link/implementation/exchange-public-accounts',
-          ],
-        },
-      ],
-    },
     {
       type: 'category',
       label: 'Auth',
@@ -306,23 +280,5 @@ module.exports = {
         'api/utils/routing-numbers/retrieve',
       ],
     },
-    // { label: 'Method Link (Deprecated)', className: 'sidebar-section-header sidebar-icon-api-link', type: 'link', href: '/api/link/intro' },
-    // 'api/link/intro',
-    // {
-    //   type: 'category',
-    //   label: 'Implementation Guide',
-    //   items: [
-    //     'api/link/implementation/create-token',
-    //     'api/link/implementation/launch-link',
-    //     'api/link/implementation/exchange-public-accounts',
-    //   ],
-    // },
-    // {
-    //   type: 'category',
-    //   label: 'Libraries',
-    //   items: [
-    //     { type: 'link', href: 'https://github.com/MethodFi/react-method-link', label: 'Web (React)' },
-    //   ],
-    // },
   ],
 };
