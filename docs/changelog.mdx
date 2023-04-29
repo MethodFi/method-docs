@@ -3,8 +3,39 @@
 See the latest changes and updates to Method's API.
 
 :::tip **About Method**
-🚀 Method is the easiest way to embed debt repayment into your app. ([Learn More](https://methodfi.com))
+🚀 Method is the easiest way to access consumer liability data and payments. ([Learn More](https://methodfi.com))
 :::
+
+### April 2023
+* **👩🏻‍🎨 New Element UI**: We have revamped the look and feel of all Method Elements to match our upcoming revamp. We'd love to hear what you think!
+* **🤖 GPT4 for Syncs**: Revamped our Method Sync product to utilize GPT4 for many internal processes. The result is much higher data quality, improved cadence of syncs, and much higher SLA.
+* **🛰️ Transaction Stream**: Real-time transaction data for all credit cards is now generally available. Contact your Method PoC for access!
+* **🧮 Improved Sync coverage**: Using GPT4 for Syncs, we will now more quickly onboard long-tail merchants for real-time data updates.
+* **🛡️ Parallel Auth in Auth Element**: Non KYC'd end-users will now experience a streamlined and fast onboarding experience using Parallel Auth. Parallel Auth utilizes a fusion of real-time data sources to perform IDV removing the need for Knowledge Based Authentication.
+
+### March 2023
+* **✨ AMEX Support**: AMEX is now fully supported across Method Data + Payments for all of our partners.
+* **🤝 Subteam API**: Enterprise partners can now create subteams with independent API keys and access controls.
+* **🧾 Daily ACH report**: Nightly settlement partners can now retrieve a report outlining the summary of that day's settlement.
+* **🛡 Improved messaging in Element**: Messaging and alerts throughout all Method Element is now dynamic and optimized for end-user conversion.
+* **🐞 Bug + Performance Improvements**: Squashed many bugs with general performance improvements to the API and Method Sync.
+
+### February 2023
+* **🏎️ Performance month**: Focused on improving performance across every Method endpoint! Every endpoint has been optimized for performance, by reducing overhead and unnecessary internal calls.
+* **💸 Balance Transfer Element**: Our latest element is now general available to select partners. The Balance Transfer (BT) element combines IDV, account linking, and money movement in one-embeddable component.
+* **🧾 Payment History**: Real-time payment history for a liability across all major financial institutions.
+* **🧮 Merchant number formats**: You can now see the expected account number format and length within the `merchants` GET response.
+* **🔎 Improved account search**: You can now query for accounts by passing an array of `holder_ids`.
+* **🕵🏻 Improved KYC & watchlist matches**: Fine-tuned our matching algorithms for our non-KYC managed partners to optimize for match-rate & conversion.
+* **✨ Improved merchants lookup API**: Improved the fuzzy match logic and performance for the Merchants lookup API call.
+
+### January 2023
+* **🪪 Auth Element for IDV-only**: Select partners can utilize Method's Auth technology as part of their onboarding to optimize their own IDV process.
+* **🏦 Expanded traditional coverage**: Expanded payment & data coverage for traditional liabilities such as insurance, telecom, etc.
+* **🛰️ New: `data_source` account flag**: Improved visibility on source of liability data per account.
+* **🚨 New: `delinquency_status` account flag**: Real-time visibility on delinquency for a liability across all major financial institutions.
+* **🛡 Improved reliability for `auth_session`**: Method Auth now utilizes redundant data providers optimized for performance, uptime and conversion. No code or UX changes required!
+* **🐞 Bug + Performance Improvements**: Squashed many bugs with general performance improvements to the API and Method Sync.
 
 ### December 2022
 * **✨ Winter cleaning**: Focused on fixing a backlog of issues, improving developer experience, and general quality of life improvements throughout!
