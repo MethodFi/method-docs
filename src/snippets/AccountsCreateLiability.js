@@ -20,7 +20,7 @@ const account = await method.accounts.create({
   holder_id: 'ent_au22b1fbFJbp8',
   liability: {
     mch_id: 'mch_2',
-    number: '1122334455',
+    account_number: '1122334455',
   }
 });
 `.trim();
